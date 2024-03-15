@@ -1,0 +1,21 @@
+{
+    "name": "YouTube Mobile 2015",
+    "short_name": "2015YouTube",
+    "icons": [
+        {
+            "src": "/android-chrome-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#BA1B12",
+    "background_color": "#f1f1f1",
+    "display": "standalone",
+    "description": "The 2015 YouTube experience, brought back to your smart device!",
+    "start_url": "/app"
+}
