@@ -1,0 +1,58 @@
+/* Original source: https://codepen.io/mrrocks/pen/ExLovj */
+/* This version of the CSS has been modified slightly */
+
+/* Here is where the magic happens */
+
+.spinner-container {
+     width: fit-content;
+     margin: 10px auto;
+}
+.spinner-container.full-height {
+     height: calc(100vh - 76px);
+     display: flex;
+     align-items: center;
+}
+.spinner-container.full-height[hidden] {
+     display: none;
+}
+
+.spinner {
+  animation: rotator var(--duration) linear infinite;
+  --offset: 187;
+  --duration: 1.4s;
+}
+
+@keyframes rotator {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(270deg); }
+}
+
+.spinner .path {
+  stroke-dasharray: var(--offset);
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  stroke: #065fd4;
+  animation:
+    dash var(--duration) ease-in-out infinite;
+    /* colors (var(--duration)*4) ease-in-out infinite; */
+}
+
+@keyframes colors {
+	0% { stroke: #4285F4; }
+	25% { stroke: #DE3E35; }
+	50% { stroke: #F7C223; }
+	75% { stroke: #1B9A59; }
+  100% { stroke: #4285F4; }
+}
+
+@keyframes dash {
+ 0% { stroke-dashoffset: var(--offset); }
+ 50% {
+   stroke-dashoffset: 46.75;
+   transform:rotate(135deg);
+ }
+ 100% {
+   stroke-dashoffset: var(--offset);
+   transform:rotate(450deg);
+ }
+}
