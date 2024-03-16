@@ -197,7 +197,12 @@ async function renderData() {
 
         const time = document.createElement('div');
         time.classList.add('thumbnail-overlay-time-status');
-        time.textContent = item.lengthSeconds.toLocaleString() + ' secs';
+        /* time.textContent = item.lengthSeconds.toLocaleString() + ' secs'; */
+        if (item.lengthSeconds > "3599") {
+        time.textContent = new Date(1000 * item.lengthSeconds).toISOString().substr(11, 8)
+        } else {
+        time.textContent = new Date(1000 * item.lengthSeconds).toISOString().substr(14, 5)
+        }
 
         if (item.lengthSeconds == 0) {
         time.textContent = 'YT Short';
@@ -425,7 +430,12 @@ async function renderData() {
 
         const time = document.createElement('div');
         time.classList.add('thumbnail-overlay-time-status');
-        time.textContent = item.lengthSeconds.toLocaleString() + ' secs';
+        /* time.textContent = item.lengthSeconds.toLocaleString() + ' secs'; */
+        if (item.lengthSeconds > "3599") {
+        time.textContent = new Date(1000 * item.lengthSeconds).toISOString().substr(11, 8)
+        } else {
+        time.textContent = new Date(1000 * item.lengthSeconds).toISOString().substr(14, 5)
+        }
 
         if (item.lengthSeconds == 0) {
         time.textContent = 'YT Short';
@@ -741,7 +751,12 @@ async function renderData() {
 
         const time = document.createElement('div');
         time.classList.add('thumbnail-overlay-time-status');
-        time.textContent = item.lengthSeconds.toLocaleString() + ' secs';
+        /* time.textContent = item.lengthSeconds.toLocaleString() + ' secs'; */
+        if (item.lengthSeconds > "3599") {
+        time.textContent = new Date(1000 * item.lengthSeconds).toISOString().substr(11, 8)
+        } else {
+        time.textContent = new Date(1000 * item.lengthSeconds).toISOString().substr(14, 5)
+        }
 
         if (item.lengthSeconds == 0) {
         time.textContent = 'YT Short';
@@ -916,7 +931,12 @@ async function renderDataTrending() {
 
         const time = document.createElement('div');
         time.classList.add('thumbnail-overlay-time-status');
-        time.textContent = item.lengthSeconds.toLocaleString() + ' secs';
+        /* time.textContent = item.lengthSeconds.toLocaleString() + ' secs'; */
+        if (item.lengthSeconds > "3599") {
+        time.textContent = new Date(1000 * item.lengthSeconds).toISOString().substr(11, 8)
+        } else {
+        time.textContent = new Date(1000 * item.lengthSeconds).toISOString().substr(14, 5)
+        }
 
         if (item.lengthSeconds == 0) {
         time.textContent = 'YT Short';
