@@ -172,12 +172,12 @@ div.media-icon {
     display: block;
     flex-grow: 1;
     overflow: hidden;
-    padding: 0 8px;
     padding-left: 10px;
 }
 .compact-media-headline {
 margin: 0;
 margin-bottom: 2px;
+font-size: 1.4rem;
 }
 h3.media-headline {
     font-size: 1.6rem;
@@ -250,6 +250,7 @@ right: 0;
 }
 .media-item-details {
     margin: 0 14px;
+    margin-right: 0;
     flex-direction: column;
 }
 .media-item-info {
@@ -459,6 +460,8 @@ animation-duration: .28s;
 }
 .shelf>.vertical-list>.shelf-item .compact-media-item-metadata-content {
     padding: 0;
+}
+.shelf>.vertical-list>.shelf-item .compact-media-item-metadata {
     padding-top: 8px;
 }
 .shelf>.vertical-list>.shelf-item .compact-media-item-metadata-content .subhead .small-text {
@@ -544,6 +547,7 @@ animation-duration: .28s;
     left: 0;
     top: 0;
     animation: fade-in .3s;
+    border-radius: 0;
 }
 .vertical-list>div.expand-shelf-button-container>button.icon-button[hidden] {
     animation: fade-out-shelf-expander .3s;
@@ -554,6 +558,9 @@ animation-duration: .28s;
 }
 
 h3 {
+    font-size: 1.4rem;
+}
+h4 {
     font-size: 1.4rem;
 }
 h1, h2, h3, h4 {
@@ -584,6 +591,7 @@ button {
     box-sizing: border-box;
     overflow: hidden;
     flex-shrink: 0;
+    border-radius: 50%;
 }
 
 ytm15-icon {
@@ -1160,4 +1168,68 @@ ytm15app.has-miniplayer {
     transition: transform .3s, opacity .3s;
     opacity: 0;
     pointer-events: none;
+}
+
+ytm15-menu-button {
+    color: #808080;
+}
+
+.media-item-menu {
+    margin: 0 -7px;
+}
+.media-item-menu .icon-button {
+    padding: 1px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50px;
+}
+.media-item-menu ytm15-icon {
+    width: 20px;
+    height: 20px;
+}
+
+/* About 2015YouTube */
+.about-page-heading, .about-page-subheading {
+    padding: 26px 16px;
+    text-align: center;
+    font-size: 26px;
+    color: #e00;
+    background-color: #d8d8d8;
+}
+.about-page-heading {
+    background-image: url(https://raw.githubusercontent.com/Yacine-Book/YM-OD_Stuff/main/ic_default_channel_placeholder_bg.png);
+    background-size: 20%;
+    background-position: center;
+}
+.about-page-subheading {
+    background-color: #e3e3e3;
+    font-size: 16px;
+    padding: 16px;
+    color: rgba(0, 0, 0, 0.6);
+}
+.ap-shelf {
+    border-bottom: 1.2px solid rgba(0,0,0,0.2);
+}
+.ap-shelf-header {
+    padding: 16px 14px;
+    padding-bottom: 1px;
+    position: relative;
+    overflow: hidden;
+}
+.ap-shelf-header h3 {
+    font-size: 1.8rem;
+    margin-bottom: 2px;
+}
+.ap-shelf-content {
+    display: flex;
+    flex-direction: column;
+}
+.ap-shelf-text {
+    padding: 14px;
+    padding-top: 6px;
+    color: rgba(0,0,0,0.6);
+    font-size: 1.4rem;
+}
+.ap-shelf-text a {
+    color: #068fd4;
 }

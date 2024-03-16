@@ -16,13 +16,13 @@ function renderHeader() {
     backBtn.onclick = function(){history.back()};
     backBtn.setAttribute("aria-label", "Go back");
     /* if (window.location.pathname.split("/").slice(3, 4) == "results.html" || window.location.pathname.split("/").slice(3, 4) == "index.html" && urlpage == "popular") */
-    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular") {
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about") {
         
     } else {
         backBtn.setAttribute("hidden", "");
     }
     window.addEventListener('hashchange', async function (event) {
-    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular") {
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about") {
         backBtn.removeAttribute("hidden", "");
     } else {
         backBtn.setAttribute("hidden", "");
@@ -37,7 +37,7 @@ function renderHeader() {
         header.setAttribute('data-mode', dataMode);
         searchOverlay.setAttribute('hidden', '');
         /* if (window.location.pathname.split("/").slice(3, 4) == "results.html" || window.location.pathname.split("/").slice(3, 4) == "index.html" && urlpage == "popular") */
-        if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular") {
+        if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about") {
             
         } else {
             backBtn.setAttribute("hidden", "");
@@ -70,7 +70,7 @@ function renderHeader() {
           input.blur();
           header.setAttribute('data-mode', dataMode);
           searchOverlay.setAttribute('hidden', '');
-          if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular") {
+          if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about") {
             
           } else {
               backBtn.setAttribute("hidden", "");

@@ -122,7 +122,7 @@ function searching() {
     backBtn.onclick = function(){
         header.setAttribute('data-mode', dataMode);
         searchOverlay.setAttribute('hidden', '');
-        if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular") {
+        if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about") {
             
         } else {
             backBtn.setAttribute("hidden", "");
@@ -138,6 +138,8 @@ async function hashDetector() {
     }
 if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == undefined || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "trending" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "") {
     renderData();
+} else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about") {
+    aboutYTm15();
 } else {
     if (document.querySelector(".spinner-container")) {
     var spinner = document.querySelector(".spinner-container");

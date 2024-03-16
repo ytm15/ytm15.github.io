@@ -301,6 +301,17 @@ async function renderData() {
         watchFrame.src = "watch.html?v=" + item.videoId;
         };
 
+        const mediaMenu = document.createElement('ytm15-menu-button');
+        mediaMenu.classList.add('media-item-menu');
+
+        const menuBtn = document.createElement("button");
+        menuBtn.classList.add("icon-button", "menu-button");
+        menuBtn.onclick = function(){};
+        menuBtn.setAttribute("aria-label", "Action menu");
+        menuBtn.setAttribute("aria-haspopup", "true");
+        menuBtn.innerHTML = `<ytm15-icon class="menu-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg></ytm15-icon>`;
+        mediaMenu.appendChild(menuBtn);
+
         media.appendChild(thumbnail);
 	thumbnail.appendChild(thumbg);
 	thumbnail.appendChild(image);
@@ -315,6 +326,7 @@ async function renderData() {
         details.appendChild(channel);
         details.appendChild(metadata);
         metadata.appendChild(metaContent);
+        metadata.appendChild(mediaMenu);
         video.appendChild(media);
         LazyList.appendChild(video);
         itemSect.appendChild(LazyList);
@@ -536,6 +548,17 @@ async function renderData() {
         watchFrame.src = "watch.html?v=" + item.videoId;
         };
 
+        const mediaMenu = document.createElement('ytm15-menu-button');
+        mediaMenu.classList.add('media-item-menu');
+
+        const menuBtn = document.createElement("button");
+        menuBtn.classList.add("icon-button", "menu-button");
+        menuBtn.onclick = function(){};
+        menuBtn.setAttribute("aria-label", "Action menu");
+        menuBtn.setAttribute("aria-haspopup", "true");
+        menuBtn.innerHTML = `<ytm15-icon class="menu-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg></ytm15-icon>`;
+        mediaMenu.appendChild(menuBtn);
+
         media.appendChild(thumbnail);
 	thumbnail.appendChild(thumbg);
 	thumbnail.appendChild(image);
@@ -550,6 +573,7 @@ async function renderData() {
         details.appendChild(channel);
         details.appendChild(metadata);
         metadata.appendChild(metaContent);
+        metadata.appendChild(mediaMenu);
         video.appendChild(media);
         LazyList.appendChild(video);
         itemSect.appendChild(LazyList);
@@ -805,6 +829,17 @@ async function renderData() {
         watchFrame.src = "watch.html?v=" + item.videoId;
         };
 
+        const mediaMenu = document.createElement('ytm15-menu-button');
+        mediaMenu.classList.add('media-item-menu');
+
+        const menuBtn = document.createElement("button");
+        menuBtn.classList.add("icon-button", "menu-button");
+        menuBtn.onclick = function(){};
+        menuBtn.setAttribute("aria-label", "Action menu");
+        menuBtn.setAttribute("aria-haspopup", "true");
+        menuBtn.innerHTML = `<ytm15-icon class="menu-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg></ytm15-icon>`;
+        mediaMenu.appendChild(menuBtn);
+
         media.appendChild(thumbnail);
 	thumbnail.appendChild(thumbg);
 	thumbnail.appendChild(image);
@@ -817,6 +852,7 @@ async function renderData() {
         subhead.appendChild(views);
         media.appendChild(metadata);
         metadata.appendChild(metaContent);
+        metadata.appendChild(mediaMenu);
         video.appendChild(media);
         verticalList.appendChild(video);
     });
@@ -984,6 +1020,17 @@ async function renderDataTrending() {
         watchFrame.src = "watch.html?v=" + item.videoId;
         };
 
+        const mediaMenu = document.createElement('ytm15-menu-button');
+        mediaMenu.classList.add('media-item-menu');
+
+        const menuBtn = document.createElement("button");
+        menuBtn.classList.add("icon-button", "menu-button");
+        menuBtn.onclick = function(){};
+        menuBtn.setAttribute("aria-label", "Action menu");
+        menuBtn.setAttribute("aria-haspopup", "true");
+        menuBtn.innerHTML = `<ytm15-icon class="menu-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg></ytm15-icon>`;
+        mediaMenu.appendChild(menuBtn);
+
         media.appendChild(thumbnail);
 	thumbnail.appendChild(thumbg);
 	thumbnail.appendChild(image);
@@ -996,6 +1043,7 @@ async function renderDataTrending() {
         subhead.appendChild(views);
         media.appendChild(metadata);
         metadata.appendChild(metaContent);
+        metadata.appendChild(mediaMenu);
         video.appendChild(media);
         verticalList.appendChild(video);
     });
