@@ -47,6 +47,15 @@ const playerCont = document.createElement("div");
 playerCont.classList.add("player-container");
 playerCont.id = "playerContainerId";
 
+const playerSpinner = document.createElement("div");
+playerSpinner.classList.add("spinner-container");
+playerSpinner.innerHTML = `
+<svg class="spinner" width="60px" height="60px" viewBox="0 0 66 66" xmlns="http://www.w3.org/2000/svg">
+   <circle class="path" fill="none" stroke-width="6" stroke-linecap="spuare" cx="33" cy="33" r="30"></circle>
+</svg>
+`;
+playerCont.appendChild(playerSpinner);
+
 const playerFrame = document.createElement("iframe");
 playerFrame.classList.add("watchpage-iframe", "player-iframe", "inv-player-for-ytm15");
 playerFrame.src = "https://invidious.protokolla.fi/embed/e";

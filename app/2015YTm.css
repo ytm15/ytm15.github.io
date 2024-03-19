@@ -1249,6 +1249,19 @@ ytm15-watch::before {
     align-items: center;
     text-align: center;
 }
+.player-container .spinner-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.player-container .spinner .path {
+    stroke: #eee;
+}
 
 ytm15-menu-button {
     color: #808080;
