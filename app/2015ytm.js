@@ -9,6 +9,9 @@ dataMode = 'normal';
 
 dataModeChange();
 
+playerVideoId = "e";
+playerEmbedURL = "https://invidious.protokolla.fi/embed/";
+
 window.addEventListener('hashchange', async function (event) {
 dataModeChange();
 });
@@ -47,6 +50,9 @@ const playerCont = document.createElement("div");
 playerCont.classList.add("player-container");
 playerCont.id = "playerContainerId";
 
+const playerCont2 = document.createElement("div");
+playerCont2.classList.add("player-inside-player");
+
 const playerSpinner = document.createElement("div");
 playerSpinner.classList.add("spinner-container");
 playerSpinner.innerHTML = `
@@ -54,11 +60,11 @@ playerSpinner.innerHTML = `
    <circle class="path" fill="none" stroke-width="6" stroke-linecap="spuare" cx="33" cy="33" r="30"></circle>
 </svg>
 `;
-playerCont.appendChild(playerSpinner);
+playerCont2.appendChild(playerSpinner);
 
 const playerFrame = document.createElement("iframe");
 playerFrame.classList.add("watchpage-iframe", "player-iframe", "inv-player-for-ytm15");
-playerFrame.src = "https://invidious.protokolla.fi/embed/e";
+playerFrame.src = playerEmbedURL + playerVideoId + "?autoplay=1";
 playerFrame.scrolling = "yes";
 playerFrame.frameBorder = "0";
 playerFrame.width = "100%";
@@ -125,7 +131,8 @@ closeVideo.innerHTML = `<ytm15-icon class="x-icon"><svg viewBox="0 0 24 24" fill
 watchContainer.appendChild(watchOverlay);
 watchContainer.appendChild(watchItems);
 watchItems.appendChild(playerCont);
-playerCont.appendChild(playerFrame);
+playerCont.appendChild(playerCont2);
+playerCont2.appendChild(playerFrame);
 watchItems.appendChild(ytm15Watch);
 playerCont.appendChild(watchActions);
 watchActions.appendChild(exitWatch);
