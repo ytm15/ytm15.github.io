@@ -161,8 +161,8 @@ if (window.location.hash.split("/").join(',').split("?").join(',').split(',').sl
 } else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about") {
     aboutYTm15();
 } else {
-    if (document.querySelector(".spinner-container")) {
-    var spinner = document.querySelector(".spinner-container");
+    if (document.querySelector(".spinner-container.full-height")) {
+    var spinner = document.querySelector(".spinner-container.full-height");
     spinner.setAttribute("hidden", "");
     }
 }

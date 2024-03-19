@@ -6,7 +6,7 @@ async function aboutYTm15() {
     const pageCont = document.querySelector('.page-container');
     pageCont.innerHTML = "";
 
-    var spinner = document.querySelector(".spinner-container");
+    var spinner = document.querySelector(".spinner-container.full-height");
     spinner.removeAttribute("hidden");
 
     if (document.querySelector(".tab-bar")) {
@@ -14,7 +14,7 @@ async function aboutYTm15() {
     headerBar.classList.remove('has-tab-bar');
     };
 
-    var spinner = document.querySelector(".spinner-container");
+    var spinner = document.querySelector(".spinner-container.full-height");
     spinner.setAttribute("hidden", "");
 
     headerTitle.setAttribute("aria-label", "About 2015YouTube");

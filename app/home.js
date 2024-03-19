@@ -81,7 +81,7 @@ async function renderData() {
         const pageCont = document.querySelector('.page-container');
         pageCont.innerHTML = "";
 
-        var spinner = document.querySelector(".spinner-container");
+        var spinner = document.querySelector(".spinner-container.full-height");
         spinner.removeAttribute("hidden");
 
         /* tab.setAttribute('aria-selected', 'false');
@@ -90,7 +90,7 @@ async function renderData() {
         const data = await fetchDataTrending();
         console.log(data);
 
-        var spinner = document.querySelector(".spinner-container");
+        var spinner = document.querySelector(".spinner-container.full-height");
         spinner.setAttribute("hidden", "");
 
         if (!data) {
@@ -342,7 +342,7 @@ async function renderData() {
         const pageCont = document.querySelector('.page-container');
         pageCont.innerHTML = "";
 
-        var spinner = document.querySelector(".spinner-container");
+        var spinner = document.querySelector(".spinner-container.full-height");
         spinner.removeAttribute("hidden");
 
         if (document.querySelector(".tab-bar")) {
@@ -353,7 +353,7 @@ async function renderData() {
         const data = await fetchData();
         console.log(data);
 
-        var spinner = document.querySelector(".spinner-container");
+        var spinner = document.querySelector(".spinner-container.full-height");
         spinner.setAttribute("hidden", "");
 
         if (!data) {
@@ -622,14 +622,14 @@ async function renderData() {
     const pageCont = document.querySelector('.page-container');
     pageCont.innerHTML = "";
 
-    var spinner = document.querySelector(".spinner-container");
+    var spinner = document.querySelector(".spinner-container.full-height");
     spinner.removeAttribute("hidden");
 
     const data = await fetchData();
 
     console.log(data);
 
-    var spinner = document.querySelector(".spinner-container");
+    var spinner = document.querySelector(".spinner-container.full-height");
     spinner.setAttribute("hidden", "");
 
     if (!data) {
@@ -869,7 +869,7 @@ async function renderData() {
 }
 
 async function renderDataTrending() {
-    const spinner = document.querySelector(".spinner-container");
+    const spinner = document.querySelector(".spinner-container.full-height");
     const contItem = document.createElement("div");
     contItem.classList.add("continuation-item");
     const spinnerClone = spinner.cloneNode(true);
