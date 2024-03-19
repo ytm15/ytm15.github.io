@@ -164,7 +164,7 @@ div.media-icon {
 .compact-media-item-metadata {
     display: flex;
     flex-direction: row;
-    overflow: hidden;
+    min-width: 0;
     flex-grow: 1;
     position: relative;
 }
@@ -994,12 +994,10 @@ ytm15app.has-miniplayer {
 }
 @keyframes miniplayer-to-player {
 0% {
-    bottom: 10px;
-    right: 10px;
-    left: 10px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
     min-height: 0;
-    max-width: var(--miniplayer-width);
-    max-height: var(--miniplayer-height);
     margin-left: auto;
 }
 100% {
@@ -1023,12 +1021,10 @@ ytm15app.has-miniplayer {
     margin-left: auto;
 }
 100% {
-    bottom: 10px;
-    right: 10px;
-    left: 10px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
     min-height: 0;
-    max-width: var(--miniplayer-width);
-    max-height: var(--miniplayer-height);
     margin-left: auto;
 }
 }
@@ -1066,14 +1062,13 @@ ytm15app.has-miniplayer {
     animation: miniplayer-to-player .3s;
 }
 #watchpageFrame_Container.miniplayer {
-    bottom: 10px;
-    right: 10px;
-    left: 10px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
     min-height: 0;
-    max-width: var(--miniplayer-width);
-    max-height: var(--miniplayer-height);
     margin-left: auto;
     animation: player-to-miniplayer .3s;
+    pointer-events: none;
 }
 .watchpage-frame-overlay {
     position: fixed;
@@ -1091,21 +1086,12 @@ ytm15app.has-miniplayer {
     opacity: 0;
 }
 .watchpage-frame-items {
-    background-color: #fff;
     position: relative;
     display: flex;
     min-width: 100%;
     min-height: 100%;
     transition: all .3s;
-}
-.miniplayer .watchpage-frame-items {
-    outline: 1px solid #f1f1f1;
-    background-color: #000;
-    box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.2);
-}
-.watchpage-frame-items:before {
-    content: "";
-    padding-bottom: 56.25%;
+    justify-content: flex-end;
 }
 .watchpage-frame-items iframe {
     position: absolute;
@@ -1123,11 +1109,10 @@ ytm15app.has-miniplayer {
     height: fit-content;
     z-index: 1;
     display: flex;
+    pointer-events: none;
 }
-@media (min-width: 800px) and (min-device-width: 550px) and (orientation: landscape) {
-.watchpage-frame-actions {
-    margin-right: 350px;
-}
+.watchpage-frame-actions > * {
+    pointer-events: auto;
 }
 .miniplayer .watchpage-frame-actions {
     display: none;
@@ -1164,10 +1149,105 @@ ytm15app.has-miniplayer {
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent);
 }
 #watchpageFrame_Container.miniplayer.closing {
-    transform: translateX(-130%);
+    transform: translateX(-100%);
     transition: transform .3s, opacity .3s;
     opacity: 0;
     pointer-events: none;
+}
+.player-container {
+    flex-grow: 1;
+    height: fit-content;
+    max-height: 100%;
+    max-width: 100%;
+    min-width: 0;
+    background-color: #000;
+    position: relative;
+    margin-right: var(--player-margin-right);
+    --player-margin-right: 0;
+    animation: miniplayer-to-player-cont .3s;
+}
+.player-container:before {
+    content: "";
+    padding-bottom: 56.25%;
+    display: block;
+}
+@media (min-width: 800px) and (min-device-width: 550px) and (orientation: landscape) {
+.player-container {
+    --player-margin-right: 350px;
+}
+}
+.miniplayer .player-container {
+    max-width: var(--miniplayer-width);
+    max-height: var(--miniplayer-height);
+    margin: 10px;
+    outline: 1px solid #f1f1f1;
+    box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.2);
+    pointer-events: auto;
+    animation: player-cont-to-miniplayer .3s;
+}
+@keyframes player-cont-to-miniplayer {
+0% {
+    margin: 0;
+    outline: 0;
+    box-shadow: none;
+    max-width: 100%;
+    max-height: 100%;
+    margin-right: var(--player-margin-right);
+}
+100% {
+    margin: 10px;
+    outline: 1px solid #f1f1f1;
+    box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.2);
+    max-width: var(--miniplayer-width);
+    max-height: var(--miniplayer-height);
+}
+}
+@keyframes miniplayer-to-player-cont {
+0% {
+    margin: 10px;
+    outline: 1px solid #f1f1f1;
+    box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.2);
+    max-width: var(--miniplayer-width);
+    max-height: var(--miniplayer-height);
+}
+100% {
+    margin: 0;
+    outline: 0;
+    box-shadow: none;
+    max-width: 100%;
+    max-height: 100%;
+    margin-right: var(--player-margin-right);
+}
+}
+.watchpage-frame-items ytm15-watch {
+    position: absolute;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    --watchpage-background: #fff;
+    background-color: var(--watchpage-background);
+    right: 0;
+    margin-top: 56.25%;
+    overflow-y: auto;
+}
+@media (min-width: 800px) and (min-device-width: 550px) and (orientation: landscape) {
+.watchpage-frame-items ytm15-watch {
+    margin-top: calc(56.25% - 197px);
+    margin-right: 350px;
+}
+}
+ytm15-watch::before {
+    content: "The watchpage (below the player) hasn't been built yet";
+    height: 100%;
+    box-sizing: border-box;
+    font-size: 16px;
+    padding: 16px;
+    display: flex;
+    opacity: .7;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 ytm15-menu-button {

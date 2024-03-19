@@ -181,6 +181,7 @@ async function renderData() {
         watchFrame.scrolling = "yes";
         }
         watchFrame.src = "watch.html?v=" + item.videoId;
+        playerFrame.src = "https://invidious.protokolla.fi/embed/" + item.videoId;
         };
 
         const thumbg = document.createElement('div');
@@ -255,6 +256,7 @@ async function renderData() {
         watchFrame.scrolling = "yes";
         }
         watchFrame.src = "watch.html?v=" + item.videoId;
+        playerFrame.src = "https://invidious.protokolla.fi/embed/" + item.videoId;
         };
 
         const cImage = document.createElement('img');
@@ -299,6 +301,7 @@ async function renderData() {
         watchFrame.scrolling = "yes";
         }
         watchFrame.src = "watch.html?v=" + item.videoId;
+        playerFrame.src = "https://invidious.protokolla.fi/embed/" + item.videoId;
         };
 
         const mediaMenu = document.createElement('ytm15-menu-button');
@@ -426,6 +429,7 @@ async function renderData() {
         watchFrame.scrolling = "yes";
         }
         watchFrame.src = "watch.html?v=" + item.videoId;
+        playerFrame.src = "https://invidious.protokolla.fi/embed/" + item.videoId;
         };
 
         const thumbg = document.createElement('div');
@@ -501,6 +505,7 @@ async function renderData() {
         watchFrame.scrolling = "yes";
         }
         watchFrame.src = "watch.html?v=" + item.videoId;
+        playerFrame.src = "https://invidious.protokolla.fi/embed/" + item.videoId;
         };
 
         const cImage = document.createElement('img');
@@ -546,6 +551,7 @@ async function renderData() {
         watchFrame.scrolling = "yes";
         }
         watchFrame.src = "watch.html?v=" + item.videoId;
+        playerFrame.src = "https://invidious.protokolla.fi/embed/" + item.videoId;
         };
 
         const mediaMenu = document.createElement('ytm15-menu-button');
@@ -759,6 +765,7 @@ async function renderData() {
         watchFrame.scrolling = "yes";
         }
         watchFrame.src = "watch.html?v=" + item.videoId;
+        playerFrame.src = "https://invidious.protokolla.fi/embed/" + item.videoId;
         };
 
         const thumbg = document.createElement('div');
@@ -827,6 +834,7 @@ async function renderData() {
         watchFrame.scrolling = "yes";
         }
         watchFrame.src = "watch.html?v=" + item.videoId;
+        playerFrame.src = "https://invidious.protokolla.fi/embed/" + item.videoId;
         };
 
         const mediaMenu = document.createElement('ytm15-menu-button');
@@ -951,6 +959,7 @@ async function renderDataTrending() {
         watchFrame.scrolling = "yes";
         }
         watchFrame.src = "watch.html?v=" + item.videoId;
+        playerFrame.src = "https://invidious.protokolla.fi/embed/" + item.videoId;
         };
 
         const thumbg = document.createElement('div');
@@ -1018,6 +1027,7 @@ async function renderDataTrending() {
         watchFrame.scrolling = "yes";
         }
         watchFrame.src = "watch.html?v=" + item.videoId;
+        playerFrame.src = "https://invidious.protokolla.fi/embed/" + item.videoId;
         };
 
         const mediaMenu = document.createElement('ytm15-menu-button');
