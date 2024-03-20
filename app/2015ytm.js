@@ -134,7 +134,7 @@ watchItems.appendChild(playerCont);
 playerCont.appendChild(playerCont2);
 playerCont2.appendChild(playerFrame);
 watchItems.appendChild(ytm15Watch);
-playerCont.appendChild(watchActions);
+playerCont2.appendChild(watchActions);
 watchActions.appendChild(exitWatch);
 /* watchItems.appendChild(watchFrame); */
 playerCont.appendChild(mpContent);

@@ -1165,6 +1165,8 @@ ytm15app.has-miniplayer {
     margin-right: var(--player-margin-right);
     --player-margin-right: 0;
     animation: miniplayer-to-player-cont .3s;
+    z-index: 1;
+    overflow: hidden;
 }
 .player-inside-player {
     position: relative;
