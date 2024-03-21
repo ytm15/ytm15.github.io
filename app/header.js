@@ -51,6 +51,10 @@ function renderHeader() {
     const form = document.createElement("form");
     form.classList.add("searchbox-form");
     form.action = "#/results";
+    form.onsubmit = function(){
+          window.location.href = "#/results?query=" + input.value.replaceAll("%", "%25").replaceAll("?", "%3F").replaceAll("=", "%3D").replaceAll("#", "%23").replaceAll("&", "%26").replaceAll(",", "%2C");
+          return false;
+    };
 
     const inputWrap = document.createElement("div");
     inputWrap.classList.add("searchbox-input-wrapper");
@@ -61,9 +65,21 @@ function renderHeader() {
     input.placeholder = "Search YouTube";
     input.role = "combobox";
     input.type = "search";
-    input.autocomplete = "off";
+    input.autocomplete = "on";
     input.autocorrect = "off";
-    input.value = new URLSearchParams(window.location.search).get('query');
+    /* input.value = new URLSearchParams(window.location.search).get('query'); */
+    searchValue = window.location.hash.split("?").slice(1, 2).toString().split("query").slice(1, 2).toString().split("=").slice(1, 2).toString().replaceAll("%20", " ").replaceAll("%3F", "?").replaceAll("%3D", "=").replaceAll("%23", "#").replaceAll("%60", "`").replaceAll("%25", "%").replaceAll("%26", "&").replaceAll("%2C", ",");
+    input.value = searchValue;
+    if (searchValue == undefined) {
+    input.value = "";
+    }
+    window.addEventListener('hashchange', async function (event) {
+    searchValue = window.location.hash.split("?").slice(1, 2).toString().split("query").slice(1, 2).toString().split("=").slice(1, 2).toString().replaceAll("%20", " ").replaceAll("%3F", "?").replaceAll("%3D", "=").replaceAll("%23", "#").replaceAll("%60", "`").replaceAll("%25", "%").replaceAll("%26", "&").replaceAll("%2C", ",");
+    input.value = searchValue;
+    if (searchValue == undefined) {
+    input.value = "";
+    }
+    });
     input.onclick = function(){searching();};
     input.addEventListener("keypress", function(event) {
        if (event.key === "Enter") {
