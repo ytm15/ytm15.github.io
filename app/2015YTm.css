@@ -5,6 +5,7 @@ body {
 	margin: 0px;
 	font-size: 1.4rem;
         -webkit-tap-highlight-color: transparent;
+        overflow-x: hidden;
 }
 html {
 	font-family: Roboto, Arial, Sans-serif;
@@ -17,7 +18,6 @@ html {
 ytm15app {
 display: block;
 transition: margin .2s, padding .2s;
-overflow-x: hidden;
 }
 
 .has-ripple {
