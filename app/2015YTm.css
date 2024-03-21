@@ -821,7 +821,6 @@ overflow: hidden;
 a {
     color: currentColor;
     text-decoration: none;
-    -webkit-tap-highlight-color: initial;
 }
 
 /* Tabs */
@@ -1350,6 +1349,7 @@ ytm15-menu-button {
 }
 .ap-shelf-text a {
     color: #068fd4;
+    -webkit-tap-highlight-color: initial;
 }
 
 .modal-open {
