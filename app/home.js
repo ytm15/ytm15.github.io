@@ -312,7 +312,31 @@ async function renderData() {
 
         const menuBtn = document.createElement("button");
         menuBtn.classList.add("icon-button", "menu-button");
-        menuBtn.onclick = function(){};
+        menuBtn.onclick = function(){
+        menuRenderer();
+        menuCont.style = "top: 0; right: 0;";
+        const menuAlign = (e) =>{
+        menuCont.style = `left: ${e.pageX}px; top: calc(${e.pageY}px - 20px); transform: translate(-100%, 0%);`;
+        }
+
+        document.onclick = menuAlign;
+        setTimeout(() => {
+        document.onclick = undefined;
+        }, 100);
+
+        function menuRemoveExtras() {
+
+        }
+
+        menuBtnCancel.onclick = function(){
+        menuRemoveExtras();
+        menuRemove();
+        };
+        menuOverlay.onclick = function(){
+        menuRemoveExtras();
+        menuRemove();
+        };
+        };
         menuBtn.setAttribute("aria-label", "Action menu");
         menuBtn.setAttribute("aria-haspopup", "true");
         menuBtn.innerHTML = `<ytm15-icon class="menu-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg></ytm15-icon>`;
@@ -565,7 +589,31 @@ async function renderData() {
 
         const menuBtn = document.createElement("button");
         menuBtn.classList.add("icon-button", "menu-button");
-        menuBtn.onclick = function(){};
+        menuBtn.onclick = function(){
+        menuRenderer();
+        menuCont.style = "top: 0; right: 0;";
+        const menuAlign = (e) =>{
+        menuCont.style = `left: ${e.pageX}px; top: calc(${e.pageY}px - 20px); transform: translate(-100%, 0%);`;
+        }
+
+        document.onclick = menuAlign;
+        setTimeout(() => {
+        document.onclick = undefined;
+        }, 100);
+
+        function menuRemoveExtras() {
+
+        }
+
+        menuBtnCancel.onclick = function(){
+        menuRemoveExtras();
+        menuRemove();
+        };
+        menuOverlay.onclick = function(){
+        menuRemoveExtras();
+        menuRemove();
+        };
+        };
         menuBtn.setAttribute("aria-label", "Action menu");
         menuBtn.setAttribute("aria-haspopup", "true");
         menuBtn.innerHTML = `<ytm15-icon class="menu-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg></ytm15-icon>`;
@@ -850,7 +898,31 @@ async function renderData() {
 
         const menuBtn = document.createElement("button");
         menuBtn.classList.add("icon-button", "menu-button");
-        menuBtn.onclick = function(){};
+        menuBtn.onclick = function(){
+        menuRenderer();
+        menuCont.style = "top: 0; right: 0;";
+        const menuAlign = (e) =>{
+        menuCont.style = `left: ${e.pageX}px; top: calc(${e.pageY}px - 20px); transform: translate(-100%, 0%);`;
+        }
+
+        document.onclick = menuAlign;
+        setTimeout(() => {
+        document.onclick = undefined;
+        }, 100);
+
+        function menuRemoveExtras() {
+
+        }
+
+        menuBtnCancel.onclick = function(){
+        menuRemoveExtras();
+        menuRemove();
+        };
+        menuOverlay.onclick = function(){
+        menuRemoveExtras();
+        menuRemove();
+        };
+        };
         menuBtn.setAttribute("aria-label", "Action menu");
         menuBtn.setAttribute("aria-haspopup", "true");
         menuBtn.innerHTML = `<ytm15-icon class="menu-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg></ytm15-icon>`;
@@ -1045,7 +1117,31 @@ async function renderDataTrending() {
 
         const menuBtn = document.createElement("button");
         menuBtn.classList.add("icon-button", "menu-button");
-        menuBtn.onclick = function(){};
+        menuBtn.onclick = function(){
+        menuRenderer();
+        menuCont.style = "top: 0; right: 0;";
+        const menuAlign = (e) =>{
+        menuCont.style = `left: ${e.pageX}px; top: calc(${e.pageY}px - 20px); transform: translate(-100%, 0%);`;
+        }
+
+        document.onclick = menuAlign;
+        setTimeout(() => {
+        document.onclick = undefined;
+        }, 100);
+
+        function menuRemoveExtras() {
+
+        }
+
+        menuBtnCancel.onclick = function(){
+        menuRemoveExtras();
+        menuRemove();
+        };
+        menuOverlay.onclick = function(){
+        menuRemoveExtras();
+        menuRemove();
+        };
+        };
         menuBtn.setAttribute("aria-label", "Action menu");
         menuBtn.setAttribute("aria-haspopup", "true");
         menuBtn.innerHTML = `<ytm15-icon class="menu-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg></ytm15-icon>`;

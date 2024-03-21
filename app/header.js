@@ -125,7 +125,39 @@ function renderHeader() {
 
     const menuBtn = document.createElement("button");
     menuBtn.classList.add("icon-button", "header-button", "menu-button");
-    menuBtn.onclick = function(){};
+    menuBtn.onclick = function(){
+    menuRenderer();
+    menuCont.style = "top: 0; right: 0; position: fixed;";
+
+    const menuItemAbt = document.createElement("div");
+    menuItemAbt.classList.add("menu-item");
+    menuItem.before(menuItemAbt);
+
+    const menuItemBtnAbt = document.createElement("button");
+    menuItemBtnAbt.classList.add("menu-item-button", "has-ripple");
+    menuItemBtnAbt.textContent = "About YTm15";
+    menuItemBtnAbt.onclick = function(){
+        window.location.href = "#/about";
+        menuRemoveExtras();
+        menuRemove();
+    };
+    menuItemAbt.appendChild(menuItemBtnAbt);
+
+    function menuRemoveExtras() {
+        setTimeout(() => {
+        menuItemAbt.remove();
+        }, 300);
+    }
+
+    menuBtnCancel.onclick = function(){
+    menuRemoveExtras();
+    menuRemove();
+    };
+    menuOverlay.onclick = function(){
+    menuRemoveExtras();
+    menuRemove();
+    };
+    };
     menuBtn.setAttribute("aria-label", "Menu");
     menuBtn.setAttribute("aria-haspopup", "true");
     menuBtn.innerHTML = `<ytm15-icon class="menu-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg></ytm15-icon>`;

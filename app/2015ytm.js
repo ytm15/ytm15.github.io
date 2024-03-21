@@ -142,6 +142,50 @@ mpContent.appendChild(mpActions);
 mpActions.appendChild(openWatch);
 mpActions.appendChild(closeVideo);
 
+const menuContain = document.createElement("div");
+menuContain.id = "menu";
+menuContain.classList.add("menu-container");
+
+const menuCont = document.createElement("div");
+menuCont.role = "dialog";
+menuCont.ariaModal = "true";
+menuCont.classList.add("menu-content");
+menuContain.appendChild(menuCont);
+
+const menuOverlay = document.createElement("div");
+menuOverlay.classList.add("ytm15-overlay");
+menuOverlay.onclick = function(){
+    menuRemove();
+}
+menuContain.appendChild(menuOverlay);
+
+const menuItem = document.createElement("div");
+menuItem.classList.add("menu-item");
+menuCont.appendChild(menuItem);
+
+const menuBtnCancel = document.createElement("button");
+menuBtnCancel.classList.add("menu-item-button", "cancel-button", "has-ripple");
+menuBtnCancel.textContent = "Cancel";
+menuBtnCancel.onclick = function(){
+    menuRemove();
+};
+menuItem.appendChild(menuBtnCancel);
+
+function menuRenderer() {
+    document.body.appendChild(menuContain);
+    document.body.classList.add("modal-open");
+}
+
+function menuRemove() {
+    menuCont.classList.add("closing");
+setTimeout(() => {
+    document.body.removeChild(menuContain);
+    document.body.classList.remove("modal-open");
+    menuCont.classList.remove("closing");
+    menuCont.style = "";
+}, 300);
+}
+
 function searching() {
     const headerBar = document.querySelector("ytm15-header-bar");
     const header = document.querySelector("header");

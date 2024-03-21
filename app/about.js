@@ -115,6 +115,13 @@ Changelog
 -Added a menu icon button next to media items
 <br>
 -CSS updates
+<br>
+<br>
+20 - 21 Mar 2024:
+<br>
+-Started working on menus
+<br>
+-Made the menu button on the header work
     </div>
     </div>
     </div>

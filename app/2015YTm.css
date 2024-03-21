@@ -19,6 +19,11 @@ display: block;
 transition: margin .2s, padding .2s;
 }
 
+.has-ripple {
+    position: relative;
+    overflow: hidden;
+}
+
 .item-section {
     border-bottom: 1.2px solid rgba(0,0,0,0.2);
 }
@@ -816,6 +821,7 @@ overflow: hidden;
 a {
     color: currentColor;
     text-decoration: none;
+    -webkit-tap-highlight-color: initial;
 }
 
 /* Tabs */
@@ -1344,4 +1350,106 @@ ytm15-menu-button {
 }
 .ap-shelf-text a {
     color: #068fd4;
+}
+
+.modal-open {
+    overflow: hidden;
+}
+
+.ytm15-overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Menus */
+#menu, .menu-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+}
+.menu-content {
+    z-index: 2;
+    position: absolute;
+    --menu-max-width: calc(100% - 14px);
+    max-height: var(--menu-max-width);
+    max-width: var(--menu-max-width);
+    overflow-x: hidden;
+    overflow-y: auto;
+    background-color: #fff;
+    box-shadow: 0px 5px 18px 0px rgba(0, 0, 0, 0.3);
+    border-radius: 2px;
+    margin: 7px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-start;
+    animation: menu-open .2s;
+}
+.menu-content.closing {
+    animation: menu-close .3s ease-out;
+    opacity: 0;
+}
+@keyframes menu-open {
+0% {
+    opacity: 0;
+    scale: 0.9;
+}
+100% {
+    opacity: 1;
+    scale: 1;
+}
+}
+@keyframes menu-open-alt {
+0% {
+    max-width: 0;
+    max-height: 0;
+}
+100% {
+    max-width: var(--menu-max-width);
+    max-height: var(--menu-max-width);
+}
+}
+@keyframes menu-close {
+0% {
+    opacity: 1;
+}
+100% {
+    opacity: 0;
+}
+}
+.menu-container .ytm15-overlay {
+    background-color: transparent;
+}
+.menu-item {
+    min-width: 160px;
+    width: 100%;
+}
+.menu-item:only-child:before {
+    padding: 10px 3px;
+    margin: 0px 12px;
+    content: "No options yet";
+    display: block;
+    opacity: .7;
+    border-bottom: 1.2px solid rgba(0, 0, 0, 0.2);
+}
+.menu-item-button {
+    text-transform: unset;
+    padding: 15px;
+    line-height: 1;
+    font-size: 1.6rem;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: initial;
 }
