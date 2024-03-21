@@ -17,6 +17,7 @@ html {
 ytm15app {
 display: block;
 transition: margin .2s, padding .2s;
+overflow-x: hidden;
 }
 
 .has-ripple {
