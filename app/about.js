@@ -127,6 +127,13 @@ Changelog
 21 - 22 Mar 2024:
 <br>
 -The searchpage and searchbar now gets the "query" parameter from the hash in the page URL (This was done so that the web app doesn't reload when switching from one page to the searchpage)
+<br>
+<br>
+22 Mar 2024:
+<br>
+-The searchpage and searchbar now uses the "decodeURIComponent()" and "encodeURIComponent()" functions instead of "replaceAll()";
+<br>
+-Modified inputs' cancel buttons
     </div>
     </div>
     </div>
