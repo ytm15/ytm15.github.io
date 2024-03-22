@@ -15,6 +15,18 @@ html {
         word-wrap: break-word;
 }
 
+html::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    border: 1.3px solid rgba(0, 0, 0, 0.2);
+    z-index: 10;
+    pointer-events: none;
+}
+
 ytm15app {
 display: block;
 transition: margin .2s, padding .2s;
