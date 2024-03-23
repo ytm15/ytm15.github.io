@@ -6,6 +6,9 @@
 .spinner-container {
      width: fit-content;
      margin: 10px auto;
+     display: flex;
+     align-items: center;
+     justify-content: center;
 }
 .spinner-container.full-height {
      height: calc(100vh - 76px);
