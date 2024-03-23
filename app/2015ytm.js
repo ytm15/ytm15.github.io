@@ -12,7 +12,7 @@ dataModeChange();
 playerVideoId = "e";
 playerEmbedURL = "https://invidious.protokolla.fi/embed/";
 
-window.addEventListener('hashchange', async function (event) {
+window.addEventListener('hashchange', function (event) {
 dataModeChange();
 });
 
@@ -211,7 +211,7 @@ function searching() {
     };
 }
 
-async function hashDetector() {
+function hashDetector() {
     document.querySelector(".searching-overlay").setAttribute("hidden", "");
     if (document.querySelector(".error-container")) {
     document.querySelector(".error-container").remove();
@@ -239,7 +239,7 @@ hashDetector();
 }
 }
 
-window.addEventListener('hashchange', async function (event) {
+window.addEventListener('hashchange', function (event) {
     if (window.location.pathname.split("/").slice(2, 3) == "2015YouTube%20(Mobile)") {
     if (window.location.pathname.split("/").slice(3, 4) == "index.html" || window.location.pathname.split("/").slice(3, 4) == undefined || window.location.pathname.split("/").slice(3, 4) == "") { 
     hashDetector();

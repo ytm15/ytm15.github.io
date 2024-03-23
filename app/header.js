@@ -3,7 +3,7 @@ function renderHeader() {
     const header = document.createElement("header");
     header.classList.add("ytm15-header");
     header.setAttribute('data-mode', dataMode);
-    window.addEventListener('hashchange', async function (event) {
+    window.addEventListener('hashchange', function (event) {
     if (window.location.hash.split("/").slice(1, 2)[0] == "results") {
         header.setAttribute('data-mode', 'search');
     } else {
@@ -21,7 +21,7 @@ function renderHeader() {
     } else {
         backBtn.setAttribute("hidden", "");
     }
-    window.addEventListener('hashchange', async function (event) {
+    window.addEventListener('hashchange', function (event) {
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about") {
         backBtn.removeAttribute("hidden", "");
     } else {
@@ -79,7 +79,7 @@ function renderHeader() {
     if (searchValue == undefined) {
     input.value = "";
     }
-    window.addEventListener('hashchange', async function (event) {
+    window.addEventListener('hashchange', function (event) {
     updateSearchVal();
     input.value = searchValue;
     if (searchValue == undefined) {
@@ -114,7 +114,7 @@ function renderHeader() {
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results") {
     headerTitle.setAttribute("hidden", "");
     }
-    window.addEventListener('hashchange', async function (event) {
+    window.addEventListener('hashchange', function (event) {
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results") {
     headerTitle.setAttribute("hidden", "");
     } else {
@@ -137,7 +137,7 @@ function renderHeader() {
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results") {
     searchBtn.setAttribute("hidden", "");
     }
-    window.addEventListener('hashchange', async function (event) {
+    window.addEventListener('hashchange', function (event) {
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results") {
     searchBtn.setAttribute("hidden", "");
     } else {

@@ -1,4 +1,4 @@
-async function aboutYTm15() {
+function aboutYTm15() {
     const headerTitle = document.querySelector(".header-title");
 
     const headerBar = document.querySelector("ytm15-header-bar");

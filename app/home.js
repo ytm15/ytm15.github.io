@@ -646,7 +646,7 @@ async function renderData() {
         
         console.log(window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0]);
 
-        async function tabSwitch() {
+        function tabSwitch() {
         if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] !== "" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] !== undefined) {
         tab.setAttribute('aria-selected', 'false');
         tab1.setAttribute('aria-selected', 'false');
@@ -663,7 +663,7 @@ async function renderData() {
 
         tabSwitch();
 
-        window.addEventListener('hashchange', async function (event) {
+        window.addEventListener('hashchange', function (event) {
         tabSwitch();
         });
     };
