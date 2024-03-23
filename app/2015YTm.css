@@ -730,6 +730,7 @@ background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAY
     background-size: 14px;
     background-repeat: no-repeat;
     background-position: 13px;
+    -webkit-appearance: none;
 }
 [data-mode="searching"] input[type="search" i]:enabled:read-write::-webkit-search-cancel-button {
     opacity: 1;
