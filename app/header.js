@@ -1,4 +1,4 @@
-const renderHeader = () => {
+function renderHeader() {
     const headerBar = document.createElement("ytm15-header-bar");
     const header = document.createElement("header");
     header.classList.add("ytm15-header");
