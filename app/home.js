@@ -316,7 +316,7 @@ async function renderData() {
         menuRenderer();
         menuCont.style = "top: 0; right: 0;";
         const menuAlign = (e) =>{
-        menuCont.style = `left: ${e.pageX}px; top: calc(${e.pageY}px - 20px); transform: translate(-100%, 0%);`;
+        menuCont.style = `left: calc(${e.pageX}px - 161px); top: calc(${e.pageY}px - 20px);`;
         }
 
         document.onclick = menuAlign;
@@ -593,7 +593,7 @@ async function renderData() {
         menuRenderer();
         menuCont.style = "top: 0; right: 0;";
         const menuAlign = (e) =>{
-        menuCont.style = `left: ${e.pageX}px; top: calc(${e.pageY}px - 20px); transform: translate(-100%, 0%);`;
+        menuCont.style = `left: calc(${e.pageX}px - 161px); top: calc(${e.pageY}px - 20px);`;
         }
 
         document.onclick = menuAlign;
@@ -902,7 +902,7 @@ async function renderData() {
         menuRenderer();
         menuCont.style = "top: 0; right: 0;";
         const menuAlign = (e) =>{
-        menuCont.style = `left: ${e.pageX}px; top: calc(${e.pageY}px - 20px); transform: translate(-100%, 0%);`;
+        menuCont.style = `left: calc(${e.pageX}px - 161px); top: calc(${e.pageY}px - 20px);`;
         }
 
         document.onclick = menuAlign;
@@ -1121,7 +1121,7 @@ async function renderDataTrending() {
         menuRenderer();
         menuCont.style = "top: 0; right: 0;";
         const menuAlign = (e) =>{
-        menuCont.style = `left: ${e.pageX}px; top: calc(${e.pageY}px - 20px); transform: translate(-100%, 0%);`;
+        menuCont.style = `left: calc(${e.pageX}px - 161px); top: calc(${e.pageY}px - 20px);`;
         }
 
         document.onclick = menuAlign;
