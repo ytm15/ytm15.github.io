@@ -1,4 +1,4 @@
-async function spinner() {
+function spinner() {
   var spinner = document.createElement("div");
   spinner.classList.add("spinner-container");
   spinner.innerHTML = `
