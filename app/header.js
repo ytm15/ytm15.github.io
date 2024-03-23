@@ -166,7 +166,7 @@ function renderHeader() {
     menuItemAbt.appendChild(menuItemBtnAbt);
 
     function menuRemoveExtras() {
-        setTimeout(() => {
+        setTimeout(function() {
         menuItemAbt.remove();
         }, 300);
     }

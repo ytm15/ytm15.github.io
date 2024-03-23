@@ -117,7 +117,7 @@ const closeVideo = document.createElement("button");
 closeVideo.classList.add("icon-button", "watch-action-button");
 closeVideo.onclick = function(){
 watchContainer.classList.add("closing");
-setTimeout(() => {
+setTimeout(function() {
   watchContainer.remove();
   app.classList.remove("has-miniplayer");
   watchContainer.classList.remove("closing");
@@ -178,7 +178,7 @@ function menuRenderer() {
 
 function menuRemove() {
     menuCont.classList.add("closing");
-setTimeout(() => {
+setTimeout(function() {
     document.body.removeChild(menuContain);
     document.body.classList.remove("modal-open");
     menuCont.classList.remove("closing");

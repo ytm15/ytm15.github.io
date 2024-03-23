@@ -75,16 +75,28 @@ Please note that YTm15 as it is in its current state is unfinished, so a lot of 
     <div class="ap-shelf">
     <div class="ap-shelf-header">
     <h3>
-APIs YTm15 makes use of
+Stuff YTm15 makes use of
     </h3>
     </div>
 
     <div class="ap-shelf-content">
     <div class="ap-shelf-text">
+APIs:
+<br>
 -Invidious API (<a href="https://docs.invidious.io/api/">https://docs.invidious.io/api/</a>)
 <br>
 <br>
 -YouTube Operational API (<a href="https://yt.lemnoslife.com/">https://yt.lemnoslife.com/</a>)
+<br>
+<br>
+Player:
+<br>
+-Invidious' embed player
+<br>
+<br>
+Polyfills:
+<br>
+-Polyfill.io (<a href="https://polyfill.io/">https://polyfill.io/</a>)
 </div>
     </div>
     </div>
@@ -134,6 +146,15 @@ Changelog
 -The searchpage and searchbar now uses the "decodeURIComponent()" and "encodeURIComponent()" functions instead of "replaceAll()";
 <br>
 -Modified inputs' cancel buttons
+<br>
+<br>
+23 Mar 2024:
+<br>
+-Slight JS changes
+<br>
+-YTm15 now uses a polyfill for multiple js functions older browsers might not support
+<br>
+-The "APIs YTm15 makes use of" section has been updated to not only list APIs, but other stuff too
     </div>
     </div>
     </div>

@@ -1,3 +1,6 @@
+var spinnerParent = document.querySelector("#app");
+spinner();
+
 async function fetchData() {
     try {
         const response = await fetch('https://invidious.protokolla.fi/api/v1/popular');
@@ -25,9 +28,6 @@ async function fetchDataTrending() {
         console.error('Error fetching data:', error);
     }
 }
-
-var spinnerParent = document.querySelector("#app");
-spinner();
 
 async function renderData() {
     const headerTitle = document.querySelector(".header-title");
