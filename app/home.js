@@ -1,7 +1,7 @@
 var spinnerParent = document.querySelector("#app");
 spinner();
 
-async function fetchData() {
+/* async function fetchData() {
     try {
         const response = await fetch('https://invidious.protokolla.fi/api/v1/popular');
         const data = await response.json();
@@ -9,16 +9,16 @@ async function fetchData() {
     } catch (error) {
         console.error('Error fetching data:', error);
     }
-}
+} */
 
-async function fetchDataTrending() {
+/* async function fetchDataTrending() {
     try {
-        /* if (urlpage !== "trending") */
+        // if (urlpage !== "trending")
         if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] !== "trending") {
         const response = await fetch('https://invidious.protokolla.fi/api/v1/trending');
         const data = await response.json();
         return data;
-        /* else if (urlpage == "trending") */
+        // else if (urlpage == "trending")
         } else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "trending") {
         const response = await fetch("https://invidious.protokolla.fi/api/v1/trending?type=" + trendType);
         const data = await response.json();
@@ -27,9 +27,10 @@ async function fetchDataTrending() {
     } catch (error) {
         console.error('Error fetching data:', error);
     }
-}
+} */
 
-async function renderData() {
+/* async function renderData() */
+function renderData() {
     const headerTitle = document.querySelector(".header-title");
     headerTitle.setAttribute("aria-label", "");
     headerTitle.textContent = "";
@@ -54,6 +55,9 @@ async function renderData() {
     tab.setAttribute('role', 'tab');
     tab.setAttribute('aria-label', 'Home');
     tab.setAttribute('aria-selected', 'false');
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == undefined) {
+    tab.setAttribute('aria-selected', 'true');
+    }
     tab.href = "#";
     tab.innerHTML = `<img class="ytm15-img-icon ytm15-img home-icon" src="ic_tab_home.png"></img>`;
 
@@ -66,6 +70,9 @@ async function renderData() {
     tab1.setAttribute('role', 'tab');
     tab1.setAttribute('aria-label', 'Trending');
     tab1.setAttribute('aria-selected', 'false');
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "trending") {
+    tab1.setAttribute('aria-selected', 'true');
+    }
     tab1.href = "#/trending";
     tab1.innerHTML = `<img class="ytm15-img-icon ytm15-img home-icon" src="ic_tab_trending.png"></img>`
 
@@ -75,10 +82,16 @@ async function renderData() {
     tabBarTabs.appendChild(tBTabCont1);
     tBTabCont1.appendChild(tab1);
 
-    async function eventListenFunc() {
+    if (document.querySelector(".tab-bar")) {
+    document.querySelector(".tab-bar").innerHTML = "";
+    document.querySelector(".tab-bar").appendChild(tabBarTabs);
+    document.querySelector(".tab-bar").setAttribute("isChannel", "false");
+    }
+
+    function eventListenFunc() {
 /* if (urlpage == "trending") */
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "trending") {
-        const pageCont = document.querySelector('.page-container');
+        /* const pageCont = document.querySelector('.page-container'); */
         pageCont.innerHTML = "";
 
         var spinner = document.querySelector(".spinner-container.full-height");
@@ -87,13 +100,22 @@ async function renderData() {
         /* tab.setAttribute('aria-selected', 'false');
         tab1.setAttribute('aria-selected', 'true'); */
 
-        const data = await fetchDataTrending();
-        console.log(data);
+        /* const data = await fetchDataTrending();
+        console.log(data); */
+
+        const getHomeData = new XMLHttpRequest();
+        if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] !== "trending") {
+        getHomeData.open('GET', 'https://invidious.protokolla.fi/api/v1/trending', true);
+        } else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "trending") {
+        getHomeData.open('GET', 'https://invidious.protokolla.fi/api/v1/trending?type=" + trendType', true);
+        }
+
+        getHomeData.onerror = function(event) {
+        console.error("An error occurred with this operation (" + getHomeData.status + ")");
 
         var spinner = document.querySelector(".spinner-container.full-height");
         spinner.setAttribute("hidden", "");
 
-        if (!data) {
         const error = document.createElement("div");
         error.classList.add('error-container');
         error.innerHTML = `<div class="error-content">
@@ -101,10 +123,31 @@ async function renderData() {
 <span class="error-text">There was an error connecting to the server</span>
 </div>
 <div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry" onClick="location.reload();"><div class="button-text">Retry</div></button></div>`;
-        const pageCont = document.querySelector('.page-container');
         pageCont.before(error);
         return;
-        }
+        };
+
+        getHomeData.send();
+
+        getHomeData.onload = function() {
+        if (getHomeData.status === 200) {
+        const data = JSON.parse(getHomeData.response);
+        console.log(data);
+
+        var spinner = document.querySelector(".spinner-container.full-height");
+        spinner.setAttribute("hidden", "");
+
+        /* if (!data) {
+        const error = document.createElement("div");
+        error.classList.add('error-container');
+        error.innerHTML = `<div class="error-content">
+<img class="error-icon ytm15-img" src="alert_error.png"></img>
+<span class="error-text">There was an error connecting to the server</span>
+</div>
+<div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry" onClick="location.reload();"><div class="button-text">Retry</div></button></div>`;
+        pageCont.before(error);
+        return;
+        } */
 
         headerTitle.setAttribute("aria-label", "Trending");
         headerTitle.textContent = "Trending";
@@ -113,10 +156,12 @@ async function renderData() {
         headerBar.appendChild(tabBar);
         headerBar.classList.add('has-tab-bar');
         tabBar.removeAttribute("hidden");
+        document.querySelector(".tab-bar").setAttribute("isChannel", "false");
         };
 
         if (document.querySelector(".tab-bar")) {
         document.querySelector(".tab-bar").removeAttribute("hidden");
+        document.querySelector(".tab-bar").setAttribute("isChannel", "false");
         headerBar.classList.add('has-tab-bar');
         };
 
@@ -155,8 +200,8 @@ async function renderData() {
 
         oldTitle.parentNode.replaceChild(title, oldTitle);
 
-        data.forEach(item => {
-        const channelData = fetch('https://yt.lemnoslife.com/noKey/channels?part=snippet,status&id=' + item.authorId);
+        data.forEach(function(item) {
+        /* const channelData = fetch('https://yt.lemnoslife.com/noKey/channels?part=snippet,status&id=' + item.authorId); */
 
         const itemSect = document.createElement("div");
         itemSect.classList.add('item-section');
@@ -206,8 +251,29 @@ async function renderData() {
         time.textContent = new Date(1000 * item.lengthSeconds).toISOString().substr(14, 5)
         }
 
-        if (item.lengthSeconds == 0) {
+        /* if (item.lengthSeconds == 0) {
         time.textContent = 'YT Short';
+        } */
+
+        if (item.lengthSeconds == 0) {
+        time.textContent = "";
+        const getVideoLength = new XMLHttpRequest();
+        getVideoLength.open('GET', 'https://yt.lemnoslife.com/videos?part=id,status,contentDetails,snippet&id=' + item.videoId, true);
+ 
+        getVideoLength.send();
+ 
+        getVideoLength.onload = function(){
+          if (getVideoLength.status === 200) {
+          const response = JSON.parse(getVideoLength.response);
+          if (response.items[0].contentDetails.duration > "3599") {
+          time.textContent = new Date(1000 * response.items[0].contentDetails.duration).toISOString().substr(11, 8)
+          } else {
+          time.textContent = new Date(1000 * response.items[0].contentDetails.duration).toISOString().substr(14, 5)
+          }
+          } else {
+          console.error("An error occurred with this operation (" + getVideoLength.status + ")");
+          }
+        };
         }
 
         const title = document.createElement('h3');
@@ -266,7 +332,7 @@ async function renderData() {
         cImage.loading = "lazy";
         cImage.onload = function(){cImage.classList.add('loaded');}; 
 
-        channelData
+        /* channelData
          .then(response => {
          if (!response.ok) {
          throw new Error('Network response was not ok');
@@ -274,12 +340,26 @@ async function renderData() {
          return response.json();
          })
          .then(data1 => {
-          /* console.log('JSON data:', data1); */
+          // console.log('JSON data:', data1);
           cImage.src = data1.items[0].snippet.thumbnails.default.url;
          })
          .catch(error => {
           console.error('There was a problem with the fetch operation:', error);
-        });
+        }); */
+
+        const channelData = new XMLHttpRequest();
+        channelData.open('GET', 'https://yt.lemnoslife.com/noKey/channels?part=snippet,status&id=' + item.authorId, true);
+ 
+        channelData.send();
+ 
+        channelData.onload = function(){
+          if (channelData.status === 200) {
+          const data1 = JSON.parse(channelData.response);
+          cImage.src = data1.items[0].snippet.thumbnails.default.url;
+          } else {
+          console.error("An error occurred with this operation (" + channelData.status + ")");
+          }
+        };
 
         const profileIcon = document.createElement('div');
         profileIcon.classList.add('media-icon', 'profile-icon');
@@ -314,13 +394,13 @@ async function renderData() {
         menuBtn.classList.add("icon-button", "menu-button");
         menuBtn.onclick = function(){
         menuRenderer();
-        menuCont.style = "top: 0; right: 0;";
-        const menuAlign = (e) =>{
-        menuCont.style = `left: calc(${e.pageX}px - 161px); top: calc(${e.pageY}px - 20px);`;
+        menuCont.setAttribute("style", "top: 0; right: 0;");
+        const menuAlign = function(e) {
+        menuCont.setAttribute("style", `left: calc(${e.pageX}px - 161px); top: calc(${e.pageY}px - 20px);`);
         }
 
         document.onclick = menuAlign;
-        setTimeout(() => {
+        setTimeout(function(){
         document.onclick = undefined;
         }, 100);
 
@@ -362,11 +442,14 @@ async function renderData() {
         itemSect.appendChild(LazyList);
         sectLazyList.appendChild(itemSect);
         });
+    } else {
+    getHomeData.onerror();
+    }
+    };
     }
 
     /* if (urlpage == "popular") */ 
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular") {
-        const pageCont = document.querySelector('.page-container');
         pageCont.innerHTML = "";
 
         var spinner = document.querySelector(".spinner-container.full-height");
@@ -375,15 +458,22 @@ async function renderData() {
         if (document.querySelector(".tab-bar")) {
         document.querySelector(".tab-bar").setAttribute("hidden", "");
         headerBar.classList.remove('has-tab-bar');
+        document.querySelector(".tab-bar").setAttribute("isChannel", "false");
         };
 
-        const data = await fetchData();
-        console.log(data);
+        /* const data = await fetchData();
+        console.log(data); */
+
+        const getHomeData1 = new XMLHttpRequest();
+
+        getHomeData1.open('GET', 'https://invidious.protokolla.fi/api/v1/popular', true);
+
+        getHomeData1.onerror = function(event) {
+        console.error("An error occurred with this operation (" + getHomeData1.status + ")");
 
         var spinner = document.querySelector(".spinner-container.full-height");
         spinner.setAttribute("hidden", "");
 
-        if (!data) {
         const error = document.createElement("div");
         error.classList.add('error-container');
         error.innerHTML = `<div class="error-content">
@@ -391,10 +481,31 @@ async function renderData() {
 <span class="error-text">There was an error connecting to the server</span>
 </div>
 <div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry" onClick="location.reload();"><div class="button-text">Retry</div></button></div>`;
-        const pageCont = document.querySelector('.page-container');
         pageCont.before(error);
         return;
-        }
+        };
+
+        getHomeData1.send();
+
+        getHomeData1.onload = function() {
+        if (getHomeData1.status === 200) {
+        const data = JSON.parse(getHomeData1.response);
+        console.log(data);
+
+        var spinner = document.querySelector(".spinner-container.full-height");
+        spinner.setAttribute("hidden", "");
+
+        /* if (!data) {
+        const error = document.createElement("div");
+        error.classList.add('error-container');
+        error.innerHTML = `<div class="error-content">
+<img class="error-icon ytm15-img" src="alert_error.png"></img>
+<span class="error-text">There was an error connecting to the server</span>
+</div>
+<div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry" onClick="location.reload();"><div class="button-text">Retry</div></button></div>`;
+        pageCont.before(error);
+        return;
+        } */
 
         headerTitle.setAttribute("aria-label", "Popular");
         headerTitle.textContent = "Popular";
@@ -429,8 +540,8 @@ async function renderData() {
 
         oldTitle.parentNode.replaceChild(title, oldTitle);
 
-        data.forEach(item => {
-        const channelData = fetch('https://yt.lemnoslife.com/noKey/channels?part=snippet,status&id=' + item.authorId);
+        data.forEach(function(item) {
+        /* const channelData = fetch('https://yt.lemnoslife.com/noKey/channels?part=snippet,status&id=' + item.authorId); */
 
         const itemSect = document.createElement("div");
         itemSect.classList.add('item-section');
@@ -482,7 +593,24 @@ async function renderData() {
         }
 
         if (item.lengthSeconds == 0) {
-        time.textContent = 'YT Short';
+        time.textContent = "";
+        const getVideoLength = new XMLHttpRequest();
+        getVideoLength.open('GET', 'https://yt.lemnoslife.com/videos?part=id,status,contentDetails,snippet&id=' + item.videoId, true);
+ 
+        getVideoLength.send();
+ 
+        getVideoLength.onload = function(){
+          if (getVideoLength.status === 200) {
+          const response = JSON.parse(getVideoLength.response);
+          if (response.items[0].contentDetails.duration > "3599") {
+          time.textContent = new Date(1000 * response.items[0].contentDetails.duration).toISOString().substr(11, 8)
+          } else {
+          time.textContent = new Date(1000 * response.items[0].contentDetails.duration).toISOString().substr(14, 5)
+          }
+          } else {
+          console.error("An error occurred with this operation (" + getVideoLength.status + ")");
+          }
+        };
         }
 
         const title = document.createElement('h3');
@@ -542,7 +670,7 @@ async function renderData() {
         cImage.loading = "lazy";
         cImage.onload = function(){cImage.classList.add('loaded');}; 
 
-        channelData
+        /* channelData
          .then(response => {
          if (!response.ok) {
          throw new Error('Network response was not ok');
@@ -550,12 +678,26 @@ async function renderData() {
          return response.json();
          })
          .then(data1 => {
-          /* console.log('JSON data:', data1); */
+          // console.log('JSON data:', data1);
           cImage.src = data1.items[0].snippet.thumbnails.default.url;
          })
          .catch(error => {
           console.error('There was a problem with the fetch operation:', error);
-        });
+        }); */
+
+        const channelData = new XMLHttpRequest();
+        channelData.open('GET', 'https://yt.lemnoslife.com/noKey/channels?part=snippet,status&id=' + item.authorId, true);
+ 
+        channelData.send();
+ 
+        channelData.onload = function(){
+          if (channelData.status === 200) {
+          const data1 = JSON.parse(channelData.response);
+          cImage.src = data1.items[0].snippet.thumbnails.default.url;
+          } else {
+          console.error("An error occurred with this operation (" + channelData.status + ")");
+          }
+        };
 
         const profileIcon = document.createElement('div');
         profileIcon.classList.add('media-icon', 'profile-icon');
@@ -591,13 +733,13 @@ async function renderData() {
         menuBtn.classList.add("icon-button", "menu-button");
         menuBtn.onclick = function(){
         menuRenderer();
-        menuCont.style = "top: 0; right: 0;";
-        const menuAlign = (e) =>{
-        menuCont.style = `left: calc(${e.pageX}px - 161px); top: calc(${e.pageY}px - 20px);`;
+        menuCont.setAttribute("style", "top: 0; right: 0;");
+        const menuAlign = function(e) {
+        menuCont.setAttribute("style", `left: calc(${e.pageX}px - 161px); top: calc(${e.pageY}px - 20px);`);
         }
 
         document.onclick = menuAlign;
-        setTimeout(() => {
+        setTimeout(function(){
         document.onclick = undefined;
         }, 100);
 
@@ -639,6 +781,10 @@ async function renderData() {
         itemSect.appendChild(LazyList);
         sectLazyList.appendChild(itemSect);
         });
+    } else {
+    getHomeData1.onerror();
+    }
+    };
     }
 
         /* let hash = window.location.hash;
@@ -673,20 +819,25 @@ async function renderData() {
         return;
     };
 
-    const pageCont = document.querySelector('.page-container');
     pageCont.innerHTML = "";
 
     var spinner = document.querySelector(".spinner-container.full-height");
     spinner.removeAttribute("hidden");
 
-    const data = await fetchData();
+    /* const data = await fetchData();
 
-    console.log(data);
+    console.log(data); */
 
-    var spinner = document.querySelector(".spinner-container.full-height");
-    spinner.setAttribute("hidden", "");
+    const getHomeData3 = new XMLHttpRequest();
 
-    if (!data) {
+    getHomeData3.open('GET', 'https://invidious.protokolla.fi/api/v1/popular', true);
+
+    getHomeData3.onerror = function(event) {
+        console.error("An error occurred with this operation (" + getHomeData3.status + ")");
+
+        var spinner = document.querySelector(".spinner-container.full-height");
+        spinner.setAttribute("hidden", "");
+
         const error = document.createElement("div");
         error.classList.add('error-container');
         error.innerHTML = `<div class="error-content">
@@ -694,10 +845,31 @@ async function renderData() {
 <span class="error-text">There was an error connecting to the server</span>
 </div>
 <div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry" onClick="location.reload();"><div class="button-text">Retry</div></button></div>`;
-        const pageCont = document.querySelector('.page-container');
         pageCont.before(error);
         return;
-    }
+    };
+
+    getHomeData3.send();
+
+    getHomeData3.onload = function() {
+    if (getHomeData3.status === 200) {
+    const data = JSON.parse(getHomeData3.response);
+    console.log(data);
+
+    var spinner = document.querySelector(".spinner-container.full-height");
+    spinner.setAttribute("hidden", "");
+
+    /* if (!data) {
+        const error = document.createElement("div");
+        error.classList.add('error-container');
+        error.innerHTML = `<div class="error-content">
+<img class="error-icon ytm15-img" src="alert_error.png"></img>
+<span class="error-text">There was an error connecting to the server</span>
+</div>
+<div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry" onClick="location.reload();"><div class="button-text">Retry</div></button></div>`;
+        pageCont.before(error);
+        return;
+    } */
 
     headerTitle.setAttribute("aria-label", "Home");
     headerTitle.textContent = "Home";
@@ -706,11 +878,13 @@ async function renderData() {
     headerBar.appendChild(tabBar);
     headerBar.classList.add('has-tab-bar');
     tabBar.removeAttribute("hidden");
+    document.querySelector(".tab-bar").setAttribute("isChannel", "false");
     };
 
     if (document.querySelector(".tab-bar")) {
     document.querySelector(".tab-bar").removeAttribute("hidden");
     headerBar.classList.add('has-tab-bar');
+    document.querySelector(".tab-bar").setAttribute("isChannel", "false");
     };
 
     const page = document.createElement("page");
@@ -800,7 +974,7 @@ async function renderData() {
 
     oldTitle.parentNode.replaceChild(title, oldTitle);
 
-    data.forEach(item => {
+    data.forEach(function(item) {
         const video = document.createElement('div');
         video.classList.add('compact-video', 'shelf-item');
 
@@ -845,7 +1019,24 @@ async function renderData() {
         }
 
         if (item.lengthSeconds == 0) {
-        time.textContent = 'YT Short';
+        time.textContent = "";
+        const getVideoLength = new XMLHttpRequest();
+        getVideoLength.open('GET', 'https://yt.lemnoslife.com/videos?part=id,status,contentDetails,snippet&id=' + item.videoId, true);
+ 
+        getVideoLength.send();
+ 
+        getVideoLength.onload = function(){
+          if (getVideoLength.status === 200) {
+          const response = JSON.parse(getVideoLength.response);
+          if (response.items[0].contentDetails.duration > "3599") {
+          time.textContent = new Date(1000 * response.items[0].contentDetails.duration).toISOString().substr(11, 8)
+          } else {
+          time.textContent = new Date(1000 * response.items[0].contentDetails.duration).toISOString().substr(14, 5)
+          }
+          } else {
+          console.error("An error occurred with this operation (" + getVideoLength.status + ")");
+          }
+        };
         }
 
         const title = document.createElement('h4');
@@ -900,13 +1091,13 @@ async function renderData() {
         menuBtn.classList.add("icon-button", "menu-button");
         menuBtn.onclick = function(){
         menuRenderer();
-        menuCont.style = "top: 0; right: 0;";
-        const menuAlign = (e) =>{
-        menuCont.style = `left: calc(${e.pageX}px - 161px); top: calc(${e.pageY}px - 20px);`;
+        menuCont.setAttribute("style", "top: 0; right: 0;");
+        const menuAlign = function(e) {
+        menuCont.setAttribute("style", `left: calc(${e.pageX}px - 161px); top: calc(${e.pageY}px - 20px);`);
         }
 
         document.onclick = menuAlign;
-        setTimeout(() => {
+        setTimeout(function(){
         document.onclick = undefined;
         }, 100);
 
@@ -946,9 +1137,14 @@ async function renderData() {
     });
     
     verticalList.appendChild(ESButtonCont);
+} else {
+getHomeData3.onerror();
+}
+};
 }
 
-async function renderDataTrending() {
+/* async function renderDataTrending() */ 
+function renderDataTrending() {
     const spinner = document.querySelector(".spinner-container.full-height");
     const contItem = document.createElement("div");
     contItem.classList.add("continuation-item");
@@ -961,14 +1157,35 @@ async function renderDataTrending() {
     console.log(sectLazyList);
     sectLazyList.appendChild(contItem);
 
-    const data = await fetchDataTrending();
+    /* const data = await fetchDataTrending();
 
-    console.log(data);
+    console.log(data); */
 
-    if (!data) {
+    const getHomeData2 = new XMLHttpRequest();
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] !== "trending") {
+    getHomeData2.open('GET', 'https://invidious.protokolla.fi/api/v1/trending', true);
+    } else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "trending") {
+    getHomeData2.open('GET', 'https://invidious.protokolla.fi/api/v1/trending?type=" + trendType', true);
+    }
+
+    getHomeData2.onerror = function(event) {
+    console.error("An error occurred with this operation (" + getHomeData2.status + ")");
+
         contItem.remove();
         return;
-    }
+    };
+
+    getHomeData2.send();
+
+    getHomeData2.onload = function() {
+    if (getHomeData2.status === 200) {
+    const data = JSON.parse(getHomeData2.response);
+    console.log(data);
+
+    /* if (!data) {
+        contItem.remove();
+        return;
+    } */
 
     contItem.remove();
 
@@ -1021,7 +1238,7 @@ async function renderDataTrending() {
     shelfHeaderEP.appendChild(shelfTitleBar);
     shelf.appendChild(verticalList);
 
-    data.forEach(item => {
+    data.forEach(function(item) {
         const video = document.createElement('div');
         video.classList.add('compact-video', 'shelf-item');
 
@@ -1065,7 +1282,24 @@ async function renderDataTrending() {
         }
 
         if (item.lengthSeconds == 0) {
-        time.textContent = 'YT Short';
+        time.textContent = "";
+        const getVideoLength = new XMLHttpRequest();
+        getVideoLength.open('GET', 'https://yt.lemnoslife.com/videos?part=id,status,contentDetails,snippet&id=' + item.videoId, true);
+ 
+        getVideoLength.send();
+ 
+        getVideoLength.onload = function(){
+          if (getVideoLength.status === 200) {
+          const response = JSON.parse(getVideoLength.response);
+          if (response.items[0].contentDetails.duration > "3599") {
+          time.textContent = new Date(1000 * response.items[0].contentDetails.duration).toISOString().substr(11, 8)
+          } else {
+          time.textContent = new Date(1000 * response.items[0].contentDetails.duration).toISOString().substr(14, 5)
+          }
+          } else {
+          console.error("An error occurred with this operation (" + getVideoLength.status + ")");
+          }
+        };
         }
 
         const title = document.createElement('h4');
@@ -1119,13 +1353,13 @@ async function renderDataTrending() {
         menuBtn.classList.add("icon-button", "menu-button");
         menuBtn.onclick = function(){
         menuRenderer();
-        menuCont.style = "top: 0; right: 0;";
-        const menuAlign = (e) =>{
-        menuCont.style = `left: calc(${e.pageX}px - 161px); top: calc(${e.pageY}px - 20px);`;
+        menuCont.setAttribute("style", "top: 0; right: 0;");
+        const menuAlign = function(e) {
+        menuCont.setAttribute("style", `left: calc(${e.pageX}px - 161px); top: calc(${e.pageY}px - 20px);`);
         }
 
         document.onclick = menuAlign;
-        setTimeout(() => {
+        setTimeout(function(){
         document.onclick = undefined;
         }, 100);
 
@@ -1163,6 +1397,10 @@ async function renderDataTrending() {
         video.appendChild(media);
         verticalList.appendChild(video);
     });
-    
+
     verticalList.appendChild(ESButtonCont);
+    } else {
+    getHomeData2.onerror();
+    }
+    }
 }

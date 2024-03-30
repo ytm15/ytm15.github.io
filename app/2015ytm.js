@@ -5,6 +5,11 @@ dataMode = 'search';
 } else {
 dataMode = 'normal';
 };
+if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "channel") {
+headerIsChannel = 'true';
+} else {
+headerIsChannel = 'false';
+};
 }
 
 dataModeChange();
@@ -36,6 +41,12 @@ console.log(hash); */
 console.log(window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0]);
 
 const app = document.querySelector("ytm15app");
+
+const headerTitle = document.querySelector(".header-title");
+
+const headerBar = document.querySelector("ytm15-header-bar");
+
+const pageCont = document.querySelector('.page-container');
 
 const watchContainer = document.createElement("div");
 watchContainer.id = "watchpageFrame_Container";
@@ -202,7 +213,7 @@ function searching() {
     backBtn.onclick = function(){
         header.setAttribute('data-mode', dataMode);
         searchOverlay.setAttribute('hidden', '');
-        if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about") {
+        if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "channel") {
             
         } else {
             backBtn.setAttribute("hidden", "");
@@ -220,6 +231,8 @@ if (window.location.hash.split("/").join(',').split("?").join(',').split(',').sl
     renderData();
 } else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about") {
     aboutYTm15();
+} else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "channel") {
+    channelPage();
 } else {
     if (document.querySelector(".spinner-container.full-height")) {
     var spinner = document.querySelector(".spinner-container.full-height");

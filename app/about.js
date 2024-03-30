@@ -67,7 +67,7 @@ This project has been ongoing since Feb 2024, in an effort to ensure that you ca
 YTm15 is based off of version 10 of the Android YT app
 <br>
 <br>
-Please note that YTm15 as it is in its current state is unfinished, so a lot of things you'd expect to see in something like this (e.g. channel pages, search page, playlist page, and even watchpage) are not present/built in this app yet
+Please note that YTm15 as it is in its current state is unfinished, so a lot of things you'd expect to see in something like this (e.g. channel pages, search page, playlist page, and even watchpage) are not present/built/finished in this app yet
 </div>
     </div>
     </div>
@@ -155,7 +155,32 @@ Changelog
 -YTm15 now uses a polyfill for multiple js functions older browsers might not support
 <br>
 -The "APIs YTm15 makes use of" section has been updated to not only list APIs, but other stuff too
+<br>
+<br>
+30 Mar 2024:
+<br>
+-YT shorts' time statuses now display the actual length instead of a text saying "YT Short"
+<br>
+-CSS and JS tweaks
+<br>
+-Started working on channel pages a bit
+<br>
+-Added a footer to the about page (Aka this page)
+<br>
+-The homepage no-longer uses async functions to get data from the API it uses (This change was made to support older browsers)
     </div>
+    </div>
+    </div>
+    <div class="item-section">
+    <div class="lazy-list no-animation">
+    <footer class="about-page-footer">
+    <div class="ap-footer-content">
+    <h3 class="ap-footer-text">Have any questions/issues/requests/bugs/feedback? <a href="https://github.com/ytm15/ytm15.github.io/issues">Visit our Github's issues page</a></h3>
+    <h4 class="ap-footer-text small subhead ap-footer-links">Links: <a href="https://ytm15.github.io/">Landing page</a> | <a href="https://github.com/ytm15/ytm15.github.io/">Github page</a></h4>
+    <h4 class="ap-footer-text small subhead ap-footer-copyright-and-copyleft-text">© 2015, YouTube and Google | (ↄ) 2024, Yacine's remakes</h4>
+    <h4 class="ap-footer-text small subhead">Please note that YTm15 is not associated with, affiliated with, developed, approved, or endorsed by YouTube or Google!</h4>
+    </div>
+    </footer>
     </div>
     </div>
     `;
