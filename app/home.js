@@ -107,7 +107,7 @@ function renderData() {
         if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] !== "trending") {
         getHomeData.open('GET', 'https://invidious.protokolla.fi/api/v1/trending', true);
         } else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "trending") {
-        getHomeData.open('GET', 'https://invidious.protokolla.fi/api/v1/trending?type=" + trendType', true);
+        getHomeData.open('GET', 'https://invidious.protokolla.fi/api/v1/trending?type=' + trendType, true);
         }
 
         getHomeData.onerror = function(event) {
@@ -1165,7 +1165,7 @@ function renderDataTrending() {
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] !== "trending") {
     getHomeData2.open('GET', 'https://invidious.protokolla.fi/api/v1/trending', true);
     } else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "trending") {
-    getHomeData2.open('GET', 'https://invidious.protokolla.fi/api/v1/trending?type=" + trendType', true);
+    getHomeData2.open('GET', 'https://invidious.protokolla.fi/api/v1/trending?type=' + trendType, true);
     }
 
     getHomeData2.onerror = function(event) {
