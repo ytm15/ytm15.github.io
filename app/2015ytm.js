@@ -15,7 +15,7 @@ headerIsChannel = 'false';
 dataModeChange();
 
 playerVideoId = "e";
-playerEmbedURL = "https://invidious.protokolla.fi/embed/";
+playerEmbedURL = "https://invidious.privacyredirect.com/embed/";
 
 window.addEventListener('hashchange', function (event) {
 dataModeChange();
@@ -197,7 +197,7 @@ setTimeout(function() {
 }, 300);
 }
 
-function searching() {
+function searching(parent, sbInput) {
     const headerBar = document.querySelector("ytm15-header-bar");
     const header = document.querySelector("header");
     header.setAttribute('data-mode', 'searching');
@@ -207,6 +207,10 @@ function searching() {
 
     const searchOverlay = document.querySelector(".searching-overlay");
     searchOverlay.removeAttribute('hidden');
+
+    if (!document.querySelector(".sbdd-list-cont")) {
+    searchSuggestList(parent, sbInput);
+    }
 
     const backBtn = document.querySelector("button.back-button");
     backBtn.removeAttribute("hidden");

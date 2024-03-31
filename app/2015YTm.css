@@ -1522,3 +1522,20 @@ ytm15-menu-button {
     box-sizing: border-box;
     text-align: initial;
 }
+
+/* Searchbox dropdown */
+[data-mode="searching"] .searchbox-dropdown {
+    display: block;
+}
+.searchbox-dropdown {
+    position: absolute;
+    top: 56px;
+    left: 0;
+    right: 0;
+    max-height: calc(100vh - 56px);
+    overflow-y: auto;
+    display: none;
+}
+.searchbox-dropdown .sbdd-list-cont {
+    display: block !important;
+}

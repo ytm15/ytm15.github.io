@@ -168,6 +168,11 @@ Changelog
 -Added a footer to the about page (Aka this page)
 <br>
 -The homepage no-longer uses async functions to get data from the API it uses (This change was made to support older browsers)
+<br>
+<br>
+31 Mar - 01 Apr 2024:
+<br>
+-Implemented search suggestions
     </div>
     </div>
     </div>

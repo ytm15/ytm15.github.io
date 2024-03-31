@@ -80,7 +80,7 @@ function renderHeader() {
     input.value = "";
     }
     });
-    input.onclick = function(){searching();};
+    /* input.onclick = function(){searching(searchDropdown, input);}; */
     /* input.addEventListener("keypress", function(event) {
        if (event.key === "Enter") {
           input.blur();
@@ -98,6 +98,7 @@ function renderHeader() {
     const form = document.createElement("form");
     form.classList.add("searchbox-form");
     form.action = "#/results";
+    form.onclick = function(){searching(searchDropdown, input);};
     form.onsubmit = function(){
           /* window.location.href = "#/results?query=" + input.value.replaceAll("%", "%25").replaceAll("?", "%3F").replaceAll("=", "%3D").replaceAll("#", "%23").replaceAll("&", "%26").replaceAll(",", "%2C"); */
           window.location.href = "#/results?query=" + encodeURIComponent(input.value);
@@ -115,6 +116,9 @@ function renderHeader() {
 
     const inputWrap = document.createElement("div");
     inputWrap.classList.add("searchbox-input-wrapper");
+
+    const searchDropdown = document.createElement("div");
+    searchDropdown.classList.add("searchbox-dropdown");
 
     const headerCont = document.createElement("div");
     headerCont.classList.add("header-content", "not-search-mode");
@@ -142,7 +146,7 @@ function renderHeader() {
 
     const searchBtn = document.createElement("button");
     searchBtn.classList.add("icon-button", "header-button");
-    searchBtn.onclick = function(){searching();};
+    searchBtn.onclick = function(){searching(searchDropdown, input);};
     searchBtn.setAttribute("aria-label", "Search YouTube");
     searchBtn.setAttribute("aria-haspopup", "false");
     searchBtn.innerHTML = `<ytm15-icon class="search-icon"><svg viewBox="0 0 24 24" fill=""><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg></ytm15-icon>`;
@@ -203,6 +207,7 @@ function renderHeader() {
     header.appendChild(backBtn);
     header.appendChild(searchbox);
     searchbox.appendChild(form);
+    searchbox.appendChild(searchDropdown);
     form.appendChild(inputWrap);
     inputWrap.appendChild(input);
     header.appendChild(headerCont);
