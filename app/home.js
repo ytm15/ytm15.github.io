@@ -186,6 +186,8 @@ function renderData() {
         sectLazyList.classList.add('lazy-list');
         section.appendChild(sectLazyList);
 
+        pageCont.innerHTML = "";
+
         const parent = document.querySelector(".page-container");
         parent.appendChild(page);
         page.appendChild(tabContainer);
@@ -526,6 +528,8 @@ function renderData() {
         const sectLazyList = document.createElement("div");
         sectLazyList.classList.add('lazy-list');
         section.appendChild(sectLazyList);
+
+        pageCont.innerHTML = "";
 
         const parent = document.querySelector(".page-container");
         parent.appendChild(page);
@@ -912,6 +916,8 @@ function renderData() {
 
     const shelf = document.createElement("div");
     shelf.classList.add('shelf');
+
+    pageCont.innerHTML = "";
 
     const parent = document.querySelector(".page-container");
     parent.appendChild(page);

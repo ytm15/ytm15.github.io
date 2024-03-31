@@ -125,14 +125,39 @@ function channelPage() {
     const tabContainer = document.createElement("div");
     tabContainer.classList.add('tabs-content-container');
 
+    response.tabs.forEach(function(item) {
     const tabContent = document.createElement("div");
     tabContent.classList.add('tab-content');
     tabContent.setAttribute("tab-identifier", "Channel_page");
+    tabContent.setAttribute("tab-title", item);
+    tabContent.setAttribute("hidden", "");
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == item) {
+    tabContent.removeAttribute("hidden");
+    }
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == undefined && item == "home" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "" && item == "home" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "featured" && item == "home") {
+    tabContent.removeAttribute("hidden");
+    }
+    if (item == "streams") {
+    tabContent.setAttribute("tab-title", "live");
+    }
+    tabContainer.appendChild(tabContent);
+    });
+
+    const tabContent = document.createElement("div");
+    tabContent.classList.add('tab-content');
+    tabContent.setAttribute("tab-identifier", "Channel_page");
+    tabContent.setAttribute("tab-title", "about");
+    tabContent.setAttribute("hidden", "");
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "about") {
+    tabContent.removeAttribute("hidden");
+    }
+    tabContainer.appendChild(tabContent);
+
+    pageCont.innerHTML = "";
 
     const parent = document.querySelector(".page-container");
     parent.appendChild(page);
     page.appendChild(tabContainer);
-    tabContainer.appendChild(tabContent);
 
     var title = document.querySelector("title");
     title.textContent = response.author + ' - 2015YouTube';
