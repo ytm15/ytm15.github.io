@@ -15,7 +15,7 @@ headerIsChannel = 'false';
 dataModeChange();
 
 playerVideoId = "e";
-playerEmbedURL = "https://invidious.privacyredirect.com/embed/";
+playerEmbedURL = "https://inv.tux.pizza/embed/";
 
 window.addEventListener('hashchange', function (event) {
 dataModeChange();
