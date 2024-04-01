@@ -736,18 +736,23 @@ background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAY
     background-repeat: no-repeat;
     background-position: 13px;
     -webkit-appearance: none;
+    appearance: none;
+    transition: background-color .2s;
 }
 [data-mode="searching"] input[type="search" i]:enabled:read-write::-webkit-search-cancel-button {
     opacity: 1;
     pointer-events: auto;
     display: block;
 }
+input[type="search" i]::-webkit-search-cancel-button:active {
+    background-color: rgba(0,0,0,0.15);
+}
 
 /* Searchbox */
 .ytm15Searchbox {
     display: flex;
     flex-grow: 1;
-    margin-left: 12px;
+    margin-left: 15px;
 }
 .searchbox-form {
     display: flex;
