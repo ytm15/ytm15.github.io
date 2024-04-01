@@ -177,7 +177,7 @@ a.sbdd-suggestion-link {
     flex-shrink: 0;
 }
 .sbdd-item-text-cont {
-    padding: 17px 12px 17px 42px;
+    padding: 17px 12px 17px 46px;
     flex-grow: 1;
 }
 `;
