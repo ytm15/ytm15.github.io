@@ -48,6 +48,8 @@ const headerBar = document.querySelector("ytm15-header-bar");
 
 const pageCont = document.querySelector('.page-container');
 
+var title = document.querySelector("title");
+
 const watchContainer = document.createElement("div");
 watchContainer.id = "watchpageFrame_Container";
 
@@ -242,6 +244,15 @@ if (window.location.hash.split("/").join(',').split("?").join(',').split(',').sl
     var spinner = document.querySelector(".spinner-container.full-height");
     spinner.setAttribute("hidden", "");
     }
+    pageCont.innerHTML = "";
+    title.textContent = ' - 2015YouTube';
+    headerTitle.setAttribute("aria-label", "");
+    headerTitle.textContent = "";
+    if (document.querySelector(".tab-bar")) {
+    document.querySelector(".tab-bar").setAttribute("hidden", "");
+    headerBar.classList.remove('has-tab-bar');
+    document.querySelector(".tab-bar").innerHTML = "";
+    };
 }
 }
 

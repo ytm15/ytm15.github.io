@@ -12,6 +12,7 @@ function aboutYTm15() {
     if (document.querySelector(".tab-bar")) {
     document.querySelector(".tab-bar").setAttribute("hidden", "");
     headerBar.classList.remove('has-tab-bar');
+    document.querySelector(".tab-bar").innerHTML = "";
     };
 
     var spinner = document.querySelector(".spinner-container.full-height");
@@ -173,6 +174,11 @@ Changelog
 31 Mar - 01 Apr 2024:
 <br>
 -Implemented search suggestions
+<br>
+<br>
+02 Apr 2024:
+<br>
+-Now when you switch from one page to a non-existent one, the page becomes blank
     </div>
     </div>
     </div>

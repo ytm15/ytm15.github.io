@@ -461,6 +461,7 @@ function renderData() {
         document.querySelector(".tab-bar").setAttribute("hidden", "");
         headerBar.classList.remove('has-tab-bar');
         document.querySelector(".tab-bar").setAttribute("isChannel", "false");
+        document.querySelector(".tab-bar").innerHTML = "";
         };
 
         /* const data = await fetchData();
