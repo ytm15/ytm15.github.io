@@ -112,10 +112,24 @@ const listCont = document.createElement("div");
 var listClassName = "sbdd-list-cont";
 listCont.classList.add(listClassName);
 sbInput.onblur = function(){
-listCont.style.display = "none";
+setTimeout(function() {
+  listCont.style.display = "none";
+}, 01);
 }
 sbInput.onfocus = function(){
-listCont.style.display = "";
+setTimeout(function() {
+  listCont.style.display = "";
+}, 01);
+}
+listCont.onmousedown = function(){
+setTimeout(function() {
+  sbInput.focus();
+}, 0);
+}
+listCont.onmouseup = function(){
+setTimeout(function() {
+  sbInput.blur();
+}, 0);
 }
 if (parent.hasChildNodes(listCont)) {
 parent.querySelector("." + listClassName).remove();
