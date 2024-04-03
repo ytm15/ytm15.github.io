@@ -28,7 +28,7 @@ var liSelected;
 var index = 0;
 
 if (document.querySelector('[data-mode="searching"]')) {
-document.querySelector('[data-mode="searching"]').addEventListener('keydown', function(event) {
+document.querySelector('[data-mode="searching"]').addEventListener('keyup', function(event) {
     var len = ul.getElementsByTagName('li').length-0;
     
     // DOWN ARROW 
