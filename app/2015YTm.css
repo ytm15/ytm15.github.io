@@ -1134,6 +1134,14 @@ ytm15app.has-miniplayer {
     animation: watch-overlay-out .3s;
     opacity: 0;
 }
+@keyframes watchpage-slide-in {
+0% {
+    transform: translateY(100%);
+}
+100% {
+
+}
+}
 .watchpage-frame-items {
     position: relative;
     display: flex;
@@ -1141,6 +1149,7 @@ ytm15app.has-miniplayer {
     min-height: 100%;
     transition: all .3s;
     justify-content: flex-end;
+    animation: watchpage-slide-in .3s ease-out;
 }
 .watchpage-frame-items iframe {
     position: absolute;

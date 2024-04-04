@@ -35,6 +35,409 @@ dataModeChange();
 
 renderHeader();
 
+function renderCompactMediaItem(parent, itemVideoId, itemThumbnail, itemLength, itemTitle, itemAuthor, itemAuthorId, itemPublishedText, itemViewCount) {
+        const video = document.createElement('div');
+        video.classList.add('compact-video', 'shelf-item');
+
+        const media = document.createElement('div');
+        media.classList.add('compact-media-item');
+
+        const thumbnail = document.createElement('a');
+        thumbnail.classList.add('compact-media-item-thumbnail');
+        thumbnail.href = "javascript:void(0);";
+        thumbnail.onclick = function(){
+        app.insertAdjacentElement("afterbegin", watchContainer);
+        if (watchContainer.classList.contains("miniplayer")) {
+        watchContainer.classList.remove("miniplayer");
+        app.classList.remove("has-miniplayer");
+        watchFrame.scrolling = "yes";
+        }
+        watchFrame.src = "watch.html?v=" + itemVideoId;
+        playerVideoId = itemVideoId;
+        playerFrame.src = playerEmbedURL + playerVideoId + "?autoplay=1";
+        };
+
+        const thumbg = document.createElement('div');
+        thumbg.classList.add('thumbnail-bg');
+
+        const image = document.createElement('img');
+        image.classList.add('thumbnail-img', 'ytm15-img', 'lazy');
+        image.src = itemThumbnail;
+        image.loading = "lazy";
+        image.onload = function(){image.classList.add('loaded');};
+
+        const overlayBottom = document.createElement('div');
+        overlayBottom.classList.add('thumbnail-overlay-bottom');
+
+        const time = document.createElement('div');
+        time.classList.add('thumbnail-overlay-time-status');
+        /* time.textContent = item.lengthSeconds.toLocaleString() + ' secs'; */
+        if (itemLength > "3599") {
+        time.textContent = new Date(1000 * itemLength).toISOString().substr(11, 8)
+        } else {
+        time.textContent = new Date(1000 * itemLength).toISOString().substr(14, 5)
+        }
+
+        if (itemLength == 0) {
+        time.textContent = "";
+        const getVideoLength = new XMLHttpRequest();
+        getVideoLength.open('GET', 'https://yt.lemnoslife.com/videos?part=id,status,contentDetails,snippet&id=' + itemVideoId, true);
+ 
+        getVideoLength.send();
+ 
+        getVideoLength.onload = function(){
+          if (getVideoLength.status === 200) {
+          const response = JSON.parse(getVideoLength.response);
+          if (response.items[0].contentDetails.duration > "3599") {
+          time.textContent = new Date(1000 * response.items[0].contentDetails.duration).toISOString().substr(11, 8)
+          } else {
+          time.textContent = new Date(1000 * response.items[0].contentDetails.duration).toISOString().substr(14, 5)
+          }
+          } else {
+          console.error("An error occurred with this operation (" + getVideoLength.status + ")");
+          }
+        };
+        }
+
+        const title = document.createElement('h4');
+        title.textContent = itemTitle;
+        title.classList.add('compact-media-headline');
+
+        const subhead = document.createElement('div');
+        subhead.classList.add('subhead');
+
+        const author = document.createElement('div');
+        author.textContent = '';
+        author.classList.add('compact-media-byline', 'small-text');
+
+        const authorName = document.createElement('a');
+        authorName.textContent = itemAuthor;
+        authorName.classList.add('name');
+        authorName.href = "#/channel/" + itemAuthorId;
+
+        author.appendChild(authorName);
+
+        const published = document.createElement('div');
+        published.textContent = itemPublishedText;
+        published.classList.add('compact-media-stats', 'small-text');
+
+        const views = document.createElement('div');
+        views.textContent = itemViewCount.toLocaleString() + ' views';
+        views.classList.add('compact-media-stats', 'small-text');
+
+        const metadata = document.createElement('div');
+        metadata.classList.add('compact-media-item-metadata');
+
+        const metaContent = document.createElement('a');
+        metaContent.classList.add('compact-media-item-metadata-content');
+        metaContent.href = "javascript:void(0);";
+        metaContent.onclick = function(){
+        app.insertAdjacentElement("afterbegin", watchContainer);
+        if (watchContainer.classList.contains("miniplayer")) {
+        watchContainer.classList.remove("miniplayer");
+        app.classList.remove("has-miniplayer");
+        watchFrame.scrolling = "yes";
+        }
+        watchFrame.src = "watch.html?v=" + itemVideoId;
+        playerVideoId = itemVideoId;
+        playerFrame.src = playerEmbedURL + playerVideoId + "?autoplay=1";
+        };
+
+        const mediaMenu = document.createElement('ytm15-menu-button');
+        mediaMenu.classList.add('media-item-menu');
+
+        const menuBtn = document.createElement("button");
+        menuBtn.classList.add("icon-button", "menu-button");
+        menuBtn.onclick = function(){
+        menuRenderer();
+        menuCont.setAttribute("style", "top: 0; right: 0;");
+        const menuAlign = function(e) {
+        menuCont.setAttribute("style", `left: calc(${e.pageX}px - 161px); top: calc(${e.pageY}px - 20px);`);
+        }
+
+        document.onclick = menuAlign;
+        setTimeout(function(){
+        document.onclick = undefined;
+        }, 100);
+
+        function menuRemoveExtras() {
+
+        }
+
+        menuBtnCancel.onclick = function(){
+        menuRemoveExtras();
+        menuRemove();
+        };
+        menuOverlay.onclick = function(){
+        menuRemoveExtras();
+        menuRemove();
+        };
+        };
+        menuBtn.setAttribute("aria-label", "Action menu");
+        menuBtn.setAttribute("aria-haspopup", "true");
+        menuBtn.innerHTML = `<ytm15-icon class="menu-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg></ytm15-icon>`;
+        mediaMenu.appendChild(menuBtn);
+
+        media.appendChild(thumbnail);
+	thumbnail.appendChild(thumbg);
+	thumbnail.appendChild(image);
+	thumbnail.appendChild(overlayBottom);
+	overlayBottom.appendChild(time);
+        metaContent.appendChild(title);
+        metaContent.appendChild(subhead);
+        subhead.appendChild(author);
+        subhead.appendChild(published);
+        subhead.appendChild(views);
+        media.appendChild(metadata);
+        metadata.appendChild(metaContent);
+        metadata.appendChild(mediaMenu);
+        video.appendChild(media);
+        parent.appendChild(video);
+}
+
+function renderMediaItem(parent, itemVideoId, itemThumbnail, itemLength, itemTitle, itemAuthor, itemAuthorId, itemPublishedText, itemViewCount) {
+        /* const channelData = fetch('https://yt.lemnoslife.com/noKey/channels?part=snippet,status&id=' + item.authorId); */
+
+        const itemSect = document.createElement("div");
+        itemSect.classList.add('item-section');
+
+        const LazyList = document.createElement("div");
+        LazyList.classList.add('lazy-list', 'no-animation');
+
+        const video = document.createElement('div');
+        video.classList.add('video-with-context', 'item');
+
+        const media = document.createElement('div');
+        media.classList.add('media-item');
+
+        const thumbnail = document.createElement('a');
+        thumbnail.classList.add('media-item-thumbnail');
+        thumbnail.href = "javascript:void(0);";
+        thumbnail.onclick = function(){
+        app.insertAdjacentElement("afterbegin", watchContainer);
+        if (watchContainer.classList.contains("miniplayer")) {
+        watchContainer.classList.remove("miniplayer");
+        app.classList.remove("has-miniplayer");
+        watchFrame.scrolling = "yes";
+        }
+        watchFrame.src = "watch.html?v=" + itemVideoId;
+        playerVideoId = itemVideoId;
+        playerFrame.src = playerEmbedURL + playerVideoId + "?autoplay=1";
+        };
+
+        const thumbg = document.createElement('div');
+        thumbg.classList.add('thumbnail-bg');
+
+        const image = document.createElement('img');
+        image.classList.add('thumbnail-img', 'ytm15-img', 'lazy');
+        image.src = itemThumbnail;
+        image.loading = "lazy";
+        image.onload = function(){image.classList.add('loaded');};
+
+        const overlayBottom = document.createElement('div');
+        overlayBottom.classList.add('thumbnail-overlay-bottom');
+
+        const time = document.createElement('div');
+        time.classList.add('thumbnail-overlay-time-status');
+        /* time.textContent = item.lengthSeconds.toLocaleString() + ' secs'; */
+        if (itemLength > "3599") {
+        time.textContent = new Date(1000 * itemLength).toISOString().substr(11, 8)
+        } else {
+        time.textContent = new Date(1000 * itemLength).toISOString().substr(14, 5)
+        }
+
+        /* if (item.lengthSeconds == 0) {
+        time.textContent = 'YT Short';
+        } */
+
+        if (itemLength == 0) {
+        time.textContent = "";
+        const getVideoLength = new XMLHttpRequest();
+        getVideoLength.open('GET', 'https://yt.lemnoslife.com/videos?part=id,status,contentDetails,snippet&id=' + itemVideoId, true);
+ 
+        getVideoLength.send();
+ 
+        getVideoLength.onload = function(){
+          if (getVideoLength.status === 200) {
+          const response = JSON.parse(getVideoLength.response);
+          if (response.items[0].contentDetails.duration > "3599") {
+          time.textContent = new Date(1000 * response.items[0].contentDetails.duration).toISOString().substr(11, 8)
+          } else {
+          time.textContent = new Date(1000 * response.items[0].contentDetails.duration).toISOString().substr(14, 5)
+          }
+          } else {
+          console.error("An error occurred with this operation (" + getVideoLength.status + ")");
+          }
+        };
+        }
+
+        const title = document.createElement('h3');
+        title.textContent = itemTitle;
+        title.classList.add('media-headline');
+
+        const subhead = document.createElement('div');
+        subhead.classList.add('subhead');
+
+        const author = document.createElement('span');
+        author.textContent = '';
+        author.classList.add('media-byline', 'small-text');
+
+        const authorName = document.createElement('a');
+        authorName.textContent = itemAuthor;
+        authorName.classList.add('name');
+        authorName.href = "#/channel/" + itemAuthorId;
+
+        author.appendChild(authorName);
+
+        const published = document.createElement('span');
+        published.textContent = itemPublishedText;
+        published.classList.add('media-stats', 'small-text');
+
+        const views = document.createElement('span');
+        views.textContent = itemViewCount.toLocaleString() + ' views';
+        views.classList.add('media-stats', 'small-text');
+
+        const details = document.createElement('div');
+        details.classList.add('media-item-details');
+
+        const channel = document.createElement('div');
+        channel.classList.add('media-channel');
+
+        const channelA = document.createElement('a');
+        channelA.setAttribute("aria-label", "Visit channel");
+        channelA.href = "#/channel/" + itemAuthorId;
+
+        const extEndpoint = document.createElement('a');
+        extEndpoint.classList.add('media-extra-endpoint');
+        extEndpoint.href = "javascript:void(0);";
+        extEndpoint.onclick = function(){
+        app.insertAdjacentElement("afterbegin", watchContainer);
+        if (watchContainer.classList.contains("miniplayer")) {
+        watchContainer.classList.remove("miniplayer");
+        app.classList.remove("has-miniplayer");
+        watchFrame.scrolling = "yes";
+        }
+        watchFrame.src = "watch.html?v=" + itemVideoId;
+        playerVideoId = itemVideoId;
+        playerFrame.src = playerEmbedURL + playerVideoId + "?autoplay=1";
+        };
+
+        const cImage = document.createElement('img');
+        cImage.classList.add('profile-img', 'ytm15-img', 'lazy');
+        cImage.loading = "lazy";
+        cImage.onload = function(){cImage.classList.add('loaded');}; 
+
+        /* channelData
+         .then(response => {
+         if (!response.ok) {
+         throw new Error('Network response was not ok');
+         }
+         return response.json();
+         })
+         .then(data1 => {
+          // console.log('JSON data:', data1);
+          cImage.src = data1.items[0].snippet.thumbnails.default.url;
+         })
+         .catch(error => {
+          console.error('There was a problem with the fetch operation:', error);
+        }); */
+
+        const channelData = new XMLHttpRequest();
+        channelData.open('GET', 'https://yt.lemnoslife.com/noKey/channels?part=snippet,status&id=' + itemAuthorId, true);
+ 
+        channelData.send();
+ 
+        channelData.onload = function(){
+          if (channelData.status === 200) {
+          const data1 = JSON.parse(channelData.response);
+          cImage.src = data1.items[0].snippet.thumbnails.default.url;
+          } else {
+          console.error("An error occurred with this operation (" + channelData.status + ")");
+          }
+        };
+
+        const profileIcon = document.createElement('div');
+        profileIcon.classList.add('media-icon', 'profile-icon');
+
+        channel.appendChild(channelA);
+        channel.appendChild(extEndpoint);
+        channelA.appendChild(profileIcon);
+        profileIcon.appendChild(cImage);
+
+        const metadata = document.createElement('div');
+        metadata.classList.add('media-item-info');
+
+        const metaContent = document.createElement('a');
+        metaContent.classList.add('media-item-metadata');
+        metaContent.href = "javascript:void(0);";
+        metaContent.onclick = function(){
+        app.insertAdjacentElement("afterbegin", watchContainer);
+        if (watchContainer.classList.contains("miniplayer")) {
+        watchContainer.classList.remove("miniplayer");
+        app.classList.remove("has-miniplayer");
+        watchFrame.scrolling = "yes";
+        }
+        watchFrame.src = "watch.html?v=" + itemVideoId;
+        playerVideoId = itemVideoId;
+        playerFrame.src = playerEmbedURL + playerVideoId + "?autoplay=1";
+        };
+
+        const mediaMenu = document.createElement('ytm15-menu-button');
+        mediaMenu.classList.add('media-item-menu');
+
+        const menuBtn = document.createElement("button");
+        menuBtn.classList.add("icon-button", "menu-button");
+        menuBtn.onclick = function(){
+        menuRenderer();
+        menuCont.setAttribute("style", "top: 0; right: 0;");
+        const menuAlign = function(e) {
+        menuCont.setAttribute("style", `left: calc(${e.pageX}px - 161px); top: calc(${e.pageY}px - 20px);`);
+        }
+
+        document.onclick = menuAlign;
+        setTimeout(function(){
+        document.onclick = undefined;
+        }, 100);
+
+        function menuRemoveExtras() {
+
+        }
+
+        menuBtnCancel.onclick = function(){
+        menuRemoveExtras();
+        menuRemove();
+        };
+        menuOverlay.onclick = function(){
+        menuRemoveExtras();
+        menuRemove();
+        };
+        };
+        menuBtn.setAttribute("aria-label", "Action menu");
+        menuBtn.setAttribute("aria-haspopup", "true");
+        menuBtn.innerHTML = `<ytm15-icon class="menu-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg></ytm15-icon>`;
+        mediaMenu.appendChild(menuBtn);
+
+        media.appendChild(thumbnail);
+	thumbnail.appendChild(thumbg);
+	thumbnail.appendChild(image);
+	thumbnail.appendChild(overlayBottom);
+	overlayBottom.appendChild(time);
+        metaContent.appendChild(title);
+        metaContent.appendChild(subhead);
+        subhead.appendChild(author);
+        subhead.appendChild(views);
+        subhead.appendChild(published);
+        media.appendChild(details);
+        details.appendChild(channel);
+        details.appendChild(metadata);
+        metadata.appendChild(metaContent);
+        metadata.appendChild(mediaMenu);
+        video.appendChild(media);
+        LazyList.appendChild(video);
+        itemSect.appendChild(LazyList);
+        parent.appendChild(itemSect);
+}
+
 /* let hash = window.location.hash;
 console.log(hash); */
 

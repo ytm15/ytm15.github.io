@@ -179,6 +179,11 @@ Changelog
 02 Apr 2024:
 <br>
 -Now when you switch from one page to a non-existent one, the page becomes blank
+<br>
+<br>
+04 Apr 2024:
+<br>
+-Media items are now rendered via the "renderMediaItem()" and "renderCompactMediaItem()" functions
     </div>
     </div>
     </div>
