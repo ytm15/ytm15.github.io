@@ -35,9 +35,12 @@ dataModeChange();
 
 renderHeader();
 
-function renderCompactMediaItem(parent, itemVideoId, itemThumbnail, itemLength, itemTitle, itemAuthor, itemAuthorId, itemPublishedText, itemViewCount) {
+function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLength, itemTitle, itemAuthor, itemAuthorId, itemPublishedText, itemViewCount) {
         const video = document.createElement('div');
-        video.classList.add('compact-video', 'shelf-item');
+        video.classList.add('compact-video');
+        if (parentName == "shelf") {
+        video.classList.add('shelf-item');
+        }
 
         const media = document.createElement('div');
         media.classList.add('compact-media-item');
@@ -195,7 +198,7 @@ function renderCompactMediaItem(parent, itemVideoId, itemThumbnail, itemLength, 
         parent.appendChild(video);
 }
 
-function renderMediaItem(parent, itemVideoId, itemThumbnail, itemLength, itemTitle, itemAuthor, itemAuthorId, itemPublishedText, itemViewCount) {
+function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLength, itemTitle, itemAuthor, itemAuthorId, itemPublishedText, itemViewCount) {
         /* const channelData = fetch('https://yt.lemnoslife.com/noKey/channels?part=snippet,status&id=' + item.authorId); */
 
         const itemSect = document.createElement("div");
@@ -433,9 +436,13 @@ function renderMediaItem(parent, itemVideoId, itemThumbnail, itemLength, itemTit
         metadata.appendChild(metaContent);
         metadata.appendChild(mediaMenu);
         video.appendChild(media);
+        if (parentName == "sect-lazy-list") {
         LazyList.appendChild(video);
         itemSect.appendChild(LazyList);
         parent.appendChild(itemSect);
+        } else {
+        parent.appendChild(video);
+        }
 }
 
 /* let hash = window.location.hash;
