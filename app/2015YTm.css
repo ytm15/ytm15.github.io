@@ -192,10 +192,19 @@ div.media-icon {
     overflow: hidden;
     padding-left: 10px;
 }
+.compact-channel .compact-media-item-metadata-content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+}
 .compact-media-headline {
 margin: 0;
 margin-bottom: 2px;
 font-size: 1.4rem;
+}
+.compact-channel .compact-media-headline {
+font-size: 1.5rem;
 }
 h3.media-headline {
     font-size: 1.6rem;
@@ -240,12 +249,35 @@ opacity: 1;
 font-size: 1.2rem;
 font-weight: 300;
 }
+.thumbnail-overlay-side {
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    min-width: 50px;
+    width: 40%;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #f1f1f1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    font-size: 1.4rem;
+}
 .thumbnail-img {
 position: absolute;
 top: 0;
 bottom: 0;
 left: 0;
 right: 0;
+}
+.compact-channel .thumbnail-img, .compact-channel .thumbnail-bg {
+    margin: auto;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
 }
 .compact-media-stats~.compact-media-stats::before {
     content: "•";
@@ -1552,4 +1584,20 @@ ytm15-menu-button {
 }
 .searchbox-dropdown .sbdd-list-cont {
     display: block !important;
+}
+
+/* Messages */
+.ytm15-message {
+    padding: 15px;
+    font-size: 1.6rem;
+}
+.ytm15-message-content {
+    white-space: pre-line;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.msg-text {
+    opacity: .7;
 }

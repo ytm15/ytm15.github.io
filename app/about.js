@@ -184,6 +184,13 @@ Changelog
 04 Apr 2024:
 <br>
 -Media items are now rendered via the "renderMediaItem()" and "renderCompactMediaItem()" functions
+<br>
+<br>
+06 Apr 2024:
+<br>
+-Started working on the searchpage
+<br>
+-Compact media items now have the ability to display its data based on what type of media it is (For example, if it's a video, it'll display video data, if it's a channel, it'll be channel data, if it's a playlist, you guessed it, playlist data, etc.)
     </div>
     </div>
     </div>

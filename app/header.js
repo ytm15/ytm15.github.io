@@ -66,7 +66,7 @@ function renderHeader() {
     updateSearchVal();
     function updateSearchVal() {
     /* searchValue = window.location.hash.split("?").slice(1, 2).toString().split("query").slice(1, 2).toString().split("=").slice(1, 2).toString().replaceAll("%20", " ").replaceAll("%3F", "?").replaceAll("%3D", "=").replaceAll("%23", "#").replaceAll("%60", "`").replaceAll("%25", "%").replaceAll("%26", "&").replaceAll("%2C", ","); */
-    searchValueNotDecoded = window.location.hash.split("?").slice(1, 2).toString().split("query").slice(1, 2).toString().split("=").slice(1, 2).toString();
+    searchValueNotDecoded = window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("query").slice(1, 2).toString().split("=").slice(1, 2).toString();
     searchValue = decodeURIComponent(searchValueNotDecoded);
     };
     input.value = searchValue;

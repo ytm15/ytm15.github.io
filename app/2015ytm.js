@@ -35,9 +35,16 @@ dataModeChange();
 
 renderHeader();
 
-function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLength, itemTitle, itemAuthor, itemAuthorId, itemPublishedText, itemViewCount) {
+function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLength, itemTitle, itemAuthor, itemAuthorId, itemPublishedText, itemViewCount, mediaType) {
         const video = document.createElement('div');
-        video.classList.add('compact-video');
+        compMediaTypeName = 'compact-video';
+        if (mediaType == "channel") {
+        compMediaTypeName = 'compact-channel';
+        }
+        if (mediaType == "playlist") {
+        compMediaTypeName = 'compact-playlist';
+        }
+        video.classList.add(compMediaTypeName);
         if (parentName == "shelf") {
         video.classList.add('shelf-item');
         }
@@ -48,12 +55,19 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         const thumbnail = document.createElement('a');
         thumbnail.classList.add('compact-media-item-thumbnail');
         thumbnail.href = "javascript:void(0);";
+        if (mediaType == "channel") {
+        thumbnail.href = "#/channel/" + itemAuthorId;
+        } else if (mediaType == "playlist") {
+        thumbnail.href = "#/playlist?list=" + itemVideoId;
+        }
+        if (mediaType == "video") {
         thumbnail.onclick = function(){
         app.insertAdjacentElement("afterbegin", watchContainer);
         if (watchContainer.classList.contains("miniplayer")) {
         watchContainer.classList.remove("miniplayer");
         app.classList.remove("has-miniplayer");
         watchFrame.scrolling = "yes";
+        }
         }
         watchFrame.src = "watch.html?v=" + itemVideoId;
         playerVideoId = itemVideoId;
@@ -74,13 +88,17 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
 
         const time = document.createElement('div');
         time.classList.add('thumbnail-overlay-time-status');
+        if (mediaType == "channel") {
+
+        } else if (mediaType == "playlist") {
+
+        } else {
         /* time.textContent = item.lengthSeconds.toLocaleString() + ' secs'; */
         if (itemLength > "3599") {
         time.textContent = new Date(1000 * itemLength).toISOString().substr(11, 8)
         } else {
         time.textContent = new Date(1000 * itemLength).toISOString().substr(14, 5)
         }
-
         if (itemLength == 0) {
         time.textContent = "";
         const getVideoLength = new XMLHttpRequest();
@@ -101,6 +119,16 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
           }
         };
         }
+        }
+
+        const overlaySide = document.createElement('div');
+        overlaySide.classList.add('thumbnail-overlay-side');
+
+        const overlaySideText = document.createElement('div');
+        overlaySideText.classList.add('thumbnail-overlay-side-text');
+        overlaySideText.textContent = itemLength.toLocaleString();
+        overlaySide.appendChild(overlaySideText);
+        overlaySide.innerHTML += `<ytm15-icon class="playlist"><svg viewBox="0 0 24 24" fill=""><path d="M3.67 8.67h14V11h-14V8.67zm0-4.67h14v2.33h-14V4zm0 9.33H13v2.34H3.67v-2.34zm11.66 0v7l5.84-3.5-5.84-3.5z"></path></svg></ytm15-icon>`;
 
         const title = document.createElement('h4');
         title.textContent = itemTitle;
@@ -119,13 +147,29 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         authorName.href = "#/channel/" + itemAuthorId;
 
         author.appendChild(authorName);
+        if (mediaType == "playlist") {
+        author.innerHTML += " • Playlist";
+        }
+        if (mediaType == "channel") {
+        author.textContent = itemAuthor;
+        }
+
+        const vidCountByline = document.createElement('div');
+        vidCountByline.textContent = itemLength.toLocaleString() + " videos";
+        vidCountByline.classList.add('compact-media-byline', 'small-text');
 
         const published = document.createElement('div');
         published.textContent = itemPublishedText;
         published.classList.add('compact-media-stats', 'small-text');
 
         const views = document.createElement('div');
+        if (mediaType == "channel") {
+
+        } else if (mediaType == "playlist") {
+
+        } else {
         views.textContent = itemViewCount.toLocaleString() + ' views';
+        }
         views.classList.add('compact-media-stats', 'small-text');
 
         const metadata = document.createElement('div');
@@ -134,12 +178,19 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         const metaContent = document.createElement('a');
         metaContent.classList.add('compact-media-item-metadata-content');
         metaContent.href = "javascript:void(0);";
+        if (mediaType == "channel") {
+        metaContent.href = "#/channel/" + itemAuthorId;
+        } else if (mediaType == "playlist") {
+        metaContent.href = "#/playlist?list=" + itemVideoId;
+        }
+        if (mediaType == "video") {
         metaContent.onclick = function(){
         app.insertAdjacentElement("afterbegin", watchContainer);
         if (watchContainer.classList.contains("miniplayer")) {
         watchContainer.classList.remove("miniplayer");
         app.classList.remove("has-miniplayer");
         watchFrame.scrolling = "yes";
+        }
         }
         watchFrame.src = "watch.html?v=" + itemVideoId;
         playerVideoId = itemVideoId;
@@ -184,13 +235,25 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         media.appendChild(thumbnail);
 	thumbnail.appendChild(thumbg);
 	thumbnail.appendChild(image);
+        if (mediaType == "channel") {
+
+        } else if (mediaType == "playlist") {
+        thumbnail.appendChild(overlaySide);
+        } else {
 	thumbnail.appendChild(overlayBottom);
 	overlayBottom.appendChild(time);
+        }
         metaContent.appendChild(title);
         metaContent.appendChild(subhead);
         subhead.appendChild(author);
+        if (mediaType == "channel") {
+
+        } else if (mediaType == "playlist") {
+        subhead.appendChild(vidCountByline);
+        } else {
         subhead.appendChild(published);
         subhead.appendChild(views);
+        }
         media.appendChild(metadata);
         metadata.appendChild(metaContent);
         metadata.appendChild(mediaMenu);
@@ -649,6 +712,8 @@ if (window.location.hash.split("/").join(',').split("?").join(',').split(',').sl
     aboutYTm15();
 } else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "channel") {
     channelPage();
+} else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results") {
+    searchPage();
 } else {
     if (document.querySelector(".spinner-container.full-height")) {
     var spinner = document.querySelector(".spinner-container.full-height");
