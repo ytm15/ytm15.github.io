@@ -1,6 +1,6 @@
 function renderSearchSuggestions(parent, value, sbInput) {
 const xhttpr = new XMLHttpRequest();
-xhttpr.open('GET', 'https://invidious.protokolla.fi/api/v1/search/suggestions?q=' + value, true);
+xhttpr.open('GET', 'https://inv.tux.pizza/api/v1/search/suggestions?q=' + value, true);
  
 xhttpr.send();
  

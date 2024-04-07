@@ -20,7 +20,7 @@ function searchPage() {
     };
 
     const getSearchData = new XMLHttpRequest();
-    getSearchData.open('GET', 'https://invidious.protokolla.fi/api/v1/search?q=' + searchValue + `&page=&sort_by=&date=&duration=&type=&features=`, true);
+    getSearchData.open('GET', APIbaseURL + 'api/v1/search?q=' + searchValue + `&page=&sort_by=&date=&duration=&type=&features=`, true);
  
     getSearchData.onerror = function(event) {
     console.error("An error occurred with this operation (" + getSearchData.status + ")");

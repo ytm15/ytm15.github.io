@@ -14,6 +14,8 @@ headerIsChannel = 'false';
 
 dataModeChange();
 
+APIbaseURL = "https://inv.tux.pizza/";
+
 playerVideoId = "e";
 playerEmbedURL = "https://inv.tux.pizza/embed/";
 

@@ -105,9 +105,9 @@ function renderData() {
 
         const getHomeData = new XMLHttpRequest();
         if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] !== "trending") {
-        getHomeData.open('GET', 'https://invidious.protokolla.fi/api/v1/trending', true);
+        getHomeData.open('GET', APIbaseURL + 'api/v1/trending', true);
         } else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "trending") {
-        getHomeData.open('GET', 'https://invidious.protokolla.fi/api/v1/trending?type=' + trendType, true);
+        getHomeData.open('GET', APIbaseURL + 'api/v1/trending?type=' + trendType, true);
         }
 
         getHomeData.onerror = function(event) {
@@ -230,7 +230,7 @@ function renderData() {
 
         const getHomeData1 = new XMLHttpRequest();
 
-        getHomeData1.open('GET', 'https://invidious.protokolla.fi/api/v1/popular', true);
+        getHomeData1.open('GET', APIbaseURL + 'api/v1/popular', true);
 
         getHomeData1.onerror = function(event) {
         console.error("An error occurred with this operation (" + getHomeData1.status + ")");
@@ -358,7 +358,7 @@ function renderData() {
 
     const getHomeData3 = new XMLHttpRequest();
 
-    getHomeData3.open('GET', 'https://invidious.protokolla.fi/api/v1/popular', true);
+    getHomeData3.open('GET', APIbaseURL + 'api/v1/popular', true);
 
     getHomeData3.onerror = function(event) {
         console.error("An error occurred with this operation (" + getHomeData3.status + ")");
@@ -535,9 +535,9 @@ function renderDataTrending() {
 
     const getHomeData2 = new XMLHttpRequest();
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] !== "trending") {
-    getHomeData2.open('GET', 'https://invidious.protokolla.fi/api/v1/trending', true);
+    getHomeData2.open('GET', APIbaseURL + 'api/v1/trending', true);
     } else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "trending") {
-    getHomeData2.open('GET', 'https://invidious.protokolla.fi/api/v1/trending?type=' + trendType, true);
+    getHomeData2.open('GET', APIbaseURL + 'api/v1/trending?type=' + trendType, true);
     }
 
     getHomeData2.onerror = function(event) {

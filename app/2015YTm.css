@@ -446,6 +446,7 @@ animation-duration: .28s;
    flex-direction: column;
    border-bottom: 1.2px solid rgba(0,0,0,0.2);
    align-items: center;
+   animation: fade-in .3s;
 }
 .error-content {
    color: #454545;

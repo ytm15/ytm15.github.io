@@ -191,6 +191,11 @@ Changelog
 -Started working on the searchpage
 <br>
 -Compact media items now have the ability to display its data based on what type of media it is (For example, if it's a video, it'll display video data, if it's a channel, it'll be channel data, if it's a playlist, you guessed it, playlist data, etc.)
+<br>
+<br>
+07 Apr 2024:
+<br>
+-API data is now fetched from the "inv.tux.pizza" instance of Invidious
     </div>
     </div>
     </div>

@@ -25,7 +25,7 @@ function channelPage() {
     spinner.removeAttribute("hidden");
 
     const getChannelData = new XMLHttpRequest();
-    getChannelData.open('GET', 'https://invidious.protokolla.fi/api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0], true);
+    getChannelData.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0], true);
  
     getChannelData.onerror = function(event) {
     console.error("An error occurred with this operation (" + getChannelData.status + ")");
