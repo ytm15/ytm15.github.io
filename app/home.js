@@ -505,7 +505,7 @@ function renderData() {
     oldTitle.parentNode.replaceChild(title, oldTitle);
 
     data.forEach(function(item) {
-        renderCompactMediaItem(verticalList, "shelf", item.videoId, item.videoThumbnails[3].url, item.lengthSeconds, item.title, item.author, item.authorId, item.publishedText, item.viewCount);
+        renderCompactMediaItem(verticalList, "shelf", item.videoId, item.videoThumbnails[3].url, item.lengthSeconds, item.title, item.author, item.authorId, item.publishedText, item.viewCount, item.type);
     });
     
     verticalList.appendChild(ESButtonCont);
@@ -611,7 +611,7 @@ function renderDataTrending() {
     shelf.appendChild(verticalList);
 
     data.forEach(function(item) {
-        renderCompactMediaItem(verticalList, "shelf", item.videoId, item.videoThumbnails[3].url, item.lengthSeconds, item.title, item.author, item.authorId, item.publishedText, item.viewCount);
+        renderCompactMediaItem(verticalList, "shelf", item.videoId, item.videoThumbnails[3].url, item.lengthSeconds, item.title, item.author, item.authorId, item.publishedText, item.viewCount, item.type);
     });
 
     verticalList.appendChild(ESButtonCont);

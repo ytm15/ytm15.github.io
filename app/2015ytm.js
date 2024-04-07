@@ -62,7 +62,7 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         } else if (mediaType == "playlist") {
         thumbnail.href = "#/playlist?list=" + itemVideoId;
         }
-        if (mediaType == "video") {
+        if (mediaType == "video" || mediaType == "shortVideo") {
         thumbnail.onclick = function(){
         app.insertAdjacentElement("afterbegin", watchContainer);
         if (watchContainer.classList.contains("miniplayer")) {
@@ -70,10 +70,10 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         app.classList.remove("has-miniplayer");
         watchFrame.scrolling = "yes";
         }
-        }
         watchFrame.src = "watch.html?v=" + itemVideoId;
         playerVideoId = itemVideoId;
         playerFrame.src = playerEmbedURL + playerVideoId + "?autoplay=1";
+        }
         };
 
         const thumbg = document.createElement('div');
@@ -185,7 +185,7 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         } else if (mediaType == "playlist") {
         metaContent.href = "#/playlist?list=" + itemVideoId;
         }
-        if (mediaType == "video") {
+        if (mediaType == "video" || mediaType == "shortVideo") {
         metaContent.onclick = function(){
         app.insertAdjacentElement("afterbegin", watchContainer);
         if (watchContainer.classList.contains("miniplayer")) {
@@ -193,10 +193,10 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         app.classList.remove("has-miniplayer");
         watchFrame.scrolling = "yes";
         }
-        }
         watchFrame.src = "watch.html?v=" + itemVideoId;
         playerVideoId = itemVideoId;
         playerFrame.src = playerEmbedURL + playerVideoId + "?autoplay=1";
+        }
         };
 
         const mediaMenu = document.createElement('ytm15-menu-button');
@@ -216,8 +216,23 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         document.onclick = undefined;
         }, 100);
 
-        function menuRemoveExtras() {
+        const menuItemShare = document.createElement("div");
+        menuItemShare.classList.add("menu-item");
+        menuItem.before(menuItemShare);
 
+        const menuItemBtnShare = document.createElement("button");
+        menuItemBtnShare.classList.add("menu-item-button", "has-ripple");
+        menuItemBtnShare.textContent = "Sharing will be implemented soon";
+        menuItemBtnShare.setAttribute("style", "opacity: .7;")
+        menuItemBtnShare.onclick = function(){
+            
+        };
+        menuItemShare.appendChild(menuItemBtnShare);
+
+        function menuRemoveExtras() {
+            setTimeout(function() {
+            menuItemShare.remove();
+            }, 300);
         }
 
         menuBtnCancel.onclick = function(){
@@ -328,6 +343,7 @@ function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLen
         getVideoLength.onload = function(){
           if (getVideoLength.status === 200) {
           const response = JSON.parse(getVideoLength.response);
+console.log(response);
           if (response.items[0].contentDetails.duration > "3599") {
           time.textContent = new Date(1000 * response.items[0].contentDetails.duration).toISOString().substr(11, 8)
           } else {
@@ -467,8 +483,23 @@ function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLen
         document.onclick = undefined;
         }, 100);
 
-        function menuRemoveExtras() {
+        const menuItemShare = document.createElement("div");
+        menuItemShare.classList.add("menu-item");
+        menuItem.before(menuItemShare);
 
+        const menuItemBtnShare = document.createElement("button");
+        menuItemBtnShare.classList.add("menu-item-button", "has-ripple");
+        menuItemBtnShare.textContent = "Sharing will be implemented soon";
+        menuItemBtnShare.setAttribute("style", "opacity: .7;")
+        menuItemBtnShare.onclick = function(){
+            
+        };
+        menuItemShare.appendChild(menuItemBtnShare);
+
+        function menuRemoveExtras() {
+            setTimeout(function() {
+            menuItemShare.remove();
+            }, 300);
         }
 
         menuBtnCancel.onclick = function(){

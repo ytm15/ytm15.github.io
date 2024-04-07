@@ -196,6 +196,10 @@ Changelog
 07 Apr 2024:
 <br>
 -API data is now fetched from the "inv.tux.pizza" instance of Invidious
+<br>
+-Bug fixes with compact media items
+<br>
+-Slightly modified the menu's position in the header
     </div>
     </div>
     </div>
