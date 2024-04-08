@@ -583,7 +583,8 @@ playerCont2.appendChild(playerSpinner);
 
 const playerFrame = document.createElement("iframe");
 playerFrame.classList.add("watchpage-iframe", "player-iframe", "inv-player-for-ytm15");
-playerFrame.src = playerEmbedURL + playerVideoId + "?autoplay=1";
+/* playerFrame.src = playerEmbedURL + playerVideoId + "?autoplay=1"; */
+playerFrame.src = "watch.html";
 playerFrame.scrolling = "yes";
 playerFrame.frameBorder = "0";
 playerFrame.width = "100%";
@@ -594,6 +595,12 @@ const ytm15Watch = document.createElement("ytm15-watch");
 
 const watchActions = document.createElement("div");
 watchActions.classList.add("watchpage-frame-actions");
+
+playerFrame.onload = function(){
+playerFrame.contentWindow.document.body.onclick = function(){
+    watchActions.setAttribute("hidden", "");
+}
+}
 
 const watchFrame = document.createElement("iframe");
 watchFrame.classList.add("watchpage-iframe");
