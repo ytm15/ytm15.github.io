@@ -596,12 +596,6 @@ const ytm15Watch = document.createElement("ytm15-watch");
 const watchActions = document.createElement("div");
 watchActions.classList.add("watchpage-frame-actions");
 
-playerFrame.onload = function(){
-playerFrame.contentWindow.document.body.onclick = function(){
-    watchActions.setAttribute("hidden", "");
-}
-}
-
 const watchFrame = document.createElement("iframe");
 watchFrame.classList.add("watchpage-iframe");
 watchFrame.src = "";
