@@ -200,6 +200,17 @@ Changelog
 -Bug fixes with compact media items
 <br>
 -Slightly modified the menu's position in the header
+<br>
+<br>
+08 - 09 Apr 2024:
+<br>
+-Implemented continuations to the search page
+<br>
+-CSS and JS updates
+<br>
+-Tweaked the player a bit
+<br>
+-Started working on channel pages' headers on their home tabs
     </div>
     </div>
     </div>

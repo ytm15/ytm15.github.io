@@ -35,6 +35,12 @@ dataModeChange();
 
     const videoIdParam = urlParams.get("v");
 
+    const searchParamSort = urlParams.get("sort");
+    const searchParamDate = urlParams.get("date");
+    const searchParamDuration = urlParams.get("duration");
+    const searchParamType = urlParams.get("type");
+    const searchParamFeatures = urlParams.get("features");
+
 renderHeader();
 
 function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLength, itemTitle, itemAuthor, itemAuthorId, itemPublishedText, itemViewCount, mediaType) {
@@ -583,8 +589,7 @@ playerCont2.appendChild(playerSpinner);
 
 const playerFrame = document.createElement("iframe");
 playerFrame.classList.add("watchpage-iframe", "player-iframe", "inv-player-for-ytm15");
-/* playerFrame.src = playerEmbedURL + playerVideoId + "?autoplay=1"; */
-playerFrame.src = "watch.html";
+playerFrame.src = playerEmbedURL + playerVideoId + "?autoplay=1";
 playerFrame.scrolling = "yes";
 playerFrame.frameBorder = "0";
 playerFrame.width = "100%";
@@ -593,8 +598,29 @@ playerFrame.setAttribute("allowfullscreen", "");
 
 const ytm15Watch = document.createElement("ytm15-watch");
 
+const watchActionsOverlay = document.createElement("div");
+watchActionsOverlay.classList.add("behind-watchpage-frame-actions");
+
 const watchActions = document.createElement("div");
 watchActions.classList.add("watchpage-frame-actions");
+
+watchActionsVisible = false;
+
+watchActionsOverlay.onclick = function(){
+if (!watchActionsVisible) {
+watchActionsVisible = true;
+watchActionsOverlay.classList.add("bwfa-not-visible");
+
+waTimO = setTimeout(function(){
+watchActionsVisible = false;
+watchActionsOverlay.classList.remove("bwfa-not-visible");
+}, 4000);
+} else if (watchActionsVisible) {
+watchActionsVisible = false;
+watchActionsOverlay.classList.remove("bwfa-not-visible");
+clearTimeout(waTimO);
+}
+}
 
 const watchFrame = document.createElement("iframe");
 watchFrame.classList.add("watchpage-iframe");
@@ -617,7 +643,25 @@ exitWatch.setAttribute("aria-haspopup", "false");
 exitWatch.innerHTML = `<ytm15-icon class="exit-watch-icon"><svg viewBox="0 0 24 24" fill=""><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path></svg></ytm15-icon>`;
 
 const mpContent = document.createElement("div");
-mpContent.classList.add("miniplayer-content");
+mpContent.classList.add("miniplayer-content", "items-not-visible");
+
+mpContentItemsVisible = false;
+
+mpContent.onclick = function(){
+if (!mpContentItemsVisible) {
+mpContentItemsVisible = true;
+mpContent.classList.remove("items-not-visible");
+
+mpTimO = setTimeout(function(){
+mpContentItemsVisible = false;
+mpContent.classList.add("items-not-visible");
+}, 3500);
+} else if (mpContentItemsVisible) {
+mpContentItemsVisible = false;
+mpContent.classList.add("items-not-visible");
+clearTimeout(mpTimO);
+}
+}
 
 const mpActions = document.createElement("div");
 mpActions.classList.add("miniplayer-actions");
@@ -654,6 +698,7 @@ watchItems.appendChild(playerCont);
 playerCont.appendChild(playerCont2);
 playerCont2.appendChild(playerFrame);
 watchItems.appendChild(ytm15Watch);
+playerCont2.appendChild(watchActionsOverlay);
 playerCont2.appendChild(watchActions);
 watchActions.appendChild(exitWatch);
 /* watchItems.appendChild(watchFrame); */

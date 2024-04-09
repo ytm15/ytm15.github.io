@@ -266,6 +266,11 @@ font-weight: 300;
     overflow: hidden;
     font-size: 1.4rem;
 }
+@media (min-width: 550px) and (orientation: portrait), (min-width: 800px) and (orientation: landscape) {
+.thumbnail-overlay-side {
+    font-size: 1.6rem;
+}
+}
 .thumbnail-img {
 position: absolute;
 top: 0;
@@ -338,6 +343,30 @@ div.media-icon {
 }
 .media-extra-endpoint {
     flex-grow: 1;
+}
+}
+@media (min-width: 550px) and (orientation: portrait), (min-width: 800px) and (orientation: landscape) {
+.compact-media-item-thumbnail {
+    width: 180px;
+    height: 101px;
+}
+.compact-channel .thumbnail-img, .compact-channel .thumbnail-bg {
+    margin: auto;
+    width: 101px;
+    height: 101px;
+    border-radius: 50%;
+}
+.compact-media-headline {
+    font-size: 1.6rem;
+}
+.compact-channel .compact-media-headline {
+    font-size: 1.6rem;
+}
+.compact-media-item .small-text {
+    font-size: 1.3rem;
+}
+.compact-media-item-metadata-content {
+    padding-left: 14px;
 }
 }
 
@@ -517,6 +546,11 @@ animation-duration: .28s;
 }
 .shelf>.vertical-list>.shelf-item .compact-media-item-metadata-content .subhead .small-text {
     font-size: 1.3rem;
+}
+}
+@media (min-width: 550px) and (orientation: portrait), (min-width: 800px) and (orientation: landscape) {
+.shelf>.vertical-list>.shelf-item .compact-media-headline {
+    font-size: 1.5rem;
 }
 }
 @media (min-width: 631px) {
@@ -988,6 +1022,7 @@ a {
     height: 24px;
     fill: currentColor;
     stroke: none;
+    object-fit: contain;
 }
 .tab .ytm15-img-icon {
     width: 30px;
@@ -1036,6 +1071,13 @@ a {
 .material-button-container.compact + .material-button-container.compact {
     margin-left: 0.7em;
 }
+.material-button-container[data-style="BRAND"] {
+    color: #c00;
+}
+.material-button-container.subscribe-button {
+    font-size: 1.4rem;
+    text-transform: none;
+}
 .material-button {
     padding: 0.7em 0.57em;
     border-radius: 2px;
@@ -1064,6 +1106,9 @@ a {
     min-height: 1em;
     line-height: 1em;
     font-weight: 400;
+}
+.material-button-container[data-icon-only="false"] .button-icon {
+    margin-right: 8px;
 }
 
 .error-content ~ .material-button-container {
@@ -1191,6 +1236,17 @@ ytm15app.has-miniplayer {
     left: 0;
     right: 0;
 }
+.behind-watchpage-frame-actions {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    pointer-events: auto;
+}
+.behind-watchpage-frame-actions.bwfa-not-visible {
+    pointer-events: none;
+}
 .watchpage-frame-actions {
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent);
     position: absolute;
@@ -1202,8 +1258,16 @@ ytm15app.has-miniplayer {
     z-index: 1;
     display: flex;
     pointer-events: none;
+    opacity: 0;
+    transition: opacity .3s;
+}
+.bwfa-not-visible ~ .watchpage-frame-actions {
+    opacity: 1;
 }
 .watchpage-frame-actions > * {
+    pointer-events: none;
+}
+.bwfa-not-visible ~ .watchpage-frame-actions > * {
     pointer-events: auto;
 }
 .miniplayer .watchpage-frame-actions {
@@ -1224,8 +1288,10 @@ ytm15app.has-miniplayer {
 }
 .miniplayer-content {
     display: none;
-    height: fit-content;
-    height: -webkit-fit-content;
+    /* height: fit-content;
+    height: -webkit-fit-content; */
+    height: 100%;
+    align-items: start;
     position: absolute;
     flex-grow: 1;
     top: 0;
@@ -1235,11 +1301,16 @@ ytm15app.has-miniplayer {
 .miniplayer .miniplayer-content {
     display: flex;
 }
+.miniplayer-content.items-not-visible > * {
+    opacity: 0;
+    pointer-events: none;
+}
 .miniplayer-actions {
     flex-grow: 1;
     display: flex;
     justify-content: space-between;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent);
+    transition: opacity .3s;
 }
 #watchpageFrame_Container.miniplayer.closing {
     transform: translateX(-100%);
@@ -1589,7 +1660,7 @@ ytm15-menu-button {
 
 /* Messages */
 .ytm15-message {
-    padding: 15px;
+    padding: 16px;
     font-size: 1.6rem;
 }
 .ytm15-message-content {
@@ -1601,4 +1672,106 @@ ytm15-menu-button {
 }
 .msg-text {
     opacity: .7;
+}
+
+.next-continuation-cont {
+    padding: 4px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.next-continuation {
+    color: #068fd4;
+}
+
+/* Channel pages stuff */
+ytm15-channels-header {
+    display: block;
+    background-color: #eee;
+    font-size: 1.4rem;
+}
+.channels-header-banner {
+    height: 26.5vw;
+    background-color: rgba(0, 0, 0, 0.15);
+    background-size: 25%;
+    background-position: center;
+}
+@media (min-width: 550px) and (orientation: portrait), (min-width: 800px) and (orientation: landscape) {
+.channels-header-banner {
+    height: 22.3vw;
+    background-size: 20%;
+}
+}
+.channels-header-banner.empty {
+    background-image: url("ic_default_channel_placeholder_bg.png");
+}
+.channels-header-channel {
+    padding: 13px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.channels-header-icon {
+    width: 60px;
+    height: 60px;
+    margin-top: -40px;
+}
+.channels-header-details {
+    margin-top: 3px;
+    margin-left: 25px;
+}
+.channels-header-title {
+    font-size: 2rem;
+    -webkit-line-clamp: unset;
+    max-height: unset;
+}
+.channels-header-subscribe-button {
+    display: flex;
+    align-items: center;
+    padding: 7px 0;
+}
+.channels-header-subscriber-count {
+    flex: 1 1 0;
+    padding: 0 8px;
+}
+@media (min-width: 550px) and (orientation: portrait), (min-width: 800px) and (orientation: landscape) {
+.channels-header-channel {
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-end;
+}
+.channels-header-icon {
+    width: 125px;
+    height: 125px;
+    margin-top: -90px;
+}
+.channels-header-details {
+    flex-grow: 1;
+    margin-left: 23px;
+    margin-top: 10px;
+}
+.channels-header-subscribe-button {
+    padding: 9px 0;
+    padding-top: 0;
+    flex-direction: row-reverse;
+}
+.channels-header-subscribe-button .subscribe-button {
+    position: relative;
+    bottom: 10px;
+    right: 10px;
+}
+.channels-header-subscriber-count {
+    padding-left: 0;
+}
+}
+
+.secondary-text {
+    opacity: .7;
+}
+
+/* Subscribe button */
+.ytm15-img-icon.subscribe-icon {
+    width: 15px;
+    height: 15px;
 }

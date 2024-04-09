@@ -62,6 +62,7 @@ function channelPage() {
     if (response.authorBanners.toString() !== "") {
     headerBar.setAttribute("style", "background: url(" + response.authorBanners[0].url + `);
     background-position: center;
+    background-position-y: bottom;
     background-size: 10000000px;
     transition: none;`);
     };
@@ -134,8 +135,66 @@ function channelPage() {
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == item) {
     tabContent.removeAttribute("hidden");
     }
-    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == undefined && item == "home" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "" && item == "home" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "featured" && item == "home") {
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == undefined && item == "home" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "" && item == "home" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "featured" && item == "home" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "home" && item == "home") {
     tabContent.removeAttribute("hidden");
+    
+    const channelHeader = document.createElement("ytm15-channels-header");
+
+    const channelHeaderBanner = document.createElement("div");
+    channelHeaderBanner.classList.add("channels-header-banner");
+    if (response.authorBanners.toString() == "") {
+    channelHeaderBanner.classList.add("empty");
+    };
+    const channelBannerImg = document.createElement("img");
+    channelBannerImg.classList.add("channels-header-banner-img", "ytm15-img", "lazy");
+    if (response.authorBanners.toString() !== "") {
+    channelBannerImg.src = response.authorBanners[0].url;
+    };
+    channelBannerImg.loading = "lazy";
+    channelBannerImg.onload = function(){channelBannerImg.classList.add('loaded');};
+    channelHeaderBanner.appendChild(channelBannerImg);
+
+    const channelHeaderChannel = document.createElement("div");
+    channelHeaderChannel.classList.add("channels-header-channel");
+
+    channelHeader.appendChild(channelHeaderBanner);
+    channelHeader.appendChild(channelHeaderChannel);
+
+    const profileIcon = document.createElement('div');
+    profileIcon.classList.add('channels-header-icon', 'profile-icon');
+
+    const cImage = document.createElement('img');
+    cImage.classList.add('profile-img', 'ytm15-img', 'lazy');
+    cImage.loading = "lazy";
+    cImage.onload = function(){cImage.classList.add('loaded');};
+    cImage.src = response.authorThumbnails[4].url;
+    profileIcon.appendChild(cImage);
+
+    channelHeaderChannel.appendChild(profileIcon);
+
+    const channelHeaderDetails = document.createElement("div");
+    channelHeaderDetails.classList.add("channels-header-details");
+    channelHeaderChannel.appendChild(channelHeaderDetails);
+
+    const channelTitle = document.createElement("h1");
+    channelTitle.classList.add("channels-header-title");
+    channelTitle.textContent = response.author;
+
+    const channelSub = document.createElement("div");
+    channelSub.classList.add("channels-header-subscribe-button");
+    channelSub.innerHTML = `<div class="material-button-container compact subscribe-button" data-style="BRAND" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button" aria-label="Subscribe">
+<img class="ytm15-img-icon ytm15-img button-icon subscribe-icon" src="subscribe_mark.png"></img><div class="button-text">Subscribe</div>
+</button></div>`;
+
+    const channelSubCount = document.createElement("span");
+    channelSubCount.classList.add("channels-header-subscriber-count", "secondary-text");
+    channelSubCount.textContent = response.subCount.toLocaleString() + " subscribers";
+    channelSub.appendChild(channelSubCount);
+
+    channelHeaderDetails.appendChild(channelTitle);
+    channelHeaderDetails.appendChild(channelSub);
+
+    tabContent.appendChild(channelHeader);
     }
     if (item == "streams") {
     tabContent.setAttribute("tab-title", "live");
