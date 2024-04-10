@@ -211,6 +211,11 @@ Changelog
 -Tweaked the player a bit
 <br>
 -Started working on channel pages' headers on their home tabs
+<br>
+<br>
+11 Apr 2024:
+<br>
+-Added 3 more shelves to the homepage
     </div>
     </div>
     </div>

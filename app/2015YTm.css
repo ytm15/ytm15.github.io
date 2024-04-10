@@ -1781,3 +1781,7 @@ ytm15-channels-header {
     width: 15px;
     height: 15px;
 }
+
+.continuation-item ~ .continuation-item {
+    display: none;
+}

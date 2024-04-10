@@ -495,7 +495,16 @@ function renderData() {
     shelfHeaderEP.appendChild(shelfTitleBar);
     shelf.appendChild(verticalList);
 
-    renderDataTrending();
+    renderDataTrending("", "Trending");
+    setTimeout(function() {
+      renderDataTrending("music", "Music");
+      setTimeout(function() {
+        renderDataTrending("gaming", "Gaming");
+        setTimeout(function() {
+          renderDataTrending("movies", "Movies");
+        }, 300);
+      }, 300);
+    }, 300);
 
     var oldTitle = document.querySelector("title");
     
@@ -516,7 +525,7 @@ getHomeData3.onerror();
 }
 
 /* async function renderDataTrending() */ 
-function renderDataTrending() {
+function renderDataTrending(homeShelfTrendingType, shelfTitle) {
     const spinner = document.querySelector(".spinner-container.full-height");
     const contItem = document.createElement("div");
     contItem.classList.add("continuation-item");
@@ -535,7 +544,7 @@ function renderDataTrending() {
 
     const getHomeData2 = new XMLHttpRequest();
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] !== "trending") {
-    getHomeData2.open('GET', APIbaseURL + 'api/v1/trending', true);
+    getHomeData2.open('GET', APIbaseURL + 'api/v1/trending?type=' + homeShelfTrendingType, true);
     } else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "trending") {
     getHomeData2.open('GET', APIbaseURL + 'api/v1/trending?type=' + trendType, true);
     }
@@ -571,9 +580,12 @@ function renderDataTrending() {
     const shelfHeaderEP = document.createElement("a");
     shelfHeaderEP.classList.add('shelf-header-endpoint');
     shelfHeaderEP.href = "#/trending";
+    if (homeShelfTrendingType !== "") {
+    shelfHeaderEP.href = "?trtype=" + homeShelfTrendingType + "#/trending";
+    }
     const shelfTitleBar = document.createElement("div");
     shelfTitleBar.classList.add('shelf-title-bar');
-    shelfTitleBar.innerHTML = "<h3>Trending</h3>";
+    shelfTitleBar.innerHTML = "<h3>" + shelfTitle + "</h3>";
 
     const verticalList = document.createElement("div");
     verticalList.classList.add('vertical-list');
