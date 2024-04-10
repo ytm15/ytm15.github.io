@@ -114,6 +114,7 @@ img {
     min-width: 1px;
     min-height: 1px;
     filter: none;
+    -webkit-filter: none;
 }
 .ytm15-img {
 width: 100%;
@@ -1028,12 +1029,14 @@ a {
     width: 30px;
     height: 30px;
     filter: invert(1);
+    -webkit-filter: invert(1);
     opacity: .6;
     margin: -4px 0;
 }
 .tab[aria-selected="true"] .ytm15-img-icon {
     opacity: 1;
     filter: none;
+    -webkit-filter: none;
 }
 
 .item {
@@ -1285,6 +1288,7 @@ ytm15app.has-miniplayer {
 }
 .watch-action-button ytm15-icon svg {
     filter: drop-shadow(0px 0px 1px rgba(0,0,0,0.5));
+    -webkit-filter: drop-shadow(0px 0px 1px rgba(0,0,0,0.5));
 }
 .miniplayer-content {
     display: none;
