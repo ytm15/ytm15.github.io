@@ -168,7 +168,7 @@ function renderHeader() {
     menuBtn.classList.add("icon-button", "header-button", "menu-button");
     menuBtn.onclick = function(){
     menuRenderer();
-    menuCont.setAttribute("style", "top: 0; right: 0; position: fixed; margin-top: 4px; margin-right: 4px;");
+    menuCont.setAttribute("style", "top: 0; right: 0; position: fixed;");
 
     const menuItemAbt = document.createElement("div");
     menuItemAbt.classList.add("menu-item");

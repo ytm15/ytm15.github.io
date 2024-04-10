@@ -1577,9 +1577,11 @@ ytm15-menu-button {
     max-width: var(--menu-max-width);
     overflow-x: hidden;
     overflow-y: auto;
-    background-color: #fff;
+    /* background-color: #fff; */
+    background-color: #eee;
     color: #111;
-    box-shadow: 0px 5px 18px 0px rgba(0, 0, 0, 0.3);
+    /* box-shadow: 0px 5px 18px 0px rgba(0, 0, 0, 0.3); */
+    box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.5);
     border-radius: 2px;
     margin: 7px;
     display: flex;
