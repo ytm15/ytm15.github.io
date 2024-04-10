@@ -183,7 +183,7 @@ a.sbdd-suggestion-link {
     display: flex;
 }
 .sbdd-item-icon {
-    padding: 14px 12px;
+    padding: 15px 12px;
     display: flex;
     color: rgba(0, 0, 0, 0.5);
     align-items: center;
@@ -191,7 +191,7 @@ a.sbdd-suggestion-link {
     flex-shrink: 0;
 }
 .sbdd-item-text-cont {
-    padding: 17px 12px 17px 46px;
+    padding: 18px 12px 18px 46px;
     flex-grow: 1;
 }
 `;

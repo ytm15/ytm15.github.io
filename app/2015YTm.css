@@ -266,7 +266,7 @@ font-weight: 300;
     overflow: hidden;
     font-size: 1.4rem;
 }
-@media (min-width: 550px) and (orientation: portrait), (min-width: 800px) and (orientation: landscape) {
+@media (min-aspect-ratio: 13 / 9) and (orientation: landscape), (min-width: 550px) and (orientation: portrait), (min-width: 800px) and (orientation: landscape) {
 .thumbnail-overlay-side {
     font-size: 1.6rem;
 }
@@ -345,7 +345,7 @@ div.media-icon {
     flex-grow: 1;
 }
 }
-@media (min-width: 550px) and (orientation: portrait), (min-width: 800px) and (orientation: landscape) {
+@media (min-aspect-ratio: 13 / 9) and (orientation: landscape), (min-width: 550px) and (orientation: portrait), (min-width: 800px) and (orientation: landscape) {
 .compact-media-item-thumbnail {
     width: 180px;
     height: 101px;
@@ -548,7 +548,7 @@ animation-duration: .28s;
     font-size: 1.3rem;
 }
 }
-@media (min-width: 550px) and (orientation: portrait), (min-width: 800px) and (orientation: landscape) {
+@media (min-aspect-ratio: 13 / 9) and (orientation: landscape), (min-width: 550px) and (orientation: portrait), (min-width: 800px) and (orientation: landscape) {
 .shelf>.vertical-list>.shelf-item .compact-media-headline {
     font-size: 1.5rem;
 }
@@ -728,13 +728,13 @@ ytm15-header-bar[ischannel="true"] {
     transition: background .3s;
 }
 .ytm15-header[data-mode="search"] {
-    background-color: #eee;
+    background-color: #f1f1f1;
     color: #606060;
 }
 .ytm15-header[data-mode="searching"] {
     position: relative;
     z-index: 3;
-    background-color: #eee;
+    background-color: #f1f1f1;
     color: #606060;
 }
 
