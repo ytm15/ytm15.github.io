@@ -213,8 +213,17 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         menuBtn.onclick = function(){
         menuRenderer();
         menuCont.setAttribute("style", "top: 0; right: 0;");
-        const menuAlign = function(e) {
+        /* const menuAlign = function(e) {
         menuCont.setAttribute("style", `left: calc(${e.pageX}px - 161px); top: calc(${e.pageY}px - 20px);`);
+        } */
+
+        const rect = menuBtn.getBoundingClientRect();
+        const menuRect = menuCont.getBoundingClientRect();
+        const menuAlign = function() {
+        menuCont.setAttribute("style", `left: ${rect.left - menuCont.offsetWidth + window.scrollX + 11}px; top: ${rect.top + window.scrollY - 10}px;`);
+        if (rect.left - menuCont.offsetWidth + window.scrollX + 11 < 0) {
+        menuCont.setAttribute("style", `left: 0px; top: ${rect.top + window.scrollY - 10}px;`);
+        }
         }
 
         document.onclick = menuAlign;
@@ -480,8 +489,17 @@ console.log(response);
         menuBtn.onclick = function(){
         menuRenderer();
         menuCont.setAttribute("style", "top: 0; right: 0;");
-        const menuAlign = function(e) {
+        /* const menuAlign = function(e) {
         menuCont.setAttribute("style", `left: calc(${e.pageX}px - 161px); top: calc(${e.pageY}px - 20px);`);
+        } */
+
+        const rect = menuBtn.getBoundingClientRect();
+        const menuRect = menuCont.getBoundingClientRect();
+        const menuAlign = function() {
+        menuCont.setAttribute("style", `left: ${rect.left - menuCont.offsetWidth + window.scrollX + 11}px; top: ${rect.top + window.scrollY - 10}px;`);
+        if (rect.left - menuCont.offsetWidth + window.scrollX + 11 < 0) {
+        menuCont.setAttribute("style", `left: 0px; top: ${rect.top + window.scrollY - 10}px;`);
+        }
         }
 
         document.onclick = menuAlign;
