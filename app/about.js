@@ -216,6 +216,11 @@ Changelog
 11 Apr 2024:
 <br>
 -Added 3 more shelves to the homepage
+<br>
+<br>
+12 Apr 2024:
+<br>
+-YTm15 now uses the embed player from the "invidious.private.coffee" instance of Invidious instead of the "invidious.tux.pizza" one
     </div>
     </div>
     </div>

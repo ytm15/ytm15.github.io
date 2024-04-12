@@ -17,7 +17,7 @@ dataModeChange();
 APIbaseURL = "https://inv.tux.pizza/";
 
 playerVideoId = "e";
-playerEmbedURL = "https://inv.tux.pizza/embed/";
+playerEmbedURL = "https://invidious.private.coffee/embed/";
 
 window.addEventListener('hashchange', function (event) {
 dataModeChange();
