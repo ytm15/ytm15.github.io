@@ -182,9 +182,10 @@ function channelPage() {
 
     const channelSub = document.createElement("div");
     channelSub.classList.add("channels-header-subscribe-button");
-    channelSub.innerHTML = `<div class="material-button-container compact subscribe-button" data-style="BRAND" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button" aria-label="Subscribe">
-<img class="ytm15-img-icon ytm15-img button-icon subscribe-icon" src="subscribe_mark.png"></img><div class="button-text">Subscribe</div>
-</button></div>`;
+    /* channelSub.innerHTML = `<div class="material-button-container compact subscribe-button" data-style="BRAND" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button" aria-label="${Subscribe_text_string}">
+<img class="ytm15-img-icon ytm15-img button-icon subscribe-icon" src="subscribe_mark.png"></img><div class="button-text">${Subscribe_text_string}</div>
+</button></div>`; */
+    renderSubscribeBtn(channelSub);
 
     const channelSubCount = document.createElement("span");
     channelSubCount.classList.add("channels-header-subscriber-count", "secondary-text");

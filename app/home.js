@@ -149,8 +149,8 @@ function renderData() {
         return;
         } */
 
-        headerTitle.setAttribute("aria-label", "Trending");
-        headerTitle.textContent = "Trending";
+        headerTitle.setAttribute("aria-label", Trending_text_string);
+        headerTitle.textContent = Trending_text_string;
 
         if (!document.querySelector(".tab-bar")) {
         headerBar.appendChild(tabBar);
@@ -198,7 +198,7 @@ function renderData() {
         var oldTitle = document.querySelector("title");
     
         var title = document.createElement("title");
-        title.textContent = 'Trending - 2015YouTube';
+        title.textContent = Trending_text_string + ' - 2015YouTube';
 
         oldTitle.parentNode.replaceChild(title, oldTitle);
 
@@ -271,8 +271,8 @@ function renderData() {
         return;
         } */
 
-        headerTitle.setAttribute("aria-label", "Popular");
-        headerTitle.textContent = "Popular";
+        headerTitle.setAttribute("aria-label", Popular_text_string);
+        headerTitle.textContent = Popular_text_string;
 
         const page = document.createElement("page");
         page.classList.add('home');
@@ -302,7 +302,7 @@ function renderData() {
         var oldTitle = document.querySelector("title");
     
         var title = document.createElement("title");
-        title.textContent = 'Popular - 2015YouTube';
+        title.textContent = Popular_text_string + ' - 2015YouTube';
 
         oldTitle.parentNode.replaceChild(title, oldTitle);
 
@@ -399,8 +399,8 @@ function renderData() {
         return;
     } */
 
-    headerTitle.setAttribute("aria-label", "Home");
-    headerTitle.textContent = "Home";
+    headerTitle.setAttribute("aria-label", Home_text_string);
+    headerTitle.textContent = Home_text_string;
 
     if (!document.querySelector(".tab-bar")) {
     headerBar.appendChild(tabBar);
@@ -509,7 +509,7 @@ function renderData() {
     var oldTitle = document.querySelector("title");
     
     var title = document.createElement("title");
-    title.textContent = 'Home - 2015YouTube';
+    title.textContent = Home_text_string + ' - 2015YouTube';
 
     oldTitle.parentNode.replaceChild(title, oldTitle);
 

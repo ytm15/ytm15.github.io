@@ -19,6 +19,27 @@ APIbaseURL = "https://inv.tux.pizza/";
 playerVideoId = "e";
 playerEmbedURL = "https://invidious.private.coffee/embed/";
 
+Subscribe_text_string = "Subscribe"
+Home_text_string = "Home"
+Popular_text_string = "Popular"
+Trending_text_string = "Trending"
+_2015YT_text_string = "2015YouTube"
+SearchYT_text_string = "Search YouTube"
+
+function renderSubscribeBtn(parent) {
+    const mtrlBtnCont = document.createElement("div");
+    mtrlBtnCont.classList.add("material-button-container", "compact", "subscribe-button");
+    mtrlBtnCont.dataset.style = "BRAND";
+    mtrlBtnCont.dataset.iconOnly = "false";
+    mtrlBtnCont.setAttribute("is-busy", "false");
+    mtrlBtnCont.ariaBusy = "false";
+    mtrlBtnCont.setAttribute("disabled", "false");
+    mtrlBtnCont.innerHTML = `<button class="material-button" aria-label="${Subscribe_text_string}">
+<img class="ytm15-img-icon ytm15-img button-icon subscribe-icon" src="subscribe_mark.png"></img><div class="button-text">${Subscribe_text_string}</div>
+</button>`
+    parent.appendChild(mtrlBtnCont);
+}
+
 window.addEventListener('hashchange', function (event) {
 dataModeChange();
 });
@@ -804,9 +825,9 @@ function hashDetector() {
     document.querySelector(".error-container").remove();
     }
     pageCont.innerHTML = "";
-    title.textContent = '2015YouTube';
-    headerTitle.setAttribute("aria-label", "2015YouTube");
-    headerTitle.textContent = "2015YouTube";
+    title.textContent = "2015YouTube";
+    headerTitle.setAttribute("aria-label", _2015YT_text_string);
+    headerTitle.textContent = _2015YT_text_string;
 if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == undefined || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "trending" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "") {
     renderData();
 } else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about") {

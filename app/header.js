@@ -57,7 +57,7 @@ function renderHeader() {
     const input = document.createElement("input");
     input.classList.add("searchbox-input", "title");
     input.name = "query";
-    input.placeholder = "Search YouTube";
+    input.placeholder = SearchYT_text_string;
     input.role = "combobox";
     input.type = "search";
     input.autocomplete = "on";
@@ -125,8 +125,8 @@ function renderHeader() {
 
     const headerTitle = document.createElement("h1");
     headerTitle.classList.add("title", "header-title");
-    headerTitle.setAttribute("aria-label", "2015YouTube");
-    headerTitle.textContent = "2015YouTube";
+    headerTitle.setAttribute("aria-label", _2015YT_text_string);
+    headerTitle.textContent = _2015YT_text_string;
     if (window.location.pathname.split("/").slice(3, 4) == "results.html") {
     headerTitle.setAttribute("hidden", "");
     }
@@ -147,7 +147,7 @@ function renderHeader() {
     const searchBtn = document.createElement("button");
     searchBtn.classList.add("icon-button", "header-button");
     searchBtn.onclick = function(){searching(searchDropdown, input);};
-    searchBtn.setAttribute("aria-label", "Search YouTube");
+    searchBtn.setAttribute("aria-label", SearchYT_text_string);
     searchBtn.setAttribute("aria-haspopup", "false");
     searchBtn.innerHTML = `<ytm15-icon class="search-icon"><svg viewBox="0 0 24 24" fill=""><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path></svg></ytm15-icon>`;
     if (window.location.pathname.split("/").slice(3, 4) == "results.html") {
