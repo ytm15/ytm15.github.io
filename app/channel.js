@@ -50,7 +50,7 @@ function channelPage() {
     getChannelData.onload = function() {
     if (getChannelData.status === 200) {
     const response = JSON.parse(getChannelData.response);
-    console.log(response);
+    /* console.log(response); */
 
     var spinner = document.querySelector(".spinner-container.full-height");
     spinner.setAttribute("hidden", "");

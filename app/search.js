@@ -15,6 +15,7 @@ function searchPage() {
 
     if (document.querySelector(".tab-bar")) {
     document.querySelector(".tab-bar").setAttribute("hidden", "");
+    document.querySelector(".tab-bar").setAttribute("isChannel", "false");
     headerBar.classList.remove('has-tab-bar');
     document.querySelector(".tab-bar").innerHTML = "";
     };
@@ -45,7 +46,7 @@ function searchPage() {
     getSearchData.onload = function() {
     if (getSearchData.status === 200) {
     const response = JSON.parse(getSearchData.response);
-    console.log(response);
+    /* console.log(response); */
 
     var spinner = document.querySelector(".spinner-container.full-height");
     spinner.setAttribute("hidden", "");
@@ -174,7 +175,7 @@ function searchPageContin(continuation, contItemParent) {
     getSearchData1.onload = function() {
     if (getSearchData1.status === 200) {
     const response = JSON.parse(getSearchData1.response);
-    console.log(response);
+    /* console.log(response); */
 
     contItem.remove();
 

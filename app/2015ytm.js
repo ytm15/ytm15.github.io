@@ -358,7 +358,7 @@ function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLen
         getVideoLength.onload = function(){
           if (getVideoLength.status === 200) {
           const response = JSON.parse(getVideoLength.response);
-console.log(response);
+          /* console.log(response); */
           if (response.items[0].contentDetails.duration > "3599") {
           time.textContent = new Date(1000 * response.items[0].contentDetails.duration).toISOString().substr(11, 8)
           } else {
@@ -803,6 +803,10 @@ function hashDetector() {
     if (document.querySelector(".error-container")) {
     document.querySelector(".error-container").remove();
     }
+    pageCont.innerHTML = "";
+    title.textContent = '2015YouTube';
+    headerTitle.setAttribute("aria-label", "2015YouTube");
+    headerTitle.textContent = "2015YouTube";
 if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == undefined || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "trending" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "") {
     renderData();
 } else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about") {
@@ -816,12 +820,9 @@ if (window.location.hash.split("/").join(',').split("?").join(',').split(',').sl
     var spinner = document.querySelector(".spinner-container.full-height");
     spinner.setAttribute("hidden", "");
     }
-    pageCont.innerHTML = "";
-    title.textContent = ' - 2015YouTube';
-    headerTitle.setAttribute("aria-label", "");
-    headerTitle.textContent = "";
     if (document.querySelector(".tab-bar")) {
     document.querySelector(".tab-bar").setAttribute("hidden", "");
+    document.querySelector(".tab-bar").setAttribute("isChannel", "false");
     headerBar.classList.remove('has-tab-bar');
     document.querySelector(".tab-bar").innerHTML = "";
     };

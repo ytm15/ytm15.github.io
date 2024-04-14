@@ -132,7 +132,7 @@ function renderData() {
         getHomeData.onload = function() {
         if (getHomeData.status === 200) {
         const data = JSON.parse(getHomeData.response);
-        console.log(data);
+        /* console.log(data); */
 
         var spinner = document.querySelector(".spinner-container.full-height");
         spinner.setAttribute("hidden", "");
@@ -254,7 +254,7 @@ function renderData() {
         getHomeData1.onload = function() {
         if (getHomeData1.status === 200) {
         const data = JSON.parse(getHomeData1.response);
-        console.log(data);
+        /* console.log(data); */
 
         var spinner = document.querySelector(".spinner-container.full-height");
         spinner.setAttribute("hidden", "");
@@ -382,7 +382,7 @@ function renderData() {
     getHomeData3.onload = function() {
     if (getHomeData3.status === 200) {
     const data = JSON.parse(getHomeData3.response);
-    console.log(data);
+    /* console.log(data); */
 
     var spinner = document.querySelector(".spinner-container.full-height");
     spinner.setAttribute("hidden", "");
@@ -535,7 +535,7 @@ function renderDataTrending(homeShelfTrendingType, shelfTitle) {
     contItem.appendChild(spinnerClone);
 
     const sectLazyList = document.querySelector(".lazy-list");
-    console.log(sectLazyList);
+    /* console.log(sectLazyList); */
     sectLazyList.appendChild(contItem);
 
     /* const data = await fetchDataTrending();
@@ -561,7 +561,7 @@ function renderDataTrending(homeShelfTrendingType, shelfTitle) {
     getHomeData2.onload = function() {
     if (getHomeData2.status === 200) {
     const data = JSON.parse(getHomeData2.response);
-    console.log(data);
+    /* console.log(data); */
 
     /* if (!data) {
         contItem.remove();
