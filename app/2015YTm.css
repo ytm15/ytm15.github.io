@@ -1727,11 +1727,24 @@ ytm15-menu-button {
     white-space: pre-line;
     text-align: center;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
 .msg-text {
     opacity: .7;
+}
+@media (min-width: 550px) and (orientation: portrait), (min-width: 800px) and (orientation: landscape) {
+.ytm15-message {
+    padding: 18px;
+    font-size: 1.7rem;
+}
+}
+.ytm15-img-icon.msg-icon {
+    width: 70px;
+    height: 70px;
+    margin-top: -8px;
+    margin-bottom: 31px;
 }
 
 .next-continuation-cont {

@@ -196,6 +196,28 @@ function channelPage() {
     channelHeaderDetails.appendChild(channelSub);
 
     tabContent.appendChild(channelHeader);
+
+    const sectionList = document.createElement("div");
+    sectionList.classList.add("section-list");
+    
+    const sectLazyList = document.createElement("div");
+    sectLazyList.classList.add("lazy-list");
+    sectionList.appendChild(sectLazyList);
+
+    const itemSect = document.createElement("div");
+    itemSect.classList.add("item-section");
+    sectLazyList.appendChild(itemSect);
+    
+    const lazyList = document.createElement("div");
+    lazyList.classList.add("lazy-list", "no-animation");
+    itemSect.appendChild(lazyList);
+
+    const ytm15Msg = document.createElement("div");
+    ytm15Msg.classList.add("ytm15-message");
+    ytm15Msg.innerHTML = `<div class="ytm15-message-content"><img class="ytm15-img-icon grey-account-icon msg-icon ytm15-img" src="ic_account_circle_grey_60.png"></img><div class="msg-text">${Channel_Home_WIP_text_string}</div></div>`;
+    lazyList.appendChild(ytm15Msg);
+
+    tabContent.appendChild(sectionList);
     }
     if (item == "streams") {
     tabContent.setAttribute("tab-title", "live");

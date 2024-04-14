@@ -25,6 +25,7 @@ Popular_text_string = "Popular"
 Trending_text_string = "Trending"
 _2015YT_text_string = "2015YouTube"
 SearchYT_text_string = "Search YouTube"
+Channel_Home_WIP_text_string = "Channel pages' home pages are currently being worked on. Please check back later"
 
 function renderSubscribeBtn(parent) {
     const mtrlBtnCont = document.createElement("div");
