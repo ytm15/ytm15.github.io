@@ -37,7 +37,7 @@
   stroke-dasharray: 187;
   stroke-dashoffset: 0;
   transform-origin: center;
-  stroke: #065fd4;
+  stroke: #068fd4;
   animation:
     /* dash var(--duration) ease-in-out infinite; */
     dash 1.4s ease-in-out infinite;
