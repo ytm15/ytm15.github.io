@@ -1538,6 +1538,11 @@ ytm15-menu-button {
     background-image: url("YTm15 About Page Banner.png");
     background-size: cover;
     background-position: center;
+    min-height: 16vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .about-page-subheading {
     background-color: #e3e3e3;
