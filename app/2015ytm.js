@@ -18,7 +18,7 @@ APIbaseURL = "https://inv.tux.pizza/";
 
 playerVideoId = "e";
 playerEmbedURL = "https://invidious.protokolla.fi/embed/";
-playerEmbedURLEnd = "?autoplay=1&quality=dash&player_style=youtube";
+playerEmbedURLEnd = "?autoplay=1&quality=dash&player_style=youtube&local=true";
 
 Subscribe_text_string = "Subscribe"
 Home_text_string = "Home"
