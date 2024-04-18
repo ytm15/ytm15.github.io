@@ -17,7 +17,8 @@ dataModeChange();
 APIbaseURL = "https://inv.tux.pizza/";
 
 playerVideoId = "e";
-playerEmbedURL = "https://invidious.private.coffee/embed/";
+playerEmbedURL = "https://invidious.protokolla.fi/embed/";
+playerEmbedURLEnd = "?autoplay=1&quality=dash";
 
 Subscribe_text_string = "Subscribe"
 Home_text_string = "Home"
@@ -100,7 +101,7 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         }
         watchFrame.src = "watch.html?v=" + itemVideoId;
         playerVideoId = itemVideoId;
-        playerFrame.src = playerEmbedURL + playerVideoId + "?autoplay=1";
+        playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd;
         }
         };
 
@@ -223,7 +224,7 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         }
         watchFrame.src = "watch.html?v=" + itemVideoId;
         playerVideoId = itemVideoId;
-        playerFrame.src = playerEmbedURL + playerVideoId + "?autoplay=1";
+        playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd;
         }
         };
 
@@ -342,7 +343,7 @@ function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLen
         }
         watchFrame.src = "watch.html?v=" + itemVideoId;
         playerVideoId = itemVideoId;
-        playerFrame.src = playerEmbedURL + playerVideoId + "?autoplay=1";
+        playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd;
         };
 
         const thumbg = document.createElement('div');
@@ -440,7 +441,7 @@ function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLen
         }
         watchFrame.src = "watch.html?v=" + itemVideoId;
         playerVideoId = itemVideoId;
-        playerFrame.src = playerEmbedURL + playerVideoId + "?autoplay=1";
+        playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd;
         };
 
         const cImage = document.createElement('img');
@@ -500,7 +501,7 @@ function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLen
         }
         watchFrame.src = "watch.html?v=" + itemVideoId;
         playerVideoId = itemVideoId;
-        playerFrame.src = playerEmbedURL + playerVideoId + "?autoplay=1";
+        playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd;
         };
 
         const mediaMenu = document.createElement('ytm15-menu-button');
@@ -629,7 +630,7 @@ playerCont2.appendChild(playerSpinner);
 
 const playerFrame = document.createElement("iframe");
 playerFrame.classList.add("watchpage-iframe", "player-iframe", "inv-player-for-ytm15");
-playerFrame.src = playerEmbedURL + playerVideoId + "?autoplay=1";
+playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd;
 playerFrame.scrolling = "yes";
 playerFrame.frameBorder = "0";
 playerFrame.width = "100%";

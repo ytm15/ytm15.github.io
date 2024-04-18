@@ -233,6 +233,8 @@ Changelog
 -Finally made a banner for this page
 <br>
 -The about page's footer is no-longer nested within a lazy list and an item section
+<br>
+-YTm15 now uses the embed player from the "invidious.protokolla.fi" instance of Invidious (With DASH (Adaptive quality) and the "YouTube" player style enabled)
     </div>
     </div>
     </div>
