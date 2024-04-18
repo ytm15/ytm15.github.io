@@ -227,21 +227,27 @@ Changelog
 14 Apr 2024:
 <br>
 -API data now no-longer gets logged to the console
+<br><br>
+18 Apr 2024:
+<br>
+-Finally made a banner for this page
+<br>
+-The about page's footer is no-longer nested within a lazy list and an item section
     </div>
     </div>
     </div>
-    <div class="item-section">
-    <div class="lazy-list no-animation">
+    <!-- <div class="item-section"> -->
+    <!-- <div class="lazy-list no-animation"> -->
     <footer class="about-page-footer">
     <div class="ap-footer-content">
     <h3 class="ap-footer-text">Have any questions/issues/requests/bugs/feedback? <a href="https://github.com/ytm15/ytm15.github.io/issues">Visit our Github's issues page</a></h3>
-    <h4 class="ap-footer-text small subhead ap-footer-links">Links: <a href="https://ytm15.github.io/">Landing page</a> | <a href="https://github.com/ytm15/ytm15.github.io/">Github page</a></h4>
-    <h4 class="ap-footer-text small subhead ap-footer-copyright-and-copyleft-text">© 2015, YouTube and Google | (ↄ) 2024, Yacine's remakes</h4>
+    <h4 class="ap-footer-text small subhead" id="ap-footer-links">Links: <a href="https://ytm15.github.io/">Landing page</a> | <a href="https://github.com/ytm15/ytm15.github.io/">Github page</a></h4>
+    <h4 class="ap-footer-text small subhead" id="ap-footer-copyright-and-copyleft-text">© 2015, YouTube and Google | (ↄ) 2024, Yacine's remakes</h4>
     <h4 class="ap-footer-text small subhead">Please note that YTm15 is not associated with, affiliated with, developed, approved, or endorsed by YouTube or Google!</h4>
     </div>
     </footer>
-    </div>
-    </div>
+    <!-- </div> -->
+    <!-- </div> -->
     `;
     section.appendChild(sectLazyList);
 
