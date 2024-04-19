@@ -1543,12 +1543,19 @@ ytm15-menu-button {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    font-size: 0;
 }
 .about-page-subheading {
     background-color: #e3e3e3;
     font-size: 16px;
     padding: 16px;
     color: rgba(0, 0, 0, 0.6);
+}
+@media (min-width: 550px) and (orientation: portrait), (min-width: 800px) and (orientation: landscape) {
+.about-page-subheading {
+    font-size: 17px;
+    padding: 18px;
+}
 }
 .ap-shelf {
     border-bottom: 1.2px solid rgba(0,0,0,0.2);
@@ -1601,6 +1608,10 @@ ytm15-menu-button {
 .ap-footer-content {
     margin: 0 auto;
     max-width: 800px;
+}
+.ytm15-logo {
+    height: unset;
+    max-width: 700px;
 }
 
 /* .modal-open {

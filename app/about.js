@@ -43,7 +43,7 @@ function aboutYTm15() {
     <div class="item-section">
     <div class="lazy-list no-animation">
     <div class="about-page-heading">
-YouTube Mobile 2015/YTm15
+YouTube Mobile 2015/YTm15<img class="ytm15-logo ytm15-img" src="YouTube Mobile 2015 Logo (with shadow).png"></img>
     </div>
     <div class="about-page-subheading">
 The 2015 YouTube experience, brought back to your smart device
@@ -239,6 +239,8 @@ Changelog
 19 Apr 2024:
 <br>
 -Changed the embed player URL from "invidious.protokolla.fi" to "invidious.fi"
+<br>
+-Made a logo for YTm15
     </div>
     </div>
     </div>
