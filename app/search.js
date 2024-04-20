@@ -184,7 +184,7 @@ function searchPageContin(continuation, contItemParent) {
     contItemParent.appendChild(itemSection);
 
     const lazyList = document.createElement("div");
-    lazyList.classList.add('lazy-list', 'no-animation');
+    lazyList.classList.add('lazy-list');
     itemSection.appendChild(lazyList);
 
     response.forEach(function(item) {
