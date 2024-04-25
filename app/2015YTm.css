@@ -81,12 +81,13 @@ transition: margin .2s, padding .2s;
 display: flex;
 flex-direction: row;
 overflow: hidden;
-padding: 6px 14px;
+padding: 7px 16px;
 position: relative;
 }
 .media-item {
 display: block;
-padding: 14px;
+padding: 16px;
+padding-bottom: 14px;
 min-width: 0;
 overflow: hidden;
 position: relative;
@@ -369,6 +370,9 @@ div.media-icon {
 .compact-media-item-metadata-content {
     padding-left: 14px;
 }
+.thumbnail-overlay-time-status {
+    margin: 7px;
+}
 }
 
 /* Material ripple */
@@ -603,7 +607,7 @@ animation-duration: .28s;
     flex-grow: 1;
 }
 .shelf-header {
-    padding: 16px 14px;
+    padding: 16px 15px;
     padding-bottom: 8px;
     display: flex;
     align-items: center;
