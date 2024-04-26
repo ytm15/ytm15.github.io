@@ -188,6 +188,22 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         const vidCountByline = document.createElement('div');
         vidCountByline.textContent = itemLength.toLocaleString() + " videos";
         vidCountByline.classList.add('compact-media-byline', 'small-text');
+        if (mediaType == "channel") {
+        vidCountByline.innerHTML = `<span style="font-style: italic;opacity: .8;">Retrieving video count...</span>`;
+        const channelData = new XMLHttpRequest();
+        channelData.open('GET', 'https://yt.lemnoslife.com/channels?part=snippet,status,about&id=' + itemAuthorId, true);
+ 
+        channelData.send();
+ 
+        channelData.onload = function(){
+          if (channelData.status === 200) {
+          const data1 = JSON.parse(channelData.response);
+          vidCountByline.textContent = data1.items[0].about.stats.videoCount.toLocaleString() + " videos";
+          } else {
+          console.error("An error occurred with this operation (" + channelData.status + ")");
+          }
+        };
+        }
 
         const published = document.createElement('div');
         published.textContent = itemPublishedText;
@@ -302,7 +318,7 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         metaContent.appendChild(subhead);
         subhead.appendChild(author);
         if (mediaType == "channel") {
-
+        subhead.appendChild(vidCountByline);
         } else if (mediaType == "playlist") {
         subhead.appendChild(vidCountByline);
         } else {

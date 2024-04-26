@@ -1662,7 +1662,7 @@ ytm15-menu-button {
     margin: 7px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-end;
+    justify-content: flex-start;
     align-items: flex-start;
     animation: menu-open .2s;
 }
