@@ -1373,7 +1373,8 @@ ytm15app.has-miniplayer {
     max-width: 190px;
     max-height: calc(100% - 20px);
     margin: 10px;
-    outline: 1px solid #f1f1f1;
+    /* outline: 1px solid #f1f1f1; */
+    border: 1px solid #f1f1f1;
     box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.2);
     pointer-events: auto;
     animation: player-cont-to-miniplayer .3s;
@@ -1382,6 +1383,7 @@ ytm15app.has-miniplayer {
 0% {
     margin: 0;
     outline: 0;
+    border: 0;
     box-shadow: none;
     max-width: 100%;
     max-height: 100%;
@@ -1389,7 +1391,8 @@ ytm15app.has-miniplayer {
 }
 100% {
     margin: 10px;
-    outline: 1px solid #f1f1f1;
+    /* outline: 1px solid #f1f1f1; */
+    border: 1px solid #f1f1f1;
     box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.2);
     /* max-width: var(--miniplayer-width);
     max-height: var(--miniplayer-height); */
@@ -1400,7 +1403,8 @@ ytm15app.has-miniplayer {
 @keyframes miniplayer-to-player-cont {
 0% {
     margin: 10px;
-    outline: 1px solid #f1f1f1;
+    /* outline: 1px solid #f1f1f1; */
+    border: 1px solid #f1f1f1;
     box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.2);
     /* max-width: var(--miniplayer-width);
     max-height: var(--miniplayer-height); */
@@ -1410,6 +1414,7 @@ ytm15app.has-miniplayer {
 100% {
     margin: 0;
     outline: 0;
+    border: 0;
     box-shadow: none;
     max-width: 100%;
     max-height: 100%;
@@ -1421,6 +1426,7 @@ ytm15app.has-miniplayer {
 0% {
     margin: 0;
     outline: 0;
+    border: 0;
     box-shadow: none;
     max-width: 100%;
     max-height: 100%;
@@ -1428,7 +1434,8 @@ ytm15app.has-miniplayer {
 }
 100% {
     margin: 10px;
-    outline: 1px solid #f1f1f1;
+    /* outline: 1px solid #f1f1f1; */
+    border: 1px solid #f1f1f1;
     box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.2);
     /* max-width: var(--miniplayer-width);
     max-height: var(--miniplayer-height); */
@@ -1439,7 +1446,8 @@ ytm15app.has-miniplayer {
 @keyframes miniplayer-to-player-cont {
 0% {
     margin: 10px;
-    outline: 1px solid #f1f1f1;
+    /* outline: 1px solid #f1f1f1; */
+    border: 1px solid #f1f1f1;
     box-shadow: 0px 1px 3px 2px rgba(0, 0, 0, 0.2);
     /* max-width: var(--miniplayer-width);
     max-height: var(--miniplayer-height); */
@@ -1449,6 +1457,7 @@ ytm15app.has-miniplayer {
 100% {
     margin: 0;
     outline: 0;
+    border: 0;
     box-shadow: none;
     max-width: 100%;
     max-height: 100%;
@@ -1473,8 +1482,31 @@ ytm15app.has-miniplayer {
     margin-top: calc(56.25% - 197px);
     margin-right: 350px;
 }
+.watchpage-frame-items ytm15-watch::after {
+    content: "";
+    background-color: #ffffff;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    top: 0;
+    width: 350px;
+    transition: transform .3s;
 }
-ytm15-watch::before {
+.watchpage-frame-items ytm15-watch:empty::after {
+    padding: 16px;
+    box-sizing: border-box;
+    content: "Work in progress. Please check back later";
+    font-size: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.miniplayer .watchpage-frame-items ytm15-watch::after {
+    transform: translateY(100%);
+}
+}
+ytm15-watch:empty::before {
     content: "The watchpage (below the player) hasn't been built yet";
     height: 100%;
     box-sizing: border-box;
