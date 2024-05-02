@@ -93,7 +93,7 @@ APIs:
 <br>
 Player:
 <br>
--Invidious' embed player
+-YouTube's embed player (Formely Invidious' embed player)
 <br>
 <br>
 Polyfills:
@@ -241,6 +241,10 @@ Changelog
 -Changed the embed player URL from "invidious.protokolla.fi" to "invidious.fi"
 <br>
 -Made a logo for YTm15
+<br><br>
+02 May 2024:
+<br>
+-YTm15 now uses YouTube's official embed player
     </div>
     </div>
     </div>

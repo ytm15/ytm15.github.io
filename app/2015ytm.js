@@ -19,6 +19,8 @@ APIbaseURL = "https://inv.tux.pizza/";
 playerVideoId = "e";
 playerEmbedURL = "https://invidious.fi/embed/";
 playerEmbedURLEnd = "?autoplay=1&quality=dash&player_style=youtube&local=true";
+playerEmbedURLYT = "https://www.youtube.com/embed/";
+playerEmbedURLYTEnd = "?autoplay=1&enablejsapi=1&rel=0";
 
 Subscribe_text_string = "Subscribe"
 Home_text_string = "Home"
@@ -101,7 +103,8 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         }
         watchFrame.src = "watch.html?v=" + itemVideoId;
         playerVideoId = itemVideoId;
-        playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd;
+        /* playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd; */
+        playerFrame.src = playerEmbedURLYT + playerVideoId + playerEmbedURLYTEnd;
         }
         };
 
@@ -240,7 +243,8 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         }
         watchFrame.src = "watch.html?v=" + itemVideoId;
         playerVideoId = itemVideoId;
-        playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd;
+        /* playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd; */
+        playerFrame.src = playerEmbedURLYT + playerVideoId + playerEmbedURLYTEnd;
         }
         };
 
@@ -359,7 +363,8 @@ function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLen
         }
         watchFrame.src = "watch.html?v=" + itemVideoId;
         playerVideoId = itemVideoId;
-        playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd;
+        /* playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd; */
+        playerFrame.src = playerEmbedURLYT + playerVideoId + playerEmbedURLYTEnd;
         };
 
         const thumbg = document.createElement('div');
@@ -457,7 +462,8 @@ function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLen
         }
         watchFrame.src = "watch.html?v=" + itemVideoId;
         playerVideoId = itemVideoId;
-        playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd;
+        /* playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd; */
+        playerFrame.src = playerEmbedURLYT + playerVideoId + playerEmbedURLYTEnd;
         };
 
         const cImage = document.createElement('img');
@@ -517,7 +523,8 @@ function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLen
         }
         watchFrame.src = "watch.html?v=" + itemVideoId;
         playerVideoId = itemVideoId;
-        playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd;
+        /* playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd; */
+        playerFrame.src = playerEmbedURLYT + playerVideoId + playerEmbedURLYTEnd;
         };
 
         const mediaMenu = document.createElement('ytm15-menu-button');
@@ -645,8 +652,10 @@ playerSpinner.innerHTML = `
 playerCont2.appendChild(playerSpinner);
 
 const playerFrame = document.createElement("iframe");
-playerFrame.classList.add("watchpage-iframe", "player-iframe", "inv-player-for-ytm15");
-playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd;
+/* playerFrame.classList.add("watchpage-iframe", "player-iframe", "inv-player-for-ytm15"); */
+playerFrame.classList.add("watchpage-iframe", "player-iframe", "yt-player-for-ytm15");
+/* playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd; */
+playerFrame.src = playerEmbedURLYT + playerVideoId + playerEmbedURLYTEnd;
 playerFrame.scrolling = "yes";
 playerFrame.frameBorder = "0";
 playerFrame.width = "100%";
