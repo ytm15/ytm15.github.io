@@ -248,7 +248,7 @@ Changelog
 <br>
 -YTm15 now uses YouTube's official embed player
 <br><br>
-03 - 07 May 2024:
+03 - 06 May 2024:
 <br>
 -Finally started working on the watchpage
 -The searchpage now uses "searchValueNotDecoded" for the API (this change was made to fix hashtag results on the searchpage since they weren't working before)
