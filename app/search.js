@@ -21,8 +21,8 @@ function searchPage() {
     };
 
     const getSearchData = new XMLHttpRequest();
-    getSearchData.open('GET', APIbaseURL + 'api/v1/search?q=' + searchValue + `&page=1&sort_by=${searchParamSort}&date=${searchParamDate}&duration=${searchParamDuration}&type=${searchParamType}&features=${searchParamFeatures}`, true);
- 
+    getSearchData.open('GET', APIbaseURL + 'api/v1/search?q=' + searchValueNotDecoded + `&page=1&sort_by=${searchParamSort}&date=${searchParamDate}&duration=${searchParamDuration}&type=${searchParamType}&features=${searchParamFeatures}`, true);
+
     getSearchData.onerror = function(event) {
     console.error("An error occurred with this operation (" + getSearchData.status + ")");
 
@@ -103,6 +103,12 @@ function searchPage() {
         compMediaItemTitle = item.title;
         compMediaItemAuthor = item.author;
         compMediaItemvidId = item.playlistId;
+        } else if (item.type == "hashtag") {
+        compMediaItemThumb = "https://www.gstatic.com/youtube/img/social/hashtags/hashtag_tile_icon.png";
+        compMediaItemLength = item.videoCount;
+        compMediaItemTitle = item.title;
+        compMediaItemAuthor = item.channelCount;
+        compMediaItemvidId = item.url;
         } else {
         compMediaItemThumb = item.videoThumbnails[3].url;
         compMediaItemLength = item.lengthSeconds;
@@ -116,7 +122,7 @@ function searchPage() {
     if (response.length == "0") {
     const ytm15Msg = document.createElement("div");
     ytm15Msg.classList.add("ytm15-message");
-    ytm15Msg.innerHTML = `<div class="ytm15-message-content"><div class="msg-text">No results found. Try searching for something else or removing filters</div></div>`;
+    ytm15Msg.innerHTML = `<div class="ytm15-message-content"><div class="msg-text">${No_Search_Results_text_string}</div></div>`;
     lazyList.appendChild(ytm15Msg);
     }
 
@@ -151,7 +157,7 @@ function searchPageContin(continuation, contItemParent) {
     contItemParent.appendChild(contItem);
 
     const getSearchData1 = new XMLHttpRequest();
-    getSearchData1.open('GET', APIbaseURL + 'api/v1/search?q=' + searchValue + `&page=${continuation}&sort_by=${searchParamSort}&date=${searchParamDate}&duration=${searchParamDuration}&type=${searchParamType}&features=${searchParamFeatures}`, true);
+    getSearchData1.open('GET', APIbaseURL + 'api/v1/search?q=' + searchValueNotDecoded + `&page=${continuation}&sort_by=${searchParamSort}&date=${searchParamDate}&duration=${searchParamDuration}&type=${searchParamType}&features=${searchParamFeatures}`, true);
  
     getSearchData1.onerror = function(event) {
     console.error("An error occurred with this operation (" + getSearchData1.status + ")");
@@ -200,6 +206,12 @@ function searchPageContin(continuation, contItemParent) {
         compMediaItemTitle = item.title;
         compMediaItemAuthor = item.author;
         compMediaItemvidId = item.playlistId;
+        } else if (item.type == "hashtag") {
+        compMediaItemThumb = "https://www.gstatic.com/youtube/img/social/hashtags/hashtag_tile_icon.png";
+        compMediaItemLength = item.videoCount;
+        compMediaItemTitle = item.title;
+        compMediaItemAuthor = item.channelCount;
+        compMediaItemvidId = item.url;
         } else {
         compMediaItemThumb = item.videoThumbnails[3].url;
         compMediaItemLength = item.lengthSeconds;
@@ -213,7 +225,7 @@ function searchPageContin(continuation, contItemParent) {
     if (response.length == "0") {
     const ytm15Msg = document.createElement("div");
     ytm15Msg.classList.add("ytm15-message");
-    ytm15Msg.innerHTML = `<div class="ytm15-message-content"><div class="msg-text">Looks like you've reached the end</div></div>`;
+    ytm15Msg.innerHTML = `<div class="ytm15-message-content"><div class="msg-text">${Dead_End_text_string}</div></div>`;
     lazyList.appendChild(ytm15Msg);
     }
 

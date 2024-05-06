@@ -91,6 +91,8 @@ APIs:
 -YouTube Operational API (<a href="https://yt.lemnoslife.com/">https://yt.lemnoslife.com/</a>)
 <br>
 <br>
+-Return YouTube Dislike API (<a href="https://returnyoutubedislikeapi.com/swagger/">https://returnyoutubedislikeapi.com/swagger/</a>)
+<br><br>
 Player:
 <br>
 -YouTube's embed player (Formely Invidious' embed player)
@@ -245,6 +247,11 @@ Changelog
 02 May 2024:
 <br>
 -YTm15 now uses YouTube's official embed player
+<br><br>
+03 - 07 May 2024:
+<br>
+-Finally started working on the watchpage
+-The searchpage now uses "searchValueNotDecoded" for the API (this change was made to fix hashtag results on the searchpage since they weren't working before)
     </div>
     </div>
     </div>

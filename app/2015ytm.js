@@ -20,7 +20,7 @@ playerVideoId = "e";
 playerEmbedURL = "https://invidious.fi/embed/";
 playerEmbedURLEnd = "?autoplay=1&quality=dash&player_style=youtube&local=true";
 playerEmbedURLYT = "https://www.youtube.com/embed/";
-playerEmbedURLYTEnd = "?autoplay=1&enablejsapi=1&rel=0";
+playerEmbedURLYTEnd = "?autoplay=1&enablejsapi=1&rel=0&origin=" + location.origin + "&widget_referrer=" + location.origin;
 
 Subscribe_text_string = "Subscribe"
 Home_text_string = "Home"
@@ -29,6 +29,15 @@ Trending_text_string = "Trending"
 _2015YT_text_string = "2015YouTube"
 SearchYT_text_string = "Search YouTube"
 Channel_Home_WIP_text_string = "Channel pages' home pages are currently being worked on. Please check back later"
+No_Search_Results_text_string = "No results found. Try searching for something else or removing filters";
+Dead_End_text_string = "Looks like you've reached the end";
+Share_text_string = "Share";
+DescMusic_text_string = "Music in this video";
+LearnMore_text_string = "Learn more";
+Song_text_string = "Song";
+Artist_text_string = "Artist";
+Album_text_string = "Album";
+SongLicensed_text_string = "Licensed to YouTube by";
 
 function renderSubscribeBtn(parent) {
     const mtrlBtnCont = document.createElement("div");
@@ -77,6 +86,9 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         if (mediaType == "playlist") {
         compMediaTypeName = 'compact-playlist';
         }
+        if (mediaType == "hashtag") {
+        compMediaTypeName = 'compact-hashtag';
+        }
         video.classList.add(compMediaTypeName);
         if (parentName == "shelf") {
         video.classList.add('shelf-item');
@@ -92,6 +104,8 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         thumbnail.href = "#/channel/" + itemAuthorId;
         } else if (mediaType == "playlist") {
         thumbnail.href = "#/playlist?list=" + itemVideoId;
+        } else if (mediaType == "hashtag") {
+        thumbnail.href = "#" + itemVideoId;
         }
         if (mediaType == "video" || mediaType == "shortVideo") {
         thumbnail.onclick = function(){
@@ -105,6 +119,7 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         playerVideoId = itemVideoId;
         /* playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd; */
         playerFrame.src = playerEmbedURLYT + playerVideoId + playerEmbedURLYTEnd;
+        renderWatchPage(ytm15Watch);
         }
         };
 
@@ -191,6 +206,15 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         const vidCountByline = document.createElement('div');
         vidCountByline.textContent = itemLength.toLocaleString() + " videos";
         vidCountByline.classList.add('compact-media-byline', 'small-text');
+
+        const vidCountStats = document.createElement('div');
+        vidCountStats.textContent = itemLength.toLocaleString() + " videos";
+        vidCountStats.classList.add('compact-media-stats', 'small-text');
+
+        const hashChannelCount = document.createElement('div');
+        hashChannelCount.textContent = itemAuthor.toLocaleString() + " channels";
+        hashChannelCount.classList.add('compact-media-stats', 'small-text');
+
         if (mediaType == "channel") {
         vidCountByline.innerHTML = `<span style="font-style: italic;opacity: .8;">Retrieving video count...</span>`;
         const channelData = new XMLHttpRequest();
@@ -217,6 +241,8 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
 
         } else if (mediaType == "playlist") {
 
+        } else if (mediaType == "hashtag") { 
+        
         } else {
         views.textContent = itemViewCount.toLocaleString() + ' views';
         }
@@ -232,6 +258,8 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         metaContent.href = "#/channel/" + itemAuthorId;
         } else if (mediaType == "playlist") {
         metaContent.href = "#/playlist?list=" + itemVideoId;
+        } else if (mediaType == "hashtag") {
+        metaContent.href = "#" + itemVideoId;
         }
         if (mediaType == "video" || mediaType == "shortVideo") {
         metaContent.onclick = function(){
@@ -245,6 +273,7 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         playerVideoId = itemVideoId;
         /* playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd; */
         playerFrame.src = playerEmbedURLYT + playerVideoId + playerEmbedURLYTEnd;
+        renderWatchPage(ytm15Watch);
         }
         };
 
@@ -314,24 +343,37 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
 
         } else if (mediaType == "playlist") {
         thumbnail.appendChild(overlaySide);
+        } else if (mediaType == "hashtag") {
+
         } else {
 	thumbnail.appendChild(overlayBottom);
 	overlayBottom.appendChild(time);
         }
         metaContent.appendChild(title);
         metaContent.appendChild(subhead);
+        if (mediaType == "hashtag") {
+        subhead.appendChild(vidCountStats);
+        subhead.appendChild(hashChannelCount);
+        } else {
         subhead.appendChild(author);
+        }
         if (mediaType == "channel") {
         subhead.appendChild(vidCountByline);
         } else if (mediaType == "playlist") {
         subhead.appendChild(vidCountByline);
+        } else if (mediaType == "hashtag") {
+
         } else {
         subhead.appendChild(published);
         subhead.appendChild(views);
         }
         media.appendChild(metadata);
         metadata.appendChild(metaContent);
+        if (mediaType == "hashtag") {
+        
+        } else {
         metadata.appendChild(mediaMenu);
+        }
         video.appendChild(media);
         parent.appendChild(video);
 }
@@ -365,6 +407,7 @@ function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLen
         playerVideoId = itemVideoId;
         /* playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd; */
         playerFrame.src = playerEmbedURLYT + playerVideoId + playerEmbedURLYTEnd;
+        renderWatchPage(ytm15Watch);
         };
 
         const thumbg = document.createElement('div');
@@ -464,6 +507,7 @@ function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLen
         playerVideoId = itemVideoId;
         /* playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd; */
         playerFrame.src = playerEmbedURLYT + playerVideoId + playerEmbedURLYTEnd;
+        renderWatchPage(ytm15Watch);
         };
 
         const cImage = document.createElement('img');
@@ -525,6 +569,7 @@ function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLen
         playerVideoId = itemVideoId;
         /* playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd; */
         playerFrame.src = playerEmbedURLYT + playerVideoId + playerEmbedURLYTEnd;
+        renderWatchPage(ytm15Watch);
         };
 
         const mediaMenu = document.createElement('ytm15-menu-button');
@@ -654,12 +699,15 @@ playerCont2.appendChild(playerSpinner);
 const playerFrame = document.createElement("iframe");
 /* playerFrame.classList.add("watchpage-iframe", "player-iframe", "inv-player-for-ytm15"); */
 playerFrame.classList.add("watchpage-iframe", "player-iframe", "yt-player-for-ytm15");
+playerFrame.id = "ytplayer";
 /* playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd; */
 playerFrame.src = playerEmbedURLYT + playerVideoId + playerEmbedURLYTEnd;
 playerFrame.scrolling = "yes";
 playerFrame.frameBorder = "0";
 playerFrame.width = "100%";
 playerFrame.height = "100%";
+playerFrame.setAttribute("allow", "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share");
+playerFrame.setAttribute("referrerpolicy", "strict-origin-when-cross-origin");
 playerFrame.setAttribute("allowfullscreen", "");
 
 const ytm15Watch = document.createElement("ytm15-watch");
