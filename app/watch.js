@@ -316,7 +316,7 @@ function renderWatchPage(parent) {
 </button>`
 
     const mtrlBtnContShare = document.createElement("div");
-    mtrlBtnContShare.classList.add("material-button-container", "compact", "like-button");
+    mtrlBtnContShare.classList.add("material-button-container", "compact", "share-button");
     mtrlBtnContShare.dataset.style = "DEFAULT";
     mtrlBtnContShare.dataset.iconOnly = "true";
     mtrlBtnContShare.setAttribute("is-busy", "false");
