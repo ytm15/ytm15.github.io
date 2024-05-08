@@ -109,7 +109,9 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         }
         if (mediaType == "video" || mediaType == "shortVideo") {
         thumbnail.onclick = function(){
+        if (!app.querySelector("#watchpageFrame_Container")) {
         app.insertAdjacentElement("afterbegin", watchContainer);
+        }
         if (watchContainer.classList.contains("miniplayer")) {
         watchContainer.classList.remove("miniplayer");
         app.classList.remove("has-miniplayer");
@@ -263,7 +265,9 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         }
         if (mediaType == "video" || mediaType == "shortVideo") {
         metaContent.onclick = function(){
+        if (!app.querySelector("#watchpageFrame_Container")) {
         app.insertAdjacentElement("afterbegin", watchContainer);
+        }
         if (watchContainer.classList.contains("miniplayer")) {
         watchContainer.classList.remove("miniplayer");
         app.classList.remove("has-miniplayer");
@@ -397,7 +401,9 @@ function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLen
         thumbnail.classList.add('media-item-thumbnail');
         thumbnail.href = "javascript:void(0);";
         thumbnail.onclick = function(){
+        if (!app.querySelector("#watchpageFrame_Container")) {
         app.insertAdjacentElement("afterbegin", watchContainer);
+        }
         if (watchContainer.classList.contains("miniplayer")) {
         watchContainer.classList.remove("miniplayer");
         app.classList.remove("has-miniplayer");
@@ -497,7 +503,9 @@ function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLen
         extEndpoint.classList.add('media-extra-endpoint');
         extEndpoint.href = "javascript:void(0);";
         extEndpoint.onclick = function(){
+        if (!app.querySelector("#watchpageFrame_Container")) {
         app.insertAdjacentElement("afterbegin", watchContainer);
+        }
         if (watchContainer.classList.contains("miniplayer")) {
         watchContainer.classList.remove("miniplayer");
         app.classList.remove("has-miniplayer");
@@ -559,7 +567,9 @@ function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLen
         metaContent.classList.add('media-item-metadata');
         metaContent.href = "javascript:void(0);";
         metaContent.onclick = function(){
+        if (!app.querySelector("#watchpageFrame_Container")) {
         app.insertAdjacentElement("afterbegin", watchContainer);
+        }
         if (watchContainer.classList.contains("miniplayer")) {
         watchContainer.classList.remove("miniplayer");
         app.classList.remove("has-miniplayer");

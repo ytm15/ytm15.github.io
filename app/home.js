@@ -534,7 +534,7 @@ function renderDataTrending(homeShelfTrendingType, shelfTitle) {
     spinnerClone.removeAttribute("hidden");
     contItem.appendChild(spinnerClone);
 
-    const sectLazyList = document.querySelector(".lazy-list");
+    const sectLazyList = document.querySelector('[tab-identifier="What_to_watch"] .lazy-list');
     /* console.log(sectLazyList); */
     sectLazyList.appendChild(contItem);
 
