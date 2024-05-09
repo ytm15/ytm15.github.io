@@ -252,6 +252,11 @@ Changelog
 <br>
 -Finally started working on the watchpage
 -The searchpage now uses "searchValueNotDecoded" for the API (this change was made to fix hashtag results on the searchpage since they weren't working before)
+<br><br>
+09 May 2024:
+<br>
+-Started working on the "video owner" thing for the watchpage
+-The watchpage now uses the "items[0].status.license" thing from the API instead of "response.items[0].contentDetails.licensedContent" to detect if the video uses the "Creative Commons" license or the "YouTube" license
     </div>
     </div>
     </div>

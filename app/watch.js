@@ -214,7 +214,8 @@ function renderWatchPage(parent) {
       if (getLicense.status === 200) {
       const response = JSON.parse(getLicense.response);
       licenseText = "Standard YouTube License";
-      if (response.items[0].contentDetails.licensedContent == false) {
+      /* if (response.items[0].contentDetails.licensedContent == false) */ 
+      if (response.items[0].status.license == "creativeCommon") {
       licenseText = "Creative Commons Attribution License (Reuse allowed)";
       }
       descRow.querySelector(".metadata-row-container").innerHTML += `<div class="metadata-row">
@@ -333,6 +334,32 @@ function renderWatchPage(parent) {
     metadataActions.appendChild(mtrlBtnContDislike);
     metadataActions.appendChild(mtrlBtnContShare);
     metadataActions.appendChild(actionsSpacer);
+
+    const W2ndHalf = document.createElement("div");
+    W2ndHalf.classList.add("wnr-2nd-half", "watch-next-results-content");
+    scwnr.appendChild(W2ndHalf);
+
+    const itemSectOwner = document.createElement("div");
+    itemSectOwner.classList.add("item-section", "watch-next-results-content");
+    itemSectOwner.dataset.contentType = "result";
+    itemSectOwner.setAttribute("section-identifier", "video-owner-metadata");
+    itemSectOwner.innerHTML = `<div class="lazy-list no-animation"></div>`;
+    W2ndHalf.appendChild(itemSectOwner);
+    const videoMetadata2 = document.createElement("ytm15-video-metadata");
+    videoMetadata2.classList.add("item");
+    itemSectOwner.querySelector(".lazy-list").appendChild(videoMetadata2);
+
+    const videoOwner = document.createElement("div");
+    videoOwner.classList.add("ytm15-video-owner");
+    videoOwner.innerHTML = `
+<a class="video-owner-icon-and-title" aria-label="Go to ${data.author}'s channel" href="#/channel/${data.authorId}">
+<div class="profile-icon video-owner-prof-icon">
+<img class="profile-img ytm15-img lazy" loading="lazy" src="${data.authorThumbnails[2].url}"></img>
+</div>
+</a>
+`;
+    videoOwner..onload = function(){cImage.classList.add('loaded');}; 
+    videoMetadata2.appendChild(videoOwner);
 
     parent.innerHTML = "";
 
