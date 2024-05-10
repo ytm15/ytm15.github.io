@@ -431,6 +431,7 @@ div.media-icon {
     background-color: rgba(0,0,0,0.15);
     border-radius: 510%;
     animation: ripple-fade .4s ease-out;
+    pointer-events: none;
 }
 button.header-button::before {
     z-index: 0;
@@ -1819,6 +1820,96 @@ ytm15-badge:empty, .standalone-badge-supported ytm15-badge:empty {
     margin-top: 5px;
     margin-bottom: 0;
     padding-top: 4px;
+}
+.ytm15-video-owner {
+    display: flex;
+    align-items: center;
+    padding: 13px 14px;
+}
+.video-owner-icon-and-title {
+    flex-grow: 1;
+    display: flex;
+    min-width: 0;
+    align-items: center;
+    padding: 13px 14px;
+    padding-right: 0;
+    margin: -13px -14px;
+}
+.video-owner-prof-icon {
+    width: 38px;
+    height: 38px;
+    margin-right: 13px;
+}
+.video-owner-bylines {
+    min-width: 0;
+}
+.video-owner-icon-and-title h3, .video-owner-icon-and-title .subhead {
+    max-height: 1.25em;
+    -webkit-line-clamp: 1;
+}
+h3.video-owner-title {
+    font-size: 1.5rem;
+    margin-bottom: 2px;
+}
+.video-owner-sub-count {
+    font-size: 1.25rem;
+}
+.video-owner-subscribe-button {
+    display: flex;
+    align-items: center;
+    margin: -13px -14px;
+    margin-left: 13px;
+}
+.video-owner-subscribe-button .material-button-container.subscribe-button {
+    margin: 0;
+}
+.video-owner-subscribe-button .material-button-container.subscribe-button .material-button {
+    padding: 24px 15px;
+    border-radius: 15%;
+}
+@media (min-width: 800px) and (min-device-width: 550px) and (orientation: landscape) {
+.wnr-2nd-half {   
+    position: fixed;
+    right: 0;
+    top: 0px;
+    bottom: 0;
+    width: 350px;
+    z-index: 1;
+    height: 100%;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    box-sizing: border-box;
+    transition: transform .3s;
+}
+.miniplayer .watchpage-frame-items ytm15-watch .wnr-2nd-half {
+    transform: translateY(100%);
+}
+.ytm15-video-owner {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+}
+.video-owner-icon-and-title {
+    padding: 15px;
+}
+.video-owner-prof-icon {
+    width: 55px;
+    height: 55px;
+}
+h3.video-owner-title {
+    font-size: 1.7rem;
+    margin-bottom: 3px;
+}
+.video-owner-sub-count {
+    font-size: 1.4rem;
+}
+.video-owner-subscribe-button {
+    margin-left: 60px;
+    margin-bottom: -6px;
+}
+.video-owner-subscribe-button .material-button-container.subscribe-button .material-button {
+    padding: 12px 10px;
+}
 }
 
 ytm15-menu-button {

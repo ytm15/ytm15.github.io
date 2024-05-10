@@ -352,13 +352,24 @@ function renderWatchPage(parent) {
     const videoOwner = document.createElement("div");
     videoOwner.classList.add("ytm15-video-owner");
     videoOwner.innerHTML = `
-<a class="video-owner-icon-and-title" aria-label="Go to ${data.author}'s channel" href="#/channel/${data.authorId}">
+<a class="video-owner-icon-and-title has-ripple" aria-label="Go to ${data.author}'s channel" href="#/channel/${data.authorId}">
 <div class="profile-icon video-owner-prof-icon">
 <img class="profile-img ytm15-img lazy" loading="lazy" src="${data.authorThumbnails[2].url}"></img>
 </div>
+<div class="video-owner-bylines">
+<h3 class="video-owner-title">${data.author}</h3>
+<div class="video-owner-sub-count subhead">${data.subCountText} subscribers</div>
+</div>
 </a>
+<div class="video-owner-subscribe-button"></div>
 `;
-    videoOwner..onload = function(){cImage.classList.add('loaded');}; 
+    renderSubscribeBtn(videoOwner.querySelector(".video-owner-subscribe-button"));
+    videoOwner.querySelectorAll("a").forEach(function(item){
+    item.onclick = function(){
+    exitWatch.onclick();
+    };
+    });
+    videoOwner.querySelector(".profile-img").onload = function(){videoOwner.querySelector(".profile-img").classList.add('loaded');}; 
     videoMetadata2.appendChild(videoOwner);
 
     parent.innerHTML = "";
