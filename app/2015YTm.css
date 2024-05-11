@@ -1100,8 +1100,10 @@ a {
     display: inline-block;
     overflow: hidden;
     flex-shrink: 0;
-    border-radius: 50%;
     background-color: rgba(0,0,0,0.15);
+}
+.profile-icon, .profile-img {
+    border-radius: 50%;
 }
 
 /* Material buttons */

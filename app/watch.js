@@ -59,6 +59,7 @@ function renderWatchPage(parent) {
     const metadataHeader = document.createElement("button");
     metadataHeader.classList.add("video-metadata-header", "has-ripple");
     metadataHeader.ariaExpanded = "false";
+    metadataHeader.setAttribute("aria-expanded", "false");
     videoMetadata.appendChild(metadataHeader);
     const standaloneBadge = document.createElement("div");
     standaloneBadge.classList.add("video-metadata-standalone-badge");
@@ -82,9 +83,11 @@ function renderWatchPage(parent) {
       slColBadge.innerHTML += `<a href="#/results?query=%23${encodeURIComponent(item)}">#${item}</a>`;
     });
 
-    if (matches.toString() !== "[]") {
+    /* if (matches.toString() !== "[]") */ 
+    if (matches !== "") {
     var slColBadge = standaloneBadge.querySelector(".standalone-collection-badge");
-    slColBadge.querySelectorAll("a").forEach(function(item){
+    var slColBadges = slColBadge.querySelectorAll("a");
+    Array.from(slColBadges).forEach(function(item){
     item.onclick = function(){
     exitWatch.onclick();
     }
@@ -148,17 +151,23 @@ function renderWatchPage(parent) {
     metadataHeader.onclick = function(){
     if (metadataHeader.ariaExpanded == "false") {
     metadataHeader.ariaExpanded = "true";
+    metadataHeader.setAttribute("aria-expanded", "true");
     metaHeaderCont.querySelector("ytm15-icon").ariaExpanded = "true";
     metaHeaderCont.querySelector("ytm15-icon").ariaLabel = "Show less";
-    metaHeaderCont.querySelector("ytm15-icon.expand-icon").classList.replace("expand-icon", "collapse-icon");
+    /* metaHeaderCont.querySelector("ytm15-icon.expand-icon").classList.replace("expand-icon", "collapse-icon"); */
+    metaHeaderCont.querySelector("ytm15-icon.expand-icon").classList.add("collapse-icon");
+    metaHeaderCont.querySelector("ytm15-icon.expand-icon").classList.remove("expand-icon");
     standaloneBadge.classList.add("expanded");
     standaloneBadge.querySelector(".standalone-badge-supported").setAttribute("style", "max-height: " + standaloneBadge.querySelector(".standalone-badge-supported").scrollHeight + "px");
     metadataDescBox.setAttribute("style", "max-height: " + metadataDescBox.scrollHeight + "px");
     } else if (metadataHeader.ariaExpanded == "true") {
     metadataHeader.ariaExpanded = "false";
+    metadataHeader.setAttribute("aria-expanded", "false");
     metaHeaderCont.querySelector("ytm15-icon").ariaExpanded = "false";
     metaHeaderCont.querySelector("ytm15-icon").ariaLabel = "Show more";
-    metaHeaderCont.querySelector("ytm15-icon.collapse-icon").classList.replace("collapse-icon", "expand-icon");
+    /* metaHeaderCont.querySelector("ytm15-icon.collapse-icon").classList.replace("collapse-icon", "expand-icon"); */
+    metaHeaderCont.querySelector("ytm15-icon.collapse-icon").classList.add("expand-icon");
+    metaHeaderCont.querySelector("ytm15-icon.collapse-icon").classList.remove("collapse-icon");
     standaloneBadge.classList.remove("expanded");
     standaloneBadge.querySelector(".standalone-badge-supported").setAttribute("style", "");
     metadataDescBox.setAttribute("style", "");
@@ -190,7 +199,7 @@ function renderWatchPage(parent) {
     };
     metadataDescBox.appendChild(descInfo);
     if (descInfo.querySelectorAll('[href*="hashtag"]').toString() !== "") {
-    descInfo.querySelectorAll('[href*="hashtag"]').forEach(function(item){
+    Array.from(descInfo.querySelectorAll('[href*="hashtag"]')).forEach(function(item){
     item.href = "#" + item.getAttribute("href");
     item.onclick = function(){
     exitWatch.onclick();
@@ -364,7 +373,7 @@ function renderWatchPage(parent) {
 <div class="video-owner-subscribe-button"></div>
 `;
     renderSubscribeBtn(videoOwner.querySelector(".video-owner-subscribe-button"));
-    videoOwner.querySelectorAll("a").forEach(function(item){
+    Array.from(videoOwner.querySelectorAll("a")).forEach(function(item){
     item.onclick = function(){
     exitWatch.onclick();
     };
