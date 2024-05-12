@@ -381,6 +381,27 @@ function renderWatchPage(parent) {
     videoOwner.querySelector(".profile-img").onload = function(){videoOwner.querySelector(".profile-img").classList.add('loaded');}; 
     videoMetadata2.appendChild(videoOwner);
 
+    const itemSectRelated = document.createElement("div");
+    itemSectRelated.classList.add("item-section", "watch-next-results-content");
+    itemSectRelated.dataset.contentType = "related";
+    itemSectRelated.setAttribute("section-identifier", "related-media");
+    itemSectRelated.innerHTML = `<div class="lazy-list no-animation"></div>`;
+    W2ndHalf.appendChild(itemSectRelated);
+
+    const autonavBar = document.createElement("div");
+    autonavBar.classList.add("autonav-bar");
+    autonavBar.innerHTML = `<h3 class="autonav-bar-title">${Suggestions_text_string}</h3>`;
+    itemSectRelated.querySelector(".lazy-list").appendChild(autonavBar);
+
+    data.recommendedVideos.forEach(function(item) {
+        compMediaItemThumb = item.videoThumbnails[3].url;
+        compMediaItemLength = item.lengthSeconds;
+        compMediaItemTitle = item.title;
+        compMediaItemAuthor = item.author;
+        compMediaItemvidId = item.videoId;
+        renderCompactMediaItem(itemSectRelated.querySelector(".lazy-list"), "related-media-lazy-list", compMediaItemvidId, compMediaItemThumb, compMediaItemLength, compMediaItemTitle, compMediaItemAuthor, item.authorId, "", item.viewCount, "video");
+    });
+
     parent.innerHTML = "";
 
     parent.appendChild(scwnr);

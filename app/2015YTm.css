@@ -235,7 +235,7 @@ h3.media-headline {
     text-overflow: ellipsis;
 }
 .lazy-list>[class*="compact"]:nth-of-type(1) {
-    margin-top: 7px;
+    padding-top: 7px;
 }
 .thumbnail-overlay-bottom {
 position: absolute;
@@ -409,7 +409,7 @@ div.media-icon {
     padding-left: 14px;
 }
 .thumbnail-overlay-time-status {
-    margin: 7px;
+    margin: 8px;
 }
 }
 
@@ -1105,7 +1105,6 @@ a {
 .profile-icon, .profile-img {
     border-radius: 50%;
 }
-
 /* Material buttons */
 .material-button-container {
     display: flex;
@@ -1911,6 +1910,53 @@ h3.video-owner-title {
 }
 .video-owner-subscribe-button .material-button-container.subscribe-button .material-button {
     padding: 12px 10px;
+}
+}
+.ytm15-single-column-watch-next-results [section-identifier="related-media"] .item {
+    margin-top: 0;
+}
+.ytm15-single-column-watch-next-results [section-identifier="related-media"] .item:last-child {
+    margin-bottom: 8px;
+}
+.autonav-bar {
+    padding: 16px;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.autonav-bar-title {
+    font-size: 1.7rem;
+    flex-grow: 1;
+    margin-bottom: 0;
+}
+@media (min-width: 550px) and (min-device-height: 800px) and (orientation: portrait) {
+.ytm15-single-column-watch-next-results [section-identifier="related-media"] .item {
+    display: inline-block;
+    width: 50%;
+}
+}
+@media (min-width: 800px) and (min-device-width: 550px) and (orientation: landscape), (min-width: 550px) and (min-device-height: 800px) and (orientation: portrait) {
+.ytm15-single-column-watch-next-results [section-identifier="related-media"] .compact-media-item {
+    flex-direction: column;
+}
+.ytm15-single-column-watch-next-results [section-identifier="related-media"] .compact-media-item-thumbnail {
+    width: 100%;
+    height: auto;
+    padding-bottom: 56.25%;
+}
+.ytm15-single-column-watch-next-results [section-identifier="related-media"] .compact-media-item-metadata {
+    padding-top: 6px;
+}
+.ytm15-single-column-watch-next-results [section-identifier="related-media"] .compact-media-item-metadata-content {
+    padding: 0;
+}
+.ytm15-single-column-watch-next-results [section-identifier="related-media"] .compact-media-headline {
+    font-size: 1.5rem;
+}
+}
+@media (min-width: 768px) and (orientation: portrait) {
+.ytm15-single-column-watch-next-results [section-identifier="related-media"] .item {
+    width: 33%;
 }
 }
 

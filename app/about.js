@@ -257,6 +257,10 @@ Changelog
 <br>
 -Started working on the "video owner" thing for the watchpage
 -The watchpage now uses the "items[0].status.license" thing from the API instead of "items[0].contentDetails.licensedContent" to detect if the video uses the "Creative Commons" license or the "YouTube" license
+<br><br>
+12 May 2024:
+<br>
+-Started working on the "recommended videos" thing for the watchpage
     </div>
     </div>
     </div>

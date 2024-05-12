@@ -38,6 +38,7 @@ Song_text_string = "Song";
 Artist_text_string = "Artist";
 Album_text_string = "Album";
 SongLicensed_text_string = "Licensed to YouTube by";
+Suggestions_text_string = "Suggestions";
 
 function renderSubscribeBtn(parent) {
     const mtrlBtnCont = document.createElement("div");
@@ -92,6 +93,9 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         video.classList.add(compMediaTypeName);
         if (parentName == "shelf") {
         video.classList.add('shelf-item');
+        }
+        if (parentName == "related-media-lazy-list") {
+        video.classList.add('item');
         }
 
         const media = document.createElement('div');
@@ -368,7 +372,9 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         } else if (mediaType == "hashtag") {
 
         } else {
+        if (parentName !== "related-media-lazy-list") {
         subhead.appendChild(published);
+        }
         subhead.appendChild(views);
         }
         media.appendChild(metadata);
