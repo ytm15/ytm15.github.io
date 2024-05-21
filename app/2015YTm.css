@@ -1826,6 +1826,7 @@ ytm15-badge:empty, .standalone-badge-supported ytm15-badge:empty {
     display: flex;
     align-items: center;
     padding: 13px 14px;
+    overflow: hidden;
 }
 .video-owner-icon-and-title {
     flex-grow: 1;
@@ -1858,15 +1859,15 @@ h3.video-owner-title {
 .video-owner-subscribe-button {
     display: flex;
     align-items: center;
-    margin: -13px -14px;
+    margin: -50px -14px;
     margin-left: 13px;
 }
 .video-owner-subscribe-button .material-button-container.subscribe-button {
     margin: 0;
 }
 .video-owner-subscribe-button .material-button-container.subscribe-button .material-button {
-    padding: 24px 15px;
-    border-radius: 15%;
+    padding: 50px 15px;
+    border-radius: 50%;
 }
 @media (min-width: 800px) and (min-device-width: 550px) and (orientation: landscape) {
 .wnr-2nd-half {   
@@ -1906,10 +1907,12 @@ h3.video-owner-title {
 }
 .video-owner-subscribe-button {
     margin-left: 60px;
+    margin-top: -13px;
     margin-bottom: -6px;
 }
 .video-owner-subscribe-button .material-button-container.subscribe-button .material-button {
     padding: 12px 10px;
+    border-radius: 2px;
 }
 }
 .ytm15-single-column-watch-next-results [section-identifier="related-media"] .item {
@@ -2117,9 +2120,24 @@ ytm15-menu-button {
     align-items: flex-start;
     animation: menu-open .2s;
 }
+.menu-content.menu-style-mtrl-2 {
+    background-color: #fff;
+    box-shadow: 0px 5px 18px 1px rgba(0, 0, 0, 0.3);
+}
+.menu-content.menu-style-youtube {
+    background-color: #fff;
+    box-shadow: 0px 1.3px 3px 1px rgba(0,0,0,0.18);
+    border-radius: 0;
+}
+.menu-content.menu-style-youtube .menu-item-button {
+    line-height: 1.2;
+}
 .menu-content.closing {
     animation: menu-close .3s ease-out;
     opacity: 0;
+}
+.menu-content.menu-style-youtube.closing {
+    animation: menu-close-alt .2s ease-out;
 }
 @keyframes menu-open {
 0% {
@@ -2147,6 +2165,16 @@ ytm15-menu-button {
 }
 100% {
     opacity: 0;
+}
+}
+@keyframes menu-close-alt {
+0% {
+    opacity: 1;
+    transform: scale(1);
+}
+100% {
+    opacity: 0;
+    transform: scale(0.9);
 }
 }
 .menu-container .ytm15-overlay {
