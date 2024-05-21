@@ -10,6 +10,8 @@ function renderWatchPage(parent) {
 
     parent.appendChild(contItem);
 
+    document.body.classList.add("has-watchpage");
+
     insertYTmPlayer(playerCont2);
 
     const getWatchData = new XMLHttpRequest();

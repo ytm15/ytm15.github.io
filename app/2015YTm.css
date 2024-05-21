@@ -1512,6 +1512,9 @@ ytm15app.has-miniplayer {
 }
 }
 }
+body.has-watchpage {
+    overflow: hidden;
+}
 .watchpage-frame-items ytm15-watch {
     position: absolute;
     display: block;

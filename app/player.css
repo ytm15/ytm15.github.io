@@ -719,6 +719,7 @@ h3.player-dialog-title {
 .seek-notification .icon i{
   display:block;
   font-size: 18px;
+  font-family: none;
 }
 .seek-notification .icon {
     position: relative;
