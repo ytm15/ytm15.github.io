@@ -1385,7 +1385,7 @@ ytm15app.has-miniplayer {
     margin-right: 0;
     --player-margin-right: 0;
     animation: miniplayer-to-player-cont .3s;
-    z-index: 1;
+    z-index: 2;
     overflow: hidden;
 }
 .player-inside-player {
@@ -1400,6 +1400,13 @@ ytm15app.has-miniplayer {
     content: "";
     padding-bottom: 56.25%;
     display: block;
+}
+.iframe-player-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
 }
 @media (min-width: 800px) and (min-device-width: 550px) and (orientation: landscape) {
 .player-container {
@@ -1579,6 +1586,9 @@ ytm15-watch:empty::before {
 }
 .watch-action-button .exit-watch-icon path {
     transform: scale(1.2) translate(-1px, -1px);
+}
+.watch-action-button ytm15-icon.exit-watch-icon {
+    margin: -2px;
 }
 
 h2 {

@@ -95,7 +95,9 @@ APIs:
 <br><br>
 Player:
 <br>
--YouTube's embed player (Formely Invidious' embed player)
+-Custom-built player made just for YTm15 (uses the Invidious API) (Currently working on the option to use YT's embed player as a fallback by going to "player 3-square menu" > "embed")
+<br>
+(Formely used YouTube's embed player, and Invidious' embed player before that)
 <br>
 <br>
 Polyfills:
@@ -251,16 +253,22 @@ Changelog
 03 - 06 May 2024:
 <br>
 -Finally started working on the watchpage
+<br>
 -The searchpage now uses "searchValueNotDecoded" for the API (this change was made to fix hashtag results on the searchpage since they weren't working before)
 <br><br>
 09 - 10 May 2024:
 <br>
 -Started working on the "video owner" thing for the watchpage
+<br>
 -The watchpage now uses the "items[0].status.license" thing from the API instead of "items[0].contentDetails.licensedContent" to detect if the video uses the "Creative Commons" license or the "YouTube" license
 <br><br>
 12 May 2024:
 <br>
 -Started working on the "recommended videos" thing for the watchpage
+<br><br>
+21 May 2024:
+<br>
+-What's a good 2015 YT mobile web-client without an.. you guessed it, ERA-ACCURATE PLAYER?! That's why I made one to finally implement into this project of mine
     </div>
     </div>
     </div>

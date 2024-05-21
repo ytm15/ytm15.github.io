@@ -703,6 +703,9 @@ playerCont.id = "playerContainerId";
 const playerCont2 = document.createElement("div");
 playerCont2.classList.add("player-inside-player");
 
+const iframePlayerCont = document.createElement("div");
+iframePlayerCont.classList.add("iframe-player-container");
+
 const playerSpinner = document.createElement("div");
 playerSpinner.classList.add("spinner-container");
 playerSpinner.innerHTML = `
@@ -710,7 +713,7 @@ playerSpinner.innerHTML = `
    <circle class="path" fill="none" stroke-width="6" stroke-linecap="spuare" cx="33" cy="33" r="30"></circle>
 </svg>
 `;
-playerCont2.appendChild(playerSpinner);
+iframePlayerCont.appendChild(playerSpinner);
 
 const playerFrame = document.createElement("iframe");
 /* playerFrame.classList.add("watchpage-iframe", "player-iframe", "inv-player-for-ytm15"); */
@@ -767,10 +770,24 @@ exitWatch.onclick = function(){
 watchContainer.classList.add("miniplayer");
 app.classList.add("has-miniplayer");
 watchFrame.scrolling = "no";
+if (videoPlayer.toString()) {
+videoPlayer.classList.add("player-mini-mode");
+};
+if (document.webkitFullscreenElement) {
+document.webkitExitFullscreen();
+}
 };
 exitWatch.setAttribute("aria-label", "Exit watchpage");
 exitWatch.setAttribute("aria-haspopup", "false");
 exitWatch.innerHTML = `<ytm15-icon class="exit-watch-icon"><svg viewBox="0 0 24 24" fill=""><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path></svg></ytm15-icon>`;
+
+const exitWatch2 = exitWatch.cloneNode(true);
+exitWatch2.onclick = function(){
+exitWatch.onclick();
+};
+if (videoPlayer.toString()) {
+controlsTop.insertAdjacentElement("afterbegin", exitWatch2);
+};
 
 const mpContent = document.createElement("div");
 mpContent.classList.add("miniplayer-content", "items-not-visible");
@@ -802,6 +819,9 @@ openWatch.onclick = function(){
 watchContainer.classList.remove("miniplayer");
 app.classList.remove("has-miniplayer");
 watchFrame.scrolling = "yes";
+if (videoPlayer.toString()) {
+videoPlayer.classList.remove("player-mini-mode");
+};
 };
 openWatch.setAttribute("aria-label", "Open watchpage");
 openWatch.setAttribute("aria-haspopup", "false");
@@ -826,10 +846,11 @@ watchContainer.appendChild(watchOverlay);
 watchContainer.appendChild(watchItems);
 watchItems.appendChild(playerCont);
 playerCont.appendChild(playerCont2);
-playerCont2.appendChild(playerFrame);
+/* playerCont2.appendChild(iframePlayerCont); */
+iframePlayerCont.appendChild(playerFrame);
 watchItems.appendChild(ytm15Watch);
-playerCont2.appendChild(watchActionsOverlay);
-playerCont2.appendChild(watchActions);
+iframePlayerCont.appendChild(watchActionsOverlay);
+iframePlayerCont.appendChild(watchActions);
 watchActions.appendChild(exitWatch);
 /* watchItems.appendChild(watchFrame); */
 playerCont.appendChild(mpContent);

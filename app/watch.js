@@ -10,6 +10,8 @@ function renderWatchPage(parent) {
 
     parent.appendChild(contItem);
 
+    insertYTmPlayer(playerCont2);
+
     const getWatchData = new XMLHttpRequest();
     getWatchData.open('GET', APIbaseURL + 'api/v1/videos/' + playerVideoId, true);
 
