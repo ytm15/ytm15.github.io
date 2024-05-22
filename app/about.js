@@ -95,7 +95,7 @@ APIs:
 <br><br>
 Player:
 <br>
--Custom-built player made just for YTm15 (uses the Invidious API) (Currently working on the option to use YT's embed player as a fallback by going to "player 3-square menu" > "embed")
+-Custom-built player made just for YTm15 (uses the Invidious API) (You can use YT's embed player as a fallback by going to "player 3-square menu" > "YT iframe player", in case the YTm15 player doesn't play)
 <br>
 (Formely used YouTube's embed player, and Invidious' embed player before that)
 <br>
@@ -269,6 +269,10 @@ Changelog
 21 May 2024:
 <br>
 -What's a good 2015 YT mobile web-client without an.. you guessed it, ERA-ACCURATE PLAYER?! That's why I made one to finally implement into this project of mine
+<br><br>
+22 May 2024:
+<br>
+-Implemented the ability to use YT's iframe player as a fallback
     </div>
     </div>
     </div>

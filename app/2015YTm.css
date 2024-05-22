@@ -1332,6 +1332,9 @@ ytm15app.has-miniplayer {
     padding: 9px;
     color: #fff;
 }
+.player-controls-overlay .watch-action-button {
+    color: rgba(255, 255, 255, 0.9);
+}
 .watch-action-button ytm15-icon {
     width: 28px;
     height: 28px;
@@ -1351,6 +1354,7 @@ ytm15app.has-miniplayer {
     top: 0;
     left: 0;
     right: 0;
+    z-index: 2;
 }
 .miniplayer .miniplayer-content {
     display: flex;
@@ -1365,6 +1369,7 @@ ytm15app.has-miniplayer {
     justify-content: space-between;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.5), transparent);
     transition: opacity .3s;
+    z-index: 2;
 }
 #watchpageFrame_Container.miniplayer.closing {
     transform: translateX(-100%);
@@ -1407,6 +1412,29 @@ ytm15app.has-miniplayer {
     bottom: 0;
     left: 0;
     right: 0;
+    background-color: #000;
+    animation: iframeFadeIn .4s ease-in-out;
+}
+.iframe-player-container.iframe-not-visible {
+    opacity: 0;
+    pointer-events: none;
+    animation: iframeFadeOut .4s ease-in-out;
+}
+@keyframes iframeFadeIn {
+0% {
+    opacity: 0;
+}
+100% {
+    opacity: 1;
+}
+}
+@keyframes iframeFadeOut {
+0% {
+    opacity: 1;
+}
+100% {
+    opacity: 0;
+}
 }
 @media (min-width: 800px) and (min-device-width: 550px) and (orientation: landscape) {
 .player-container {
@@ -1515,6 +1543,9 @@ ytm15app.has-miniplayer {
 body.has-watchpage {
     overflow: hidden;
 }
+body.has-watchpage.modal-open {
+    overflow-y: auto;
+}
 .watchpage-frame-items ytm15-watch {
     position: absolute;
     display: block;
@@ -1587,6 +1618,9 @@ ytm15-watch:empty::before {
 .player-container .spinner .path {
     stroke: #eee;
 }
+.watch-action-button.exit-iframe-button {
+    margin-left: auto;
+}
 .watch-action-button .exit-watch-icon path {
     transform: scale(1.2) translate(-1px, -1px);
 }
@@ -1638,6 +1672,10 @@ ytm15-video-metadata.item:first-child, ytm15-video-metadata.item:last-child {
     -webkit-line-clamp: 2;
     max-height: 2.5em;
     margin-bottom: 5px;
+}
+[aria-expanded="true"] .video-metadata-title {
+    -webkit-line-clamp: unset;
+    max-height: unset;
 }
 .badge-supported {
     display: flex;
@@ -1861,6 +1899,10 @@ ytm15-badge:empty, .standalone-badge-supported ytm15-badge:empty {
 .video-owner-icon-and-title h3, .video-owner-icon-and-title .subhead {
     max-height: 1.25em;
     -webkit-line-clamp: 1;
+}
+.expanded .video-owner-icon-and-title h3, .expanded .video-owner-icon-and-title .subhead {
+    max-height: unset;
+    -webkit-line-clamp: unset;
 }
 h3.video-owner-title {
     font-size: 1.5rem;

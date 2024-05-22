@@ -152,6 +152,9 @@ function renderWatchPage(parent) {
     metadataDescBox.classList.add("video-metadata-description-box");
     videoMetadata.appendChild(metadataDescBox);
 
+    const videoOwner = document.createElement("div");
+    videoOwner.classList.add("ytm15-video-owner");
+
     metadataHeader.onclick = function(){
     if (metadataHeader.ariaExpanded == "false") {
     metadataHeader.ariaExpanded = "true";
@@ -164,6 +167,7 @@ function renderWatchPage(parent) {
     standaloneBadge.classList.add("expanded");
     standaloneBadge.querySelector(".standalone-badge-supported").setAttribute("style", "max-height: " + standaloneBadge.querySelector(".standalone-badge-supported").scrollHeight + "px");
     metadataDescBox.setAttribute("style", "max-height: " + metadataDescBox.scrollHeight + "px");
+    videoOwner.classList.add("expanded");
     } else if (metadataHeader.ariaExpanded == "true") {
     metadataHeader.ariaExpanded = "false";
     metadataHeader.setAttribute("aria-expanded", "false");
@@ -175,6 +179,7 @@ function renderWatchPage(parent) {
     standaloneBadge.classList.remove("expanded");
     standaloneBadge.querySelector(".standalone-badge-supported").setAttribute("style", "");
     metadataDescBox.setAttribute("style", "");
+    videoOwner.classList.remove("expanded");
     };
     };
 
@@ -362,8 +367,6 @@ function renderWatchPage(parent) {
     videoMetadata2.classList.add("item");
     itemSectOwner.querySelector(".lazy-list").appendChild(videoMetadata2);
 
-    const videoOwner = document.createElement("div");
-    videoOwner.classList.add("ytm15-video-owner");
     videoOwner.innerHTML = `
 <a class="video-owner-icon-and-title has-ripple" aria-label="Go to ${data.author}'s channel" href="#/channel/${data.authorId}">
 <div class="profile-icon video-owner-prof-icon">

@@ -7,6 +7,7 @@ video.classList.add("player-api", "video-stream");
 const videoPlayer = document.createElement("div");
 videoPlayer.classList.add("video-player");
 videoPlayer.id = video.id;
+videoPlayer.setAttribute("tabindex", "-1");
 const htmlVideoCont = document.createElement("div");
 htmlVideoCont.ariaLabel = "2015YouTube Video Player";
 htmlVideoCont.classList.add("html-video-container");
@@ -17,6 +18,8 @@ htmlVideoCont.appendChild(video);
 video.removeAttribute("controls");
 const controlsCont = document.createElement("div");
 controlsCont.classList.add("player-controls-container");
+leftArrowUnicode = '\u25C0\u25C0\u25C0';
+rightArrowUnicode = '\u25B6\u25B6\u25B6';
 controlsCont.innerHTML = `
 <div class="player-poster" tabindex="-1"></div>
 <div class="player-spinner-container">
@@ -27,13 +30,13 @@ controlsCont.innerHTML = `
 <div class="seek-notifications">
   <div class="video-rewind-notify rewind seek-notification">
     <div class="rewind-icon icon">
-        <i class="left-triangle triangle">${'\u{25C4}\u{25C4}\u{25C4}'}</i>
+        <i class="left-triangle triangle">${leftArrowUnicode}</i>
         <span class="rewind">10 seconds</span>
     </div>
   </div>
   <div class="video-forward-notify forward seek-notification">
     <div class="forward-icon icon">
-        <i class="right-triangle triangle">${'\u{25BA}\u{25BA}\u{25BA}'}</i>
+        <i class="right-triangle triangle">${rightArrowUnicode}</i>
         <span class="forward">10 seconds</span>
     </div>
   </div>
@@ -253,7 +256,7 @@ playerOptQual.classList.add("controls-button", "options-item-button", "quality-b
 playerOptQual.title = "Quality";
 playerOptQual.ariaLabel = "Quality";
 playerOptQual.innerHTML = `<img class="player-img-icon button-icon quality-icon inactive" src="ic_vidcontrol_quality.png"></img>
-<img class="player-img-icon button-icon misc-icon active" src="ic_vidcontrol_quality_pressed.png"></img>`;
+<img class="player-img-icon button-icon quality-icon active" src="ic_vidcontrol_quality_pressed.png"></img>`;
 playerOptQual.ariaPressed = "false";
 const playerOptQualText = document.createElement("span");
 playerOptQualText.textContent = "Quality";
@@ -262,6 +265,21 @@ playerOptItem2.appendChild(playerOptQual);
 playerOptItem2.appendChild(playerOptQualText);
 const playerOptSelect = document.createElement("div");
 playerOptSelect.classList.add("player-dialog-select");
+const playerOptItem3 = document.createElement("div");
+playerOptItem3.classList.add("player-options-item");
+playerOptContent.appendChild(playerOptItem3);
+const playerOptIFrame = document.createElement("button");
+playerOptIFrame.classList.add("controls-button", "options-item-button", "iframe-player-button", "has-ripple");
+playerOptIFrame.title = "YT iFrame Player";
+playerOptIFrame.ariaLabel = "YT iFrame Player";
+playerOptIFrame.innerHTML = `<img class="player-img-icon button-icon iframe-icon inactive" src="player_icon_iframe.png"></img>
+<img class="player-img-icon button-icon iframe-icon active" src="player_icon_iframe_pressed.png"></img>`;
+playerOptIFrame.ariaPressed = "false";
+const playerOptIFrameText = document.createElement("span");
+playerOptIFrameText.textContent = "YT iFrame Player";
+playerOptIFrameText.classList.add("options-item-text");
+playerOptItem3.appendChild(playerOptIFrame);
+playerOptItem3.appendChild(playerOptIFrameText);
 
 controlsVisible = false;
 
@@ -556,7 +574,7 @@ function doubleClickHandler(e){
     (e.offsetX < videoWidth/2) ? rewindVideo() : forwardVideo();
 }
 
-seekNotifications.forEach(function(notification){
+Array.from(seekNotifications).forEach(function(notification){
   notification.addEventListener('animationend', function(){
     setTimeout(animateNotificationOut(notification), 200);
   });
@@ -576,7 +594,7 @@ controlsBG.addEventListener("click", function(e) {
         doubleClickHandler(e);
         clickCount = 0;
     }
-    timeout = setTimeout(() => {
+    timeout = setTimeout(function() {
         clickCount = 0;
     }, 300);
 })
@@ -694,6 +712,14 @@ video.load();
 SBVideo.load();
 });
 
+function closeIFramePlayer(){
+    iframePlayerCont.classList.add("iframe-not-visible");
+    setTimeout(function(){
+    iframePlayerCont.remove();
+    iframePlayerCont.classList.remove("iframe-not-visible");
+    }, 350);
+}
+
 video.addEventListener("loadeddata", function(e){
 
 });
@@ -708,6 +734,7 @@ video.addEventListener("loadstart", function(e){
     videoPlayer.classList.remove("player-options-shown");
     videoPlayer.classList.remove("player-mini-mode");
     videoPlayer.classList.add("hide-prev-next-btns");
+    closeIFramePlayer();
     closePlayerDialog();
 });
 video.addEventListener("waiting", function(e) {
@@ -742,7 +769,7 @@ video.addEventListener("stalled", function(e) {
 
 });
 
-document.addEventListener("keydown", function(e){
+videoPlayer.addEventListener("keydown", function(e){
   if (e.code === "Space"){
   togglePlay();
   };

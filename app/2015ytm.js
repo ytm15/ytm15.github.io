@@ -250,7 +250,11 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         } else if (mediaType == "hashtag") { 
         
         } else {
+        if (itemViewCount !== null) {
         views.textContent = itemViewCount.toLocaleString() + ' views';
+        } else {
+        views.textContent = 'No views';
+        }
         }
         views.classList.add('compact-media-stats', 'small-text');
 
@@ -492,7 +496,11 @@ function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLen
         published.classList.add('media-stats', 'small-text');
 
         const views = document.createElement('span');
+        if (itemViewCount !== null) {
         views.textContent = itemViewCount.toLocaleString() + ' views';
+        } else {
+        views.textContent = 'No views';
+        }
         views.classList.add('media-stats', 'small-text');
 
         const details = document.createElement('div');
@@ -782,6 +790,15 @@ exitWatch.setAttribute("aria-label", "Exit watchpage");
 exitWatch.setAttribute("aria-haspopup", "false");
 exitWatch.innerHTML = `<ytm15-icon class="exit-watch-icon"><svg viewBox="0 0 24 24" fill=""><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path></svg></ytm15-icon>`;
 
+const exitIFramePlayer = document.createElement("button");
+exitIFramePlayer.classList.add("icon-button", "watch-action-button", "exit-iframe-button");
+exitIFramePlayer.onclick = function(){
+    closeIFramePlayer();
+};
+exitIFramePlayer.setAttribute("aria-label", "Exit iFrame Player");
+exitIFramePlayer.setAttribute("aria-haspopup", "false");
+exitIFramePlayer.innerHTML = `<ytm15-icon class="exit-iframe-icon"><svg viewBox="0 0 24 24" fill=""><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></ytm15-icon>`;
+
 const exitWatch2 = exitWatch.cloneNode(true);
 exitWatch2.onclick = function(){
 exitWatch.onclick();
@@ -855,11 +872,19 @@ watchItems.appendChild(ytm15Watch);
 iframePlayerCont.appendChild(watchActionsOverlay);
 iframePlayerCont.appendChild(watchActions);
 watchActions.appendChild(exitWatch);
+watchActions.appendChild(exitIFramePlayer);
 /* watchItems.appendChild(watchFrame); */
 playerCont.appendChild(mpContent);
 mpContent.appendChild(mpActions);
 mpActions.appendChild(openWatch);
 mpActions.appendChild(closeVideo);
+
+function openIFrameFallbackPlayer(parent){
+    parent.appendChild(iframePlayerCont);
+    video.pause();
+};
+
+playerOptIFrame.addEventListener("click", function(){openIFrameFallbackPlayer(playerOptCont)});
 
 const menuContain = document.createElement("div");
 menuContain.id = "menu";

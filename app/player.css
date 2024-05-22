@@ -49,6 +49,11 @@
     z-index: 0;
     background: rgba(0, 0, 0, 0);
     pointer-events: auto;
+    transition: opacity .6s;
+}
+.dbl-tap-seek-mode .player-controls-background {
+    opacity: 0;
+    transition: opacity .2s;
 }
 .player-controls {
     display: flex;
@@ -58,6 +63,7 @@
     flex-wrap: wrap;
     background: linear-gradient(180deg, transparent, rgba(0,0,0,0.6));
     flex-direction: column;
+    transition: opacity .6s;
 }
 .player-controls-top {
     display: flex;
@@ -67,6 +73,7 @@
     background: linear-gradient(180deg, rgba(0,0,0,0.6), transparent);
     flex-direction: row;
     align-items: center;
+    transition: opacity .6s;
 }
 .player-controls-middle {
     display: flex;
@@ -77,6 +84,7 @@
     transform: translateY(-50%) translateX(-50%);
     z-index: 1;
     margin: 0 50%;
+    transition: opacity .6s;
 }
 .player-controls-middle .controls-button {
     padding: 6px;
@@ -455,8 +463,24 @@ video.storyboard-video {
 }
 
 .player-mini-mode .player-controls-overlay {
-    opacity: 0;
+    opacity: 1;
     pointer-events: none;
+    transition: none;
+}
+.player-mini-mode .player-controls-background {
+    opacity: 0;
+    transition: none;
+}
+.player-mini-mode .player-controls-top {
+    opacity: 0;
+    transition: none;
+}
+.player-mini-mode .player-controls-middle {
+    opacity: 0;
+    transition: none;
+}
+.player-mini-mode .player-controls {
+    opacity: 0;
     transition: none;
 }
 .player-mini-mode .html-video-container .video-stream {
@@ -480,6 +504,7 @@ video.storyboard-video {
     background: rgba(0,0,0,0.6);
     display: flex;
     z-index: 1;
+    overflow: auto;
     flex-wrap: wrap;
 }
 .player-options-content {
@@ -528,6 +553,7 @@ video.storyboard-video {
     color: rgba(255,255,255,0.8);
     font-size: 14px;
     animation: playerOptOut .4s;
+    max-width: 80px;
 }
 
 @keyframes playerOptIn {
@@ -564,6 +590,7 @@ video.storyboard-video {
 @media (max-width: 299px) and (orientation: landscape), (max-width: 299px) and (orientation: portrait) {
 .player-options-item {
     font-size: 12px;
+    max-width: 60px;
 }
 .player-options-container .options-item-button {
     width: 60px;
@@ -577,6 +604,7 @@ video.storyboard-video {
 @media (min-width: 550px) and (orientation: portrait), (min-width: 800px) and (orientation: landscape) {
 .player-options-item {
     font-size: 16px;
+    max-width: 100px;
 }
 .player-options-container .options-item-button {
     width: 100px;
@@ -731,6 +759,10 @@ h3.player-dialog-title {
     left: 0;
     right: 0;
     overflow: hidden;
+    transition: background .3s ease-in-out;
+}
+.dbl-tap-seek-mode .seek-notifications {
+    background: rgba(0, 0, 0, 0.5);
 }
 .seek-notification{
   transition: background 0.8s;
@@ -799,9 +831,12 @@ h3.player-dialog-title {
 }
 
 .dbl-tap-seek-mode .player-controls-top {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: none;
 }
-
 .dbl-tap-seek-mode .player-controls-middle {
-    display: none;
+    opacity: 0;
+    pointer-events: none;
+    transition: none;
 }
