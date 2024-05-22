@@ -623,6 +623,8 @@ playerOptSelect.innerHTML = "";
 
 function openPlayerDialogMisc(){
 playerDialogTitle.textContent = "Misc";
+playerDialogContent.innerHTML = "";
+playerOptSelect.innerHTML = "";
 playerDialogContent.appendChild(playerMiscOptions);
 playerDialogContent.setAttribute("content-identifier", "player-misc");
 playerOptDialog.id = "playerDialogMisc";
@@ -630,6 +632,8 @@ playerOptDialog.id = "playerDialogMisc";
 
 function openPlayerDialogQual(){
 playerDialogTitle.textContent = "Quality";
+playerDialogContent.innerHTML = "";
+playerOptSelect.innerHTML = "";
 playerDialogContent.appendChild(playerOptSelect);
 playerDialogContent.setAttribute("content-identifier", "player-quality");
 playerOptDialog.id = "playerDialogQuality";
