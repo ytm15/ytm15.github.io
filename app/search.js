@@ -38,6 +38,10 @@ function searchPage() {
 <div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry" onClick="location.reload();"><div class="button-text">Retry</div></button></div>`;
     const pageCont = document.querySelector('.page-container');
     pageCont.before(error);
+    error.querySelector("button").onclick = function(){
+    searchPage();
+    error.remove();
+    };
     return;
     };
 
@@ -172,7 +176,11 @@ function searchPageContin(continuation, contItemParent) {
 </div>
 <div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry" onClick="location.reload();"><div class="button-text">Retry</div></button></div>`;
     const pageCont = document.querySelector('.page-container');
-    pageCont.before(error);
+    contItemParent.appendChild(error);
+    error.querySelector("button").onclick = function(){
+    searchPageContin(continuation, contItemParent);
+    error.remove();
+    };
     return;
     };
 

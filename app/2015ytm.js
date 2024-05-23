@@ -91,7 +91,7 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         compMediaTypeName = 'compact-hashtag';
         }
         video.classList.add(compMediaTypeName);
-        if (parentName == "shelf") {
+        if (parentName == "shelf" || parentName == "channel-shelf") {
         video.classList.add('shelf-item');
         }
         if (parentName == "related-media-lazy-list") {
@@ -367,7 +367,9 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         subhead.appendChild(vidCountStats);
         subhead.appendChild(hashChannelCount);
         } else {
+        if (parentName !== "channel-lazy-list" && parentName !== "channel-shelf" || mediaType == "playlist") {
         subhead.appendChild(author);
+        }
         }
         if (mediaType == "channel") {
         subhead.appendChild(vidCountByline);
@@ -662,7 +664,9 @@ function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLen
 	overlayBottom.appendChild(time);
         metaContent.appendChild(title);
         metaContent.appendChild(subhead);
+        if (parentName !== "channel-lazy-list") {
         subhead.appendChild(author);
+        }
         subhead.appendChild(views);
         subhead.appendChild(published);
         media.appendChild(details);

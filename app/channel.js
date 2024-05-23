@@ -42,6 +42,10 @@ function channelPage() {
 <div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry" onClick="location.reload();"><div class="button-text">Retry</div></button></div>`;
     const pageCont = document.querySelector('.page-container');
     pageCont.before(error);
+    error.querySelector("button").onclick = function(){
+    channelPage();
+    error.remove();
+    };
     return;
     };
 
@@ -216,6 +220,212 @@ function channelPage() {
     ytm15Msg.classList.add("ytm15-message");
     ytm15Msg.innerHTML = `<div class="ytm15-message-content"><img class="ytm15-img-icon grey-account-icon msg-icon ytm15-img" src="ic_account_circle_grey_60.png"></img><div class="msg-text">${Channel_Home_WIP_text_string}</div></div>`;
     lazyList.appendChild(ytm15Msg);
+
+    tabContent.appendChild(sectionList);
+    }
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "videos" && item == "videos") {
+    const sectionList = document.createElement("div");
+    sectionList.classList.add("section-list");
+    
+    const sectLazyList = document.createElement("div");
+    sectLazyList.classList.add("lazy-list");
+    sectionList.appendChild(sectLazyList);
+
+    const spinner = document.querySelector(".spinner-container.full-height");
+    const contItem = document.createElement("div");
+    contItem.classList.add("continuation-item");
+    const spinnerClone = spinner.cloneNode(true);
+    spinnerClone.classList.remove("full-height");
+    spinnerClone.removeAttribute("hidden");
+    contItem.appendChild(spinnerClone);
+
+    sectLazyList.appendChild(contItem);
+
+    const getChannelVideos = new XMLHttpRequest();
+    getChannelVideos.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '/videos', true);
+ 
+    getChannelVideos.onerror = function(event) {
+    console.error("An error occurred with this operation (" + getChannelVideos.status + ")");
+
+    contItem.remove();
+
+    const error = document.createElement("div");
+    error.classList.add('error-container');
+    error.innerHTML = `<div class="error-content">
+<img class="error-icon ytm15-img" src="alert_error.png"></img>
+<span class="error-text">There was an error connecting to the server</span>
+</div>
+<div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry" onClick="location.reload();"><div class="button-text">Retry</div></button></div>`;
+    const pageCont = document.querySelector('.page-container');
+    pageCont.before(error);
+    error.querySelector("button").onclick = function(){
+    channelPage();
+    error.remove();
+    };
+    return;
+    };
+
+    getChannelVideos.send();
+
+    getChannelVideos.onload = function() {
+    if (getChannelVideos.status === 200) {
+    const data = JSON.parse(getChannelVideos.response);
+
+    contItem.remove();
+
+    const itemSect = document.createElement("div");
+    itemSect.classList.add("item-section");
+    sectLazyList.appendChild(itemSect);
+
+    const lazyList = document.createElement("div");
+    lazyList.classList.add("lazy-list", "no-animation");
+    itemSect.appendChild(lazyList);
+
+    data.videos.forEach(function(item) {
+        if (item.type == "channel") {
+        compMediaItemThumb = "https:" + item.authorThumbnails[2].url;
+        compMediaItemLength = "";
+        compMediaItemTitle = item.author;
+        compMediaItemAuthor = item.subCount.toLocaleString() + " subscribers";
+        compMediaItemvidId = "";
+        } else if (item.type == "playlist") {
+        compMediaItemThumb = item.playlistThumbnail;
+        compMediaItemLength = item.videoCount;
+        compMediaItemTitle = item.title;
+        compMediaItemAuthor = item.author;
+        compMediaItemvidId = item.playlistId;
+        } else if (item.type == "hashtag") {
+        compMediaItemThumb = "https://www.gstatic.com/youtube/img/social/hashtags/hashtag_tile_icon.png";
+        compMediaItemLength = item.videoCount;
+        compMediaItemTitle = item.title;
+        compMediaItemAuthor = item.channelCount;
+        compMediaItemvidId = item.url;
+        } else {
+        compMediaItemThumb = item.videoThumbnails[3].url;
+        compMediaItemLength = item.lengthSeconds;
+        compMediaItemTitle = item.title;
+        compMediaItemAuthor = item.author;
+        compMediaItemvidId = item.videoId;
+        }
+        renderCompactMediaItem(lazyList, "channel-lazy-list", compMediaItemvidId, compMediaItemThumb, compMediaItemLength, compMediaItemTitle, compMediaItemAuthor, item.authorId, item.publishedText, item.viewCount, item.type);
+    });
+
+    if (data.continuation) {
+    const nextContinCont = document.createElement("div");
+    nextContinCont.classList.add("next-continuation-cont");
+    nextContinCont.innerHTML = `<div class="next-continuation">
+<div class="material-button-container next-contin-button" data-style="" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button" data-continuation="" aria-label="More"><div class="button-text">More</div></button></div>
+</div>`;
+    nextContinCont.querySelector("button").dataset.continuation = data.continuation;
+    nextContinCont.querySelector("button").onclick = function(){
+    nextContinCont.remove();
+    channelVideosContin(nextContinCont.querySelector("button").dataset.continuation, sectLazyList);
+    };
+    sectLazyList.appendChild(nextContinCont);
+    }
+
+function channelVideosContin(continuation, contItemParent) {
+    const spinner = document.querySelector(".spinner-container.full-height");
+    const contItem = document.createElement("div");
+    contItem.classList.add("continuation-item");
+    const spinnerClone = spinner.cloneNode(true);
+    spinnerClone.classList.remove("full-height");
+    spinnerClone.removeAttribute("hidden");
+    contItem.appendChild(spinnerClone);
+
+    contItemParent.appendChild(contItem);
+
+    const getChannelVideos1 = new XMLHttpRequest();
+    getChannelVideos1.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '/videos?continuation=' + continuation, true);
+ 
+    getChannelVideos1.onerror = function(event) {
+    console.error("An error occurred with this operation (" + getChannelVideos1.status + ")");
+
+    contItem.remove();
+
+    const error = document.createElement("div");
+    error.classList.add('error-container');
+    error.innerHTML = `<div class="error-content">
+<img class="error-icon ytm15-img" src="alert_error.png"></img>
+<span class="error-text">There was an error connecting to the server</span>
+</div>
+<div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry" onClick="location.reload();"><div class="button-text">Retry</div></button></div>`;
+    const pageCont = document.querySelector('.page-container');
+    contItemParent.appendChild(error);
+    error.querySelector("button").onclick = function(){
+    channelVideosContin(continuation, contItemParent);
+    error.remove();
+    };
+    return;
+    };
+
+    getChannelVideos1.send();
+
+    getChannelVideos1.onload = function() {
+    if (getChannelVideos1.status === 200) {
+    const data = JSON.parse(getChannelVideos1.response);
+
+    contItem.remove();
+
+    const itemSection = document.createElement("div");
+    itemSection.classList.add('item-section');
+    contItemParent.appendChild(itemSection);
+
+    const lazyList = document.createElement("div");
+    lazyList.classList.add('lazy-list');
+    itemSection.appendChild(lazyList);
+
+    data.videos.forEach(function(item) {
+        if (item.type == "channel") {
+        compMediaItemThumb = "https:" + item.authorThumbnails[2].url;
+        compMediaItemLength = "";
+        compMediaItemTitle = item.author;
+        compMediaItemAuthor = item.subCount.toLocaleString() + " subscribers";
+        compMediaItemvidId = "";
+        } else if (item.type == "playlist") {
+        compMediaItemThumb = item.playlistThumbnail;
+        compMediaItemLength = item.videoCount;
+        compMediaItemTitle = item.title;
+        compMediaItemAuthor = item.author;
+        compMediaItemvidId = item.playlistId;
+        } else if (item.type == "hashtag") {
+        compMediaItemThumb = "https://www.gstatic.com/youtube/img/social/hashtags/hashtag_tile_icon.png";
+        compMediaItemLength = item.videoCount;
+        compMediaItemTitle = item.title;
+        compMediaItemAuthor = item.channelCount;
+        compMediaItemvidId = item.url;
+        } else {
+        compMediaItemThumb = item.videoThumbnails[3].url;
+        compMediaItemLength = item.lengthSeconds;
+        compMediaItemTitle = item.title;
+        compMediaItemAuthor = item.author;
+        compMediaItemvidId = item.videoId;
+        }
+        renderCompactMediaItem(lazyList, "channel-lazy-list", compMediaItemvidId, compMediaItemThumb, compMediaItemLength, compMediaItemTitle, compMediaItemAuthor, item.authorId, item.publishedText, item.viewCount, item.type);
+    });
+
+    if (data.continuation) {
+    const nextContinCont = document.createElement("div");
+    nextContinCont.classList.add("next-continuation-cont");
+    nextContinCont.innerHTML = `<div class="next-continuation">
+<div class="material-button-container next-contin-button" data-style="" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button" data-continuation="" aria-label="More"><div class="button-text">More</div></button></div>
+</div>`;
+    nextContinCont.querySelector("button").dataset.continuation = data.continuation;
+    nextContinCont.querySelector("button").onclick = function(){
+    nextContinCont.remove();
+    channelVideosContin(nextContinCont.querySelector("button").dataset.continuation, sectLazyList);
+    };
+    sectLazyList.appendChild(nextContinCont);
+    }
+    } else {
+    getChannelVideos1.onerror();
+    }
+    };
+}
+    } else {
+    getChannelVideos.onerror();
+    }
+    };
 
     tabContent.appendChild(sectionList);
     }

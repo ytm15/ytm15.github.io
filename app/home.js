@@ -107,7 +107,8 @@ function renderData() {
         if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] !== "trending") {
         getHomeData.open('GET', APIbaseURL + 'api/v1/trending', true);
         } else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "trending") {
-        getHomeData.open('GET', APIbaseURL + 'api/v1/trending?type=' + trendType, true);
+        /* getHomeData.open('GET', APIbaseURL + 'api/v1/trending?type=' + trendType, true); */
+        getHomeData.open('GET', APIbaseURL + 'api/v1/trending?type=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("trtype").slice(1, 2).toString().split("=").slice(1, 2).toString(), true);
         }
 
         getHomeData.onerror = function(event) {
@@ -124,6 +125,10 @@ function renderData() {
 </div>
 <div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry" onClick="location.reload();"><div class="button-text">Retry</div></button></div>`;
         pageCont.before(error);
+        error.querySelector("button").onclick = function(){
+        renderData();
+        error.remove();
+        };
         return;
         };
 
@@ -246,6 +251,10 @@ function renderData() {
 </div>
 <div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry" onClick="location.reload();"><div class="button-text">Retry</div></button></div>`;
         pageCont.before(error);
+        error.querySelector("button").onclick = function(){
+        renderData();
+        error.remove();
+        };
         return;
         };
 
@@ -374,6 +383,10 @@ function renderData() {
 </div>
 <div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry" onClick="location.reload();"><div class="button-text">Retry</div></button></div>`;
         pageCont.before(error);
+        error.querySelector("button").onclick = function(){
+        renderData();
+        error.remove();
+        };
         return;
     };
 
@@ -553,6 +566,19 @@ function renderDataTrending(homeShelfTrendingType, shelfTitle) {
     console.error("An error occurred with this operation (" + getHomeData2.status + ")");
 
         contItem.remove();
+
+        const error = document.createElement("div");
+        error.classList.add('error-container');
+        error.innerHTML = `<div class="error-content">
+<img class="error-icon ytm15-img" src="alert_error.png"></img>
+<span class="error-text">There was an error connecting to the server</span>
+</div>
+<div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry" onClick="location.reload();"><div class="button-text">Retry</div></button></div>`;
+        sectLazyList.appendChild(error);
+        error.querySelector("button").onclick = function(){
+        renderDataTrending(homeShelfTrendingType, shelfTitle);
+        error.remove();
+        };
         return;
     };
 
@@ -581,7 +607,8 @@ function renderDataTrending(homeShelfTrendingType, shelfTitle) {
     shelfHeaderEP.classList.add('shelf-header-endpoint');
     shelfHeaderEP.href = "#/trending";
     if (homeShelfTrendingType !== "") {
-    shelfHeaderEP.href = "?trtype=" + homeShelfTrendingType + "#/trending";
+    /* shelfHeaderEP.href = "?trtype=" + homeShelfTrendingType + "#/trending"; */
+    shelfHeaderEP.href = "#/trending?trtype=" + homeShelfTrendingType;
     }
     const shelfTitleBar = document.createElement("div");
     shelfTitleBar.classList.add('shelf-title-bar');

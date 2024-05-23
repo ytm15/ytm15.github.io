@@ -273,6 +273,14 @@ Changelog
 22 May 2024:
 <br>
 -Implemented the ability to use YT's iframe player as a fallback
+<br><br>
+23 May 2024:
+<br>
+-Pressing the retry button on errors now no-longer refresh the page entirely
+<br>
+-The trending page now gets the "trtype" parameter from its id
+<br>
+-Started working on channel pages' video page
     </div>
     </div>
     </div>
