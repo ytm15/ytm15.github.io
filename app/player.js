@@ -18,8 +18,8 @@ htmlVideoCont.appendChild(video);
 video.removeAttribute("controls");
 const controlsCont = document.createElement("div");
 controlsCont.classList.add("player-controls-container");
-leftArrowUnicode = '\u25C0\u25C0\u25C0';
-rightArrowUnicode = '\u25B6\u25B6\u25B6';
+leftArrowUnicode = '\u25C0';
+rightArrowUnicode = '\u25B6';
 controlsCont.innerHTML = `
 <div class="player-poster" tabindex="-1"></div>
 <div class="player-spinner-container">
@@ -30,13 +30,17 @@ controlsCont.innerHTML = `
 <div class="seek-notifications">
   <div class="video-rewind-notify rewind seek-notification">
     <div class="rewind-icon icon">
-        <i class="left-triangle triangle">${leftArrowUnicode}</i>
+        <i class="left-triangle triangle" id="triangle-1">${leftArrowUnicode}</i>
+        <i class="left-triangle triangle" id="triangle-2">${leftArrowUnicode}</i>
+        <i class="left-triangle triangle" id="triangle-3">${leftArrowUnicode}</i>
         <span class="rewind">10 seconds</span>
     </div>
   </div>
   <div class="video-forward-notify forward seek-notification">
     <div class="forward-icon icon">
-        <i class="right-triangle triangle">${rightArrowUnicode}</i>
+        <i class="right-triangle triangle" id="triangle-3">${rightArrowUnicode}</i>
+        <i class="right-triangle triangle" id="triangle-2">${rightArrowUnicode}</i>
+        <i class="right-triangle triangle" id="triangle-1">${rightArrowUnicode}</i>
         <span class="forward">10 seconds</span>
     </div>
   </div>

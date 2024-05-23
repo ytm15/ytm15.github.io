@@ -745,9 +745,107 @@ h3.player-dialog-title {
   color: rgba(255,255,255, 1);
 }
 .seek-notification .icon i{
-  display:block;
+  display:inline-block;
   font-size: 18px;
   font-family: none;
+  animation-duration: 1.2s;
+  animation-iteration-count: infinite;
+}
+.seek-notification.animate-in .icon i#triangle-1 {
+    animation-name: arrow-fade-out-3;
+}
+.seek-notification.animate-in .icon i#triangle-2 {
+    animation-name: arrow-fade-out-2;
+}
+.seek-notification.animate-in .icon i#triangle-3 {
+    animation-name: arrow-fade-out-1;
+}
+@keyframes arrow-fade-out-1 {
+    0% {
+        opacity: 0
+    }
+
+    17% {
+        opacity: .9
+    }
+
+    33% {
+        opacity: .6
+    }
+
+    50% {
+        opacity: .3
+    }
+
+    67% {
+        opacity: .3
+    }
+
+    83% {
+        opacity: .3
+    }
+
+    100% {
+        opacity: 0
+    }
+}
+@keyframes arrow-fade-out-2 {
+    0% {
+        opacity: 0
+    }
+
+    17% {
+        opacity: .3
+    }
+
+    33% {
+        opacity: .9
+    }
+
+    50% {
+        opacity: .6
+    }
+
+    67% {
+        opacity: .3
+    }
+
+    83% {
+        opacity: .3
+    }
+
+    100% {
+        opacity: 0
+    }
+}
+@keyframes arrow-fade-out-3 {
+    0% {
+        opacity: 0
+    }
+
+    17% {
+        opacity: .3
+    }
+
+    33% {
+        opacity: .3
+    }
+
+    50% {
+        opacity: .9
+    }
+
+    67% {
+        opacity: .6
+    }
+
+    83% {
+        opacity: .3
+    }
+
+    100% {
+        opacity: 0
+    }
 }
 .seek-notification .icon {
     position: relative;
@@ -770,6 +868,7 @@ h3.player-dialog-title {
   pointer-events:none;
   opacity: 0;
   transition: opacity .3s ease-in-out;
+  overflow: hidden;
 }
 .seek-notification i{
   font-style:normal;
@@ -780,7 +879,7 @@ h3.player-dialog-title {
   opacity: 1;
 }
 .seek-notification.animate-in i{
-  display:block;
+  display:inline-block;
 }
 .seek-notification::before {
     content: "";
@@ -822,7 +921,7 @@ h3.player-dialog-title {
 .seek-notification span {
     font-size: 13px;
     margin-top: 2px;
-    display: inline-block;
+    display: block;
 }
 
 .dbl-tap-seek-mode .player-controls-overlay {
