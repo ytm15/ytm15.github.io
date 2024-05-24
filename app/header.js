@@ -88,7 +88,7 @@ function renderHeader() {
     /* input.addEventListener("keypress", function(event) {
        if (event.key === "Enter") {
           input.blur();
-          /* header.setAttribute('data-mode', dataMode); */
+          // header.setAttribute('data-mode', dataMode);
           header.dataset.mode = dataMode;
           searchOverlay.setAttribute('hidden', '');
           if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "channel") {
