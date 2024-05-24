@@ -827,10 +827,10 @@ playerxhttpr.onload = function() {
           video.poster = data.videoThumbnails[3].url;
           video.innerHTML = ``;
           video.dataset.title = data.title;
-          storyboardURL = "https://inv.tux.pizza" + data.storyboards[2].url;
+          /* storyboardURL = "https://inv.tux.pizza" + data.storyboards[2].url; */
           SBVideo.src = data.formatStreams[0].url;
 
-const sbxhttpr = new XMLHttpRequest();
+/* const sbxhttpr = new XMLHttpRequest();
 
 sbxhttpr.open('GET', storyboardURL, true);
  
@@ -846,7 +846,7 @@ sbxhttpr.onload = function() {
   } else {
   sbxhttpr.onerror();
   };
-};
+}; */
 
           data.formatStreams.forEach(function(item) {
           const lastFS = data.formatStreams.slice(-1)[0]

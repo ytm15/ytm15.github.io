@@ -748,6 +748,7 @@ h3.player-dialog-title {
   display:inline-block;
   font-size: 18px;
   font-family: none;
+  margin: 0 -1.2px;
   animation-duration: 1.2s;
   animation-iteration-count: infinite;
 }
