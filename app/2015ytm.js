@@ -937,7 +937,8 @@ setTimeout(function() {
 function searching(parent, sbInput) {
     const headerBar = document.querySelector("ytm15-header-bar");
     const header = document.querySelector("header");
-    header.setAttribute('data-mode', 'searching');
+    /* header.setAttribute('data-mode', 'searching'); */
+    header.dataset.mode = 'searching';
 
     const input = document.querySelector(".searchbox-input");
     input.focus();
@@ -952,7 +953,8 @@ function searching(parent, sbInput) {
     const backBtn = document.querySelector("button.back-button");
     backBtn.removeAttribute("hidden");
     backBtn.onclick = function(){
-        header.setAttribute('data-mode', dataMode);
+        /* header.setAttribute('data-mode', dataMode); */
+        header.dataset.mode = dataMode;
         searchOverlay.setAttribute('hidden', '');
         if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "channel") {
             

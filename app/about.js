@@ -281,6 +281,10 @@ Changelog
 -The trending page now gets the "trtype" parameter from its id
 <br>
 -Started working on channel pages' video page
+<br><br>
+24 May 2024:
+<br>
+-The header's js now uses "dataset.mode" instead of "setAttribute()" to set its dataset's mode
     </div>
     </div>
     </div>

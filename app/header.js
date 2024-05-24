@@ -2,14 +2,17 @@ function renderHeader() {
     const headerBar = document.createElement("ytm15-header-bar");
     const header = document.createElement("header");
     header.classList.add("ytm15-header");
-    header.setAttribute('data-mode', dataMode);
+    /* header.setAttribute('data-mode', dataMode); */
+    header.dataset.mode = dataMode;
     headerBar.setAttribute('ischannel', headerIsChannel);
     headerBar.setAttribute("style", "");
     window.addEventListener('hashchange', function (event) {
     if (window.location.hash.split("/").slice(1, 2)[0] == "results") {
-        header.setAttribute('data-mode', 'search');
+        /* header.setAttribute('data-mode', 'search'); */
+        header.dataset.mode = 'search';
     } else {
-        header.setAttribute('data-mode', dataMode);
+        /* header.setAttribute('data-mode', dataMode); */
+        header.dataset.mode = dataMode;
     }
     headerBar.setAttribute('ischannel', headerIsChannel);
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] !== "channel") {
@@ -40,7 +43,8 @@ function renderHeader() {
     searchOverlay.classList.add("searching-overlay");
     searchOverlay.setAttribute('hidden', '');
     searchOverlay.onclick = function(){
-        header.setAttribute('data-mode', dataMode);
+        /* header.setAttribute('data-mode', dataMode); */
+        header.dataset.mode = dataMode;
         searchOverlay.setAttribute('hidden', '');
         /* if (window.location.pathname.split("/").slice(3, 4) == "results.html" || window.location.pathname.split("/").slice(3, 4) == "index.html" && urlpage == "popular") */
         if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "channel") {
@@ -84,7 +88,8 @@ function renderHeader() {
     /* input.addEventListener("keypress", function(event) {
        if (event.key === "Enter") {
           input.blur();
-          header.setAttribute('data-mode', dataMode);
+          /* header.setAttribute('data-mode', dataMode); */
+          header.dataset.mode = dataMode;
           searchOverlay.setAttribute('hidden', '');
           if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "channel") {
             
@@ -103,7 +108,8 @@ function renderHeader() {
           /* window.location.href = "#/results?query=" + input.value.replaceAll("%", "%25").replaceAll("?", "%3F").replaceAll("=", "%3D").replaceAll("#", "%23").replaceAll("&", "%26").replaceAll(",", "%2C"); */
           window.location.href = "#/results?query=" + encodeURIComponent(input.value);
           input.blur();
-          header.setAttribute('data-mode', dataMode);
+          /* header.setAttribute('data-mode', dataMode); */
+          header.dataset.mode = dataMode;
           searchOverlay.setAttribute('hidden', '');
           if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "channel") {
             
