@@ -285,6 +285,10 @@ Changelog
 24 May 2024:
 <br>
 -The header's js now uses "dataset.mode" instead of "setAttribute()" to set its dataset's mode
+<br><br>
+27 May 2024:
+<br>
+-Modified channel pages' refresh behavior when switching through tabs (Previously, it would show the loading animation on the middle, the tabs would disappear, and the title would become blank, then when the loading was finished, the changes in the header would be reverted and the loading thingy would disappear)
     </div>
     </div>
     </div>

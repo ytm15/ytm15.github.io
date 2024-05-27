@@ -1,8 +1,14 @@
+wasPrevChannelPage = false;
+
 function channelPage() {
+    if (!wasPrevChannelPage) {
     headerTitle.setAttribute("aria-label", "");
     headerTitle.textContent = "";
+    }
 
+    if (!wasPrevChannelPage) {
     pageCont.innerHTML = "";
+    }
 
     const tabBar = document.createElement("div");
     tabBar.classList.add("tab-bar");
@@ -16,13 +22,32 @@ function channelPage() {
     tabBar.appendChild(tabBarTabs);
 
     if (document.querySelector(".tab-bar")) {
+    if (!wasPrevChannelPage) {
     document.querySelector(".tab-bar").innerHTML = "";
     document.querySelector(".tab-bar").appendChild(tabBarTabs);
+    }
+    if (wasPrevChannelPage) {
+    Array.from(document.querySelector(".tab-bar").getElementsByClassName("tab-bar-tabs")[0].querySelectorAll(".tabbar-tab-container")).forEach(function(item){
+    const itemTab = item.querySelector(".tab");
+    itemTab.setAttribute('aria-selected', 'false');
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == itemTab.textContent) {
+    itemTab.setAttribute('aria-selected', 'true');
+    }
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == undefined && itemTab.textContent == "home" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "" && itemTab.textContent == "home" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "featured" && itemTab.textContent == "home") {
+    itemTab.setAttribute('aria-selected', 'true');
+    }
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "streams" && itemTab.textContent == "live") {
+    itemTab.setAttribute('aria-selected', 'true');
+    }
+    });
+    }
     document.querySelector(".tab-bar").setAttribute("isChannel", "true");
     }
 
+    if (!wasPrevChannelPage) {
     var spinner = document.querySelector(".spinner-container.full-height");
     spinner.removeAttribute("hidden");
+    }
 
     const getChannelData = new XMLHttpRequest();
     getChannelData.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0], true);
@@ -41,6 +66,7 @@ function channelPage() {
 </div>
 <div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry" onClick="location.reload();"><div class="button-text">Retry</div></button></div>`;
     const pageCont = document.querySelector('.page-container');
+    pageCont.innerHTML = "";
     pageCont.before(error);
     error.querySelector("button").onclick = function(){
     channelPage();
@@ -56,6 +82,8 @@ function channelPage() {
     const response = JSON.parse(getChannelData.response);
     /* console.log(response); */
 
+    wasPrevChannelPage = true;
+
     var spinner = document.querySelector(".spinner-container.full-height");
     spinner.setAttribute("hidden", "");
 
@@ -70,6 +98,11 @@ function channelPage() {
     background-size: 10000000px;
     transition: none;`);
     };
+
+    if (document.querySelector(".tab-bar")) {
+    document.querySelector(".tab-bar").innerHTML = "";
+    document.querySelector(".tab-bar").appendChild(tabBarTabs);
+    }
 
     response.tabs.forEach(function(item) {
     const tBTabCont = document.createElement("div");

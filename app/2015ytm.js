@@ -966,14 +966,19 @@ function searching(parent, sbInput) {
 }
 
 function hashDetector() {
+if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] !== "channel") {
+    wasPrevChannelPage = false;
+}
     document.querySelector(".searching-overlay").setAttribute("hidden", "");
     if (document.querySelector(".error-container")) {
     document.querySelector(".error-container").remove();
     }
+if (!wasPrevChannelPage) {
     pageCont.innerHTML = "";
     title.textContent = "2015YouTube";
     headerTitle.setAttribute("aria-label", _2015YT_text_string);
     headerTitle.textContent = _2015YT_text_string;
+}
 if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == undefined || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "trending" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "") {
     renderData();
 } else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about") {
