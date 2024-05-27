@@ -246,10 +246,10 @@ function channelPage() {
 
     tabContent.appendChild(channelHeader);
 
-    const sectionList = document.createElement("div");
+    var sectionList = document.createElement("div");
     sectionList.classList.add("section-list");
     
-    const sectLazyList = document.createElement("div");
+    var sectLazyList = document.createElement("div");
     sectLazyList.classList.add("lazy-list");
     sectionList.appendChild(sectLazyList);
 
@@ -261,7 +261,7 @@ function channelPage() {
     lazyList.classList.add("lazy-list", "no-animation");
     itemSect.appendChild(lazyList);
 
-    const ytm15Msg = document.createElement("div");
+    var ytm15Msg = document.createElement("div");
     ytm15Msg.classList.add("ytm15-message");
     ytm15Msg.innerHTML = `<div class="ytm15-message-content"><img class="ytm15-img-icon grey-account-icon msg-icon ytm15-img" src="ic_account_circle_grey_60.png"></img><div class="msg-text">${Channel_Home_WIP_text_string}</div></div>`;
     lazyList.appendChild(ytm15Msg);
@@ -269,10 +269,10 @@ function channelPage() {
     tabContent.appendChild(sectionList);
     }
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "videos" && item == "videos") {
-    const sectionList = document.createElement("div");
+    var sectionList = document.createElement("div");
     sectionList.classList.add("section-list");
     
-    const sectLazyList = document.createElement("div");
+    var sectLazyList = document.createElement("div");
     sectLazyList.classList.add("lazy-list");
     sectionList.appendChild(sectLazyList);
 
