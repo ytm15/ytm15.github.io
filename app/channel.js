@@ -44,9 +44,18 @@ function channelPage() {
     document.querySelector(".tab-bar").setAttribute("isChannel", "true");
     }
 
-    if (!wasPrevChannelPage) {
     var spinner = document.querySelector(".spinner-container.full-height");
+
+    if (!wasPrevChannelPage) {
     spinner.removeAttribute("hidden");
+    }
+
+    const tabsSpinner = spinner.cloneNode(true);
+    tabsSpinner.classList.remove("full-height");
+
+    if (wasPrevChannelPage) {
+        tabsSpinner.removeAttribute("hidden");
+        document.querySelector(".tabs-content-container>.spinner-container").replaceWith(tabsSpinner);
     }
 
     const getChannelData = new XMLHttpRequest();
@@ -162,6 +171,9 @@ function channelPage() {
 
     const tabContainer = document.createElement("div");
     tabContainer.classList.add('tabs-content-container');
+
+    tabsSpinner.setAttribute("hidden", "");
+    tabContainer.appendChild(tabsSpinner);
 
     response.tabs.forEach(function(item) {
     const tabContent = document.createElement("div");
