@@ -304,9 +304,10 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         const rect = menuBtn.getBoundingClientRect();
         const menuRect = menuCont.getBoundingClientRect();
         const menuAlign = function() {
-        menuCont.setAttribute("style", `left: ${rect.left - menuCont.offsetWidth + window.scrollX + 11}px; top: ${rect.top + window.scrollY - 10}px;`);
+        menuCont.classList.add("menu-style-holo");
+        menuCont.setAttribute("style", `left: ${rect.left - menuCont.offsetWidth + window.scrollX + 11}px; top: ${rect.top + window.scrollY - 10}px; margin: 7px;`);
         if (rect.left - menuCont.offsetWidth + window.scrollX + 11 < 0) {
-        menuCont.setAttribute("style", `left: 0px; top: ${rect.top + window.scrollY - 10}px;`);
+        menuCont.setAttribute("style", `left: 0px; top: ${rect.top + window.scrollY - 10}px; margin: 7px;`);
         }
         }
 
@@ -331,6 +332,7 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         function menuRemoveExtras() {
             setTimeout(function() {
             menuItemShare.remove();
+            menuCont.classList.remove("menu-style-holo");
             }, 300);
         }
 
@@ -613,9 +615,10 @@ function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLen
         const rect = menuBtn.getBoundingClientRect();
         const menuRect = menuCont.getBoundingClientRect();
         const menuAlign = function() {
-        menuCont.setAttribute("style", `left: ${rect.left - menuCont.offsetWidth + window.scrollX + 11}px; top: ${rect.top + window.scrollY - 10}px;`);
+        menuCont.classList.add("menu-style-holo");
+        menuCont.setAttribute("style", `left: ${rect.left - menuCont.offsetWidth + window.scrollX + 11}px; top: ${rect.top + window.scrollY - 10}px; margin: 7px;`);
         if (rect.left - menuCont.offsetWidth + window.scrollX + 11 < 0) {
-        menuCont.setAttribute("style", `left: 0px; top: ${rect.top + window.scrollY - 10}px;`);
+        menuCont.setAttribute("style", `left: 0px; top: ${rect.top + window.scrollY - 10}px; margin: 7px;`);
         }
         }
 
@@ -640,6 +643,7 @@ function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLen
         function menuRemoveExtras() {
             setTimeout(function() {
             menuItemShare.remove();
+            menuCont.classList.remove("menu-style-holo");
             }, 300);
         }
 

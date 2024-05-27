@@ -2181,7 +2181,7 @@ ytm15-menu-button {
     /* box-shadow: 0px 5px 18px 0px rgba(0, 0, 0, 0.3); */
     box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.5);
     border-radius: 2px;
-    margin: 7px;
+    margin: 10px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -2206,6 +2206,15 @@ ytm15-menu-button {
 }
 .menu-content.menu-style-youtube.closing {
     animation: menu-close-alt .2s ease-out;
+}
+.menu-content.menu-style-holo {
+    box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.7);
+    background-color: #eee;
+}
+.menu-content.menu-style-holo .menu-item-button {
+    padding: 15px 8px;
+    font-weight: 300;
+    border-bottom: 1.2px solid rgba(0, 0, 0, 0.2);
 }
 @keyframes menu-open {
 0% {
