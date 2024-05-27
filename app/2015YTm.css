@@ -2208,7 +2208,7 @@ ytm15-menu-button {
     animation: menu-close-alt .2s ease-out;
 }
 .menu-content.menu-style-holo {
-    box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.7);
+    box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.6);
     background-color: #eee;
 }
 .menu-content.menu-style-holo .menu-item-button {
