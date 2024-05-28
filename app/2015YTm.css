@@ -2215,6 +2215,9 @@ ytm15-menu-button {
     box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.6);
     background-color: #eee;
 }
+.menu-content.menu-style-holo.closing {
+    animation: menu-close-alt .2s ease-out;
+}
 .menu-content.menu-style-holo .menu-item-button {
     padding: 15px 8px;
     font-weight: 300;
