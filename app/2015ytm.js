@@ -856,19 +856,93 @@ openWatch.innerHTML = `<ytm15-icon class="open-watch-icon"><svg viewBox="0 0 24 
 
 const closeVideo = document.createElement("button");
 closeVideo.classList.add("icon-button", "watch-action-button");
-closeVideo.onclick = function(){
+closeVideo.onclick = function(isRightSide){
 watchContainer.classList.add("closing");
+if (isRightSide) {
+watchContainer.classList.add("close-right");
+}
 document.body.classList.remove("has-watchpage");
 setTimeout(function() {
   watchContainer.remove();
   app.classList.remove("has-miniplayer");
   watchContainer.classList.remove("closing");
+  if (isRightSide) {
+  watchContainer.classList.remove("close-right");
+  }
   watchFrame.scrolling = "yes";
 }, 300);
 };
 closeVideo.setAttribute("aria-label", "Close video");
 closeVideo.setAttribute("aria-haspopup", "false");
 closeVideo.innerHTML = `<ytm15-icon class="x-icon"><svg viewBox="0 0 24 24" fill=""><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"></path></svg></ytm15-icon>`;
+
+var playerContListener = SwipeListener(playerCont);
+playerCont.addEventListener('swipe', function (e) {
+  /* console.log('swipe', e.detail); */
+  var d = e.detail.directions;
+
+  if (!document.webkitFullscreenElement) {
+  if (d.top) {
+    if (d.right) {
+    /* console.log('Swiped top-right.'); */
+    if (watchContainer.classList.contains("miniplayer")) {
+    openWatch.onclick();
+    }
+    } else if (d.left) {
+    /* console.log('Swiped top-left.'); */
+    if (watchContainer.classList.contains("miniplayer")) {
+    openWatch.onclick();
+    }
+    } else {
+    /* console.log('Swiped top.'); */
+    if (watchContainer.classList.contains("miniplayer")) {
+    openWatch.onclick();
+    }
+    }
+    } else if (d.bottom) {
+    if (d.right) {
+    /* console.log('Swiped bottom-right.'); */
+    if (!watchContainer.classList.contains("miniplayer")) {
+    exitWatch.onclick();
+    }
+    } else if (d.left) {
+    /* console.log('Swiped bottom-left.'); */
+    if (!watchContainer.classList.contains("miniplayer")) {
+    exitWatch.onclick();
+    }
+    } else {
+    /* console.log('Swiped bottom.'); */
+    if (!watchContainer.classList.contains("miniplayer")) {
+    exitWatch.onclick();
+    }
+    }
+    } else {
+    if (d.right) {
+    /* console.log('Swiped right.'); */
+    if (watchContainer.classList.contains("miniplayer")) {
+    closeVideo.onclick(true);
+    }
+    } else if (d.left) {
+    /* console.log('Swiped left.'); */
+    if (watchContainer.classList.contains("miniplayer")) {
+    closeVideo.onclick();
+    }
+    }
+  }
+  }
+});
+
+playerCont.addEventListener('swiping', function (e) {
+  /* console.log('swiping', e.detail); */
+});
+
+playerCont.addEventListener('swiperelease', function (e) {
+  /* console.log('swiperelease', e.detail); */
+});
+
+playerCont.addEventListener('swipecancel', function (e) {
+  /* console.log('swipecancel', e.detail); */
+});
 
 watchContainer.appendChild(watchOverlay);
 watchContainer.appendChild(watchItems);
@@ -889,6 +963,7 @@ mpActions.appendChild(closeVideo);
 
 function openIFrameFallbackPlayer(parent){
     parent.appendChild(iframePlayerCont);
+    videoPlayer.classList.add("player-iframe-visible");
     video.pause();
 };
 

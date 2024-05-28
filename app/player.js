@@ -725,6 +725,7 @@ function closeIFramePlayer(){
     setTimeout(function(){
     iframePlayerCont.remove();
     iframePlayerCont.classList.remove("iframe-not-visible");
+    videoPlayer.classList.remove("player-iframe-visible");
     }, 350);
 }
 

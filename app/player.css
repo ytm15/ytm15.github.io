@@ -528,6 +528,14 @@ video.storyboard-video {
     opacity: 1;
     pointer-events: auto;
 }
+.player-mini-mode.player-options-shown .player-options-container {
+    opacity: 0;
+    pointer-events: none;
+}
+.player-iframe-visible.player-options-shown .player-options-container {
+    opacity: 1;
+    pointer-events: auto;
+}
 
 .player-options-container .hide-options-button {
     padding: 0;

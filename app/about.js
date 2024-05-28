@@ -103,6 +103,10 @@ Player:
 Polyfills:
 <br>
 -Polyfill.io (<a href="https://polyfill.io/">https://polyfill.io/</a>)
+<br><br>
+Other JS Plugins:
+<br>
+-Swipe Listener (<a href="https://github.com/umanghome/swipe-listener">https://github.com/umanghome/swipe-listener</a>)
 </div>
     </div>
     </div>
@@ -289,6 +293,10 @@ Changelog
 27 May 2024:
 <br>
 -Modified channel pages' refresh behavior when switching through tabs (Previously, it would show the loading animation on the middle, the tabs would disappear, and the title would become blank, then when the loading was finished, the changes in the header would be reverted and the loading thingy would disappear)
+<br><br>
+28 May 2024:
+<br>
+-YTm15 now makes use of a JS plugin called "swipe listener" (link can be found above), allowing for the user to swipe the player in the watchpage down for miniplayer mode, and up when in miniplayer mode to exit it
     </div>
     </div>
     </div>
