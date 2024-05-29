@@ -820,7 +820,7 @@ mpContent.classList.add("miniplayer-content", "items-not-visible");
 
 mpContentItemsVisible = false;
 
-mpContent.onclick = function(){
+/* mpContent.onclick = function(){
 if (!mpContentItemsVisible) {
 mpContentItemsVisible = true;
 mpContent.classList.remove("items-not-visible");
@@ -834,7 +834,7 @@ mpContentItemsVisible = false;
 mpContent.classList.add("items-not-visible");
 clearTimeout(mpTimO);
 }
-}
+} */
 
 const mpActions = document.createElement("div");
 mpActions.classList.add("miniplayer-actions");
@@ -853,6 +853,12 @@ document.body.classList.add("has-watchpage");
 openWatch.setAttribute("aria-label", "Open watchpage");
 openWatch.setAttribute("aria-haspopup", "false");
 openWatch.innerHTML = `<ytm15-icon class="open-watch-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"></path></svg></ytm15-icon>`;
+
+mpContent.onclick = function(e){
+if (e.target == mpContent) {
+openWatch.onclick();
+}
+};
 
 const closeVideo = document.createElement("button");
 closeVideo.classList.add("icon-button", "watch-action-button");
