@@ -882,6 +882,7 @@ playerCont.addEventListener('swipe', function (e) {
   var d = e.detail.directions;
 
   if (!document.webkitFullscreenElement) {
+  if (!videoPlayer.classList.contains("player-options-shown") || videoPlayer.classList.contains("player-iframe-visible")) {
   if (d.top) {
     if (d.right) {
     /* console.log('Swiped top-right.'); */
@@ -928,6 +929,7 @@ playerCont.addEventListener('swipe', function (e) {
     closeVideo.onclick();
     }
     }
+  }
   }
   }
 });

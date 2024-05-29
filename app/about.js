@@ -297,6 +297,10 @@ Changelog
 28 May 2024:
 <br>
 -YTm15 now makes use of a JS plugin called "swipe listener" (link can be found above), allowing for the user to swipe the player in the watchpage down for miniplayer mode, and up when in miniplayer mode to exit it
+<br><br>
+29 May 2024:
+<br>
+-A few slight JS updates related to the player's new swipe-ability
     </div>
     </div>
     </div>
