@@ -301,6 +301,10 @@ Changelog
 29 May 2024:
 <br>
 -A few slight JS updates related to the player's new swipe-ability
+<br><br>
+31 May 2024:
+<br>
+-The player's exit/collapse watch button is now an actual player controls button
     </div>
     </div>
     </div>

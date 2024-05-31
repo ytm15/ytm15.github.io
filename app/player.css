@@ -400,7 +400,7 @@ stroke-dashoffset: 187; }
     pointer-events: auto;
 }
 
-.player-img-icon.menu-icon, .player-img-icon.share-icon {
+.player-img-icon.menu-icon, .player-img-icon.share-icon, .player-img-icon.exit-watch-icon {
     width: 45px;
     height: 45px;
     margin: -11px;

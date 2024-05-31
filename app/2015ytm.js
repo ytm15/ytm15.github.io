@@ -811,8 +811,13 @@ const exitWatch2 = exitWatch.cloneNode(true);
 exitWatch2.onclick = function(){
 exitWatch.onclick();
 };
-if (videoPlayer.toString()) {
+/* if (videoPlayer.toString()) {
 controlsTop.insertAdjacentElement("afterbegin", exitWatch2);
+}; */
+if (videoPlayer.toString() && playerExitWatchBtn.toString()) {
+playerExitWatchBtn.onclick = function(){
+exitWatch.onclick();
+};
 };
 
 const mpContent = document.createElement("div");

@@ -134,6 +134,14 @@ nextVidBtn.title = "Next video";
 nextVidBtn.innerHTML = `<img class="player-img-icon button-icon next-vid-icon" src="ic_vidcontrol_next.png"></img>`;
 controlsMiddle.appendChild(nextVidBtn);
 btnsCont.appendChild(progressCont);
+const playerExitWatchBtn = document.createElement("button");
+playerExitWatchBtn.classList.add("controls-button", "exit-watch-button", "has-ripple");
+playerExitWatchBtn.title = "Collapse watchpage";
+playerExitWatchBtn.ariaLabel = "Collapse watchpage";
+playerExitWatchBtn.innerHTML = `<img class="player-img-icon button-icon exit-watch-icon inactive" src="ic_vidcontrol_collapse.png"></img>
+<img class="player-img-icon button-icon exit-watch-icon active" src="ic_vidcontrol_collapse_pressed.png"></img>`;
+playerExitWatchBtn.ariaPressed = "false";
+controlsTop.appendChild(playerExitWatchBtn);
 const playerTitle = document.createElement("h3");
 playerTitle.classList.add("player-title");
 playerTitle.ariaLabel = "";
