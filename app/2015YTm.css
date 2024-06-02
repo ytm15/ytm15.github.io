@@ -2195,6 +2195,7 @@ ytm15-menu-button {
 .menu-content.menu-style-mtrl-2 {
     background-color: #fff;
     box-shadow: 0px 5px 18px 1px rgba(0, 0, 0, 0.3);
+    animation: menu-open-mtrl-2 .25s;
 }
 .menu-content.menu-style-youtube {
     background-color: #fff;
@@ -2241,6 +2242,18 @@ ytm15-menu-button {
 100% {
     max-width: var(--menu-max-width);
     max-height: var(--menu-max-width);
+}
+}
+@keyframes menu-open-mtrl-2 {
+0% {
+    opacity: 0;
+    transform: scale(0.1);
+    transform-origin: top right;
+}
+100% {
+    opacity: 1;
+    transform: scale(1);
+    transform-origin: top right;
 }
 }
 @keyframes menu-close {
