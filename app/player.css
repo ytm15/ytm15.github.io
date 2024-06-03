@@ -72,7 +72,7 @@
     width: 100%;
     background: linear-gradient(180deg, rgba(0,0,0,0.6), transparent);
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     transition: opacity .6s;
 }
 .player-controls-middle {
@@ -413,7 +413,8 @@ stroke-dashoffset: 187; }
 .player-title {
     margin-bottom: 0;
     margin-left: 10px;
-    font-size: 17px;
+    font-size: 17.5px;
+    align-self: center;
     -webkit-filter: drop-shadow(rgba(0, 0, 0, 0.4) 0px 1px 2px);
     display: none;
 }
