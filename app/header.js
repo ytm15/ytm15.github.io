@@ -25,13 +25,13 @@ function renderHeader() {
     backBtn.onclick = function(){history.back()};
     backBtn.setAttribute("aria-label", "Go back");
     /* if (window.location.pathname.split("/").slice(3, 4) == "results.html" || window.location.pathname.split("/").slice(3, 4) == "index.html" && urlpage == "popular") */
-    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "channel") {
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "channel" || window.location.pathname.split("/").slice(3, 4) == "settings.html" || window.location.pathname.split("/").slice(3, 4) == "settings" || window.location.pathname.split("/").slice(2, 3) == "settings.html" || window.location.pathname.split("/").slice(2, 3) == "settings") {
         
     } else {
         backBtn.setAttribute("hidden", "");
     }
     window.addEventListener('hashchange', function (event) {
-    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "channel") {
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "channel" || window.location.pathname.split("/").slice(3, 4) == "settings.html" || window.location.pathname.split("/").slice(3, 4) == "settings" || window.location.pathname.split("/").slice(2, 3) == "settings.html" || window.location.pathname.split("/").slice(2, 3) == "settings") {
         backBtn.removeAttribute("hidden", "");
     } else {
         backBtn.setAttribute("hidden", "");
@@ -159,11 +159,11 @@ function renderHeader() {
     if (window.location.pathname.split("/").slice(3, 4) == "results.html") {
     searchBtn.setAttribute("hidden", "");
     }
-    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results") {
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.pathname.split("/").slice(3, 4) == "settings.html" || window.location.pathname.split("/").slice(3, 4) == "settings" || window.location.pathname.split("/").slice(2, 3) == "settings.html" || window.location.pathname.split("/").slice(2, 3) == "settings") {
     searchBtn.setAttribute("hidden", "");
     }
     window.addEventListener('hashchange', function (event) {
-    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results") {
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.pathname.split("/").slice(3, 4) == "settings.html" || window.location.pathname.split("/").slice(3, 4) == "settings" || window.location.pathname.split("/").slice(2, 3) == "settings.html" || window.location.pathname.split("/").slice(2, 3) == "settings") {
     searchBtn.setAttribute("hidden", "");
     } else {
     searchBtn.removeAttribute("hidden", "");
@@ -176,13 +176,28 @@ function renderHeader() {
     menuRenderer();
     menuCont.setAttribute("style", "top: 0; right: 0; position: fixed;");
 
+    const menuItemSettings = document.createElement("div");
+    menuItemSettings.classList.add("menu-item");
+    menuItem.before(menuItemSettings);
+
+    const menuItemBtnSettings = document.createElement("button");
+    menuItemBtnSettings.classList.add("menu-item-button", "has-ripple");
+    menuItemBtnSettings.textContent = Settings_text_string;
+    menuItemBtnSettings.onclick = function(){
+        window.location.href = "settings.html";
+        menuRemoveExtras();
+        menuRemove();
+    };
+    menuItemSettings.appendChild(menuItemBtnSettings);
+
     const menuItemAbt = document.createElement("div");
     menuItemAbt.classList.add("menu-item");
     menuItem.before(menuItemAbt);
 
     const menuItemBtnAbt = document.createElement("button");
     menuItemBtnAbt.classList.add("menu-item-button", "has-ripple");
-    menuItemBtnAbt.textContent = "About YTm15";
+    /* menuItemBtnAbt.textContent = "About YTm15"; */
+    menuItemBtnAbt.textContent = AboutYTm15_text_string;
     menuItemBtnAbt.onclick = function(){
         window.location.href = "#/about";
         menuRemoveExtras();
@@ -192,6 +207,7 @@ function renderHeader() {
 
     function menuRemoveExtras() {
         setTimeout(function() {
+        menuItemSettings.remove();
         menuItemAbt.remove();
         }, 300);
     }
@@ -208,6 +224,17 @@ function renderHeader() {
     menuBtn.setAttribute("aria-label", "Menu");
     menuBtn.setAttribute("aria-haspopup", "true");
     menuBtn.innerHTML = `<ytm15-icon class="menu-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg></ytm15-icon>`;
+
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.pathname.split("/").slice(3, 4) == "settings.html" || window.location.pathname.split("/").slice(3, 4) == "settings" || window.location.pathname.split("/").slice(2, 3) == "settings.html" || window.location.pathname.split("/").slice(2, 3) == "settings") {
+    menuBtn.setAttribute("hidden", "");
+    }
+    window.addEventListener('hashchange', function (event) {
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.pathname.split("/").slice(3, 4) == "settings.html" || window.location.pathname.split("/").slice(3, 4) == "settings" || window.location.pathname.split("/").slice(2, 3) == "settings.html" || window.location.pathname.split("/").slice(2, 3) == "settings") {
+    menuBtn.setAttribute("hidden", "");
+    } else {
+    menuBtn.removeAttribute("hidden", "");
+    }
+    });
 
     headerBar.appendChild(header);
     header.appendChild(backBtn);

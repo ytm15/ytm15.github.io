@@ -794,6 +794,10 @@ ytm15-header-bar[ischannel="true"] {
     background-color: #f1f1f1;
     color: #606060;
 }
+.ytm15-header[data-mode="settings"] {
+    background-color: #f1f1f1;
+    color: #111;
+}
 .ytm15-header[data-mode="searching"] {
     position: relative;
     z-index: 3;
@@ -909,6 +913,9 @@ input.searchbox-input {
     width: 48px;
     height: 48px;
     padding: 12px;
+    color: rgba(0,0,0,0.6);
+}
+.ytm15-header[data-mode="settings"] .header-button {
     color: rgba(0,0,0,0.6);
 }
 .header-button.menu-button {
@@ -2143,6 +2150,14 @@ ytm15-menu-button {
     height: unset;
     max-width: 700px;
 }
+.about-page-bottom-title {
+    padding: 16px;
+    border-bottom: 1.2px solid rgba(0,0,0,0.2);
+}
+h3.ap-bottom-title-text {
+    font-size: 1.6rem;
+    margin-bottom: 0;
+}
 
 /* .modal-open {
     overflow: hidden;
@@ -2449,4 +2464,113 @@ ytm15-channels-header {
 
 .continuation-item ~ .continuation-item {
     display: none;
+}
+
+/* Settings page */
+ytm15-settings {
+    display: block;
+    height: calc(100vh - 56px);
+    animation: settingsBG .3s ease-in-out;
+}
+settings-page {
+    display: block;
+}
+.settings-option {
+    font-size: 16px;
+    display: block;
+    padding: 19px 7px;
+    border-bottom: 1.2px solid rgba(0, 0, 0, 0.15);
+    line-height: 1;
+    flex-shrink: 0;
+}
+.settings-options-container {
+    padding: 5px 13px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    position: absolute;
+    left: 0;
+    right: 0;
+    transition: opacity .3s;
+}
+.settings-pages-container {
+    padding: 10px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .2s ease-out;
+}
+h4.settings-page-header {
+    margin: 0;
+    padding: 10px;
+    font-size: 15px;
+    color: #0094b0;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+.page-visible .settings-options-container {
+    opacity: 0;
+    pointer-events: none;
+}
+.page-visible .settings-pages-container {
+    opacity: 1;
+    visibility: unset;
+    pointer-events: unset;
+}
+ytm15-settings.page-visible {
+    animation: settingsBG-page .3s ease-in-out;
+}
+@keyframes settingsBG {
+0% {
+    background-color: rgba(0,0,0,0.05);
+}
+100% {
+    background-color: transparent;
+}
+}
+@keyframes settingsBG-page {
+0% {
+    background-color: transparent;
+}
+50% {
+    background-color: rgba(0,0,0,0.05);
+}
+100% {
+    background-color: transparent;
+}
+}
+.settings-option[aria-pressed="true"] {
+    background-color: #3ea6ff26;
+    transition: background .2s ease-in-out;
+}
+.ytm15-settings-msg {
+    font-size: 17px;
+    padding: 15px 17px;
+    color: rgba(0, 0, 0, 0.5);
+    text-align: center;
+    border-bottom: 1.2px solid rgba(0, 0, 0, 0.2);
+}
+@media (min-aspect-ratio: 13 / 9) and (orientation: landscape), (min-width: 550px) and (orientation: portrait), (min-width: 800px) and (orientation: landscape) {
+.settings-options-container {
+    max-width: 340px;
+    position: fixed;
+    top: 56px;
+    bottom: 0;
+    overflow-y: auto;
+    border-right: 1.2px solid rgba(0,0,0,0.15);
+    background-color: #f3f3f3;
+}
+.settings-option {
+    transition: background .2s ease-in-out;
+}
+.page-visible .settings-options-container {
+    opacity: 1;
+    pointer-events: unset;
+}
+.settings-pages-container {
+    opacity: 1;
+    visibility: unset;
+    pointer-events: unset;
+    margin-left: 340px;
+}
 }

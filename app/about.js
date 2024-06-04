@@ -305,11 +305,22 @@ Changelog
 31 May 2024:
 <br>
 -The player's exit/collapse watch button is now an actual player controls button
+<br><br>
+04 - 05 Jun 2024:
+<br>
+-1st YTm15 summer update, Happy Summer Month Everybody! (Actual changes list is below)
+<br>
+-Started working on the settings page
+<br>
+-Added a bottom title to this page describing what YTm15 is in a short sentence
     </div>
     </div>
     </div>
     <!-- <div class="item-section"> -->
     <!-- <div class="lazy-list no-animation"> -->
+    <div class="about-page-bottom-title">
+    <h3 class="ap-bottom-title-text">YTm15, a project to bring back YT's old mobile UI</h3>
+    </div>
     <footer class="about-page-footer">
     <div class="ap-footer-content">
     <h3 class="ap-footer-text">Have any questions/issues/requests/bugs/feedback? <a href="https://github.com/ytm15/ytm15.github.io/issues">Visit our Github's issues page</a></h3>

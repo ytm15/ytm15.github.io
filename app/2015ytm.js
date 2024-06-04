@@ -2,6 +2,8 @@
 function dataModeChange() {
 if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results") {
 dataMode = 'search';
+} else if (window.location.pathname.split("/").slice(3, 4) == "settings.html" || window.location.pathname.split("/").slice(3, 4) == "settings" || window.location.pathname.split("/").slice(2, 3) == "settings.html" || window.location.pathname.split("/").slice(2, 3) == "settings") { 
+dataMode = 'settings';
 } else {
 dataMode = 'normal';
 };
@@ -39,6 +41,12 @@ Artist_text_string = "Artist";
 Album_text_string = "Album";
 SongLicensed_text_string = "Licensed to YouTube by";
 Suggestions_text_string = "Suggestions";
+Settings_text_string = "Settings";
+General_text_string = "General";
+SettingsMSG_text_string = "There is no page open at the current moment";
+ExpFlags_text_string = "YTm15 Experimental Flags";
+SettingsMSG2_text_string = "To be added in the near future";
+AboutYTm15_text_string = "About YTm15";
 
 function renderSubscribeBtn(parent) {
     const mtrlBtnCont = document.createElement("div");
@@ -1092,6 +1100,9 @@ if (window.location.hash.split("/").join(',').split("?").join(',').split(',').sl
     };
 }
 }
+function settingsHashDetector() {
+settingsPage();
+}
 
 if (window.location.pathname.split("/").slice(2, 3) == "2015YouTube%20(Mobile)") {
 if (window.location.pathname.split("/").slice(3, 4) == "index.html" || window.location.pathname.split("/").slice(3, 4) == undefined || window.location.pathname.split("/").slice(3, 4) == "") { 
@@ -1102,6 +1113,9 @@ if (window.location.pathname.split("/").slice(2, 3) !== "2015YouTube%20(Mobile)"
 if (window.location.pathname.split("/").slice(2, 3) == "index.html" || window.location.pathname.split("/").slice(2, 3) == undefined || window.location.pathname.split("/").slice(2, 3) == "") { 
 hashDetector();
 }
+}
+if (window.location.pathname.split("/").slice(3, 4) == "settings.html" || window.location.pathname.split("/").slice(3, 4) == "settings" || window.location.pathname.split("/").slice(2, 3) == "settings.html" || window.location.pathname.split("/").slice(2, 3) == "settings") {
+settingsHashDetector();
 }
 
 window.addEventListener('hashchange', function (event) {
