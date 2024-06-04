@@ -2559,6 +2559,7 @@ ytm15-settings.page-visible {
     overflow-y: auto;
     border-right: 1.2px solid rgba(0,0,0,0.15);
     background-color: #f3f3f3;
+    touch-action: none;
 }
 .settings-option {
     transition: background .2s ease-in-out;
