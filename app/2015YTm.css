@@ -1114,6 +1114,10 @@ a {
     filter: none;
     -webkit-filter: none;
 }
+.ytm15-img-icon.playlist-icon {
+    width: 20px;
+    height: 20px;
+}
 
 .item {
     margin-top: 12px;

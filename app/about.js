@@ -325,6 +325,8 @@ Changelog
 -Added a dark theme
 <br>
 -Clicking the arrow next to a search suggestion now puts the text from said search suggestion into the search bar without searching for said thing
+<br>
+-The playlist icon is now an img icon
     </div>
     </div>
     </div>
