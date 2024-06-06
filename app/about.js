@@ -313,6 +313,18 @@ Changelog
 -Started working on the settings page
 <br>
 -Added a bottom title to this page describing what YTm15 is in a short sentence
+<br><br>
+05 - 06 Jun 2024:
+<br>
+-YTm15 now uses the local storage API, allowing for implementation of experimental flags in the settings page
+<br>
+-Started working on toggle buttons
+<br>
+-Settings "options" have now been renamed to categories
+<br>
+-Added a dark theme
+<br>
+-Clicking the arrow next to a search suggestion now puts the text from said search suggestion into the search bar without searching for said thing
     </div>
     </div>
     </div>

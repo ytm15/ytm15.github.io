@@ -14,6 +14,14 @@ const li = document.createElement("li");
 li.classList.add("sbdd-siggestion-item")
 li.innerHTML = `<a href="#/results?query=${encodeURIComponent(item)}" class="sbdd-suggestion-link has-ripple"><div class="sbdd-item-text-cont"><div>${item}</div></div><div class="sbdd-item-icon has-ripple"><ytm15-icon class="arrow-top-left-icon"><svg viewBox="0 0 24 24" fill=""><path d="M19,17.59L17.59,19L7,8.41V15H5V5H15V7H8.41L19,17.59Z" style="display: none;"></path><path d="M20,11V13H8L13.5,18.5L12.08,19.92L4.16,12L12.08,4.08L13.5,5.5L8,11H20Z" style="transform: rotate(45deg)translate(5px, -12px);"></path></svg></ytm15-icon></div></a>`;
 li.role = "presentation";
+li.querySelector(".sbdd-item-icon").onclick = function(){
+  sbInput.click();
+  sbInput.value = li.querySelector(".sbdd-item-text-cont>div").innerHTML;
+  setTimeout(function() {
+  sbInput.focus();
+  }, 0);
+  return false;
+}
 li.onmouseover = function(){
 li.classList.add("sbdd-selected");
 }

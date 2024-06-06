@@ -16,6 +16,40 @@ headerIsChannel = 'false';
 
 dataModeChange();
 
+documentHTML = document.querySelector("html");
+
+function localStorageChange(){
+DISABLE_YTM15_APP_BORDER_expflag = localStorage.getItem("DISABLE_YTM15_APP_BORDER");
+WEB_ENABLE_DARK_THEME_OPTION_expflag = localStorage.getItem("WEB_ENABLE_DARK_THEME_OPTION");
+DARK_THEME_option = localStorage.getItem("DARK_THEME");
+
+if (DISABLE_YTM15_APP_BORDER_expflag == "true") {
+    documentHTML.classList.add("no-app-border");
+} else {
+    documentHTML.classList.remove("no-app-border");
+};
+
+if (DARK_THEME_option == "true") {
+    documentHTML.classList.add("dark");
+} else {
+    documentHTML.classList.remove("dark");
+};
+
+if (WEB_ENABLE_DARK_THEME_OPTION_expflag == "true") {
+    if (DARK_THEME_option == "true") {
+    documentHTML.classList.add("dark");
+    }
+} else {
+    documentHTML.classList.remove("dark");
+};
+};
+
+localStorageChange();
+
+window.addEventListener("storage", function(){
+localStorageChange();
+});
+
 APIbaseURL = "https://inv.tux.pizza/";
 
 playerVideoId = "e";
@@ -47,6 +81,8 @@ SettingsMSG_text_string = "There is no page open at the current moment";
 ExpFlags_text_string = "YTm15 Experimental Flags";
 SettingsMSG2_text_string = "To be added in the near future";
 AboutYTm15_text_string = "About YTm15";
+DarkTheme_text_string = "Dark theme";
+DarkThemeDesc_text_string = "Enable dark theme throughout the app";
 
 function renderSubscribeBtn(parent) {
     const mtrlBtnCont = document.createElement("div");
@@ -60,6 +96,39 @@ function renderSubscribeBtn(parent) {
 <img class="ytm15-img-icon ytm15-img button-icon subscribe-icon" src="subscribe_mark.png"></img><div class="button-text">${Subscribe_text_string}</div>
 </button>`
     parent.appendChild(mtrlBtnCont);
+}
+
+function renderToggleBtn(parent, isDisabled, isPressed, LSItem){
+    const toggleBtnCont = document.createElement("ytm15-toggle-button-container");
+    const toggleBtn = document.createElement("button");
+    toggleBtn.classList.add("toggle-button");
+    toggleBtn.setAttribute("aria-pressed", "false");
+    toggleBtn.onclick = function(){
+    if (localStorage.getItem(LSItem) == "true") {
+    localStorage.setItem(LSItem, "false");
+    toggleBtn.setAttribute("aria-pressed", "false");
+    } else {
+    localStorage.setItem(LSItem, "true");
+    toggleBtn.setAttribute("aria-pressed", "true");
+    }
+    localStorageChange();
+    };
+    if (isDisabled) {
+    toggleBtn.setAttribute("disabled", true);
+    toggleBtn.onclick = undefined;
+    }
+    if (isPressed) {
+    toggleBtn.setAttribute("aria-pressed", "true");
+    }
+    const toggleBtnTrack = document.createElement("div");
+    toggleBtnTrack.classList.add("toggle-button-track");
+    const toggleBtnCircle = document.createElement("div");
+    toggleBtnCircle.classList.add("toggle-button-circle", "has-ripple");
+
+    parent.appendChild(toggleBtnCont);
+    toggleBtnCont.appendChild(toggleBtn);
+    toggleBtn.appendChild(toggleBtnTrack);
+    toggleBtn.appendChild(toggleBtnCircle);
 }
 
 window.addEventListener('hashchange', function (event) {
