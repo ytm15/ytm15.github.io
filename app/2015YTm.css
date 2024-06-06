@@ -2834,3 +2834,7 @@ html.dark {
 .dark .menu-content.menu-style-holo .menu-item-button {
     border-bottom: 1.2px solid rgba(255,255,255,0.2);
 }
+.dark .ytm15-settings-msg {
+    border-bottom: 1.2px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.6);
+}
