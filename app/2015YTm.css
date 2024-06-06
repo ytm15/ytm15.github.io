@@ -2607,7 +2607,7 @@ ytm15-settings.page-visible {
 }
 }
 .settings-category[aria-pressed="true"] {
-    background-color: #3ea6ff26;
+    background-color: rgba(62, 166, 255, 0.15);
     transition: background .2s ease-in-out;
 }
 .ytm15-settings-msg {
