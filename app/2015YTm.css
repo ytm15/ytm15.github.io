@@ -2838,3 +2838,6 @@ html.dark {
     border-bottom: 1.2px solid rgba(255,255,255,0.2);
     color: rgba(255,255,255,0.6);
 }
+.dark .player-container .spinner .path {
+    stroke: #eee;
+}
