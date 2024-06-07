@@ -2677,6 +2677,7 @@ span#setting-title-subtitle-block-subtitle {
 html.dark {
     color: #f1f1f1;
     background-color: #303030;
+    color-scheme: dark;
 }
 .dark .spinner .path {
     stroke: #3ea6ef;
@@ -2844,4 +2845,13 @@ html.dark {
 }
 .dark .player-container .spinner .path {
     stroke: #eee;
+}
+.dark .standalone-collection-badge a {
+    color: #3ea6ef;
+}
+.dark .metadata-row-header {
+    color: rgba(255,255,255,0.6);
+}
+.dark .metadata-row-header-content {
+    border-top: 1.2px solid rgba(255,255,255,0.2);
 }
