@@ -2418,6 +2418,10 @@ ytm15-channels-header {
     margin-top: 3px;
     margin-left: 25px;
 }
+.channels-header-details.no-left-margin {
+    margin-left: 0;
+    margin-top: 5px;
+}
 .channels-header-title {
     font-size: 2rem;
     -webkit-line-clamp: unset;
@@ -2443,7 +2447,7 @@ ytm15-channels-header {
     height: 125px;
     margin-top: -90px;
 }
-.channels-header-details {
+.channels-header-details, .channels-header-details.no-left-margin {
     flex-grow: 1;
     margin-left: 23px;
     margin-top: 10px;

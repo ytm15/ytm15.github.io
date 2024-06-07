@@ -22,6 +22,7 @@ function localStorageChange(){
 DISABLE_YTM15_APP_BORDER_expflag = localStorage.getItem("DISABLE_YTM15_APP_BORDER");
 WEB_ENABLE_DARK_THEME_OPTION_expflag = localStorage.getItem("WEB_ENABLE_DARK_THEME_OPTION");
 DARK_THEME_option = localStorage.getItem("DARK_THEME");
+WEB_CHANNELS_HEADER_NO_LEFT_MARGIN_expflag = localStorage.getItem("WEB_CHANNELS_HEADER_NO_LEFT_MARGIN");
 
 if (DISABLE_YTM15_APP_BORDER_expflag == "true") {
     documentHTML.classList.add("no-app-border");
@@ -41,6 +42,12 @@ if (WEB_ENABLE_DARK_THEME_OPTION_expflag == "true") {
     }
 } else {
     documentHTML.classList.remove("dark");
+};
+
+if (WEB_CHANNELS_HEADER_NO_LEFT_MARGIN_expflag == "true") {
+    
+} else {
+    
 };
 };
 

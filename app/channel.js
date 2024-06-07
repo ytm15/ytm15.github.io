@@ -223,6 +223,11 @@ function channelPage() {
 
     const channelHeaderDetails = document.createElement("div");
     channelHeaderDetails.classList.add("channels-header-details");
+    if (WEB_CHANNELS_HEADER_NO_LEFT_MARGIN_expflag == "true") {
+    channelHeaderDetails.classList.add("no-left-margin");
+    } else {
+    channelHeaderDetails.classList.remove("no-left-margin");
+    }
     channelHeaderChannel.appendChild(channelHeaderDetails);
 
     const channelTitle = document.createElement("h1");

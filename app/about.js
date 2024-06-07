@@ -327,6 +327,10 @@ Changelog
 -Clicking the arrow next to a search suggestion now puts the text from said search suggestion into the search bar without searching for said thing
 <br>
 -The playlist icon is now an img icon
+<br><br>
+07 Jun 2024:
+<br>
+-Added a new experimental flag: WEB_CHANNELS_HEADER_NO_LEFT_MARGIN
     </div>
     </div>
     </div>

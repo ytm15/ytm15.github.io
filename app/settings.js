@@ -276,6 +276,15 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "WEB_ENABLE_DARK_THEME_OPTION"
+      },
+      {
+        "type": "boolean",
+        "title": "WEB_CHANNELS_HEADER_NO_LEFT_MARGIN",
+        "subtitle": "",
+        "pressed": WEB_CHANNELS_HEADER_NO_LEFT_MARGIN_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WEB_CHANNELS_HEADER_NO_LEFT_MARGIN"
       }
       ];
       settingBlocks.forEach(function(item){
