@@ -484,6 +484,10 @@ p {
     line-height: 1.25;
 }
 
+b, strong {
+    font-weight: 700;
+}
+
 .subhead {
 opacity: .7;
 }
@@ -2537,7 +2541,7 @@ ytm15-channels-header {
     transform: translateX(18px);
 }
 [aria-pressed=true] .toggle-button-track {
-    background-color: rgb(6 127 212 / 30%);
+    background-color: rgba(6, 127, 212, 0.3);
 }
 
 /* Settings page */
@@ -2678,6 +2682,38 @@ span#setting-title-subtitle-block-subtitle {
     font-size: 14px;
 }
 
+/* Channel about page */
+.channel-about-metadata-header {
+    border-bottom: 1.2px solid rgba(0,0,0,0.2);
+    padding: 22px 16px 14px;
+    display: flex;
+}
+.channel-about-metadata-header-title {
+    font-weight: 500;
+    font-size: 1.4rem;
+}
+.channel-about-metadata-description {
+    padding: 16px;
+    font-size: 1.6rem;
+}
+.channel-about-metadata-description .user-text {
+    opacity: .7;
+}
+.channel-about-metadata-description-text:not(:empty) {
+    margin-bottom: 16px;
+}
+.channel-about-metadata-description p {
+    margin: 0;
+}
+.channel-about-metadata-view-count {
+    padding: 16px;
+    margin: 0;
+    font-size: 1.6rem;
+    text-align: center;
+    line-height: 1.2;
+    border-top: 1.2px solid rgba(0,0,0,0.2);
+}
+
 /* Global dark theme */
 html.dark {
     color: #f1f1f1;
@@ -2772,7 +2808,7 @@ html.dark {
     background-color: #b9b9b9;
 }
 .dark [aria-pressed=true] .toggle-button-track {
-    background-color: rgb(65 130 239 / 30%);
+    background-color: rgba(65, 130, 239, 0.3);
 }
 .dark [aria-pressed=true] .toggle-button-circle::after {
     background-color: #4182EF;
@@ -2875,4 +2911,10 @@ html.dark {
 }
 .dark .error-container {
     border-bottom: 1.2px solid rgba(255,255,255,0.2);
+}
+.dark .channel-about-metadata-header {
+    border-bottom: 1.2px solid rgba(255,255,255,0.2);
+}
+.dark .channel-about-metadata-view-count {
+    border-top: 1.2px solid rgba(255,255,255,0.2);
 }

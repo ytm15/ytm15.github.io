@@ -95,6 +95,7 @@ SettingsMSG2_text_string = "To be added in the near future";
 AboutYTm15_text_string = "About YTm15";
 DarkTheme_text_string = "Dark theme";
 DarkThemeDesc_text_string = "Enable dark theme throughout the app";
+About_text_string = "About";
 
 function renderSubscribeBtn(parent) {
     const mtrlBtnCont = document.createElement("div");

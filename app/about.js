@@ -337,6 +337,8 @@ Changelog
 -Added a new experimental flag: MENU_DISABLE_CANCEL_BUTTON
 <br>
 -The menus' cancel buttons are now hidden by default
+<br>
+-Started working on channel pages' about page
     </div>
     </div>
     </div>

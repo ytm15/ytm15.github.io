@@ -493,6 +493,124 @@ function channelVideosContin(continuation, contItemParent) {
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "about") {
     tabContent.removeAttribute("hidden");
     }
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "about") {
+    var sectionList = document.createElement("div");
+    sectionList.classList.add("section-list");
+    
+    var sectLazyList = document.createElement("div");
+    sectLazyList.classList.add("lazy-list");
+    sectionList.appendChild(sectLazyList);
+
+    var spinner = document.querySelector(".spinner-container.full-height");
+    const contItem = document.createElement("div");
+    contItem.classList.add("continuation-item");
+    const spinnerClone = spinner.cloneNode(true);
+    spinnerClone.classList.remove("full-height");
+    spinnerClone.removeAttribute("hidden");
+    contItem.appendChild(spinnerClone);
+
+    sectLazyList.appendChild(contItem);
+
+    const getChannelAbout = new XMLHttpRequest();
+    getChannelAbout.open('GET', 'https://yt.lemnoslife.com/channels?part=snippet,status,about&id=' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0], true);
+ 
+    getChannelAbout.onerror = function(event) {
+    console.error("An error occurred with this operation (" + getChannelAbout.status + ")");
+
+    contItem.remove();
+
+    const error = document.createElement("div");
+    error.classList.add('error-container');
+    error.innerHTML = `<div class="error-content">
+<img class="error-icon ytm15-img" src="alert_error.png"></img>
+<span class="error-text">There was an error connecting to the server</span>
+</div>
+<div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry" onClick="location.reload();"><div class="button-text">Retry</div></button></div>`;
+    const pageCont = document.querySelector('.page-container');
+    pageCont.before(error);
+    error.querySelector("button").onclick = function(){
+    channelPage();
+    error.remove();
+    };
+    return;
+    };
+
+    getChannelAbout.send();
+
+    channelDescription = response.descriptionHtml;
+
+    getChannelAbout.onload = function() {
+    if (getChannelAbout.status === 200) {
+    const data = JSON.parse(getChannelAbout.response);
+
+    contItem.remove();
+
+    const itemSect = document.createElement("div");
+    itemSect.classList.add("item-section");
+    sectLazyList.appendChild(itemSect);
+
+    const lazyList = document.createElement("div");
+    lazyList.classList.add("lazy-list", "no-animation");
+    itemSect.appendChild(lazyList);
+
+    const channelAboutMetadata = document.createElement("div");
+    channelAboutMetadata.classList.add("channel-about-metadata");
+    lazyList.appendChild(channelAboutMetadata);
+
+    const channelAboutMetadataHeader = document.createElement("div");
+    channelAboutMetadataHeader.classList.add("channel-about-metadata-header");
+    channelAboutMetadata.appendChild(channelAboutMetadataHeader);
+
+    const channelAboutHeaderTitle = document.createElement("div");
+    channelAboutHeaderTitle.classList.add("channel-about-metadata-header-title");
+    channelAboutHeaderTitle.innerHTML = About_text_string;
+    channelAboutMetadataHeader.appendChild(channelAboutHeaderTitle);
+
+    const channelAboutMetadataDesc = document.createElement("div");
+    channelAboutMetadataDesc.classList.add("channel-about-metadata-description");
+    channelAboutMetadata.appendChild(channelAboutMetadataDesc);
+
+    const channelAboutMetadataDescText = document.createElement("div");
+    channelAboutMetadataDescText.innerHTML = channelDescription;
+    channelAboutMetadataDescText.classList.add("channel-about-metadata-description-text", "user-text");
+    channelAboutMetadataDesc.appendChild(channelAboutMetadataDescText);
+
+    const channelAboutMetadataJoinDate = document.createElement("p");
+    channelAboutMetadataJoinDate.classList.add("channel-about-metadata-join-date", "user-text");
+    channelAboutMetadataJoinDate.innerHTML = `<span style="opacity: .6; font-style: italic;">Retrieving join date..</span>`
+    channelAboutMetadataDesc.appendChild(channelAboutMetadataJoinDate);
+
+    const getChannelJoinDate = new XMLHttpRequest();
+    getChannelJoinDate.open('GET', 'https://yt.lemnoslife.com/noKey/channels?part=snippet,status&id=' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0], true);
+ 
+    getChannelJoinDate.send();
+
+    getChannelJoinDate.onload = function(){
+    if (getChannelJoinDate.status === 200) {
+      const response = JSON.parse(getChannelJoinDate.response);
+      const options = {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+      };
+      const event = new Date(response.items[0].snippet.publishedAt).toLocaleDateString(undefined, options);
+      channelAboutMetadataJoinDate.innerHTML = `Joined <span class="join-date-text">${event}</span>`
+    };
+    }
+
+    const channelAboutMetadataViewCount = document.createElement("p");
+    channelAboutMetadataViewCount.classList.add("channel-about-metadata-view-count");
+    channelAboutMetadataViewCount.innerHTML = `<strong class="view-count-text">${data.items[0].about.stats.viewCount.toLocaleString()}</strong> views`;
+    if (data.items[0].about.stats.viewCount !== 0) {
+    channelAboutMetadata.appendChild(channelAboutMetadataViewCount);
+    }
+    } else {
+    getChannelAbout.onerror();
+    }
+    };
+
+    tabContent.appendChild(sectionList);
+    }
     tabContainer.appendChild(tabContent);
 
     pageCont.innerHTML = "";
