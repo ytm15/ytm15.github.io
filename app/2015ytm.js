@@ -23,6 +23,11 @@ DISABLE_YTM15_APP_BORDER_expflag = localStorage.getItem("DISABLE_YTM15_APP_BORDE
 WEB_ENABLE_DARK_THEME_OPTION_expflag = localStorage.getItem("WEB_ENABLE_DARK_THEME_OPTION");
 DARK_THEME_option = localStorage.getItem("DARK_THEME");
 WEB_CHANNELS_HEADER_NO_LEFT_MARGIN_expflag = localStorage.getItem("WEB_CHANNELS_HEADER_NO_LEFT_MARGIN");
+MENU_DISABLE_CANCEL_BUTTON_expflag = localStorage.getItem("MENU_DISABLE_CANCEL_BUTTON");
+if (MENU_DISABLE_CANCEL_BUTTON_expflag == undefined) {
+localStorage.setItem("MENU_DISABLE_CANCEL_BUTTON", "true");
+MENU_DISABLE_CANCEL_BUTTON_expflag = localStorage.getItem("MENU_DISABLE_CANCEL_BUTTON");
+}
 
 if (DISABLE_YTM15_APP_BORDER_expflag == "true") {
     documentHTML.classList.add("no-app-border");
@@ -1099,6 +1104,11 @@ menuItem.appendChild(menuBtnCancel);
 function menuRenderer() {
     document.body.appendChild(menuContain);
     document.body.classList.add("modal-open");
+    if (MENU_DISABLE_CANCEL_BUTTON_expflag == "true") {
+      menuBtnCancel.setAttribute("hidden", "");
+    } else {
+      menuBtnCancel.removeAttribute("hidden");
+    };
 }
 
 function menuRemove() {

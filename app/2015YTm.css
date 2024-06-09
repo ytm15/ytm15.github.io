@@ -13,6 +13,7 @@ html {
 	color: #111;
 	background-color: #fff;
         word-wrap: break-word;
+        transition: background .3s;
 }
 
 html::before {
@@ -2858,4 +2859,20 @@ html.dark {
 }
 .dark .metadata-row-header-content {
     border-top: 1.2px solid rgba(255,255,255,0.2);
+}
+.dark .menu-item:only-child:before {
+    border-bottom: 1.2px solid rgba(255,255,255,0.2);
+}
+.dark .error-icon {
+    filter: invert(1);
+    -webkit-filter: invert(1);
+}
+.dark [data-style="grey_filled"] .material-button {
+    background-color: rgba(255,255,255,0.3);
+}
+.dark .error-content {
+    color: #eee;
+}
+.dark .error-container {
+    border-bottom: 1.2px solid rgba(255,255,255,0.2);
 }

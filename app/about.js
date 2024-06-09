@@ -331,6 +331,12 @@ Changelog
 07 Jun 2024:
 <br>
 -Added a new experimental flag: WEB_CHANNELS_HEADER_NO_LEFT_MARGIN
+<br><br>
+09 Jun 2024:
+<br>
+-Added a new experimental flag: MENU_DISABLE_CANCEL_BUTTON
+<br>
+-The menus' cancel buttons are now hidden by default
     </div>
     </div>
     </div>

@@ -285,6 +285,15 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "WEB_CHANNELS_HEADER_NO_LEFT_MARGIN"
+      },
+      {
+        "type": "boolean",
+        "title": "MENU_DISABLE_CANCEL_BUTTON",
+        "subtitle": "",
+        "pressed": MENU_DISABLE_CANCEL_BUTTON_expflag == "true",
+        "pressed-default": true,
+        "disabled": false,
+        "lsitem": "MENU_DISABLE_CANCEL_BUTTON"
       }
       ];
       settingBlocks.forEach(function(item){
