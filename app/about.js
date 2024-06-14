@@ -345,6 +345,8 @@ Changelog
 -Now when a shelf is empty, it'll say "This shelf is empty"
 <br>
 -The shelf's expand button now only shows when there's more than 3 items in the shelf's vertical list
+<br>
+-Changed holo menus' dark theme color from "#252525" to "#303030"
     </div>
     </div>
     </div>

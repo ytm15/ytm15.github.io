@@ -2884,7 +2884,8 @@ html.dark {
     background-color: #292929;
 }
 .dark .menu-content.menu-style-holo {
-    background-color: #252525;
+    /* background-color: #252525; */
+    background-color: #303030;
 }
 .dark .menu-content.menu-style-holo .menu-item-button {
     border-bottom: 1.2px solid rgba(255,255,255,0.2);
