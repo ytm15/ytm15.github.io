@@ -530,7 +530,9 @@ function renderData() {
         renderCompactMediaItem(verticalList, "shelf", item.videoId, item.videoThumbnails[3].url, item.lengthSeconds, item.title, item.author, item.authorId, item.publishedText, item.viewCount, item.type);
     });
     
+    if (data.length > 3) {
     verticalList.appendChild(ESButtonCont);
+    }
 } else {
 getHomeData3.onerror();
 }
@@ -653,7 +655,9 @@ function renderDataTrending(homeShelfTrendingType, shelfTitle) {
         renderCompactMediaItem(verticalList, "shelf", item.videoId, item.videoThumbnails[3].url, item.lengthSeconds, item.title, item.author, item.authorId, item.publishedText, item.viewCount, item.type);
     });
 
+    if (data.length > 3) {
     verticalList.appendChild(ESButtonCont);
+    }
     } else {
     getHomeData2.onerror();
     }

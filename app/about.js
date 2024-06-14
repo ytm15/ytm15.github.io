@@ -339,6 +339,12 @@ Changelog
 -The menus' cancel buttons are now hidden by default
 <br>
 -Started working on channel pages' about page
+<br><br>
+14 Jun 2024
+<br>
+-Now when a shelf is empty, it'll say "This shelf is empty"
+<br>
+-The shelf's expand button now only shows when there's more than 3 items in the shelf's vertical list
     </div>
     </div>
     </div>
