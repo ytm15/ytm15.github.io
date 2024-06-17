@@ -205,10 +205,40 @@ function renderHeader() {
     };
     menuItemAbt.appendChild(menuItemBtnAbt);
 
+    const menuItemHome = document.createElement("div");
+    menuItemHome.classList.add("menu-item");
+    menuItem.before(menuItemHome);
+
+    const menuItemBtnHome = document.createElement("button");
+    menuItemBtnHome.classList.add("menu-item-button", "has-ripple");
+    menuItemBtnHome.textContent = ReturnHomepage_text_string;
+    menuItemBtnHome.onclick = function(){
+        window.location.href = "#/";
+        menuRemoveExtras();
+        menuRemove();
+    };
+    menuItemHome.appendChild(menuItemBtnHome);
+
+    const menuItemReload = document.createElement("div");
+    menuItemReload.classList.add("menu-item");
+    menuItem.before(menuItemReload);
+
+    const menuItemBtnReload = document.createElement("button");
+    menuItemBtnReload.classList.add("menu-item-button", "has-ripple");
+    menuItemBtnReload.textContent = Reload_text_string;
+    menuItemBtnReload.onclick = function(){
+        window.location.reload();
+        menuRemoveExtras();
+        menuRemove();
+    };
+    menuItemReload.appendChild(menuItemBtnReload);
+
     function menuRemoveExtras() {
         setTimeout(function() {
         menuItemSettings.remove();
         menuItemAbt.remove();
+        menuItemHome.remove();
+        menuItemReload.remove();
         }, 300);
     }
 

@@ -340,13 +340,17 @@ Changelog
 <br>
 -Started working on channel pages' about page
 <br><br>
-14 Jun 2024
+14 Jun 2024:
 <br>
 -Now when a shelf is empty, it'll say "This shelf is empty"
 <br>
 -The shelf's expand button now only shows when there's more than 3 items in the shelf's vertical list
 <br>
 -Changed holo menus' dark theme color from "#252525" to "#303030"
+<br><br>
+17 Jun 2024:
+<br>
+-Added 2 new header menu btns, one is called "Return home", which takes you back to the YTm15 app's homepage after clicking it, and the other is called "Refresh", which reloads the webpage entirely
     </div>
     </div>
     </div>

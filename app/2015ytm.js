@@ -96,6 +96,8 @@ AboutYTm15_text_string = "About YTm15";
 DarkTheme_text_string = "Dark theme";
 DarkThemeDesc_text_string = "Enable dark theme throughout the app";
 About_text_string = "About";
+ReturnHomepage_text_string = "Return home";
+Reload_text_string = "Refresh";
 
 function renderSubscribeBtn(parent) {
     const mtrlBtnCont = document.createElement("div");
