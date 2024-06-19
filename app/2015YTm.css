@@ -2241,6 +2241,7 @@ h3.ap-bottom-title-text {
     background-color: #fafafa;
     box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.25);
     padding: 8px 0;
+    animation: menu-open-dropdown .25s;
 }
 .menu-content.menu-style-dropdown .menu-item-button {
     padding: 10px;
@@ -2303,6 +2304,18 @@ h3.ap-bottom-title-text {
     opacity: 1;
     transform: scale(1);
     transform-origin: top right;
+}
+}
+@keyframes menu-open-dropdown {
+0% {
+    opacity: 0;
+    transform: scale(0.1);
+    transform-origin: top left;
+}
+100% {
+    opacity: 1;
+    transform: scale(1);
+    transform-origin: top left;
 }
 }
 @keyframes menu-close {
@@ -2743,6 +2756,7 @@ span#setting-title-subtitle-block-subtitle {
     max-width: 100%;
     align-items: center;
     padding: 2px;
+    cursor: pointer;
 }
 .section {
     display: block;
