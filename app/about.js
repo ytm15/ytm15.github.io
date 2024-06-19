@@ -351,6 +351,12 @@ Changelog
 17 Jun 2024:
 <br>
 -Added 2 new header menu btns, one is called "Return home", which takes you back to the YTm15 app's homepage after clicking it, and the other is called "Refresh", which reloads the webpage entirely
+<br><br>
+19 Jun 2024:
+<br>
+-Started working on dropdown selects, sub-menus, and sections
+<br>
+-You can now sort videos by oldest, newest, and most-popular on channel pages
     </div>
     </div>
     </div>

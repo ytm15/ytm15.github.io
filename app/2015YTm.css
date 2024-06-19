@@ -2237,6 +2237,15 @@ h3.ap-bottom-title-text {
     box-shadow: 0px 5px 18px 1px rgba(0, 0, 0, 0.3);
     animation: menu-open-mtrl-2 .25s;
 }
+.menu-content.menu-style-dropdown {
+    background-color: #fafafa;
+    box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.25);
+    padding: 8px 0;
+}
+.menu-content.menu-style-dropdown .menu-item-button {
+    padding: 10px;
+    padding-right: 20px;
+}
 .menu-content.menu-style-youtube {
     background-color: #fff;
     box-shadow: 0px 1.3px 3px 1px rgba(0,0,0,0.18);
@@ -2337,6 +2346,9 @@ h3.ap-bottom-title-text {
     width: 100%;
     box-sizing: border-box;
     text-align: initial;
+}
+.menu-item-button[aria-selected="true"] {
+    background-color: rgba(0,0,0,0.1);
 }
 
 /* Searchbox dropdown */
@@ -2723,6 +2735,32 @@ span#setting-title-subtitle-block-subtitle {
     border-top: 1.2px solid rgba(0,0,0,0.2);
 }
 
+/* Dropdown selects, sections, and sub-menus */
+.dropdown-select {
+    display: inline-flex;
+    position: relative;
+    box-sizing: border-box;
+    max-width: 100%;
+    align-items: center;
+    padding: 2px;
+}
+.section {
+    display: block;
+}
+ytm15-channel-sub-menu .dropdown-select {
+    margin: 12px 14px 0;
+    margin-right: 0;
+}
+ytm15-channel-sub-menu {
+    margin-bottom: -2px;
+}
+.dropdown-select ytm15-icon {
+    opacity: .6;
+}
+.dropdown-text {
+    margin-left: 5px;
+}
+
 /* Global dark theme */
 html.dark {
     color: #f1f1f1;
@@ -2927,4 +2965,10 @@ html.dark {
 }
 .dark .channel-about-metadata-view-count {
     border-top: 1.2px solid rgba(255,255,255,0.2);
+}
+.dark .menu-item-button[aria-selected="true"] {
+    background-color: rgba(255,255,255,0.1);
+}
+.dark .menu-content.menu-style-dropdown {
+    background-color: #303030;
 }

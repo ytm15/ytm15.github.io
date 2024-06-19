@@ -276,6 +276,48 @@ function channelPage() {
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "videos" && item == "videos") {
     var sectionList = document.createElement("div");
     sectionList.classList.add("section-list");
+
+    var channelSubMenu = document.createElement("ytm15-channel-sub-menu");
+    channelSubMenu.classList.add("section");
+
+    var popularSelected = window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString() == "popular";
+    var oldestSelected = window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString() == "oldest";
+    if (!window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString() == "") {
+    newestSelectedVal = window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString() == "newest";
+    } else {
+    newestSelectedVal = true;
+    };
+    var newestSelected = newestSelectedVal;
+
+    renderDropdownSelect(SortBy_text_string, channelSubMenu, [
+      {
+        "title": Mostpopular_text_string,
+        "selected": popularSelected,
+        "onclick": function(){
+        menuRemoveExtras();
+        menuRemove();
+        window.location.hash = window.location.hash.split("?").join(',').split(',').slice(0, 1)[0] + "?sort=popular";
+        }
+      },
+      {
+        "title": Oldest_text_string,
+        "selected": oldestSelected,
+        "onclick": function(){
+        menuRemoveExtras();
+        menuRemove();
+        window.location.hash = window.location.hash.split("?").join(',').split(',').slice(0, 1)[0] + "?sort=oldest";
+        }
+      },
+      {
+        "title": Newest_text_string,
+        "selected": newestSelected,
+        "onclick": function(){
+        menuRemoveExtras();
+        menuRemove();
+        window.location.hash = window.location.hash.split("?").join(',').split(',').slice(0, 1)[0] + "?sort=newest";
+        }
+      }
+      ]);
     
     var sectLazyList = document.createElement("div");
     sectLazyList.classList.add("lazy-list");
@@ -292,7 +334,7 @@ function channelPage() {
     sectLazyList.appendChild(contItem);
 
     const getChannelVideos = new XMLHttpRequest();
-    getChannelVideos.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '/videos', true);
+    getChannelVideos.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '/videos?sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString(), true);
  
     getChannelVideos.onerror = function(event) {
     console.error("An error occurred with this operation (" + getChannelVideos.status + ")");
@@ -322,6 +364,8 @@ function channelPage() {
     const data = JSON.parse(getChannelVideos.response);
 
     contItem.remove();
+
+    sectionList.insertAdjacentElement("afterbegin", channelSubMenu);
 
     const itemSect = document.createElement("div");
     itemSect.classList.add("item-section");
@@ -386,7 +430,7 @@ function channelVideosContin(continuation, contItemParent) {
     contItemParent.appendChild(contItem);
 
     const getChannelVideos1 = new XMLHttpRequest();
-    getChannelVideos1.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '/videos?continuation=' + continuation, true);
+    getChannelVideos1.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '/videos?continuation=' + continuation + '&sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString(), true);
  
     getChannelVideos1.onerror = function(event) {
     console.error("An error occurred with this operation (" + getChannelVideos1.status + ")");

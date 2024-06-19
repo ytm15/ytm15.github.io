@@ -98,6 +98,10 @@ DarkThemeDesc_text_string = "Enable dark theme throughout the app";
 About_text_string = "About";
 ReturnHomepage_text_string = "Return home";
 Reload_text_string = "Refresh";
+SortBy_text_string = "Sort by";
+Mostpopular_text_string = "Most popular";
+Oldest_text_string = "Date added (oldest)";
+Newest_text_string = "Date added (newest)";
 
 function renderSubscribeBtn(parent) {
     const mtrlBtnCont = document.createElement("div");
@@ -144,6 +148,72 @@ function renderToggleBtn(parent, isDisabled, isPressed, LSItem){
     toggleBtnCont.appendChild(toggleBtn);
     toggleBtn.appendChild(toggleBtnTrack);
     toggleBtn.appendChild(toggleBtnCircle);
+}
+
+function renderDropdownSelect(ddText, parent, ddItems) {
+    const dropdownSelect = document.createElement("div");
+    dropdownSelect.classList.add("dropdown-select", "has-ripple");
+    dropdownSelect.innerHTML = `<ytm15-icon class="sort-icon"><svg viewBox="0 0 24 24" fill=""><path d="M3,13H15V11H3M3,6V8H21V6M3,18H9V16H3V18Z"></path></svg></ytm15-icon>`;
+    const dropdownSelectText = document.createElement("div");
+    dropdownSelectText.innerHTML = ddText;
+    dropdownSelectText.classList.add("dropdown-text");
+
+        dropdownSelect.onclick = function(){
+        menuRenderer();
+        menuCont.setAttribute("style", "top: 0; right: 0;");
+
+        const rect = dropdownSelect.getBoundingClientRect();
+        const menuRect = menuCont.getBoundingClientRect();
+        const menuAlign = function() {
+        menuCont.classList.add("menu-style-dropdown");
+        menuCont.setAttribute("style", `left: ${rect.left - menuCont.offsetWidth + window.scrollX + 11}px; top: ${rect.top + window.scrollY - 10}px; margin: 8px 12px;`);
+        if (rect.left - menuCont.offsetWidth + window.scrollX + 11 < 0) {
+        menuCont.setAttribute("style", `left: 0px; top: ${rect.top + window.scrollY - 10}px; margin: 8px 12px;`);
+        }
+        }
+
+        document.onclick = menuAlign;
+        setTimeout(function(){
+        document.onclick = undefined;
+        }, 100);
+
+        ddItems.forEach(function(item){
+        menuItem1 = document.createElement("div");
+        menuItem1.classList.add("menu-item");
+        menuItem.before(menuItem1);
+
+        const menuItemBtn1 = document.createElement("button");
+        menuItemBtn1.classList.add("menu-item-button", "has-ripple");
+        menuItemBtn1.textContent = item.title;
+        menuItemBtn1.onclick = item.onclick;
+        menuItemBtn1.setAttribute("aria-selected", item.selected);
+        menuItem1.appendChild(menuItemBtn1);
+        });
+
+        menuRemoveExtras = function() {
+            setTimeout(function() {
+            Array.from(menuCont.querySelectorAll(".menu-item")).forEach(function(item){
+            if (!item.children[0].classList.contains("cancel-button")) {
+            item.remove();
+            };
+            });
+            menuCont.classList.remove("menu-style-dropdown");
+            }, 300);
+        }
+
+        menuBtnCancel.onclick = function(){
+        menuRemoveExtras();
+        menuRemove();
+        };
+        menuOverlay.onclick = function(){
+        menuRemoveExtras();
+        menuRemove();
+        };
+        };
+
+    dropdownSelect.appendChild(dropdownSelectText);
+    dropdownSelect.innerHTML += `<ytm15-icon class="dropdown-arrow-icon"><svg viewBox="0 0 24 24" fill=""><path d="M7,10L12,15L17,10H7Z"></path></svg></ytm15-icon>`;
+    parent.appendChild(dropdownSelect);
 }
 
 window.addEventListener('hashchange', function (event) {
