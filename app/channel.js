@@ -273,7 +273,7 @@ function channelPage() {
 
     tabContent.appendChild(sectionList);
     }
-    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "videos" && item == "videos") {
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "videos" && item == "videos" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "shorts" && item == "shorts" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "streams" && item == "streams") {
     var sectionList = document.createElement("div");
     sectionList.classList.add("section-list");
 
@@ -334,7 +334,8 @@ function channelPage() {
     sectLazyList.appendChild(contItem);
 
     const getChannelVideos = new XMLHttpRequest();
-    getChannelVideos.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '/videos?sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString(), true);
+    /* getChannelVideos.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '/videos?sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString(), true); */
+       getChannelVideos.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] + '?sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString(), true);
  
     getChannelVideos.onerror = function(event) {
     console.error("An error occurred with this operation (" + getChannelVideos.status + ")");
@@ -365,7 +366,9 @@ function channelPage() {
 
     contItem.remove();
 
+    if ((window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "shorts" && item !== "shorts") && (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "streams" && item !== "streams")) {
     sectionList.insertAdjacentElement("afterbegin", channelSubMenu);
+    }
 
     const itemSect = document.createElement("div");
     itemSect.classList.add("item-section");
@@ -430,7 +433,8 @@ function channelVideosContin(continuation, contItemParent) {
     contItemParent.appendChild(contItem);
 
     const getChannelVideos1 = new XMLHttpRequest();
-    getChannelVideos1.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '/videos?continuation=' + continuation + '&sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString(), true);
+    /* getChannelVideos1.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '/videos?continuation=' + continuation + '&sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString(), true); */
+       getChannelVideos1.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + `/${window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0]}?continuation=` + continuation + '&sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString(), true);
  
     getChannelVideos1.onerror = function(event) {
     console.error("An error occurred with this operation (" + getChannelVideos1.status + ")");
@@ -640,6 +644,26 @@ function channelVideosContin(continuation, contItemParent) {
       const event = new Date(response.items[0].snippet.publishedAt).toLocaleDateString(undefined, options);
       channelAboutMetadataJoinDate.innerHTML = `Joined <span class="join-date-text">${event}</span>`
     };
+    }
+
+    const channelExternalLinks = document.createElement("div");
+    channelExternalLinks.classList.add("channel-external-links");
+
+    if (data.items[0].about.links.length > 0) {
+    channelAboutMetadataDesc.appendChild(channelExternalLinks);
+    data.items[0].about.links.forEach(function(link){
+      const channelExternalLink = document.createElement("a");
+      channelExternalLink.classList.add("channel-external-link", "has-ripple");
+      const channelExternalLinkTextCont = document.createElement("div");
+      channelExternalLinkTextCont.classList.add("channel-external-link-text-container");
+      const channelExternalLinkTitle = document.createElement("span");
+      channelExternalLinkTitle.classList.add("channel-external-link-title");
+      channelExternalLinkTitle.textContent = link.title;
+
+      channelExternalLinks.appendChild(channelExternalLink);
+      channelExternalLink.appendChild(channelExternalLinkTextCont);
+      channelExternalLinkTextCont.appendChild(channelExternalLinkTitle);
+    });
     }
 
     const channelAboutMetadataViewCount = document.createElement("p");

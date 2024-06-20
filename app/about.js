@@ -357,6 +357,14 @@ Changelog
 -Started working on dropdown selects, sub-menus, and sections
 <br>
 -You can now sort videos by oldest, newest, and most-popular on channel pages
+<br><br>
+20 Jun 2024:
+<br>
+-Added external links to channel about pages (Only appears if the channel itself has external links in general)
+<br>
+-Changed the text string for the channel pages' home page
+<br>
+-The shorts and live pages on channels now work
     </div>
     </div>
     </div>

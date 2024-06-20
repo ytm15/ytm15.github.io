@@ -2748,6 +2748,37 @@ span#setting-title-subtitle-block-subtitle {
     border-top: 1.2px solid rgba(0,0,0,0.2);
 }
 
+/* Channel external links */
+a.channel-external-link {
+    display: inline-block;
+    padding: 9px 10px;
+    margin-left: -9px;
+    border-radius: 3px;
+}
+.channel-external-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 12px;
+}
+.channel-external-link-text-container {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    align-items: flex-start;
+}
+.channel-external-link-title {
+    font-size: 1.4rem;
+    max-width: 100%;
+    font-weight: 300;
+    text-align: center;
+    line-height: 1;
+    color: #068fd4;
+}
+.channel-external-link.has-ripple::before {
+    background-color: rgba(6,143,212,0.15);
+}
+
 /* Dropdown selects, sections, and sub-menus */
 .dropdown-select {
     display: inline-flex;
@@ -2755,18 +2786,18 @@ span#setting-title-subtitle-block-subtitle {
     box-sizing: border-box;
     max-width: 100%;
     align-items: center;
-    padding: 2px;
+    padding: 6px 2px;
     cursor: pointer;
 }
 .section {
     display: block;
 }
 ytm15-channel-sub-menu .dropdown-select {
-    margin: 12px 14px 0;
+    margin: 8px 13px 0;
     margin-right: 0;
 }
 ytm15-channel-sub-menu {
-    margin-bottom: -2px;
+    margin-bottom: -5px;
 }
 .dropdown-select ytm15-icon {
     opacity: .6;
@@ -2985,4 +3016,10 @@ html.dark {
 }
 .dark .menu-content.menu-style-dropdown {
     background-color: #303030;
+}
+.dark .channel-external-link-title {
+    color: #3ea6ef;
+}
+.dark .channel-external-link.has-ripple::before {
+    background-color: rgba(62,166,239,0.15);
 }
