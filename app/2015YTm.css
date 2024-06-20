@@ -2477,7 +2477,7 @@ ytm15-channels-header {
 }
 .channels-header-details.no-left-margin {
     margin-left: 0;
-    margin-top: 5px;
+    margin-top: 8px;
 }
 .channels-header-title {
     font-size: 2rem;
