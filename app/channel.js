@@ -654,6 +654,11 @@ function channelVideosContin(continuation, contItemParent) {
     data.items[0].about.links.forEach(function(link){
       const channelExternalLink = document.createElement("a");
       channelExternalLink.classList.add("channel-external-link", "has-ripple");
+      channelExternalLink.href = link.url;
+      channelExternalLink.setAttribute("tabindex", "0");
+      channelExternalLink.rel = "nofollow";
+      channelExternalLink.target = "_blank";
+      channelExternalLink.setAttribute("force-new-state", "true");
       const channelExternalLinkTextCont = document.createElement("div");
       channelExternalLinkTextCont.classList.add("channel-external-link-text-container");
       const channelExternalLinkTitle = document.createElement("span");
