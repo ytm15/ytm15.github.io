@@ -365,6 +365,8 @@ Changelog
 -Changed the text string for the channel pages' home page
 <br>
 -The shorts and live pages on channels now work
+<br>
+-The searchbox dropdown now animates when you open and close search mode
     </div>
     </div>
     </div>
