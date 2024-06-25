@@ -841,6 +841,7 @@ ytm15-header-bar[ischannel="true"] {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+    min-width: 0;
 }
 .header-buttons {
     flex-shrink: 0;
