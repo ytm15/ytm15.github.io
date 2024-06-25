@@ -257,6 +257,9 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         if (mediaType == "hashtag") {
         compMediaTypeName = 'compact-hashtag';
         }
+        if (parentName == "playlist-video-list") {
+        compMediaTypeName = 'playlist-video';
+        }
         video.classList.add(compMediaTypeName);
         if (parentName == "shelf" || parentName == "channel-shelf") {
         video.classList.add('shelf-item');
@@ -548,10 +551,12 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         } else if (mediaType == "hashtag") {
 
         } else {
-        if (parentName !== "related-media-lazy-list") {
+        if (parentName !== "related-media-lazy-list" && parentName !== "playlist-video-list") {
         subhead.appendChild(published);
         }
+        if (parentName !== "playlist-video-list") {
         subhead.appendChild(views);
+        }
         }
         media.appendChild(metadata);
         metadata.appendChild(metaContent);
@@ -1221,7 +1226,7 @@ function searching(parent, sbInput) {
         /* header.setAttribute('data-mode', dataMode); */
         header.dataset.mode = dataMode;
         searchOverlay.setAttribute('hidden', '');
-        if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "channel") {
+        if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "channel" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "playlist") {
             
         } else {
             backBtn.setAttribute("hidden", "");
@@ -1252,6 +1257,8 @@ if (window.location.hash.split("/").join(',').split("?").join(',').split(',').sl
     channelPage();
 } else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results") {
     searchPage();
+} else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "playlist") {
+    playlistPage();
 } else {
     if (document.querySelector(".spinner-container.full-height")) {
     var spinner = document.querySelector(".spinner-container.full-height");

@@ -2243,6 +2243,9 @@ h3.ap-bottom-title-text {
     padding: 8px 0;
     animation: menu-open-dropdown .25s;
 }
+.menu-content.menu-style-dropdown .menu-item {
+    min-width: unset;
+}
 .menu-content.menu-style-dropdown .menu-item-button {
     padding: 10px;
     padding-right: 20px;
@@ -2824,6 +2827,79 @@ ytm15-channel-sub-menu {
     margin-left: 5px;
 }
 
+.flex-spacer {
+    flex-grow: 1;
+}
+
+/* Playlist header | Playlist page */
+.playlist-header-container {
+    padding: 16px;
+    display: flex;
+    background-color: #f1f1f1;
+    box-sizing: border-box;
+    flex-direction: row;
+    position: relative;
+}
+.playlist-header-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    margin: 0 auto;
+    z-index: 1;
+    min-width: 0;
+}
+.playlist-title-wrapper {
+    margin: -16px -16px 0;
+    padding: 16px 16px 0;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+.playlist-title-and-owner {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+.playlist-title {
+    width: 100%;
+    font-size: 20px;
+    margin-bottom: 3px;
+}
+.playlist-owner-text {
+    font-size: 14px;
+}
+.playlist-action-buttons {
+    margin: 3px -12px -12px;
+    display: flex;
+    flex-direction: row;
+    color: rgba(0, 0, 0, 0.5);
+}
+.icon-button.playlist-button {
+    width: 48px;
+    height: 48px;
+    border-radius: 0;
+    padding: 12px;
+}
+.playlist-video-list-header {
+    padding: 15px 16px 10px;
+    margin: 0 73px 0 0;
+    font-weight: 500;
+    opacity: .6;
+    font-size: 14px;
+}
+.playlist-video-list-header span~span::before {
+    content: "•";
+    padding: 0 4px;
+}
+ytm15-playlist-header[data-is-beta="true"]::before {
+    content: "The playlist page is currently in beta, meaning some features may be missing and it may not be complete yet";
+    font-size: 14px;
+    display: block;
+    padding: 16px;
+    background-color: rgba(0,0,0,0.1);
+}
+
 /* Global dark theme */
 html.dark {
     color: #f1f1f1;
@@ -3040,4 +3116,13 @@ html.dark {
 }
 .dark .channel-external-link.has-ripple::before {
     background-color: rgba(62,166,239,0.15);
+}
+.dark ytm15-playlist-header[data-is-beta="true"]::before {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.dark .playlist-header-container {
+    background-color: #212121;
+}
+.dark .playlist-action-buttons {
+    color: rgba(255,255,255,0.5);
 }

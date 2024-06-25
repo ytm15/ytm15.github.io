@@ -561,6 +561,10 @@ video.storyboard-video {
     height: 80px;
 }
 
+.player-mini-mode .player-options-container {
+    overflow: hidden;
+}
+
 .player-options-item {
     display: flex;
     flex-direction: column;

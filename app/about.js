@@ -367,6 +367,10 @@ Changelog
 -The shorts and live pages on channels now work
 <br>
 -The searchbox dropdown now animates when you open and close search mode
+<br><br>
+25 Jun 2024:
+<br>
+-Started working on the playlist page (As of now, said page is in beta since it's not complete yet)
     </div>
     </div>
     </div>
