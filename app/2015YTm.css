@@ -2860,6 +2860,7 @@ ytm15-channel-sub-menu {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
+    overflow: hidden;
 }
 .playlist-title {
     width: 100%;
