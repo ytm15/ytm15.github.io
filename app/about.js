@@ -63,13 +63,14 @@ What is YTm15/YouTube Mobile 2015?
 YouTube Mobile 2015 (also known as YTm15) is a project of mine to rebuild the 2015 version of the interface of YouTube for mobile. The creator of YTm15 is Yacine Ghuloum.
 <br>
 <br>
-This project has been ongoing since Feb 2024, in an effort to ensure that you can relive a nostalgic experience of what it was like to use the YouTube mobile app back in 2015.
+This project has been ongoing since Feb 2024, in an effort to ensure that you can relive a nostalgic experience of what it was like to use the YouTube mobile app back in 2015. (or just for people who want to use YT with an older look ig)
 <br>
 <br>
 YTm15 is based off of version 10 of the Android YT app
 <br>
 <br>
-Please note that YTm15 as it is in its current state is unfinished, so a lot of things you'd expect to see in something like this (e.g. channel pages, search page, playlist page, and even watchpage) are not present/built/finished in this app yet
+<!-- The line below was previously: "Please note that YTm15 as it is in its current state is unfinished, so a lot of things you'd expect to see in something like this (e.g. channel pages, search page, playlist page, and even watchpage) are not present/built/finished in this app yet" -->
+Please note YTm15 as it is right now is currently in an unfinished state, so it's expected to find bugs and missing/unfinished features/pages/stuff here and there
 </div>
     </div>
     </div>
@@ -371,6 +372,10 @@ Changelog
 25 Jun 2024:
 <br>
 -Started working on the playlist page (As of now, said page is in beta since it's not complete yet)
+<br><br>
+26 Jun 2024:
+<br>
+-Updated the "please note YTm15 is unfinished" text above (along with a few modifications to another text also above)
     </div>
     </div>
     </div>
