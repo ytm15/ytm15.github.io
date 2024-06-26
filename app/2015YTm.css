@@ -932,10 +932,10 @@ input.searchbox-input {
     width: 48px;
     height: 48px;
     padding: 12px;
-    color: rgba(0,0,0,0.6);
+    color: rgba(0,0,0,0.5);
 }
 .ytm15-header[data-mode="settings"] .header-button {
-    color: rgba(0,0,0,0.6);
+    color: rgba(0,0,0,0.5);
 }
 .header-button.menu-button {
     width: 38px;
