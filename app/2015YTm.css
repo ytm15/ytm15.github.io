@@ -2818,6 +2818,9 @@ ytm15-channel-sub-menu .dropdown-select {
     margin: 8px 13px 0;
     margin-right: 0;
 }
+ytm15-channel-sub-menu .dropdown-select:last-of-type {
+    margin-right: 8px;
+}
 ytm15-channel-sub-menu {
     margin-bottom: -5px;
 }
@@ -2825,6 +2828,9 @@ ytm15-channel-sub-menu {
     opacity: .5;
 }
 .dropdown-text {
+    margin-left: 2px;
+}
+ytm15-icon~.dropdown-text {
     margin-left: 5px;
 }
 

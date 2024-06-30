@@ -289,7 +289,7 @@ function channelPage() {
     };
     var newestSelected = newestSelectedVal;
 
-    renderDropdownSelect(SortBy_text_string, channelSubMenu, [
+    renderDropdownSelect("", channelSubMenu, [
       {
         "title": Mostpopular_text_string,
         "selected": popularSelected,
@@ -317,7 +317,7 @@ function channelPage() {
         window.location.hash = window.location.hash.split("?").join(',').split(',').slice(0, 1)[0] + "?sort=newest";
         }
       }
-      ]);
+      ], true);
     
     var sectLazyList = document.createElement("div");
     sectLazyList.classList.add("lazy-list");

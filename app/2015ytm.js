@@ -151,16 +151,26 @@ function renderToggleBtn(parent, isDisabled, isPressed, LSItem){
     toggleBtn.appendChild(toggleBtnCircle);
 }
 
-function renderDropdownSelect(ddText, parent, ddItems) {
+function renderDropdownSelect(ddText, parent, ddItems, ddisChannelSort) {
     const dropdownSelect = document.createElement("div");
     dropdownSelect.classList.add("dropdown-select", "has-ripple");
+    if (ddisChannelSort) {
     dropdownSelect.innerHTML = `<ytm15-icon class="sort-icon" style="
     width: 26px;
     height: 26px;
     margin: -2px 0;
 "><svg viewBox="0 0 24 24" fill=""><path d="M3,13H15V11H3M3,6V8H21V6M3,18H9V16H3V18Z"></path></svg></ytm15-icon>`;
+    }
     const dropdownSelectText = document.createElement("div");
+    var ddItemsResult = ddItems.filter(function(obj){
+      if (obj.selected == true){
+        ddText = obj.title;
+      };
+    });
     dropdownSelectText.innerHTML = ddText;
+    if (ddisChannelSort) {
+    dropdownSelectText.innerHTML = SortBy_text_string;
+    }
     dropdownSelectText.classList.add("dropdown-text");
 
         dropdownSelect.onclick = function(){
