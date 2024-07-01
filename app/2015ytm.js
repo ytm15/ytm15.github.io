@@ -28,6 +28,7 @@ if (MENU_DISABLE_CANCEL_BUTTON_expflag == undefined) {
 localStorage.setItem("MENU_DISABLE_CANCEL_BUTTON", "true");
 MENU_DISABLE_CANCEL_BUTTON_expflag = localStorage.getItem("MENU_DISABLE_CANCEL_BUTTON");
 }
+CHANNELS_SEPARATE_VIDS_SHORTS_LIVE_TABS_expflag = localStorage.getItem("CHANNELS_SEPARATE_VIDS_SHORTS_LIVE_TABS");
 
 if (DISABLE_YTM15_APP_BORDER_expflag == "true") {
     documentHTML.classList.add("no-app-border");
@@ -103,6 +104,7 @@ SortBy_text_string = "Sort by";
 Mostpopular_text_string = "Most popular";
 Oldest_text_string = "Date added (oldest)";
 Newest_text_string = "Date added (newest)";
+NoVideos_text_string = "This channel has no videos."
 
 function renderSubscribeBtn(parent) {
     const mtrlBtnCont = document.createElement("div");
@@ -177,7 +179,8 @@ function renderDropdownSelect(ddText, parent, ddItems, ddisChannelSort) {
         menuRenderer();
         menuCont.setAttribute("style", "top: 0; right: 0;");
 
-        const rect = dropdownSelect.getBoundingClientRect();
+        /* const rect = dropdownSelect.getBoundingClientRect(); */
+        const rect = dropdownArrowIcon.getBoundingClientRect();
         const menuRect = menuCont.getBoundingClientRect();
         const menuAlign = function() {
         menuCont.classList.add("menu-style-dropdown");
@@ -228,6 +231,7 @@ function renderDropdownSelect(ddText, parent, ddItems, ddisChannelSort) {
 
     dropdownSelect.appendChild(dropdownSelectText);
     dropdownSelect.innerHTML += `<ytm15-icon class="dropdown-arrow-icon"><svg viewBox="0 0 24 24" fill=""><path d="M7,10L12,15L17,10H7Z"></path></svg></ytm15-icon>`;
+    var dropdownArrowIcon = dropdownSelect.querySelector(".dropdown-arrow-icon");
     parent.appendChild(dropdownSelect);
 }
 

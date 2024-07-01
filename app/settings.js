@@ -294,6 +294,15 @@ function settingsPage() {
         "pressed-default": true,
         "disabled": false,
         "lsitem": "MENU_DISABLE_CANCEL_BUTTON"
+      },
+      {
+        "type": "boolean",
+        "title": "CHANNELS_SEPARATE_VIDS_SHORTS_LIVE_TABS",
+        "subtitle": "",
+        "pressed": CHANNELS_SEPARATE_VIDS_SHORTS_LIVE_TABS_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "CHANNELS_SEPARATE_VIDS_SHORTS_LIVE_TABS"
       }
       ];
       settingBlocks.forEach(function(item){

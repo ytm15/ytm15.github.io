@@ -376,6 +376,12 @@ Changelog
 26 Jun 2024:
 <br>
 -Updated the "please note YTm15 is unfinished" text above (along with a few modifications to another text also above)
+<br><br>
+01 Jul 2024:
+<br>
+-1st update of July yippee! (actual updates are mentioned below)
+<br>
+-The videos, shorts, and live tabs are now combined into one, with the option to separate them again by enabling the newly-added "CHANNELS_SEPARATE_VIDS_SHORTS_LIVE_TABS" expflag
     </div>
     </div>
     </div>

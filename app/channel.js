@@ -33,6 +33,11 @@ function channelPage() {
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == itemTab.textContent) {
     itemTab.setAttribute('aria-selected', 'true');
     }
+    if (CHANNELS_SEPARATE_VIDS_SHORTS_LIVE_TABS_expflag !== "true") {
+     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "shorts" && itemTab.textContent == "videos" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "streams" && itemTab.textContent == "videos") {
+     itemTab.setAttribute('aria-selected', 'true');
+     }
+    }
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == undefined && itemTab.textContent == "home" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "" && itemTab.textContent == "home" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "featured" && itemTab.textContent == "home") {
     itemTab.setAttribute('aria-selected', 'true');
     }
@@ -129,6 +134,11 @@ function channelPage() {
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == item) {
     tab.setAttribute('aria-selected', 'true');
     }
+    if (CHANNELS_SEPARATE_VIDS_SHORTS_LIVE_TABS_expflag !== "true") {
+     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "shorts" && item == "videos" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "streams" && item == "videos") {
+     tab.setAttribute('aria-selected', 'true');
+     }
+    }
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == undefined && item == "home" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "" && item == "home" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "featured" && item == "home") {
     tab.setAttribute('aria-selected', 'true');
     }
@@ -143,6 +153,11 @@ function channelPage() {
 
     tabBarTabs.appendChild(tBTabCont);
     tBTabCont.appendChild(tab);
+    if (CHANNELS_SEPARATE_VIDS_SHORTS_LIVE_TABS_expflag !== "true") {
+     if (item == "shorts" || item == "streams") {
+     tBTabCont.remove();
+     }
+    }
     });
 
     const tBTabCont = document.createElement("div");
@@ -183,6 +198,11 @@ function channelPage() {
     tabContent.setAttribute("hidden", "");
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == item) {
     tabContent.removeAttribute("hidden");
+    }
+    if (CHANNELS_SEPARATE_VIDS_SHORTS_LIVE_TABS_expflag !== "true") {
+     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "shorts" && item == "videos" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "streams" && item == "videos") {
+     tabContent.removeAttribute("hidden");
+     }
     }
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == undefined && item == "home" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "" && item == "home" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "featured" && item == "home" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "home" && item == "home") {
     tabContent.removeAttribute("hidden");
@@ -273,7 +293,11 @@ function channelPage() {
 
     tabContent.appendChild(sectionList);
     }
-    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "videos" && item == "videos" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "shorts" && item == "shorts" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "streams" && item == "streams") {
+    channelIsVideoTab = window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "videos" && item == "videos" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "shorts" && item == "shorts" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "streams" && item == "streams";
+    if (CHANNELS_SEPARATE_VIDS_SHORTS_LIVE_TABS_expflag !== "true") {
+    channelIsVideoTab = window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "videos" && item == "videos" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "shorts" && item == "videos" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "streams" && item == "videos";
+    };
+    if (channelIsVideoTab) {
     var sectionList = document.createElement("div");
     sectionList.classList.add("section-list");
 
@@ -289,6 +313,11 @@ function channelPage() {
     };
     var newestSelected = newestSelectedVal;
 
+    var videosSelected = window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "videos";
+    var shortsSelected = window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "shorts";
+    var liveSelected = window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "streams";
+
+    if ((window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "shorts" && item !== "shorts") && (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "streams" && item !== "streams")) {
     renderDropdownSelect("", channelSubMenu, [
       {
         "title": Mostpopular_text_string,
@@ -318,6 +347,41 @@ function channelPage() {
         }
       }
       ], true);
+    }
+    if (CHANNELS_SEPARATE_VIDS_SHORTS_LIVE_TABS_expflag !== "true") {
+    channelVideosOpt = {
+        "title": "Videos",
+        "selected": videosSelected,
+        "onclick": function(){
+        menuRemoveExtras();
+        menuRemove();
+        window.location.hash = "#/channel/" + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + "/videos";
+        }
+      }
+    channelShortsOpt = {
+        "title": "Shorts",
+        "selected": shortsSelected,
+        "onclick": function(){
+        menuRemoveExtras();
+        menuRemove();
+        window.location.hash = "#/channel/" + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + "/shorts";
+        }
+      }
+    channelLiveOpt = {
+        "title": "Live",
+        "selected": liveSelected,
+        "onclick": function(){
+        menuRemoveExtras();
+        menuRemove();
+        window.location.hash = "#/channel/" + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + "/streams";
+        }
+      }
+    renderDropdownSelect("", channelSubMenu, [
+      channelVideosOpt,
+      channelShortsOpt,
+      channelLiveOpt
+      ]);
+    }
     
     var sectLazyList = document.createElement("div");
     sectLazyList.classList.add("lazy-list");
@@ -366,7 +430,10 @@ function channelPage() {
 
     contItem.remove();
 
-    if ((window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "shorts" && item !== "shorts") && (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "streams" && item !== "streams")) {
+    if ((window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "shorts" && item !== "shorts") && (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "streams" && item !== "streams") && data.videos.length !== "0") {
+    sectionList.insertAdjacentElement("afterbegin", channelSubMenu);
+    }
+    if (CHANNELS_SEPARATE_VIDS_SHORTS_LIVE_TABS_expflag !== "true") {
     sectionList.insertAdjacentElement("afterbegin", channelSubMenu);
     }
 
@@ -406,6 +473,13 @@ function channelPage() {
         }
         renderCompactMediaItem(lazyList, "channel-lazy-list", compMediaItemvidId, compMediaItemThumb, compMediaItemLength, compMediaItemTitle, compMediaItemAuthor, item.authorId, item.publishedText, item.viewCount, item.type);
     });
+
+    if (data.videos.length == "0") {
+    const ytm15Msg = document.createElement("div");
+    ytm15Msg.classList.add("ytm15-message");
+    ytm15Msg.innerHTML = `<div class="ytm15-message-content"><div class="msg-text">${NoVideos_text_string}</div></div>`;
+    lazyList.appendChild(ytm15Msg);
+    }
 
     if (data.continuation) {
     const nextContinCont = document.createElement("div");
@@ -531,6 +605,12 @@ function channelVideosContin(continuation, contItemParent) {
     tabContent.setAttribute("tab-title", "live");
     }
     tabContainer.appendChild(tabContent);
+
+    if (CHANNELS_SEPARATE_VIDS_SHORTS_LIVE_TABS_expflag !== "true") {
+     if (item == "shorts" || item == "streams") {
+     tabContent.remove();
+     }
+    }
     });
 
     const tabContent = document.createElement("div");

@@ -2814,6 +2814,11 @@ a.channel-external-link {
 .section {
     display: block;
 }
+ytm15-channel-sub-menu.section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
 ytm15-channel-sub-menu .dropdown-select {
     margin: 8px 13px 0;
     margin-right: 0;
@@ -2826,6 +2831,10 @@ ytm15-channel-sub-menu {
 }
 .dropdown-select ytm15-icon {
     opacity: .5;
+}
+.dropdown-select ytm15-icon.dropdown-arrow-icon {
+    padding: 6px 0;
+    margin: -6px 0px;
 }
 .dropdown-text {
     margin-left: 2px;
