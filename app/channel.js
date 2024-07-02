@@ -445,6 +445,13 @@ function channelPage() {
     lazyList.classList.add("lazy-list", "no-animation");
     itemSect.appendChild(lazyList);
 
+    if (data.videos.length == "0" || data.videos[0].type == "category") {
+    const ytm15Msg = document.createElement("div");
+    ytm15Msg.classList.add("ytm15-message");
+    ytm15Msg.innerHTML = `<div class="ytm15-message-content"><div class="msg-text">${NoVideos_text_string}</div></div>`;
+    lazyList.appendChild(ytm15Msg);
+    }
+
     data.videos.forEach(function(item) {
         if (item.type == "channel") {
         compMediaItemThumb = "https:" + item.authorThumbnails[2].url;
@@ -473,13 +480,6 @@ function channelPage() {
         }
         renderCompactMediaItem(lazyList, "channel-lazy-list", compMediaItemvidId, compMediaItemThumb, compMediaItemLength, compMediaItemTitle, compMediaItemAuthor, item.authorId, item.publishedText, item.viewCount, item.type);
     });
-
-    if (data.videos.length == "0") {
-    const ytm15Msg = document.createElement("div");
-    ytm15Msg.classList.add("ytm15-message");
-    ytm15Msg.innerHTML = `<div class="ytm15-message-content"><div class="msg-text">${NoVideos_text_string}</div></div>`;
-    lazyList.appendChild(ytm15Msg);
-    }
 
     if (data.continuation) {
     const nextContinCont = document.createElement("div");

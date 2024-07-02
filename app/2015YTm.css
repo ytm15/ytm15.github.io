@@ -2822,13 +2822,14 @@ ytm15-channel-sub-menu.section {
 ytm15-channel-sub-menu .dropdown-select {
     margin: 8px 13px 0;
     margin-right: 0;
+    margin-bottom: -5px;
 }
 ytm15-channel-sub-menu .dropdown-select:last-of-type {
     margin-right: 8px;
 }
-ytm15-channel-sub-menu {
+/* ytm15-channel-sub-menu {
     margin-bottom: -5px;
-}
+} */
 .dropdown-select ytm15-icon {
     opacity: .5;
 }
