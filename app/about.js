@@ -387,7 +387,7 @@ Changelog
 <br>
 -The play button in the playlist page is now a red circle like in the actual app
 <br>
--The miniplayer's min height in the "miniplayer-to-player" (beginning) and "player-to-miniplayer" (ending) is now 120px
+-The miniplayer's min height in the "miniplayer-to-player" (beginning) and "player-to-miniplayer" (ending) animations is now 120px
 <br>
 -The watchpage title is now animated when opening the description
 <br>
