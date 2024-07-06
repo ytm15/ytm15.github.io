@@ -601,6 +601,268 @@ function channelVideosContin(continuation, contItemParent) {
 
     tabContent.appendChild(sectionList);
     }
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "playlists" && item == "playlists") {
+    var sectionList = document.createElement("div");
+    sectionList.classList.add("section-list");
+
+    var channelSubMenu = document.createElement("ytm15-channel-sub-menu");
+    channelSubMenu.classList.add("section");
+
+    if (!window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString() == "") {
+    lastSelectedVal = window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString() == "last";
+    } else {
+    lastSelectedVal = true;
+    };
+    var lastSelected = lastSelectedVal;
+    var oldestSelected = window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString() == "oldest";
+    var newestSelected = window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString() == "newest";
+
+    renderDropdownSelect("", channelSubMenu, [
+      {
+        "title": Newest_text_string,
+        "selected": newestSelected,
+        "onclick": function(){
+        menuRemoveExtras();
+        menuRemove();
+        window.location.hash = window.location.hash.split("?").join(',').split(',').slice(0, 1)[0] + "?sort=newest";
+        }
+      },
+      {
+        "title": Oldest_text_string,
+        "selected": oldestSelected,
+        "onclick": function(){
+        menuRemoveExtras();
+        menuRemove();
+        window.location.hash = window.location.hash.split("?").join(',').split(',').slice(0, 1)[0] + "?sort=oldest";
+        }
+      },
+      {
+        "title": LastAdded_text_string,
+        "selected": lastSelected,
+        "onclick": function(){
+        menuRemoveExtras();
+        menuRemove();
+        window.location.hash = window.location.hash.split("?").join(',').split(',').slice(0, 1)[0] + "?sort=last";
+        }
+      }
+      ], true);
+    
+    var sectLazyList = document.createElement("div");
+    sectLazyList.classList.add("lazy-list");
+    sectionList.appendChild(sectLazyList);
+
+    const spinner = document.querySelector(".spinner-container.full-height");
+    const contItem = document.createElement("div");
+    contItem.classList.add("continuation-item");
+    const spinnerClone = spinner.cloneNode(true);
+    spinnerClone.classList.remove("full-height");
+    spinnerClone.removeAttribute("hidden");
+    contItem.appendChild(spinnerClone);
+
+    sectLazyList.appendChild(contItem);
+
+    const getChannelPlaylists = new XMLHttpRequest();
+    getChannelPlaylists.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '/playlists?sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString(), true);
+    if (window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString() == "") {
+    getChannelPlaylists.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '/playlists', true);
+    }
+
+    getChannelPlaylists.onerror = function(event) {
+    console.error("An error occurred with this operation (" + getChannelPlaylists.status + ")");
+
+    contItem.remove();
+
+    const error = document.createElement("div");
+    error.classList.add('error-container');
+    error.innerHTML = `<div class="error-content">
+<img class="error-icon ytm15-img" src="alert_error.png"></img>
+<span class="error-text">There was an error connecting to the server</span>
+</div>
+<div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry" onClick="location.reload();"><div class="button-text">Retry</div></button></div>`;
+    const pageCont = document.querySelector('.page-container');
+    pageCont.before(error);
+    error.querySelector("button").onclick = function(){
+    channelPage();
+    error.remove();
+    };
+    return;
+    };
+
+    getChannelPlaylists.send();
+
+    getChannelPlaylists.onload = function() {
+    if (getChannelPlaylists.status === 200) {
+    const data = JSON.parse(getChannelPlaylists.response);
+
+    contItem.remove();
+
+    if (data.playlists.length !== "0" && data.playlists[0] && data.playlists[0].type !== "category") {
+    sectionList.insertAdjacentElement("afterbegin", channelSubMenu);
+    }
+
+    const itemSect = document.createElement("div");
+    itemSect.classList.add("item-section");
+    sectLazyList.appendChild(itemSect);
+
+    const lazyList = document.createElement("div");
+    lazyList.classList.add("lazy-list", "no-animation");
+    itemSect.appendChild(lazyList);
+
+    if (data.playlists.length == "0" || data.playlists[0].type == "category") {
+    const ytm15Msg = document.createElement("div");
+    ytm15Msg.classList.add("ytm15-message");
+    ytm15Msg.innerHTML = `<div class="ytm15-message-content"><div class="msg-text">${NoPlaylists_text_string}</div></div>`;
+    lazyList.appendChild(ytm15Msg);
+    }
+
+    data.playlists.forEach(function(item) {
+        if (item.type == "channel") {
+        compMediaItemThumb = "https:" + item.authorThumbnails[2].url;
+        compMediaItemLength = "";
+        compMediaItemTitle = item.author;
+        compMediaItemAuthor = item.subCount.toLocaleString() + " subscribers";
+        compMediaItemvidId = "";
+        } else if (item.type == "playlist") {
+        compMediaItemThumb = item.playlistThumbnail;
+        compMediaItemLength = item.videoCount;
+        compMediaItemTitle = item.title;
+        compMediaItemAuthor = item.author;
+        compMediaItemvidId = item.playlistId;
+        } else if (item.type == "hashtag") {
+        compMediaItemThumb = "https://www.gstatic.com/youtube/img/social/hashtags/hashtag_tile_icon.png";
+        compMediaItemLength = item.videoCount;
+        compMediaItemTitle = item.title;
+        compMediaItemAuthor = item.channelCount;
+        compMediaItemvidId = item.url;
+        } else {
+        compMediaItemThumb = item.videoThumbnails[3].url;
+        compMediaItemLength = item.lengthSeconds;
+        compMediaItemTitle = item.title;
+        compMediaItemAuthor = item.author;
+        compMediaItemvidId = item.videoId;
+        }
+        renderCompactMediaItem(lazyList, "channel-lazy-list", compMediaItemvidId, compMediaItemThumb, compMediaItemLength, compMediaItemTitle, compMediaItemAuthor, item.authorId, item.publishedText, item.viewCount, item.type);
+    });
+
+    if (data.continuation) {
+    const nextContinCont = document.createElement("div");
+    nextContinCont.classList.add("next-continuation-cont");
+    nextContinCont.innerHTML = `<div class="next-continuation">
+<div class="material-button-container next-contin-button" data-style="" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button" data-continuation="" aria-label="More"><div class="button-text">More</div></button></div>
+</div>`;
+    nextContinCont.querySelector("button").dataset.continuation = data.continuation;
+    nextContinCont.querySelector("button").onclick = function(){
+    nextContinCont.remove();
+    channelVideosContin(nextContinCont.querySelector("button").dataset.continuation, sectLazyList);
+    };
+    sectLazyList.appendChild(nextContinCont);
+    }
+
+function channelVideosContin(continuation, contItemParent) {
+    const spinner = document.querySelector(".spinner-container.full-height");
+    const contItem = document.createElement("div");
+    contItem.classList.add("continuation-item");
+    const spinnerClone = spinner.cloneNode(true);
+    spinnerClone.classList.remove("full-height");
+    spinnerClone.removeAttribute("hidden");
+    contItem.appendChild(spinnerClone);
+
+    contItemParent.appendChild(contItem);
+
+    const getChannelPlaylists1 = new XMLHttpRequest();
+    getChannelPlaylists1.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + `/playlists?continuation=` + continuation + '&sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString(), true);
+ 
+    getChannelPlaylists1.onerror = function(event) {
+    console.error("An error occurred with this operation (" + getChannelVideos1.status + ")");
+
+    contItem.remove();
+
+    const error = document.createElement("div");
+    error.classList.add('error-container');
+    error.innerHTML = `<div class="error-content">
+<img class="error-icon ytm15-img" src="alert_error.png"></img>
+<span class="error-text">There was an error connecting to the server</span>
+</div>
+<div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry" onClick="location.reload();"><div class="button-text">Retry</div></button></div>`;
+    const pageCont = document.querySelector('.page-container');
+    contItemParent.appendChild(error);
+    error.querySelector("button").onclick = function(){
+    channelVideosContin(continuation, contItemParent);
+    error.remove();
+    };
+    return;
+    };
+
+    getChannelPlaylists1.send();
+
+    getChannelPlaylists1.onload = function() {
+    if (getChannelPlaylists1.status === 200) {
+    const data = JSON.parse(getChannelPlaylists1.response);
+
+    contItem.remove();
+
+    const itemSection = document.createElement("div");
+    itemSection.classList.add('item-section');
+    contItemParent.appendChild(itemSection);
+
+    const lazyList = document.createElement("div");
+    lazyList.classList.add('lazy-list');
+    itemSection.appendChild(lazyList);
+
+    data.playlists.forEach(function(item) {
+        if (item.type == "channel") {
+        compMediaItemThumb = "https:" + item.authorThumbnails[2].url;
+        compMediaItemLength = "";
+        compMediaItemTitle = item.author;
+        compMediaItemAuthor = item.subCount.toLocaleString() + " subscribers";
+        compMediaItemvidId = "";
+        } else if (item.type == "playlist") {
+        compMediaItemThumb = item.playlistThumbnail;
+        compMediaItemLength = item.videoCount;
+        compMediaItemTitle = item.title;
+        compMediaItemAuthor = item.author;
+        compMediaItemvidId = item.playlistId;
+        } else if (item.type == "hashtag") {
+        compMediaItemThumb = "https://www.gstatic.com/youtube/img/social/hashtags/hashtag_tile_icon.png";
+        compMediaItemLength = item.videoCount;
+        compMediaItemTitle = item.title;
+        compMediaItemAuthor = item.channelCount;
+        compMediaItemvidId = item.url;
+        } else {
+        compMediaItemThumb = item.videoThumbnails[3].url;
+        compMediaItemLength = item.lengthSeconds;
+        compMediaItemTitle = item.title;
+        compMediaItemAuthor = item.author;
+        compMediaItemvidId = item.videoId;
+        }
+        renderCompactMediaItem(lazyList, "channel-lazy-list", compMediaItemvidId, compMediaItemThumb, compMediaItemLength, compMediaItemTitle, compMediaItemAuthor, item.authorId, item.publishedText, item.viewCount, item.type);
+    });
+
+    if (data.continuation) {
+    const nextContinCont = document.createElement("div");
+    nextContinCont.classList.add("next-continuation-cont");
+    nextContinCont.innerHTML = `<div class="next-continuation">
+<div class="material-button-container next-contin-button" data-style="" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button" data-continuation="" aria-label="More"><div class="button-text">More</div></button></div>
+</div>`;
+    nextContinCont.querySelector("button").dataset.continuation = data.continuation;
+    nextContinCont.querySelector("button").onclick = function(){
+    nextContinCont.remove();
+    channelVideosContin(nextContinCont.querySelector("button").dataset.continuation, sectLazyList);
+    };
+    sectLazyList.appendChild(nextContinCont);
+    }
+    } else {
+    getChannelPlaylists1.onerror();
+    }
+    };
+}
+    } else {
+    getChannelPlaylists.onerror();
+    }
+    };
+
+    tabContent.appendChild(sectionList);
+    }
     if (item == "streams") {
     tabContent.setAttribute("tab-title", "live");
     }

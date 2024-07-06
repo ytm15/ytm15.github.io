@@ -105,6 +105,10 @@ Mostpopular_text_string = "Most popular";
 Oldest_text_string = "Date added (oldest)";
 Newest_text_string = "Date added (newest)";
 NoVideos_text_string = "This channel has no videos."
+OldestCreated_text_string = "Date created (oldest)";
+NewestCreated_text_string = "Date created (newest)";
+LastAdded_text_string = "Last video added"
+NoPlaylists_text_string = "This channel has no playlists."
 
 function renderSubscribeBtn(parent) {
     const mtrlBtnCont = document.createElement("div");

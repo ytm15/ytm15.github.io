@@ -106,10 +106,13 @@ function renderWatchPage(parent) {
     const metaTitleCont = document.createElement("div");
     metaTitleCont.classList.add("video-metadata-title-and-badges");
     metaHeaderCont.appendChild(metaTitleCont);
+    const metaTitleCont2 = document.createElement("div");
+    metaTitleCont2.classList.add("video-metadata-title-container");
+    metaTitleCont.appendChild(metaTitleCont2);
     const metaTitle = document.createElement("h2");
     metaTitle.classList.add("video-metadata-title");
     metaTitle.innerHTML = data.title;
-    metaTitleCont.appendChild(metaTitle);
+    metaTitleCont2.appendChild(metaTitle);
     var badgesData
     badgesData = {
     "badges": [

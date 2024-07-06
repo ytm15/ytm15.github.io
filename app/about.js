@@ -382,6 +382,16 @@ Changelog
 -1st update of July yippee! (actual updates are mentioned below)
 <br>
 -The videos, shorts, and live tabs are now combined into one, with the option to separate them again by enabling the newly-added "CHANNELS_SEPARATE_VIDS_SHORTS_LIVE_TABS" expflag
+<br><br>
+07 Jul 2024:
+<br>
+-The play button in the playlist page is now a red circle like in the actual app
+<br>
+-The miniplayer's min height in the "miniplayer-to-player" (beginning) and "player-to-miniplayer" (ending) is now 120px
+<br>
+-The watchpage title is now animated when opening the description
+<br>
+-Started working on channels' playlist pages
     </div>
     </div>
     </div>
