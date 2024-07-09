@@ -118,6 +118,14 @@ function channelPage() {
     document.querySelector(".tab-bar").appendChild(tabBarTabs);
     }
 
+    const videosTabExists = response.tabs.find((item) => item === "videos");
+
+    if (CHANNELS_SEPARATE_VIDS_SHORTS_LIVE_TABS_expflag !== "true") {
+     if (!videosTabExists) {
+      response.tabs.splice(1, 0, "videos");
+     }
+    }
+
     response.tabs.forEach(function(item) {
     const tBTabCont = document.createElement("div");
     tBTabCont.classList.add("tabbar-tab-container", item + "-tab");
@@ -317,7 +325,120 @@ function channelPage() {
     var shortsSelected = window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "shorts";
     var liveSelected = window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "streams";
 
-    if ((window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "shorts" && item !== "shorts") && (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "streams" && item !== "streams")) {
+    /* if ((window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "shorts" && item !== "shorts") && (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "streams" && item !== "streams")) {
+    renderDropdownSelect("", channelSubMenu, [
+      {
+        "title": Mostpopular_text_string,
+        "selected": popularSelected,
+        "onclick": function(){
+        menuRemoveExtras();
+        menuRemove();
+        window.location.hash = window.location.hash.split("?").join(',').split(',').slice(0, 1)[0] + "?sort=popular";
+        }
+      },
+      {
+        "title": Oldest_text_string,
+        "selected": oldestSelected,
+        "onclick": function(){
+        menuRemoveExtras();
+        menuRemove();
+        window.location.hash = window.location.hash.split("?").join(',').split(',').slice(0, 1)[0] + "?sort=oldest";
+        }
+      },
+      {
+        "title": Newest_text_string,
+        "selected": newestSelected,
+        "onclick": function(){
+        menuRemoveExtras();
+        menuRemove();
+        window.location.hash = window.location.hash.split("?").join(',').split(',').slice(0, 1)[0] + "?sort=newest";
+        }
+      }
+      ], true);
+    } */
+    /* if (CHANNELS_SEPARATE_VIDS_SHORTS_LIVE_TABS_expflag !== "true") {
+    channelVideosOpt = {
+        "title": "Videos",
+        "selected": videosSelected,
+        "onclick": function(){
+        menuRemoveExtras();
+        menuRemove();
+        window.location.hash = "#/channel/" + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + "/videos";
+        }
+      }
+    channelShortsOpt = {
+        "title": "Shorts",
+        "selected": shortsSelected,
+        "onclick": function(){
+        menuRemoveExtras();
+        menuRemove();
+        window.location.hash = "#/channel/" + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + "/shorts";
+        }
+      }
+    channelLiveOpt = {
+        "title": "Live",
+        "selected": liveSelected,
+        "onclick": function(){
+        menuRemoveExtras();
+        menuRemove();
+        window.location.hash = "#/channel/" + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + "/streams";
+        }
+      }
+    renderDropdownSelect("", channelSubMenu, [
+      channelVideosOpt,
+      channelShortsOpt,
+      channelLiveOpt
+      ]);
+    } */
+    
+    var sectLazyList = document.createElement("div");
+    sectLazyList.classList.add("lazy-list");
+    sectionList.appendChild(sectLazyList);
+
+    const spinner = document.querySelector(".spinner-container.full-height");
+    const contItem = document.createElement("div");
+    contItem.classList.add("continuation-item");
+    const spinnerClone = spinner.cloneNode(true);
+    spinnerClone.classList.remove("full-height");
+    spinnerClone.removeAttribute("hidden");
+    contItem.appendChild(spinnerClone);
+
+    sectLazyList.appendChild(contItem);
+
+    const getChannelVideos = new XMLHttpRequest();
+    /* getChannelVideos.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '/videos?sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString(), true); */
+       getChannelVideos.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] + '?sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString(), true);
+ 
+    getChannelVideos.onerror = function(event) {
+    console.error("An error occurred with this operation (" + getChannelVideos.status + ")");
+
+    contItem.remove();
+
+    const error = document.createElement("div");
+    error.classList.add('error-container');
+    error.innerHTML = `<div class="error-content">
+<img class="error-icon ytm15-img" src="alert_error.png"></img>
+<span class="error-text">There was an error connecting to the server</span>
+</div>
+<div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry" onClick="location.reload();"><div class="button-text">Retry</div></button></div>`;
+    const pageCont = document.querySelector('.page-container');
+    pageCont.before(error);
+    error.querySelector("button").onclick = function(){
+    channelPage();
+    error.remove();
+    };
+    return;
+    };
+
+    getChannelVideos.send();
+
+    getChannelVideos.onload = function() {
+    if (getChannelVideos.status === 200) {
+    const data = JSON.parse(getChannelVideos.response);
+
+    contItem.remove();
+
+    if ((window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "shorts" && item !== "shorts") && (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "streams" && item !== "streams") && data.videos.length !== "0" && data.videos[0] && data.videos[0].type !== "category") {
     renderDropdownSelect("", channelSubMenu, [
       {
         "title": Mostpopular_text_string,
@@ -382,55 +503,8 @@ function channelPage() {
       channelLiveOpt
       ]);
     }
-    
-    var sectLazyList = document.createElement("div");
-    sectLazyList.classList.add("lazy-list");
-    sectionList.appendChild(sectLazyList);
 
-    const spinner = document.querySelector(".spinner-container.full-height");
-    const contItem = document.createElement("div");
-    contItem.classList.add("continuation-item");
-    const spinnerClone = spinner.cloneNode(true);
-    spinnerClone.classList.remove("full-height");
-    spinnerClone.removeAttribute("hidden");
-    contItem.appendChild(spinnerClone);
-
-    sectLazyList.appendChild(contItem);
-
-    const getChannelVideos = new XMLHttpRequest();
-    /* getChannelVideos.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '/videos?sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString(), true); */
-       getChannelVideos.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] + '?sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString(), true);
- 
-    getChannelVideos.onerror = function(event) {
-    console.error("An error occurred with this operation (" + getChannelVideos.status + ")");
-
-    contItem.remove();
-
-    const error = document.createElement("div");
-    error.classList.add('error-container');
-    error.innerHTML = `<div class="error-content">
-<img class="error-icon ytm15-img" src="alert_error.png"></img>
-<span class="error-text">There was an error connecting to the server</span>
-</div>
-<div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry" onClick="location.reload();"><div class="button-text">Retry</div></button></div>`;
-    const pageCont = document.querySelector('.page-container');
-    pageCont.before(error);
-    error.querySelector("button").onclick = function(){
-    channelPage();
-    error.remove();
-    };
-    return;
-    };
-
-    getChannelVideos.send();
-
-    getChannelVideos.onload = function() {
-    if (getChannelVideos.status === 200) {
-    const data = JSON.parse(getChannelVideos.response);
-
-    contItem.remove();
-
-    if ((window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "shorts" && item !== "shorts") && (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "streams" && item !== "streams") && data.videos.length !== "0" && data.videos[0].type !== "category") {
+    if ((window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "shorts" && item !== "shorts") && (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "streams" && item !== "streams") && data.videos.length !== "0" && data.videos[0] && data.videos[0].type !== "category") {
     sectionList.insertAdjacentElement("afterbegin", channelSubMenu);
     }
     if (CHANNELS_SEPARATE_VIDS_SHORTS_LIVE_TABS_expflag !== "true") {

@@ -109,6 +109,7 @@ OldestCreated_text_string = "Date created (oldest)";
 NewestCreated_text_string = "Date created (newest)";
 LastAdded_text_string = "Last video added"
 NoPlaylists_text_string = "This channel has no playlists."
+NoContent_text_string = "This channel doesn't have any content";
 
 function renderSubscribeBtn(parent) {
     const mtrlBtnCont = document.createElement("div");
