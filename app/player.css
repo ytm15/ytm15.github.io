@@ -419,7 +419,7 @@ stroke-dashoffset: 187; }
     display: none;
 }
 .player-is-fullscreen .player-title {
-    display: block;
+    display: -webkit-box;
 }
 
 .player-storyboard-container {

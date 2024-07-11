@@ -286,18 +286,286 @@ function channelPage() {
     sectLazyList.classList.add("lazy-list");
     sectionList.appendChild(sectLazyList);
 
+    const spinner = document.querySelector(".spinner-container.full-height");
+    const contItem = document.createElement("div");
+    contItem.classList.add("continuation-item");
+    const spinnerClone = spinner.cloneNode(true);
+    spinnerClone.classList.remove("full-height");
+    spinnerClone.removeAttribute("hidden");
+    contItem.appendChild(spinnerClone);
+
+    sectLazyList.appendChild(contItem);
+
+    /* const itemSect = document.createElement("div");
+    itemSect.classList.add("item-section");
+    sectLazyList.appendChild(itemSect); */
+    
+    /* const lazyList = document.createElement("div");
+    lazyList.classList.add("lazy-list", "no-animation");
+    itemSect.appendChild(lazyList); */
+
+    /* var ytm15Msg = document.createElement("div");
+    ytm15Msg.classList.add("ytm15-message");
+    ytm15Msg.innerHTML = `<div class="ytm15-message-content"><img class="ytm15-img-icon grey-account-icon msg-icon ytm15-img" src="ic_account_circle_grey_60.png"></img><div class="msg-text">${Channel_Home_WIP_text_string}</div></div>`;
+    lazyList.appendChild(ytm15Msg); */
+
+    const getChannelHome = new XMLHttpRequest();
+    getChannelHome.open('GET', 'https://yt.lemnoslife.com/noKey/channelSections?channelId=' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '&part=contentDetails,id,snippet', true);
+ 
+    getChannelHome.onerror = function(event) {
+    console.error("An error occurred with this operation (" + getChannelHome.status + ")");
+
+    contItem.remove();
+
+    const error = document.createElement("div");
+    error.classList.add('error-container');
+    error.innerHTML = `<div class="error-content">
+<img class="error-icon ytm15-img" src="alert_error.png"></img>
+<span class="error-text">There was an error connecting to the server</span>
+</div>
+<div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry" onClick="location.reload();"><div class="button-text">Retry</div></button></div>`;
+    const pageCont = document.querySelector('.page-container');
+    pageCont.before(error);
+    error.querySelector("button").onclick = function(){
+    channelPage();
+    error.remove();
+    };
+    return;
+    };
+
+    getChannelHome.send();
+
+    getChannelHome.onload = function() {
+    if (getChannelHome.status === 200) {
+    const data = JSON.parse(getChannelHome.response);
+
+    contItem.remove();
+
     const itemSect = document.createElement("div");
     itemSect.classList.add("item-section");
-    sectLazyList.appendChild(itemSect);
-    
+
     const lazyList = document.createElement("div");
     lazyList.classList.add("lazy-list", "no-animation");
     itemSect.appendChild(lazyList);
 
-    var ytm15Msg = document.createElement("div");
+    const ytm15Msg = document.createElement("div");
     ytm15Msg.classList.add("ytm15-message");
-    ytm15Msg.innerHTML = `<div class="ytm15-message-content"><img class="ytm15-img-icon grey-account-icon msg-icon ytm15-img" src="ic_account_circle_grey_60.png"></img><div class="msg-text">${Channel_Home_WIP_text_string}</div></div>`;
+    ytm15Msg.innerHTML = `<div class="ytm15-message-content"><img class="ytm15-img-icon grey-account-icon msg-icon ytm15-img" src="ic_account_circle_grey_60.png"></img><div class="msg-text">${NoContent_text_string}</div></div>`;
     lazyList.appendChild(ytm15Msg);
+
+    data.items.forEach(function(item) {
+    const shelf = document.createElement("div");
+    shelf.classList.add('shelf');
+
+    if (item.snippet.type !== "channelsectiontypeundefined") {
+    sectLazyList.appendChild(shelf);
+    };
+
+    const shelfHeader = document.createElement("div");
+    shelfHeader.classList.add('shelf-header');
+    const shelfHeaderEP = document.createElement("a");
+    shelfHeaderEP.classList.add('shelf-header-endpoint');
+    shelfHeaderEP.href = "#/channel/" + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0];
+    const shelfTitleBar = document.createElement("div");
+    shelfTitleBar.classList.add('shelf-title-bar');
+    shelfTitle = "";
+    if (item.snippet.type == "recentuploads") {
+    shelfTitle = Uploads_text_string;
+    shelfHeaderEP.href = "#/channel/" + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + "/videos";
+    } else if (item.snippet.type == "channelsectiontypeundefined") {
+    shelfTitle = undefined;
+    } else if (item.snippet.type == "multiplechannels") {
+    shelfTitle = item.snippet.title;
+    shelfHeaderEP.href = "#/channel/" + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0];
+    } else if (item.snippet.type == "popularuploads") {
+    shelfTitle = PopularUploads_text_string;
+    shelfHeaderEP.href = "#/channel/" + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + "/videos?sort=popular";
+    };
+    shelfTitleBar.innerHTML = "<h3>" + shelfTitle + "</h3>";
+
+    const verticalList = document.createElement("div");
+    verticalList.classList.add('vertical-list');
+
+    const ESButtonCont = document.createElement("div");
+    ESButtonCont.classList.add('expand-shelf-button-container');
+
+    const moreIcon = document.createElement("ytm15-icon");
+    moreIcon.classList.add('show-more-icon');
+    moreIcon.innerHTML = `<svg viewBox="0 0 24 24" fill=""><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path></svg>`;
+
+    const lessIcon = document.createElement("ytm15-icon");
+    lessIcon.classList.add('show-less-icon');
+    lessIcon.innerHTML = `<svg viewBox="0 0 24 24" fill=""><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"></path></svg>`;
+
+    const ISButton = document.createElement("button");
+    ISButton.classList.add('collapse-shelf-button', 'icon-button');
+    ISButton.setAttribute('aria-label', 'Show less');
+    ISButton.setAttribute('hidden', '');
+    ISButton.onclick = function(){verticalList.classList.remove('expanded'); ISButton.setAttribute('hidden', ''); ESButton.removeAttribute('hidden');};
+
+    const ESButton = document.createElement("button");
+    ESButton.classList.add('expand-shelf-button', 'icon-button');
+    ESButton.setAttribute('aria-label', 'Show more');
+    ESButton.onclick = function(){verticalList.classList.add('expanded'); ESButton.setAttribute('hidden', ''); ISButton.removeAttribute('hidden');};
+    ESButtonCont.appendChild(ESButton);
+    ESButtonCont.appendChild(ISButton);
+
+    ESButton.appendChild(moreIcon);
+    ISButton.appendChild(lessIcon);
+
+    shelf.appendChild(shelfHeader);
+    shelfHeader.appendChild(shelfHeaderEP);
+    shelfHeaderEP.appendChild(shelfTitleBar);
+    shelf.appendChild(verticalList);
+
+    /* data.forEach(function(item) {
+        
+    }); */
+
+    if (item.snippet.type == "multiplechannels") {
+    item.contentDetails.channels.forEach(function(item1){
+    const getShelfChannels = new XMLHttpRequest();
+    getShelfChannels.open('GET', APIbaseURL + 'api/v1/channels/' + item1, true);
+ 
+    getShelfChannels.onerror = function(event) {
+    console.error("An error occurred with this operation (" + getShelfChannels.status + ")");
+    return;
+    };
+
+    getShelfChannels.send();
+
+    getShelfChannels.onload = function() {
+    if (getShelfChannels.status === 200) {
+    const data = JSON.parse(getShelfChannels.response);
+
+        compMediaItemThumb = data.authorThumbnails[2].url;
+        compMediaItemLength = "";
+        compMediaItemTitle = data.author;
+        compMediaItemAuthor = data.subCount.toLocaleString() + " subscribers";
+        compMediaItemvidId = "";
+        renderCompactMediaItem(verticalList, "shelf", compMediaItemvidId, compMediaItemThumb, compMediaItemLength, compMediaItemTitle, compMediaItemAuthor, data.authorId, "", "", "channel");
+
+        if (ESButtonCont && item.snippet.type == "multiplechannels" && item.contentDetails.channels.length > 3) {
+        ESButtonCont.remove();
+        verticalList.appendChild(ESButtonCont);
+        }
+    } else {
+    getShelfChannels.onerror();
+    }
+    };
+    });
+      if (item.contentDetails.channels.length == 0) {
+        shelf.remove();
+        if (sectLazyList.childNodes.length == "0") {
+        itemSect.remove();
+        sectLazyList.appendChild(itemSect);
+        }
+      }
+    } else if (item.snippet.type == "recentuploads" || item.snippet.type == "popularuploads" || item.snippet.type == "singleplaylist") {
+    const getShelfVideos = new XMLHttpRequest();
+    getShelfVideos.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '/videos', true);
+    if (item.snippet.type == "popularuploads") {
+    getShelfVideos.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '/videos?sort_by=popular', true);
+    } else if (item.snippet.type == "singleplaylist") {
+    getShelfVideos.open('GET', APIbaseURL + 'api/v1/playlists/' + item.contentDetails.playlists[0], true);
+    }
+
+    var shelfSnippetType = item.snippet.type;
+ 
+    getShelfVideos.onerror = function(event) {
+    console.error("An error occurred with this operation (" + getShelfVideos.status + ")");
+    if (getShelfVideos.response) {
+    const data = JSON.parse(getShelfVideos.response);
+    if (data.error == "Could not extract playlistSidebarRenderer.") {
+    shelf.remove();
+    }
+    }
+    return;
+    };
+
+    getShelfVideos.send();
+
+    getShelfVideos.onload = function() {
+    if (getShelfVideos.status === 200) {
+    const data = JSON.parse(getShelfVideos.response);
+
+    if (shelfSnippetType == "singleplaylist") {
+    shelfTitle = data.title;
+    shelfHeaderEP.href = "#/playlist?list=" + data.playlistId;
+    shelfTitleBar.innerHTML = "<h3>" + shelfTitle + "</h3>";
+    if (data.description !== "") {
+    shelfTitleBar.innerHTML = "<h3>" + shelfTitle + '</h3><h4 class="subhead">' + data.description + "</h4>";
+    }
+    };
+
+    data.videos.forEach(function(item){
+        if (item.type == "channel") {
+        compMediaItemThumb = "https:" + item.authorThumbnails[2].url;
+        compMediaItemLength = "";
+        compMediaItemTitle = item.author;
+        compMediaItemAuthor = item.subCount.toLocaleString() + " subscribers";
+        compMediaItemvidId = "";
+        } else if (item.type == "playlist") {
+        compMediaItemThumb = item.playlistThumbnail;
+        compMediaItemLength = item.videoCount;
+        compMediaItemTitle = item.title;
+        compMediaItemAuthor = item.author;
+        compMediaItemvidId = item.playlistId;
+        } else if (item.type == "hashtag") {
+        compMediaItemThumb = "https://www.gstatic.com/youtube/img/social/hashtags/hashtag_tile_icon.png";
+        compMediaItemLength = item.videoCount;
+        compMediaItemTitle = item.title;
+        compMediaItemAuthor = item.channelCount;
+        compMediaItemvidId = item.url;
+        } else {
+        compMediaItemThumb = item.videoThumbnails[3].url;
+        compMediaItemLength = item.lengthSeconds;
+        compMediaItemTitle = item.title;
+        compMediaItemAuthor = item.author;
+        compMediaItemvidId = item.videoId;
+        }
+        cmiPublishedText = item.publishedText;
+        cmiViewCount = item.viewCount;
+        cmiParent = "channel-shelf";
+        cmiType = item.type;
+        if (shelfSnippetType == "singleplaylist") {
+          cmiPublishedText = "";
+          cmiViewCount = "";
+          cmiParent = "shelf";
+          cmiType = "video";
+        }
+        renderCompactMediaItem(verticalList, cmiParent, compMediaItemvidId, compMediaItemThumb, compMediaItemLength, compMediaItemTitle, compMediaItemAuthor, item.authorId, cmiPublishedText, cmiViewCount, cmiType);
+    });
+
+      if (data.videos.length > 3) {
+        verticalList.appendChild(ESButtonCont);
+      }
+      if (data.videos.length == 0) {
+        shelf.remove();
+        if (sectLazyList.childNodes.length == "0") {
+        itemSect.remove();
+        sectLazyList.appendChild(itemSect);
+        }
+      }
+    } else {
+    getShelfVideos.onerror();
+    }
+    };
+    };
+
+    if (item.snippet.type == "multiplechannels" && item.contentDetails.channels.length > 3) {
+    verticalList.appendChild(ESButtonCont);
+    }
+    });
+
+    if (sectLazyList.childNodes.length == "0") {
+    sectLazyList.appendChild(itemSect);
+    }
+
+    } else {
+    getChannelHome.onerror();
+    }
+    };
 
     tabContent.appendChild(sectionList);
     }

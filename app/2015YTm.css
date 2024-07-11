@@ -616,6 +616,17 @@ animation-duration: .28s;
     height: unset;
     padding-bottom: 56.25%;
 }
+.shelf>.vertical-list>.shelf-item.compact-channel .thumbnail-img, .shelf>.vertical-list>.shelf-item.compact-channel .thumbnail-bg {
+    width: 50px;
+    height: 50px;
+}
+.shelf>.vertical-list>.shelf-item.compact-channel .compact-media-item-thumbnail {
+    padding-bottom: 0;
+    height: 50px;
+}
+.shelf>.vertical-list>.shelf-item.compact-channel .compact-media-item-metadata-content {
+    text-align: center;
+}
 .shelf>.vertical-list>.shelf-item .compact-media-item-metadata-content {
     padding: 0;
 }
@@ -624,6 +635,13 @@ animation-duration: .28s;
 }
 .shelf>.vertical-list>.shelf-item .compact-media-item-metadata-content .subhead .small-text {
     font-size: 1.3rem;
+}
+.shelf>.vertical-list>.shelf-item.compact-channel .compact-media-item-metadata-content .subhead .small-text {
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+.shelf>.vertical-list>.shelf-item.compact-channel .compact-media-headline {
+    font-size: 1.4rem;
 }
 }
 @media (min-aspect-ratio: 13 / 9) and (orientation: landscape), (min-width: 550px) and (orientation: portrait), (min-width: 800px) and (orientation: landscape) {
@@ -692,6 +710,9 @@ animation-duration: .28s;
 .shelf-title-bar h3 {
     font-size: 1.8rem;
     margin-bottom: 2px;
+}
+.shelf-title-bar h4 {
+    margin-bottom: 0;
 }
 .expand-shelf-button-container {
     display: flex;

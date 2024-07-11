@@ -396,6 +396,10 @@ Changelog
 09 Jul 2024:
 <br>
 -Made it so that the videos tab on channel pages wouldn't hide itself if a channel has no videos (Disclaimer: this change only applies if the "CHANNELS_SEPARATE_VIDS_SHORTS_LIVE_TABS" expflag is disabled)
+<br><br>
+11 Jul 2024:
+<br>
+-(Finally) started working on channel pages' homepage, making channel pages (almost) complete
     </div>
     </div>
     </div>

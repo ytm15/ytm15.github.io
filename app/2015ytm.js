@@ -108,8 +108,11 @@ NoVideos_text_string = "This channel has no videos."
 OldestCreated_text_string = "Date created (oldest)";
 NewestCreated_text_string = "Date created (newest)";
 LastAdded_text_string = "Last video added"
-NoPlaylists_text_string = "This channel has no playlists."
+NoPlaylists_text_string = "This channel has no playlists.";
 NoContent_text_string = "This channel doesn't have any content";
+Uploads_text_string = "Uploads";
+Shorts_text_string = "Short uploads";
+PopularUploads_text_string = "Popular uploads";
 
 function renderSubscribeBtn(parent) {
     const mtrlBtnCont = document.createElement("div");
