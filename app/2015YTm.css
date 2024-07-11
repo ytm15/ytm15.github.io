@@ -1910,13 +1910,19 @@ ytm15-badge:empty, .standalone-badge-supported ytm15-badge:empty {
     overflow: hidden;
 }
 [aria-expanded="true"]~.video-metadata-description-box {
-    margin: -14px 0px;
-    margin-bottom: -9px;
+    /* margin: -14px 0px; */
+    /* margin-bottom: -9px; */
 }
 .video-metadata-info {
     font-size: 1.4rem;
     padding: 16px 14px;
     color: rgba(0, 0, 0, 0.5);
+}
+.video-metadata-info:first-of-type {
+    padding-top: 2px;
+}
+.video-metadata-info:last-of-type {
+    padding-bottom: 5px;
 }
 .video-metadata-description>a, .metadata-row-item>a, .metadata-row-header>a {
     color: #068fd4;
