@@ -400,6 +400,10 @@ Changelog
 11 Jul 2024:
 <br>
 -(Finally) started working on channel pages' homepage, making channel pages (almost) complete
+<br><br>
+12 Jul 2024:
+<br>
+-Started working on the playlist page header's description
     </div>
     </div>
     </div>
