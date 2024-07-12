@@ -70,7 +70,22 @@ function playlistPage(){
 <div class="playlist-title"><span role="text">${data.title}</span></div>
 <div class="playlist-owner-text"><a tabindex="0" href="#${data.authorUrl}" rel="nofollow" target force-new-state="true">${data.author}</a></div>
 </div>`;
+    playlistTitleWrap.setAttribute("aria-expanded", "false");
+    playlistTitleWrap.onclick = function(){
+    if (this.getAttribute("aria-expanded") == "false") {
+     this.setAttribute("aria-expanded", "true");
+     playlistDescription.classList.add("expanded");
+    } else if (this.getAttribute("aria-expanded") == "true") {
+     this.setAttribute("aria-expanded", "false");
+     playlistDescription.classList.remove("expanded");
+    };
+    };
     playlistMetadata.appendChild(playlistTitleWrap);
+
+    const playlistDescription = document.createElement("div");
+    playlistDescription.classList.add("playlist-description");
+    playlistDescription.innerHTML = `<span>${data.description}</span>`;
+    playlistMetadata.appendChild(playlistDescription);
 
     const playlistActionBtns = document.createElement("div");
     playlistActionBtns.classList.add("playlist-action-buttons");
