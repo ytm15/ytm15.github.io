@@ -2126,6 +2126,9 @@ ytm15-menu-button {
     width: 20px;
     height: 20px;
 }
+.compact-channel.shelf-item .media-item-menu {
+    display: none;
+}
 
 /* About 2015YouTube */
 .about-page-heading, .about-page-subheading {
