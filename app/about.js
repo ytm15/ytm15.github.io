@@ -404,6 +404,10 @@ Changelog
 12 Jul 2024:
 <br>
 -Started working on the playlist page header's description
+<br><br>
+14 Jul 2024:
+<br>
+-The menu button is now no-longer visible for channel pages' compact channel media items
     </div>
     </div>
     </div>
