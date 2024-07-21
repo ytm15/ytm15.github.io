@@ -408,6 +408,14 @@ Changelog
 14 Jul 2024:
 <br>
 -The menu button is now no-longer visible for channel pages' compact channel media items
+<br><br>
+21 Jul 2024:
+<br>
+-Channel sub counts are now pulled from a different API, because the Invidious API's channel sub counts are always 0, regardless if said channel actually has any subs or not
+<br>
+-Added a channels tab to channel pages
+<br>
+-Fixed a bug that prevented channel pages from being reloaded when there's an error
     </div>
     </div>
     </div>
