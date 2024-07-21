@@ -113,6 +113,7 @@ NoContent_text_string = "This channel doesn't have any content";
 Uploads_text_string = "Uploads";
 Shorts_text_string = "Short uploads";
 PopularUploads_text_string = "Popular uploads";
+NoChannels_text_string = "This channel doesn't feature any other channels.";
 
 function renderSubscribeBtn(parent) {
     const mtrlBtnCont = document.createElement("div");
