@@ -60,8 +60,34 @@ function channelPage() {
 
     if (wasPrevChannelPage) {
         tabsSpinner.removeAttribute("hidden");
+        if (document.querySelector(".tabs-content-container>.spinner-container")) {
         document.querySelector(".tabs-content-container>.spinner-container").replaceWith(tabsSpinner);
+        }
     }
+
+    chSubCount = 0;
+
+    const getChannelDataYT = new XMLHttpRequest();
+    getChannelDataYT.open('GET', 'https://yt.lemnoslife.com/noKey/channels?part=snippet,statistics,status&id=' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0], true);
+
+    getChannelDataYT.onerror = function(event) {
+    console.error("An error occurred with this operation (" + getChannelDataYT.status + ")");
+    return;
+    };
+
+    getChannelDataYT.send();
+
+    getChannelDataYT.onload = function() {
+    if (getChannelDataYT.status === 200) {
+    const response = JSON.parse(getChannelDataYT.response);
+    chSubCount = Number(response.items[0].statistics.subscriberCount);
+    if (Number(response.items[0].statistics.subscriberCount) == 0) {
+    chSubCount = "No";
+    }
+    } else {
+    getChannelDataYT.onerror();
+    }
+    };
 
     const getChannelData = new XMLHttpRequest();
     getChannelData.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0], true);
@@ -96,6 +122,14 @@ function channelPage() {
     const response = JSON.parse(getChannelData.response);
     /* console.log(response); */
 
+    response.subCount = chSubCount;
+    var chValuesInterval = setInterval(function(){
+     response.subCount = chSubCount;
+     if (response.subCount !== 0) {
+     clearInterval(chValuesInterval);
+     }
+    }, 10);
+
     wasPrevChannelPage = true;
 
     var spinner = document.querySelector(".spinner-container.full-height");
@@ -118,13 +152,16 @@ function channelPage() {
     document.querySelector(".tab-bar").appendChild(tabBarTabs);
     }
 
-    const videosTabExists = response.tabs.find((item) => item === "videos");
+    /* const videosTabExists = response.tabs.find((item) => item === "videos"); */
+    const videosTabExists = response.tabs.find(function(item){return item === "videos"});
 
     if (CHANNELS_SEPARATE_VIDS_SHORTS_LIVE_TABS_expflag !== "true") {
      if (!videosTabExists) {
       response.tabs.splice(1, 0, "videos");
      }
     }
+
+    response.tabs.push("channels");
 
     response.tabs.forEach(function(item) {
     const tBTabCont = document.createElement("div");
@@ -273,6 +310,13 @@ function channelPage() {
     channelSubCount.classList.add("channels-header-subscriber-count", "secondary-text");
     channelSubCount.textContent = response.subCount.toLocaleString() + " subscribers";
     channelSub.appendChild(channelSubCount);
+
+    var chSubCountChange = setInterval(function(){
+     channelSubCount.textContent = response.subCount.toLocaleString() + " subscribers";
+     if (response.subCount !== 0) {
+     clearInterval(chSubCountChange);
+     }
+    }, 10);
 
     channelHeaderDetails.appendChild(channelTitle);
     channelHeaderDetails.appendChild(channelSub);
@@ -1200,6 +1244,178 @@ function channelVideosContin(continuation, contItemParent) {
 }
     } else {
     getChannelPlaylists.onerror();
+    }
+    };
+
+    tabContent.appendChild(sectionList);
+    }
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "channels" && item == "channels") {
+    var sectionList = document.createElement("div");
+    sectionList.classList.add("section-list");
+    
+    var sectLazyList = document.createElement("div");
+    sectLazyList.classList.add("lazy-list");
+    sectionList.appendChild(sectLazyList);
+
+    const spinner = document.querySelector(".spinner-container.full-height");
+    const contItem = document.createElement("div");
+    contItem.classList.add("continuation-item");
+    const spinnerClone = spinner.cloneNode(true);
+    spinnerClone.classList.remove("full-height");
+    spinnerClone.removeAttribute("hidden");
+    contItem.appendChild(spinnerClone);
+
+    sectLazyList.appendChild(contItem);
+
+    const getChannelsFeatured = new XMLHttpRequest();
+    getChannelsFeatured.open('GET', 'https://yt.lemnoslife.com/noKey/channelSections?channelId=' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '&part=contentDetails,id,snippet', true);
+ 
+    getChannelsFeatured.onerror = function(event) {
+    console.error("An error occurred with this operation (" + getChannelsFeatured.status + ")");
+
+    contItem.remove();
+
+    const error = document.createElement("div");
+    error.classList.add('error-container');
+    error.innerHTML = `<div class="error-content">
+<img class="error-icon ytm15-img" src="alert_error.png"></img>
+<span class="error-text">There was an error connecting to the server</span>
+</div>
+<div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry" onClick="location.reload();"><div class="button-text">Retry</div></button></div>`;
+    const pageCont = document.querySelector('.page-container');
+    pageCont.before(error);
+    error.querySelector("button").onclick = function(){
+    channelPage();
+    error.remove();
+    };
+    return;
+    };
+
+    getChannelsFeatured.send();
+
+    getChannelsFeatured.onload = function() {
+    if (getChannelsFeatured.status === 200) {
+    const data = JSON.parse(getChannelsFeatured.response);
+
+    contItem.remove();
+
+    const itemSect = document.createElement("div");
+    itemSect.classList.add("item-section");
+
+    const lazyList = document.createElement("div");
+    lazyList.classList.add("lazy-list", "no-animation");
+    itemSect.appendChild(lazyList);
+
+    const ytm15Msg = document.createElement("div");
+    ytm15Msg.classList.add("ytm15-message");
+    ytm15Msg.innerHTML = `<div class="ytm15-message-content"><div class="msg-text">${NoChannels_text_string}</div></div>`;
+    lazyList.appendChild(ytm15Msg);
+
+    data.items.forEach(function(item) {
+    const shelf = document.createElement("div");
+    shelf.classList.add('shelf');
+
+    if (item.snippet.type == "multiplechannels") {
+    sectLazyList.appendChild(shelf);
+    };
+
+    const shelfHeader = document.createElement("div");
+    shelfHeader.classList.add('shelf-header');
+    const shelfHeaderEP = document.createElement("a");
+    shelfHeaderEP.classList.add('shelf-header-endpoint');
+    shelfHeaderEP.href = "#/channel/" + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0];
+    const shelfTitleBar = document.createElement("div");
+    shelfTitleBar.classList.add('shelf-title-bar');
+    shelfTitle = item.snippet.title;
+    shelfTitleBar.innerHTML = "<h3>" + shelfTitle + "</h3>";
+
+    const verticalList = document.createElement("div");
+    verticalList.classList.add('vertical-list');
+
+    const ESButtonCont = document.createElement("div");
+    ESButtonCont.classList.add('expand-shelf-button-container');
+
+    const moreIcon = document.createElement("ytm15-icon");
+    moreIcon.classList.add('show-more-icon');
+    moreIcon.innerHTML = `<svg viewBox="0 0 24 24" fill=""><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path></svg>`;
+
+    const lessIcon = document.createElement("ytm15-icon");
+    lessIcon.classList.add('show-less-icon');
+    lessIcon.innerHTML = `<svg viewBox="0 0 24 24" fill=""><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"></path></svg>`;
+
+    const ISButton = document.createElement("button");
+    ISButton.classList.add('collapse-shelf-button', 'icon-button');
+    ISButton.setAttribute('aria-label', 'Show less');
+    ISButton.setAttribute('hidden', '');
+    ISButton.onclick = function(){verticalList.classList.remove('expanded'); ISButton.setAttribute('hidden', ''); ESButton.removeAttribute('hidden');};
+
+    const ESButton = document.createElement("button");
+    ESButton.classList.add('expand-shelf-button', 'icon-button');
+    ESButton.setAttribute('aria-label', 'Show more');
+    ESButton.onclick = function(){verticalList.classList.add('expanded'); ESButton.setAttribute('hidden', ''); ISButton.removeAttribute('hidden');};
+    ESButtonCont.appendChild(ESButton);
+    ESButtonCont.appendChild(ISButton);
+
+    ESButton.appendChild(moreIcon);
+    ISButton.appendChild(lessIcon);
+
+    shelf.appendChild(shelfHeader);
+    shelfHeader.appendChild(shelfHeaderEP);
+    shelfHeaderEP.appendChild(shelfTitleBar);
+    shelf.appendChild(verticalList);
+
+    if (item.snippet.type == "multiplechannels") {
+    item.contentDetails.channels.forEach(function(item1){
+    const getShelfChannels = new XMLHttpRequest();
+    getShelfChannels.open('GET', APIbaseURL + 'api/v1/channels/' + item1, true);
+ 
+    getShelfChannels.onerror = function(event) {
+    console.error("An error occurred with this operation (" + getShelfChannels.status + ")");
+    return;
+    };
+
+    getShelfChannels.send();
+
+    getShelfChannels.onload = function() {
+    if (getShelfChannels.status === 200) {
+    const data = JSON.parse(getShelfChannels.response);
+
+        compMediaItemThumb = data.authorThumbnails[2].url;
+        compMediaItemLength = "";
+        compMediaItemTitle = data.author;
+        compMediaItemAuthor = data.subCount.toLocaleString() + " subscribers";
+        compMediaItemvidId = "";
+        renderCompactMediaItem(verticalList, "shelf", compMediaItemvidId, compMediaItemThumb, compMediaItemLength, compMediaItemTitle, compMediaItemAuthor, data.authorId, "", "", "channel");
+
+        if (ESButtonCont && item.snippet.type == "multiplechannels" && item.contentDetails.channels.length > 3) {
+        ESButtonCont.remove();
+        verticalList.appendChild(ESButtonCont);
+        }
+    } else {
+    getShelfChannels.onerror();
+    }
+    };
+    });
+      if (item.contentDetails.channels.length == 0) {
+        shelf.remove();
+        if (sectLazyList.childNodes.length == "0") {
+        itemSect.remove();
+        sectLazyList.appendChild(itemSect);
+        }
+      }
+    }
+
+    if (item.snippet.type == "multiplechannels" && item.contentDetails.channels.length > 3) {
+    verticalList.appendChild(ESButtonCont);
+    }
+    });
+
+    if (sectLazyList.childNodes.length == "0") {
+    sectLazyList.appendChild(itemSect);
+    }
+
+    } else {
+    getChannelsFeatured.onerror();
     }
     };
 
