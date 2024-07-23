@@ -416,6 +416,10 @@ Changelog
 -Added a channels tab to channel pages
 <br>
 -Fixed a bug that prevented channel pages from being reloaded when there's an error
+<br><br>
+23 Jul 2024:
+<br>
+-Done some slight changes to material ripples (originally tried updating them for all "has-ripple" elements to make them no-longer psuedo "::before" elements, but that failed)
     </div>
     </div>
     </div>

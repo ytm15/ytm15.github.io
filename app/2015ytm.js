@@ -16,6 +16,67 @@ headerIsChannel = 'false';
 
 dataModeChange();
 
+/* var rippleV2Interval = setInterval(function(){
+   var rippleElms = document.querySelectorAll(".has-ripple");
+   var rippleElms1 = document.querySelectorAll(".compact-media-item");
+   var rippleElms2 = document.querySelectorAll(".shelf-header");
+   var rippleElms3 = document.querySelectorAll("button.icon-button");
+   var rippleElms4 = document.querySelectorAll(".tab");
+   var rippleElms5 = document.querySelectorAll(".media-item");
+   var rippleElms6 = document.querySelectorAll(".material-button");
+   function renderRippleV2(parent){
+    const mtrlRipple = document.createElement("div");
+    mtrlRipple.classList.add("material-ripple-v2");
+    mtrlRipple.innerHTML = `
+<div class="ripple-v2-circle"></div>
+`;
+    parent.addEventListener("mousedown", function(){
+    mtrlRipple.classList.add("active");
+    }, true);
+    parent.addEventListener("touchstart", function(){
+    mtrlRipple.classList.add("active");
+    }, true);
+    parent.addEventListener("mouseup", function(){
+    mtrlRipple.classList.remove("active");
+    mtrlRipple.classList.add("closing");
+    setTimeout(function(){
+     mtrlRipple.classList.remove("closing");
+    }, 400);
+    }, true);
+    parent.addEventListener("touchend", function(){
+    mtrlRipple.classList.remove("active");
+    mtrlRipple.classList.add("closing");
+    setTimeout(function(){
+     mtrlRipple.classList.remove("closing");
+    }, 400);
+    }, true);
+    if (!parent.querySelector(".material-ripple-v2")) {
+    parent.appendChild(mtrlRipple);
+    };
+   };
+   Array.from(rippleElms).forEach(function(item){
+    renderRippleV2(item);
+   });
+   Array.from(rippleElms1).forEach(function(item){
+    renderRippleV2(item);
+   });
+   Array.from(rippleElms2).forEach(function(item){
+    renderRippleV2(item);
+   });
+   Array.from(rippleElms3).forEach(function(item){
+    renderRippleV2(item);
+   });
+   Array.from(rippleElms4).forEach(function(item){
+    item.classList.add("has-ripple");
+   });
+   Array.from(rippleElms5).forEach(function(item){
+    renderRippleV2(item);
+   });
+   Array.from(rippleElms6).forEach(function(item){
+    renderRippleV2(item);
+   });
+}, 10); */
+
 documentHTML = document.querySelector("html");
 
 function localStorageChange(){
