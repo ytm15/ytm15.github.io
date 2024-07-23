@@ -420,6 +420,8 @@ Changelog
 23 Jul 2024:
 <br>
 -Done some slight changes to material ripples (originally tried updating them for all "has-ripple" elements to make them no-longer psuedo "::before" elements, but that failed)
+<br>
+-You can now click on the header of channel shelfs that feature channels to view all channels from said shelf
     </div>
     </div>
     </div>

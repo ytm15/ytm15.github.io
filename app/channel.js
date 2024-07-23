@@ -420,7 +420,7 @@ function channelPage() {
     shelfTitle = undefined;
     } else if (item.snippet.type == "multiplechannels") {
     shelfTitle = item.snippet.title;
-    shelfHeaderEP.href = "#/channel/" + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0];
+    shelfHeaderEP.href = "#/channel/" + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + "/channels?shelfid=" + item.id.split(".")[1].toString();
     } else if (item.snippet.type == "popularuploads") {
     shelfTitle = PopularUploads_text_string;
     shelfHeaderEP.href = "#/channel/" + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + "/videos?sort=popular";
@@ -1311,6 +1311,42 @@ function channelVideosContin(continuation, contItemParent) {
     ytm15Msg.innerHTML = `<div class="ytm15-message-content"><div class="msg-text">${NoChannels_text_string}</div></div>`;
     lazyList.appendChild(ytm15Msg);
 
+    channelShelfMatchesURLId = data.items.find(function(item1){return item1.id.split(".")[1] === window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(4, 5).toString().split("&").slice(0, 1).toString().split("shelfid").slice(1, 2).toString().split("=").slice(1, 2).toString()});
+
+    if (channelShelfMatchesURLId) {
+    sectLazyList.appendChild(itemSect);
+    ytm15Msg.remove();
+
+    channelShelfMatchesURLId.contentDetails.channels.forEach(function(item1){
+    const getShelfChannels = new XMLHttpRequest();
+    getShelfChannels.open('GET', APIbaseURL + 'api/v1/channels/' + item1, true);
+ 
+    getShelfChannels.onerror = function(event) {
+    console.error("An error occurred with this operation (" + getShelfChannels.status + ")");
+    return;
+    };
+
+    getShelfChannels.send();
+
+    getShelfChannels.onload = function() {
+    if (getShelfChannels.status === 200) {
+    const data = JSON.parse(getShelfChannels.response);
+
+        compMediaItemThumb = data.authorThumbnails[2].url;
+        compMediaItemLength = "";
+        compMediaItemTitle = data.author;
+        compMediaItemAuthor = data.subCount.toLocaleString() + " subscribers";
+        compMediaItemvidId = "";
+        renderCompactMediaItem(lazyList, "lazy-list", compMediaItemvidId, compMediaItemThumb, compMediaItemLength, compMediaItemTitle, compMediaItemAuthor, data.authorId, "", "", "channel");
+    } else {
+    getShelfChannels.onerror();
+    }
+    };
+    });
+
+    return false;
+    };
+
     data.items.forEach(function(item) {
     const shelf = document.createElement("div");
     shelf.classList.add('shelf');
@@ -1323,7 +1359,7 @@ function channelVideosContin(continuation, contItemParent) {
     shelfHeader.classList.add('shelf-header');
     const shelfHeaderEP = document.createElement("a");
     shelfHeaderEP.classList.add('shelf-header-endpoint');
-    shelfHeaderEP.href = "#/channel/" + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0];
+    shelfHeaderEP.href = "#/channel/" + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + "/channels?shelfid=" + item.id.split(".")[1].toString();
     const shelfTitleBar = document.createElement("div");
     shelfTitleBar.classList.add('shelf-title-bar');
     shelfTitle = item.snippet.title;
