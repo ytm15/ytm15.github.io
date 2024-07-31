@@ -346,8 +346,6 @@ function renderCommentSection(parent, mediaType, cmSource){
     if (getCommentsData.status === 200) {
     const data = JSON.parse(getCommentsData.response);
 
-    console.log(data);
-
     const commentSection = document.createElement("div");
     commentSection.classList.add("comment-section");
     commentSection.dataset.isBeta = true;
