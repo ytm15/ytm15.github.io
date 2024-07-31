@@ -3030,6 +3030,7 @@ ytm15-playlist-header[data-is-beta="true"]::before {
     max-height: 34px;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
+    white-space: pre-wrap;
 }
 .playlist-description.expanded {
     max-height: unset;
@@ -3071,9 +3072,10 @@ ytm15-playlist-header[data-is-beta="true"]::before {
 ytm15-comment-thread {
     min-height: 15px;
     display: block;
+    animation: fade-in .3s ease-in-out;
 }
 ytm15-comment {
-    padding: 16px;
+    padding: 16px 0 0 16px;
     display: flex;
     font-size: 1.3rem;
     word-wrap: break-word;
@@ -3087,8 +3089,7 @@ ytm15-comment {
 }
 .comment-content {
     flex-grow: 1;
-    padding-left: 16px;
-    overflow: hidden;
+    padding: 0 16px;
 }
 .comment-text {
     font-size: 1.4rem;
@@ -3128,6 +3129,41 @@ ytm15-comment {
 }
 .comment-text a {
     color: #068fd4;
+}
+.comment-details {
+    color: rgba(0,0,0,0.4);
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px 0;
+    margin-right: -16px;
+}
+.comment-icons {
+    display: flex;
+    justify-content: center;
+    height: 36px;
+    align-items: center;
+}
+.comment-action-icon {
+    width: 16px;
+    height: 16px;
+}
+button.comment-icon-button {
+    width: 24px;
+    height: 24px;
+    padding: 4px;
+    margin-right: 2px;
+}
+.comment-icons#cm-icon-like {
+    margin-bottom: 6px;
+}
+.comment-count {
+    flex-shrink: 0;
+    min-width: 40px;
+}
+#cm-icon-dislike .comment-count {
+    min-width: 30px;
 }
 
 /* Global dark theme */

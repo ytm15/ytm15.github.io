@@ -426,6 +426,16 @@ Changelog
 31 Jul 2024:
 <br>
 -Finally started working on comment sections (they're in beta for now)
+<br>
+a few hours later:
+<br>
+-Added channel names to comments along with like and reply counts
+<br>
+-Added a continuation item (spinner) to comment sections that acts as a placeholder for while it loads
+<br>
+-Comment sections now have continuations
+<br>
+-Playlist descriptions' white spaces are now pre-wrapped
     </div>
     </div>
     </div>

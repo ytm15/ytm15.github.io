@@ -176,6 +176,7 @@ Shorts_text_string = "Short uploads";
 PopularUploads_text_string = "Popular uploads";
 NoChannels_text_string = "This channel doesn't feature any other channels.";
 Comments_text_string = "Comments";
+CommentsError_text_string = "Comments are either disabled or unavailable."
 
 function renderSubscribeBtn(parent) {
     const mtrlBtnCont = document.createElement("div");
@@ -332,19 +333,6 @@ renderHeader();
 
 function renderCommentSection(parent, mediaType, cmSource){
     var cmBaseAPIURL = 'https://inv.tux.pizza/api/v1/comments/';
-    const getCommentsData = new XMLHttpRequest();
-    getCommentsData.open('GET', cmBaseAPIURL + cmSource, true);
-
-    getCommentsData.onerror = function(event) {
-    console.error("An error occurred with this operation (" + getCommentsData.status + ")");
-    return;
-    };
-
-    getCommentsData.send();
-
-    getCommentsData.onload = function() {
-    if (getCommentsData.status === 200) {
-    const data = JSON.parse(getCommentsData.response);
 
     const commentSection = document.createElement("div");
     commentSection.classList.add("comment-section");
@@ -357,11 +345,7 @@ function renderCommentSection(parent, mediaType, cmSource){
 
     const commentsHeader = document.createElement("div");
     commentsHeader.classList.add("comment-section-header");
-    if (data.commentCount) {
-    commentCount = data.commentCount.toLocaleString();
-    } else {
-    commentCount = "";
-    }
+    commentCount = `<span style="opacity: .6; font-style: italic;">Retrieving count...</span>`;
     commentsHeader.innerHTML = `<div class="comments-header-top"><h2 class="comments-header-text"><span class="cmh-text-title">${Comments_text_string}</span><span class="cmh-text-comment-count">${commentCount}</span></h2></div>`;
     commentSection.appendChild(commentsHeader);
 
@@ -370,8 +354,50 @@ function renderCommentSection(parent, mediaType, cmSource){
     commentsHeader.appendChild(commentSeparator);
 
     const lazyList = document.createElement("div");
-    lazyList.classList.add("lazy-list", "no-animation");
+    lazyList.classList.add("lazy-list");
     commentSection.appendChild(lazyList);
+
+    function retrieveComments(continuation){
+    if (continuation == "") {
+    lazyList.innerHTML = ``;
+    }
+
+    const spinner = document.querySelector(".spinner-container.full-height");
+    const contItem = document.createElement("div");
+    contItem.classList.add("continuation-item");
+    const spinnerClone = spinner.cloneNode(true);
+    spinnerClone.classList.remove("full-height");
+    spinnerClone.removeAttribute("hidden");
+    contItem.appendChild(spinnerClone);
+    lazyList.appendChild(contItem);
+
+    const getCommentsData = new XMLHttpRequest();
+    getCommentsData.open('GET', cmBaseAPIURL + cmSource + "?continuation=" + continuation, true);
+
+    getCommentsData.onerror = function(event) {
+    console.error("An error occurred with this operation (" + getCommentsData.status + ")");
+    contItem.remove();
+    commentSection.innerHTML = `<div class="ytm15-message"><div class="ytm15-message-content"><div class="msg-text">${CommentsError_text_string}</div></div></div>`;
+    return;
+    };
+
+    getCommentsData.send();
+
+    getCommentsData.onload = function() {
+    if (getCommentsData.status === 200) {
+    const data = JSON.parse(getCommentsData.response);
+    contItem.remove();
+
+    if (continuation == "") {
+    if (data.commentCount) {
+    commentCount = data.commentCount.toLocaleString();
+    } else {
+    commentCount = "";
+    }
+    }
+
+    commentsHeader.querySelector(".cmh-text-comment-count").innerHTML = commentCount;
+
     data.comments.forEach(function(item){
     const commentThread = document.createElement("ytm15-comment-thread");
     const comment = document.createElement("ytm15-comment");
@@ -402,13 +428,53 @@ function renderCommentSection(parent, mediaType, cmSource){
     } else {
      cmIsOwner = "false";
     }
+    commentAuthor = `<span style="opacity: .6; font-style: italic;">Retrieving author name...</span>`;
     commentCont.innerHTML = `
 <p class="comment-text user-text">${item.contentHtml}</p>
 <div class="comment-header">
-<span class="comment-title" is-owner="${cmIsOwner}"><a href="#${item.authorUrl}" onclick="exitWatch.onclick()">(TBA)</a></span>
+<span class="comment-title" is-owner="${cmIsOwner}"><a href="#${item.authorUrl}" onclick="exitWatch.onclick()">${commentAuthor}</a></span>
 <span class="comment-published-time">${item.publishedText}</span>
 </div>
+<div class="comment-details">
+<div class="comment-icons" id="cm-icon-like">
+<button class="icon-button comment-icon-button" aria-label="Like this comment"><ytm15-icon class="like-icon comment-action-icon"><svg viewBox="0 0 24 24" fill=""><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1.91l-.01-.01L23 10z"></path></svg></ytm15-icon></button>
+<span class="comment-count">${item.likeCount.toLocaleString()}</span>
+</div>
+<div class="comment-icons" id="cm-icon-dislike">
+<button class="icon-button comment-icon-button" aria-label="Dislike this comment"><ytm15-icon class="dislike-icon comment-action-icon"><svg viewBox="0 0 24 24" fill=""><path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v1.91l.01.01L1 14c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"></path></svg></ytm15-icon></button>
+<span class="comment-count"></span>
+</div>
+<div class="comment-icons" id="cm-icon-reply">
+<button class="icon-button comment-icon-button" aria-label="Reply to this comment"><ytm15-icon class="reply-icon comment-action-icon"><svg viewBox="0 0 24 24" fill=""><path d="M18,8H6V6H18V8M18,11H6V9H18V11M18,14H6V12H18V14M22,4A2,2 0 0,0 20,2H4A2,2 0 0,0 2,4V16A2,2 0 0,0 4,18H18L22,22V4Z"></path></svg></ytm15-icon>
+</button>
+<span class="comment-count">${cmReplyCount}</span>
+</div>
+</div>
 `;
+
+    const getCommentsTitle = new XMLHttpRequest();
+    getCommentsTitle.open('GET', APIbaseURL + 'api/v1/channels/' + item.authorId, true);
+
+    getCommentsTitle.onerror = function(event) {
+    console.error("An error occurred with this operation (" + getCommentsTitle.status + ")");
+    return;
+    };
+
+    getCommentsTitle.send();
+
+    getCommentsTitle.onload = function() {
+    if (getCommentsTitle.status === 200) {
+    const data1 = JSON.parse(getCommentsTitle.response);
+    commentAuthor = data1.author;
+    commentCont.querySelector(".comment-title>a").innerHTML = commentAuthor;
+    commentCont.ariaLabel = `${item.content}. ${commentAuthor}. ${item.publishedText}. ${item.likeCount.toLocaleString()} likes. ${cmReplyCount} replies`;
+    } else {
+    getCommentsTitle.onerror();
+    commentAuthor = `<span style="font-style: italic;">Retrieval failed!</span>`;
+    commentCont.querySelector(".comment-title>a").innerHTML = commentAuthor;
+    }
+    };
+
     comment.appendChild(commentPFPCont);
     comment.appendChild(commentCont);
     
@@ -419,10 +485,26 @@ function renderCommentSection(parent, mediaType, cmSource){
     lazyList.appendChild(commentThread);
     });
 
+    if (data.continuation) {
+    const nextContinCont = document.createElement("div");
+    nextContinCont.classList.add("next-continuation-cont");
+    nextContinCont.innerHTML = `<div class="next-continuation">
+<div class="material-button-container next-contin-button" data-style="" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button" data-continuation="" aria-label="More"><div class="button-text">More</div></button></div>
+</div>`;
+    nextContinCont.querySelector("button").dataset.continuation = data.continuation;
+    nextContinCont.querySelector("button").onclick = function(){
+    nextContinCont.remove();
+    retrieveComments(nextContinCont.querySelector("button").dataset.continuation);
+    };
+    commentSection.appendChild(nextContinCont);
+    }
+
     } else {
     getCommentsData.onerror();
     }
     };
+    };
+    retrieveComments("");
 };
 
 function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLength, itemTitle, itemAuthor, itemAuthorId, itemPublishedText, itemViewCount, mediaType) {
