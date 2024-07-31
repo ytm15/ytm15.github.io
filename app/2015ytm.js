@@ -175,6 +175,7 @@ Uploads_text_string = "Uploads";
 Shorts_text_string = "Short uploads";
 PopularUploads_text_string = "Popular uploads";
 NoChannels_text_string = "This channel doesn't feature any other channels.";
+Comments_text_string = "Comments";
 
 function renderSubscribeBtn(parent) {
     const mtrlBtnCont = document.createElement("div");
@@ -328,6 +329,103 @@ dataModeChange();
     const searchParamFeatures = urlParams.get("features");
 
 renderHeader();
+
+function renderCommentSection(parent, mediaType, cmSource){
+    var cmBaseAPIURL = 'https://inv.tux.pizza/api/v1/comments/';
+    const getCommentsData = new XMLHttpRequest();
+    getCommentsData.open('GET', cmBaseAPIURL + cmSource, true);
+
+    getCommentsData.onerror = function(event) {
+    console.error("An error occurred with this operation (" + getCommentsData.status + ")");
+    return;
+    };
+
+    getCommentsData.send();
+
+    getCommentsData.onload = function() {
+    if (getCommentsData.status === 200) {
+    const data = JSON.parse(getCommentsData.response);
+
+    console.log(data);
+
+    const commentSection = document.createElement("div");
+    commentSection.classList.add("comment-section");
+    commentSection.dataset.isBeta = true;
+    if (mediaType == "video") {
+     commentSection.classList.add("watch-next-results-content");
+     commentSection.dataset.contentType = "result";
+    };
+    parent.appendChild(commentSection);
+
+    const commentsHeader = document.createElement("div");
+    commentsHeader.classList.add("comment-section-header");
+    if (data.commentCount) {
+    commentCount = data.commentCount.toLocaleString();
+    } else {
+    commentCount = "";
+    }
+    commentsHeader.innerHTML = `<div class="comments-header-top"><h2 class="comments-header-text"><span class="cmh-text-title">${Comments_text_string}</span><span class="cmh-text-comment-count">${commentCount}</span></h2></div>`;
+    commentSection.appendChild(commentsHeader);
+
+    var commentSeparator = document.createElement("div");
+    commentSeparator.classList.add("comment-separator");
+    commentsHeader.appendChild(commentSeparator);
+
+    const lazyList = document.createElement("div");
+    lazyList.classList.add("lazy-list", "no-animation");
+    commentSection.appendChild(lazyList);
+    data.comments.forEach(function(item){
+    const commentThread = document.createElement("ytm15-comment-thread");
+    const comment = document.createElement("ytm15-comment");
+    comment.classList.add("has-ripple");
+    const commentPFPCont = document.createElement("a");
+    commentPFPCont.classList.add("comment-pfp-container");
+    commentPFPCont.href = "#" + item.authorUrl;
+    if (mediaType == "video") {
+     commentPFPCont.onclick = function(){exitWatch.onclick()};
+    };
+    commentPFPCont.innerHTML = `
+<div class="profile-icon comment-icon">
+<img class="profile-img ytm15-img lazy" loading="lazy" src="${item.authorThumbnails[0].url}"></img>
+</div>
+`;
+    commentPFPCont.querySelector(".profile-img").onload = function(){this.classList.add('loaded');};
+    const commentCont = document.createElement("div");
+    commentCont.classList.add("comment-content");
+    if (item.replies) {
+    cmReplyCount = item.replies.replyCount.toLocaleString();
+    } else {
+    cmReplyCount = 0;
+    }
+    commentCont.ariaLabel = `${item.content}. ${item.publishedText}. ${item.likeCount.toLocaleString()} likes. ${cmReplyCount} replies`;
+    if (item.authorIsChannelOwner == true) {
+     cmIsOwner = "true";
+     commentCont.dataset.isOwner = "true";
+    } else {
+     cmIsOwner = "false";
+    }
+    commentCont.innerHTML = `
+<p class="comment-text user-text">${item.contentHtml}</p>
+<div class="comment-header">
+<span class="comment-title" is-owner="${cmIsOwner}"><a href="#${item.authorUrl}" onclick="exitWatch.onclick()">(TBA)</a></span>
+<span class="comment-published-time">${item.publishedText}</span>
+</div>
+`;
+    comment.appendChild(commentPFPCont);
+    comment.appendChild(commentCont);
+    
+    commentThread.appendChild(comment);
+    var commentSeparator = document.createElement("div");
+    commentSeparator.classList.add("comment-separator");
+    commentThread.appendChild(commentSeparator);
+    lazyList.appendChild(commentThread);
+    });
+
+    } else {
+    getCommentsData.onerror();
+    }
+    };
+};
 
 function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLength, itemTitle, itemAuthor, itemAuthorId, itemPublishedText, itemViewCount, mediaType) {
         const video = document.createElement('div');

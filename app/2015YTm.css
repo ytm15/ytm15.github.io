@@ -3036,6 +3036,100 @@ ytm15-playlist-header[data-is-beta="true"]::before {
     -webkit-line-clamp: unset;
 }
 
+/* Comments section */
+.comment-section {
+    border-bottom: 1.2px solid rgba(0, 0, 0, 0.2);
+}
+[data-is-beta="true"] .comments-header-text::after {
+    content: "Beta";
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    margin: 0 8px;
+    padding: 1px 6px;
+    background-color: rgba(0, 0, 0, 0.15);
+    opacity: .6;
+    font-weight: 500;
+    border-radius: 2px;
+}
+.comments-header-text {
+    flex-grow: 1;
+    font-size: 1.6rem;
+    margin: 0;
+}
+.comments-header-top {
+    display: flex;
+    align-items: center;
+    padding: 14px 16px 8px;
+}
+.cmh-text-comment-count {
+    margin-left: 8px;
+    opacity: .6;
+}
+.cmh-text-comment-count:empty {
+    display: none;
+}
+ytm15-comment-thread {
+    min-height: 15px;
+    display: block;
+}
+ytm15-comment {
+    padding: 16px;
+    display: flex;
+    font-size: 1.3rem;
+    word-wrap: break-word;
+}
+.comment-pfp-container {
+    flex-shrink: 0;
+}
+.comment-pfp-container .comment-icon {
+    width: 45px;
+    height: 45px;
+}
+.comment-content {
+    flex-grow: 1;
+    padding-left: 16px;
+    overflow: hidden;
+}
+.comment-text {
+    font-size: 1.4rem;
+    margin-top: 0;
+    margin-bottom: 8px;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+.comment-separator {
+    border-bottom: 1.2px solid rgba(0, 0, 0, 0.2);
+    margin-left: 77px;
+}
+.comment-header {
+    display: flex;
+    justify-content: flex-start;
+    color: rgba(0,0,0,0.5);
+}
+.comment-title {
+    display: inline-block;
+    word-wrap: break-word;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.comment-header span~span::before {
+    content: "•";
+    padding: 0 5px;
+}
+.comment-title[is-owner=true] {
+    padding: 1px 6px;
+    border-radius: 8px;
+    color: #fff;
+    background-color: #f62118;
+}
+.comment-published-time {
+    white-space: nowrap;
+}
+.comment-text a {
+    color: #068fd4;
+}
+
 /* Global dark theme */
 html.dark {
     color: #f1f1f1;
