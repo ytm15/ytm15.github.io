@@ -1415,11 +1415,11 @@ playerCont.addEventListener('swiperelease', function (e) {
   setTimeout(function(){
   watchContainer.setAttribute("style", `animation: player-to-miniplayer .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
   playerCont.setAttribute("style", `animation: player-cont-to-miniplayer .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
-  watchOverlay.setAttribute("style", `animation: watch-overlay-in .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
+  watchOverlay.setAttribute("style", `animation: watch-overlay-out .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
   if (watchContainer.classList.contains("miniplayer")) {
   watchContainer.setAttribute("style", `animation: miniplayer-to-player .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
   playerCont.setAttribute("style", `animation: miniplayer-to-player-cont .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
-  watchOverlay.setAttribute("style", `animation: watch-overlay-out .08s; animation-play-state: paused; animation-direction: reverse; animation-delay: 0s;`);
+  watchOverlay.setAttribute("style", `animation: watch-overlay-in .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
   }
   }, 0);
 });
