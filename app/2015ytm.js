@@ -1227,11 +1227,14 @@ videoPlayer.classList.add("player-mini-mode");
 if (document.webkitFullscreenElement) {
 document.webkitExitFullscreen();
 }
-
+setTimeout(function(){
+console.log(watchContainer.style.animation);
+  if (watchContainer.style.animation !== "0.08s ease 0s 1 normal none paused miniplayer-to-player") {
   watchContainer.setAttribute("style", ``);
   playerCont.setAttribute("style", ``);
   watchOverlay.setAttribute("style", ``);
-
+  }
+}, 01);
 document.body.classList.remove("has-watchpage");
 };
 exitWatch.setAttribute("aria-label", "Exit watchpage");
@@ -1293,11 +1296,13 @@ watchFrame.scrolling = "yes";
 if (videoPlayer.toString()) {
 videoPlayer.classList.remove("player-mini-mode");
 };
-
+setTimeout(function(){
+  if (watchContainer.style.animation !== "0.08s ease 0s 1 normal none paused player-to-miniplayer") {
   watchContainer.setAttribute("style", ``);
   playerCont.setAttribute("style", ``);
   watchOverlay.setAttribute("style", ``);
-
+  }
+}, 01);
 document.body.classList.add("has-watchpage");
 };
 openWatch.setAttribute("aria-label", "Open watchpage");
