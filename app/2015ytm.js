@@ -1338,7 +1338,7 @@ playerCont.addEventListener('swipe', function (e) {
   var d = e.detail.directions;
 
   if (!document.webkitFullscreenElement) {
-  if (!videoPlayer.classList.contains("player-options-shown") || videoPlayer.classList.contains("player-iframe-visible")) {
+  if (!progressTrack.classList.contains("scrubbing") && !videoPlayer.classList.contains("player-options-shown") || videoPlayer.classList.contains("player-iframe-visible")) {
   if (d.top) {
     if (d.right) {
     /* console.log('Swiped top-right.'); */
@@ -1399,6 +1399,7 @@ miniplayerAnimation = 0.07;
 if ((e.detail.y[1] - Math.round(e.detail.y[0] / 10)) * 100 / 1000000 < 0.00) {
 miniplayerAnimation = 0.00;
 }
+  if (!progressTrack.classList.contains("scrubbing") && !videoPlayer.classList.contains("player-options-shown") || videoPlayer.classList.contains("player-iframe-visible")) {
 watchContainer.setAttribute("style", `animation: player-to-miniplayer .08s; animation-play-state: paused; animation-direction: normal; animation-delay: -${miniplayerAnimation}s;`);
 playerCont.setAttribute("style", `animation: player-cont-to-miniplayer .08s; animation-play-state: paused; animation-direction: normal; animation-delay: -${miniplayerAnimation}s;`);
 watchOverlay.setAttribute("style", `animation: watch-overlay-out .08s; animation-play-state: paused; animation-direction: normal; animation-delay: -${miniplayerAnimation}s;`);
@@ -1408,6 +1409,7 @@ watchContainer.setAttribute("style", `animation: miniplayer-to-player .08s; anim
 playerCont.setAttribute("style", `animation: miniplayer-to-player-cont .08s; animation-play-state: paused; animation-direction: reverse; animation-delay: -${miniplayerAnimation}s;`);
 watchOverlay.setAttribute("style", `animation: watch-overlay-in .08s; animation-play-state: paused; animation-direction: reverse; animation-delay: -${miniplayerAnimation}s;`);
 }
+  };
 });
 
 playerCont.addEventListener('swiperelease', function (e) {
