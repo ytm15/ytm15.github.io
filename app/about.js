@@ -436,6 +436,10 @@ a few hours later:
 -Comment sections now have continuations
 <br>
 -Playlist descriptions' white spaces are now pre-wrapped
+<br><br>
+01 Aug 2024:
+<br>
+-Now when you drag the miniplayer in the watchpage, frames of its animation play
     </div>
     </div>
     </div>

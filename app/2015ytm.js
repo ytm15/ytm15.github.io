@@ -1227,6 +1227,11 @@ videoPlayer.classList.add("player-mini-mode");
 if (document.webkitFullscreenElement) {
 document.webkitExitFullscreen();
 }
+
+  watchContainer.setAttribute("style", ``);
+  playerCont.setAttribute("style", ``);
+  watchOverlay.setAttribute("style", ``);
+
 document.body.classList.remove("has-watchpage");
 };
 exitWatch.setAttribute("aria-label", "Exit watchpage");
@@ -1288,6 +1293,11 @@ watchFrame.scrolling = "yes";
 if (videoPlayer.toString()) {
 videoPlayer.classList.remove("player-mini-mode");
 };
+
+  watchContainer.setAttribute("style", ``);
+  playerCont.setAttribute("style", ``);
+  watchOverlay.setAttribute("style", ``);
+
 document.body.classList.add("has-watchpage");
 };
 openWatch.setAttribute("aria-label", "Open watchpage");
@@ -1382,10 +1392,36 @@ playerCont.addEventListener('swipe', function (e) {
 
 playerCont.addEventListener('swiping', function (e) {
   /* console.log('swiping', e.detail); */
+miniplayerAnimation = (e.detail.y[1] - Math.round(e.detail.y[0] / 10)) * 100 / 1000000;
+if ((e.detail.y[1] - Math.round(e.detail.y[0] / 10)) * 100 / 1000000 > 0.07) {
+miniplayerAnimation = 0.07;
+}
+if ((e.detail.y[1] - Math.round(e.detail.y[0] / 10)) * 100 / 1000000 < 0.00) {
+miniplayerAnimation = 0.00;
+}
+watchContainer.setAttribute("style", `animation: player-to-miniplayer .08s; animation-play-state: paused; animation-direction: normal; animation-delay: -${miniplayerAnimation}s;`);
+playerCont.setAttribute("style", `animation: player-cont-to-miniplayer .08s; animation-play-state: paused; animation-direction: normal; animation-delay: -${miniplayerAnimation}s;`);
+watchOverlay.setAttribute("style", `animation: watch-overlay-out .08s; animation-play-state: paused; animation-direction: normal; animation-delay: -${miniplayerAnimation}s;`);
+if (watchContainer.classList.contains("miniplayer")) {
+miniplayerAnimation = (e.detail.y[1] + Math.round(e.detail.y[0] / 10)) * 100 / 1000000;
+watchContainer.setAttribute("style", `animation: miniplayer-to-player .08s; animation-play-state: paused; animation-direction: reverse; animation-delay: -${miniplayerAnimation}s;`);
+playerCont.setAttribute("style", `animation: miniplayer-to-player-cont .08s; animation-play-state: paused; animation-direction: reverse; animation-delay: -${miniplayerAnimation}s;`);
+watchOverlay.setAttribute("style", `animation: watch-overlay-in .08s; animation-play-state: paused; animation-direction: reverse; animation-delay: -${miniplayerAnimation}s;`);
+}
 });
 
 playerCont.addEventListener('swiperelease', function (e) {
   /* console.log('swiperelease', e.detail); */
+  setTimeout(function(){
+  watchContainer.setAttribute("style", `animation: player-to-miniplayer .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
+  playerCont.setAttribute("style", `animation: player-cont-to-miniplayer .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
+  watchOverlay.setAttribute("style", `animation: watch-overlay-in .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
+  if (watchContainer.classList.contains("miniplayer")) {
+  watchContainer.setAttribute("style", `animation: miniplayer-to-player .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
+  playerCont.setAttribute("style", `animation: miniplayer-to-player-cont .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
+  watchOverlay.setAttribute("style", `animation: watch-overlay-out .08s; animation-play-state: paused; animation-direction: reverse; animation-delay: 0s;`);
+  }
+  }, 0);
 });
 
 playerCont.addEventListener('swipecancel', function (e) {
