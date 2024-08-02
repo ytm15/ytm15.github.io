@@ -25,13 +25,13 @@ function renderHeader() {
     backBtn.onclick = function(){history.back()};
     backBtn.setAttribute("aria-label", "Go back");
     /* if (window.location.pathname.split("/").slice(3, 4) == "results.html" || window.location.pathname.split("/").slice(3, 4) == "index.html" && urlpage == "popular") */
-    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "channel" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "playlist" || window.location.pathname.split("/").slice(3, 4) == "settings.html" || window.location.pathname.split("/").slice(3, 4) == "settings" || window.location.pathname.split("/").slice(2, 3) == "settings.html" || window.location.pathname.split("/").slice(2, 3) == "settings") {
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "channel" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "playlist" || window.location.pathname.split("/").slice(3, 4) == "settings.html" || window.location.pathname.split("/").slice(3, 4) == "settings" || window.location.pathname.split("/").slice(2, 3) == "settings.html" || window.location.pathname.split("/").slice(2, 3) == "settings" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "comments") {
         
     } else {
         backBtn.setAttribute("hidden", "");
     }
     window.addEventListener('hashchange', function (event) {
-    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "channel" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "playlist" || window.location.pathname.split("/").slice(3, 4) == "settings.html" || window.location.pathname.split("/").slice(3, 4) == "settings" || window.location.pathname.split("/").slice(2, 3) == "settings.html" || window.location.pathname.split("/").slice(2, 3) == "settings") {
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "channel" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "playlist" || window.location.pathname.split("/").slice(3, 4) == "settings.html" || window.location.pathname.split("/").slice(3, 4) == "settings" || window.location.pathname.split("/").slice(2, 3) == "settings.html" || window.location.pathname.split("/").slice(2, 3) == "settings" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "comments") {
         backBtn.removeAttribute("hidden", "");
     } else {
         backBtn.setAttribute("hidden", "");
@@ -47,7 +47,7 @@ function renderHeader() {
         header.dataset.mode = dataMode;
         searchOverlay.setAttribute('hidden', '');
         /* if (window.location.pathname.split("/").slice(3, 4) == "results.html" || window.location.pathname.split("/").slice(3, 4) == "index.html" && urlpage == "popular") */
-        if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "channel" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "playlist") {
+        if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "channel" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "playlist" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "comments") {
             
         } else {
             backBtn.setAttribute("hidden", "");
@@ -91,7 +91,7 @@ function renderHeader() {
           // header.setAttribute('data-mode', dataMode);
           header.dataset.mode = dataMode;
           searchOverlay.setAttribute('hidden', '');
-          if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "channel" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "playlist") {
+          if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "channel" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "playlist" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "comments") {
             
           } else {
               backBtn.setAttribute("hidden", "");
@@ -111,7 +111,7 @@ function renderHeader() {
           /* header.setAttribute('data-mode', dataMode); */
           header.dataset.mode = dataMode;
           searchOverlay.setAttribute('hidden', '');
-          if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "channel" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "playlist") {
+          if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "channel" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "playlist" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "comments") {
             
           } else {
               backBtn.setAttribute("hidden", "");

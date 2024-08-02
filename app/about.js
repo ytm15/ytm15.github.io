@@ -440,6 +440,14 @@ a few hours later:
 01 Aug 2024:
 <br>
 -Now when you drag the miniplayer in the watchpage, frames of its animation play
+<br><br>
+02 Aug 2024:
+<br>
+-Made a dedicated page for the comment section
+<br>
+-Added a "view replies" button to comments with replies (will make it work soon since it currently does nothing as of this update being published)
+<br>
+-Added the pinned comment badge for pinned comments (will make it say the actual name of the uploader soon)
     </div>
     </div>
     </div>

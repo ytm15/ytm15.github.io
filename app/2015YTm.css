@@ -1233,6 +1233,12 @@ a {
 .material-button-container[data-style="BRAND"] {
     color: #c00;
 }
+.material-button-container[data-style="CALLACTION_TEXT"] {
+    color: #068fd4;
+}
+[data-style="CALLACTION_TEXT"] .material-button::before {
+    background-color: rgba(6,143,212,0.15);
+}
 .material-button-container.subscribe-button {
     font-size: 1.4rem;
     text-transform: none;
@@ -3151,10 +3157,10 @@ ytm15-comment {
     height: 16px;
 }
 button.comment-icon-button {
-    width: 24px;
-    height: 24px;
-    padding: 4px;
-    margin-right: 2px;
+    width: 22px;
+    height: 22px;
+    padding: 3px;
+    margin-right: 3px;
 }
 .comment-icons#cm-icon-like {
     margin-bottom: 6px;
@@ -3165,6 +3171,29 @@ button.comment-icon-button {
 }
 #cm-icon-dislike .comment-count {
     min-width: 30px;
+}
+.comment-replies-button {
+    display: flex;
+    margin-left: 65px;
+}
+.comment-replies-button .material-button {
+    padding: 10px 14px 16px;
+    border-radius: 0;
+}
+.comment-replies-button .material-button-container {
+    border-radius: 0;
+    margin: 0;
+}
+.pinned-comment-badge {
+    color: #e62117;
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+.comment-pin-icon {
+    width: 14px;
+    height: 14px;
+    margin-right: 2px;
 }
 
 /* Global dark theme */

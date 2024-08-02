@@ -177,6 +177,7 @@ PopularUploads_text_string = "Popular uploads";
 NoChannels_text_string = "This channel doesn't feature any other channels.";
 Comments_text_string = "Comments";
 CommentsError_text_string = "Comments are either disabled or unavailable."
+PinnedBy_text_string = "Pinned by ";
 
 function renderSubscribeBtn(parent) {
     const mtrlBtnCont = document.createElement("div");
@@ -331,13 +332,13 @@ dataModeChange();
 
 renderHeader();
 
-function renderCommentSection(parent, mediaType, cmSource){
+function renderCommentSection(parent, mediaType, cmSource, isCMPage){
     var cmBaseAPIURL = 'https://inv.tux.pizza/api/v1/comments/';
 
     const commentSection = document.createElement("div");
     commentSection.classList.add("comment-section");
     commentSection.dataset.isBeta = true;
-    if (mediaType == "video") {
+    if (mediaType == "video" && !isCMPage) {
      commentSection.classList.add("watch-next-results-content");
      commentSection.dataset.contentType = "result";
     };
@@ -429,7 +430,12 @@ function renderCommentSection(parent, mediaType, cmSource){
      cmIsOwner = "false";
     }
     commentAuthor = `<span style="opacity: .6; font-style: italic;">Retrieving author name...</span>`;
+    pinnedCMBadge = ``;
+    if (item.isPinned) {
+    pinnedCMBadge = `<div class="pinned-comment-badge"><ytm15-icon class="comment-pin-icon"><svg viewBox="0 0 24 24" fill=""><path d="M16,12V4H17V2H7V4H8V12L6,14V16H11.2V22H12.8V16H18V14L16,12Z"></path></svg></ytm15-icon><span>${PinnedBy_text_string}Uploader</span></div>`;
+    }
     commentCont.innerHTML = `
+${pinnedCMBadge}
 <p class="comment-text user-text">${item.contentHtml}</p>
 <div class="comment-header">
 <span class="comment-title" is-owner="${cmIsOwner}"><a href="#${item.authorUrl}" onclick="exitWatch.onclick()">${commentAuthor}</a></span>
@@ -479,6 +485,16 @@ function renderCommentSection(parent, mediaType, cmSource){
     comment.appendChild(commentCont);
     
     commentThread.appendChild(comment);
+
+    const cmRepliesBtnCont = document.createElement("div");
+    cmRepliesBtnCont.classList.add("comment-replies-button");
+    cmRepliesBtnCont.innerHTML = `<div class="material-button-container reply-button" data-style="CALLACTION_TEXT" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button" aria-label="View replies"><div class="button-text">View replies</div></button></div>`;
+    if (item.replies) {
+    commentThread.appendChild(cmRepliesBtnCont);
+    cmRepliesBtnCont.querySelector(".button-text").innerHTML = `View ${item.replies.replyCount.toLocaleString()} replies`;
+    cmRepliesBtnCont.querySelector("button").ariaLabel = cmRepliesBtnCont.querySelector(".button-text").textContent;
+    }
+
     var commentSeparator = document.createElement("div");
     commentSeparator.classList.add("comment-separator");
     commentThread.appendChild(commentSeparator);
@@ -1228,7 +1244,6 @@ if (document.webkitFullscreenElement) {
 document.webkitExitFullscreen();
 }
 setTimeout(function(){
-console.log(watchContainer.style.animation);
   if (watchContainer.style.animation !== "0.08s ease 0s 1 normal none paused miniplayer-to-player") {
   watchContainer.setAttribute("style", ``);
   playerCont.setAttribute("style", ``);
@@ -1531,7 +1546,7 @@ function searching(parent, sbInput) {
         /* header.setAttribute('data-mode', dataMode); */
         header.dataset.mode = dataMode;
         searchOverlay.setAttribute('hidden', '');
-        if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "channel" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "playlist") {
+        if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "channel" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "playlist" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "comments") {
             
         } else {
             backBtn.setAttribute("hidden", "");
@@ -1564,6 +1579,8 @@ if (window.location.hash.split("/").join(',').split("?").join(',').split(',').sl
     searchPage();
 } else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "playlist") {
     playlistPage();
+} else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "comments") {
+    commentsPage();
 } else {
     if (document.querySelector(".spinner-container.full-height")) {
     var spinner = document.querySelector(".spinner-container.full-height");

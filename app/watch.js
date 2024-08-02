@@ -416,7 +416,7 @@ function renderWatchPage(parent) {
         renderCompactMediaItem(itemSectRelated.querySelector(".lazy-list"), "related-media-lazy-list", compMediaItemvidId, compMediaItemThumb, compMediaItemLength, compMediaItemTitle, compMediaItemAuthor, item.authorId, "", item.viewCount, "video");
     });
 
-    renderCommentSection(W2ndHalf, "video", playerVideoId);
+    renderCommentSection(W2ndHalf, "video", playerVideoId, false);
 
     parent.innerHTML = "";
 
