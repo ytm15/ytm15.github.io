@@ -448,6 +448,10 @@ a few hours later:
 -Added a "view replies" button to comments with replies (will make it work soon since it currently does nothing as of this update being published)
 <br>
 -Added the pinned comment badge for pinned comments (will make it say the actual name of the uploader soon)
+<br><br>
+05 Aug 2024:
+<br>
+-Added a pivot bar which is accessible by enabling the newly-added expflag: "WEB_ENABLE_PIVOT_BAR"
     </div>
     </div>
     </div>

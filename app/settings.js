@@ -303,6 +303,15 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "CHANNELS_SEPARATE_VIDS_SHORTS_LIVE_TABS"
+      },
+      {
+        "type": "boolean",
+        "title": "WEB_ENABLE_PIVOT_BAR",
+        "subtitle": "",
+        "pressed": WEB_ENABLE_PIVOT_BAR_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WEB_ENABLE_PIVOT_BAR"
       }
       ];
       settingBlocks.forEach(function(item){
