@@ -527,9 +527,10 @@ ${pinnedCMBadge}
     retrieveComments("");
 };
 
+const pivotBar = document.createElement("ytm15-pivot-bar");
+pivotBar.setAttribute("role", "tablist");
+
 function renderPivotBar(){
-    const pivotBar = document.createElement("ytm15-pivot-bar");
-    pivotBar.setAttribute("role", "tablist");
     if (app.querySelector("ytm15-header-bar")) {
     headerBar.insertAdjacentElement("afterend", pivotBar);
     }
@@ -1303,6 +1304,13 @@ watchFrame.width = "100%";
 watchFrame.height = "100%";
 watchFrame.setAttribute("allowfullscreen", "");
 
+mpTPAnimName = "miniplayer-to-player"
+pTMPAnimName = "player-to-miniplayer"
+if (WEB_ENABLE_PIVOT_BAR_expflag == "true") {
+  mpTPAnimName = "miniplayer-to-player-pivot"
+  pTMPAnimName = "player-to-miniplayer-pivot"
+}
+
 const exitWatch = document.createElement("button");
 exitWatch.classList.add("icon-button", "watch-action-button");
 exitWatch.onclick = function(){
@@ -1316,10 +1324,12 @@ if (document.webkitFullscreenElement) {
 document.webkitExitFullscreen();
 }
 setTimeout(function(){
-  if (watchContainer.style.animation !== "0.08s ease 0s 1 normal none paused miniplayer-to-player") {
+  /* if (watchContainer.style.animation !== "0.08s ease 0s 1 normal none paused" + mpTPAnimName) { */
+  if (watchContainer.style.animationName !== mpTPAnimName) {
   watchContainer.setAttribute("style", ``);
   playerCont.setAttribute("style", ``);
   watchOverlay.setAttribute("style", ``);
+  pivotBar.setAttribute("style", ``);
   }
 }, 01);
 document.body.classList.remove("has-watchpage");
@@ -1384,10 +1394,12 @@ if (videoPlayer.toString()) {
 videoPlayer.classList.remove("player-mini-mode");
 };
 setTimeout(function(){
-  if (watchContainer.style.animation !== "0.08s ease 0s 1 normal none paused player-to-miniplayer") {
+  /* if (watchContainer.style.animation !== "0.08s ease 0s 1 normal none paused" + pTMPAnimName) { */
+  if (watchContainer.style.animationName !== pTMPAnimName) {
   watchContainer.setAttribute("style", ``);
   playerCont.setAttribute("style", ``);
   watchOverlay.setAttribute("style", ``);
+  pivotBar.setAttribute("style", ``);
   }
 }, 01);
 document.body.classList.add("has-watchpage");
@@ -1418,6 +1430,10 @@ setTimeout(function() {
   watchContainer.classList.remove("close-right");
   }
   watchFrame.scrolling = "yes";
+  watchContainer.setAttribute("style", ``);
+  playerCont.setAttribute("style", ``);
+  watchOverlay.setAttribute("style", ``);
+  pivotBar.setAttribute("style", ``);
 }, 300);
 };
 closeVideo.setAttribute("aria-label", "Close video");
@@ -1492,14 +1508,16 @@ if ((e.detail.y[1] - Math.round(e.detail.y[0] / 10)) * 100 / 1000000 < 0.00) {
 miniplayerAnimation = 0.00;
 }
   if (!progressTrack.classList.contains("scrubbing") && !videoPlayer.classList.contains("player-options-shown") || videoPlayer.classList.contains("player-iframe-visible")) {
-watchContainer.setAttribute("style", `animation: player-to-miniplayer .08s; animation-play-state: paused; animation-direction: normal; animation-delay: -${miniplayerAnimation}s;`);
+watchContainer.setAttribute("style", `animation: ${pTMPAnimName} .08s; animation-play-state: paused; animation-direction: normal; animation-delay: -${miniplayerAnimation}s;`);
 playerCont.setAttribute("style", `animation: player-cont-to-miniplayer .08s; animation-play-state: paused; animation-direction: normal; animation-delay: -${miniplayerAnimation}s;`);
 watchOverlay.setAttribute("style", `animation: watch-overlay-out .08s; animation-play-state: paused; animation-direction: normal; animation-delay: -${miniplayerAnimation}s;`);
+pivotBar.setAttribute("style", `animation: pivot-bar-show .08s; animation-play-state: paused; animation-direction: normal; animation-delay: -${miniplayerAnimation}s;`);
 if (watchContainer.classList.contains("miniplayer")) {
 miniplayerAnimation = (e.detail.y[1] + Math.round(e.detail.y[0] / 10)) * 100 / 1000000;
-watchContainer.setAttribute("style", `animation: miniplayer-to-player .08s; animation-play-state: paused; animation-direction: reverse; animation-delay: -${miniplayerAnimation}s;`);
+watchContainer.setAttribute("style", `animation: ${mpTPAnimName} .08s; animation-play-state: paused; animation-direction: reverse; animation-delay: -${miniplayerAnimation}s;`);
 playerCont.setAttribute("style", `animation: miniplayer-to-player-cont .08s; animation-play-state: paused; animation-direction: reverse; animation-delay: -${miniplayerAnimation}s;`);
 watchOverlay.setAttribute("style", `animation: watch-overlay-in .08s; animation-play-state: paused; animation-direction: reverse; animation-delay: -${miniplayerAnimation}s;`);
+pivotBar.setAttribute("style", `animation: pivot-bar-hide .08s; animation-play-state: paused; animation-direction: reverse; animation-delay: -${miniplayerAnimation}s;`);
 }
   };
 });
@@ -1507,13 +1525,15 @@ watchOverlay.setAttribute("style", `animation: watch-overlay-in .08s; animation-
 playerCont.addEventListener('swiperelease', function (e) {
   /* console.log('swiperelease', e.detail); */
   setTimeout(function(){
-  watchContainer.setAttribute("style", `animation: player-to-miniplayer .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
+  watchContainer.setAttribute("style", `animation: ${pTMPAnimName} .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
   playerCont.setAttribute("style", `animation: player-cont-to-miniplayer .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
   watchOverlay.setAttribute("style", `animation: watch-overlay-out .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
+  pivotBar.setAttribute("style", `animation: pivot-bar-show .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
   if (watchContainer.classList.contains("miniplayer")) {
-  watchContainer.setAttribute("style", `animation: miniplayer-to-player .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
+  watchContainer.setAttribute("style", `animation: ${mpTPAnimName} .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
   playerCont.setAttribute("style", `animation: miniplayer-to-player-cont .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
   watchOverlay.setAttribute("style", `animation: watch-overlay-in .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
+  pivotBar.setAttribute("style", `animation: pivot-bar-hide .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
   }
   }, 0);
 });

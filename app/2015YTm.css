@@ -1365,6 +1365,48 @@ ytm15app.has-miniplayer {
     margin-left: auto;
 }
 }
+@keyframes miniplayer-to-player-pivot {
+0% {
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    /* min-height: 0; */
+    min-height: 120px;
+    margin-left: auto;
+    margin-bottom: 52px;
+}
+100% {
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    min-height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    margin-left: auto;
+    margin-bottom: 0;
+}
+}
+@keyframes player-to-miniplayer-pivot {
+0% {
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    min-height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    margin-left: auto;
+    margin-bottom: 0;
+}
+100% {
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    /* min-height: 0; */
+    min-height: 120px;
+    margin-left: auto;
+    margin-bottom: 52px;
+}
+}
 @keyframes watch-overlay-in {
 0% {
     opacity: 0;
@@ -1398,6 +1440,9 @@ ytm15app.has-miniplayer {
     display: flex;
     animation: miniplayer-to-player .3s;
 }
+[has-pivot-bar="true"] #watchpageFrame_Container {
+    animation-name: miniplayer-to-player-pivot;
+}
 #watchpageFrame_Container.miniplayer {
     bottom: 0px;
     right: 0px;
@@ -1406,6 +1451,10 @@ ytm15app.has-miniplayer {
     margin-left: auto;
     animation: player-to-miniplayer .3s;
     pointer-events: none;
+}
+[has-pivot-bar="true"] #watchpageFrame_Container.miniplayer {
+    animation-name: player-to-miniplayer-pivot;
+    margin-bottom: 52px;
 }
 .watchpage-frame-overlay {
     position: fixed;
@@ -3312,6 +3361,34 @@ ytm15-pivot-bar {
 }
 ytm15-pivot-bar.no-shadow {
     border-top: 1.2px solid rgba(0,0,0,0.1);
+}
+@keyframes pivot-bar-hide {
+0% {
+    margin-bottom: 0;
+    z-index: 5;
+}
+100% {
+    margin-bottom: -52px;
+    z-index: 5;
+}
+}
+@keyframes pivot-bar-show {
+0% {
+    margin-bottom: -52px;
+    z-index: 5;
+}
+100% {
+    margin-bottom: 0;
+    z-index: 5;
+}
+}
+.has-watchpage ytm15-pivot-bar {
+    animation: pivot-bar-hide .3s;
+    margin-bottom: -52px;
+}
+.has-miniplayer ytm15-pivot-bar {
+    animation: pivot-bar-show .3s;
+    margin-bottom: 0;
 }
 
 /* Global dark theme */
