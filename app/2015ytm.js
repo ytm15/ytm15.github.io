@@ -552,7 +552,7 @@ function renderPivotBar(){
       pivotBarItem.classList.add("pivot-bar-item");
       pivotBarItem.id = item.name;
       pivotTabSelected = false;
-      if (window.location.hash == item.link || window.location.hash == "" && item.pivotName == "w2w") {
+      if (window.location.hash == item.link || (window.location.hash == "" || window.location.hash == "#/") && item.pivotName == "w2w") {
       pivotTabSelected = true;
       }
       pivotBarItem.innerHTML = `<div role="tab" aria-selected="${pivotTabSelected}" class="pivot-bar-item-tab has-ripple pivot-${item.pivotName}">

@@ -3203,6 +3203,9 @@ button.comment-icon-button {
 [has-pivot-bar="true"] .tabs-content-container>.spinner-container {
     margin-bottom: 52px;
 }
+html:not(.dark) .pivot-bar-item-tab.has-ripple::before {
+    background-color: rgba(238, 0, 0, 0.15);
+}
 ytm15-pivot-bar {
     display: flex;
     justify-content: center;
@@ -3490,4 +3493,8 @@ html.dark {
 }
 .dark .playlist-action-buttons {
     color: rgba(255,255,255,0.5);
+}
+.dark ytm15-pivot-bar {
+    background-color: #303030;
+    color: rgba(255, 255, 255, 0.6);
 }
