@@ -91,6 +91,9 @@ MENU_DISABLE_CANCEL_BUTTON_expflag = localStorage.getItem("MENU_DISABLE_CANCEL_B
 }
 CHANNELS_SEPARATE_VIDS_SHORTS_LIVE_TABS_expflag = localStorage.getItem("CHANNELS_SEPARATE_VIDS_SHORTS_LIVE_TABS");
 WEB_ENABLE_PIVOT_BAR_expflag = localStorage.getItem("WEB_ENABLE_PIVOT_BAR");
+COMPACT_ITEM_LARGER_THUMBNAILS_expflag = localStorage.getItem("COMPACT_ITEM_LARGER_THUMBNAILS");
+PIVOT_DISABLE_SHADOW_expflag = localStorage.getItem("PIVOT_DISABLE_SHADOW");
+TIMESTATUS_NEW_STYLE_expflag = localStorage.getItem("TIMESTATUS_NEW_STYLE");
 
 if (DISABLE_YTM15_APP_BORDER_expflag == "true") {
     documentHTML.classList.add("no-app-border");
@@ -532,6 +535,11 @@ function renderPivotBar(){
     }
     document.body.setAttribute("has-pivot-bar", true);
     function refreshPB(){
+    if (PIVOT_DISABLE_SHADOW_expflag == "true") {
+      pivotBar.classList.add("no-shadow");
+    } else {
+      pivotBar.classList.remove("no-shadow");
+    }
     pivotBarItems = [
     {
       "name": Home_text_string,
@@ -626,6 +634,10 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         renderWatchPage(ytm15Watch);
         }
         };
+        if (COMPACT_ITEM_LARGER_THUMBNAILS_expflag == "true") {
+        thumbnail.classList.add("large");
+        video.dataset.largeThumbnail = true;
+        }
 
         const thumbg = document.createElement('div');
         thumbg.classList.add('thumbnail-bg');
@@ -641,6 +653,9 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
 
         const time = document.createElement('div');
         time.classList.add('thumbnail-overlay-time-status');
+        if (TIMESTATUS_NEW_STYLE_expflag == "true") {
+        time.classList.add('new-style');
+        }
         if (mediaType == "channel") {
 
         } else if (mediaType == "playlist") {
@@ -945,6 +960,9 @@ function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLen
 
         const time = document.createElement('div');
         time.classList.add('thumbnail-overlay-time-status');
+        if (TIMESTATUS_NEW_STYLE_expflag == "true") {
+        time.classList.add('new-style');
+        }
         /* time.textContent = item.lengthSeconds.toLocaleString() + ' secs'; */
         if (itemLength > "3599") {
         time.textContent = new Date(1000 * itemLength).toISOString().substr(11, 8)

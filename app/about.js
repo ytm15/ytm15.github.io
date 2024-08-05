@@ -452,6 +452,14 @@ a few hours later:
 05 Aug 2024:
 <br>
 -Added a pivot bar which is accessible by enabling the newly-added expflag: "WEB_ENABLE_PIVOT_BAR"
+<br>
+-Added some more new expflags:
+<br>
+--"COMPACT_ITEM_LARGER_THUMBNAILS"
+<br>
+--"PIVOT_DISABLE_SHADOW"
+<br>
+--"TIMESTATUS_NEW_STYLE"
     </div>
     </div>
     </div>

@@ -312,6 +312,33 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "WEB_ENABLE_PIVOT_BAR"
+      },
+      {
+        "type": "boolean",
+        "title": "COMPACT_ITEM_LARGER_THUMBNAILS",
+        "subtitle": "",
+        "pressed": COMPACT_ITEM_LARGER_THUMBNAILS_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "COMPACT_ITEM_LARGER_THUMBNAILS"
+      },
+      {
+        "type": "boolean",
+        "title": "PIVOT_DISABLE_SHADOW",
+        "subtitle": "",
+        "pressed": PIVOT_DISABLE_SHADOW_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "PIVOT_DISABLE_SHADOW"
+      },
+      {
+        "type": "boolean",
+        "title": "TIMESTATUS_NEW_STYLE",
+        "subtitle": "",
+        "pressed": TIMESTATUS_NEW_STYLE_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "TIMESTATUS_NEW_STYLE"
       }
       ];
       settingBlocks.forEach(function(item){
