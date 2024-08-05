@@ -2,6 +2,7 @@ function renderWatchPage(parent) {
   watchContainer.setAttribute("style", ``);
   playerCont.setAttribute("style", ``);
   watchOverlay.setAttribute("style", ``);
+  pivotBar.setAttribute("style", ``);
 
     parent.innerHTML = "";
     const spinner = document.querySelector(".spinner-container.full-height");
