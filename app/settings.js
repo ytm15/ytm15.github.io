@@ -339,6 +339,15 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "TIMESTATUS_NEW_STYLE"
+      },
+      {
+        "type": "boolean",
+        "title": "LIGHTER_BORDER_COLORS",
+        "subtitle": "",
+        "pressed": LIGHTER_BORDER_COLORS_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "LIGHTER_BORDER_COLORS"
       }
       ];
       settingBlocks.forEach(function(item){

@@ -460,6 +460,8 @@ a few hours later:
 --"PIVOT_DISABLE_SHADOW"
 <br>
 --"TIMESTATUS_NEW_STYLE"
+<br>
+--"LIGHTER_BORDER_COLORS"
     </div>
     </div>
     </div>

@@ -94,6 +94,7 @@ WEB_ENABLE_PIVOT_BAR_expflag = localStorage.getItem("WEB_ENABLE_PIVOT_BAR");
 COMPACT_ITEM_LARGER_THUMBNAILS_expflag = localStorage.getItem("COMPACT_ITEM_LARGER_THUMBNAILS");
 PIVOT_DISABLE_SHADOW_expflag = localStorage.getItem("PIVOT_DISABLE_SHADOW");
 TIMESTATUS_NEW_STYLE_expflag = localStorage.getItem("TIMESTATUS_NEW_STYLE");
+LIGHTER_BORDER_COLORS_expflag = localStorage.getItem("LIGHTER_BORDER_COLORS");
 
 if (DISABLE_YTM15_APP_BORDER_expflag == "true") {
     documentHTML.classList.add("no-app-border");
@@ -119,6 +120,11 @@ if (WEB_CHANNELS_HEADER_NO_LEFT_MARGIN_expflag == "true") {
     
 } else {
     
+};
+if (LIGHTER_BORDER_COLORS_expflag == "true") {
+    documentHTML.classList.add("lighter-borders");
+} else {
+    documentHTML.classList.remove("lighter-borders");
 };
 };
 
