@@ -172,7 +172,7 @@ function renderHeader() {
     }
 
     if (WEB_ENABLE_PIVOT_BAR_expflag == "true" && HEADER_RED_STYLE_expflag == "false" && (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == undefined || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "trending")) {
-    if (window.location.pathname.split("/").slice(3, 4) == "index.html" || window.location.pathname.split("/").slice(3, 4) == "index" || window.location.pathname.split("/").slice(3, 4) == "index.html" || window.location.pathname.split("/").slice(3, 4) == undefined || window.location.pathname.split("/").slice(2, 3) == "index.html" || window.location.pathname.split("/").slice(2, 3) == "index" || window.location.pathname.split("/").slice(2, 3) == undefined) {
+    if (window.location.pathname.split("/").slice(3, 4) == "index.html" || window.location.pathname.split("/").slice(3, 4) == "index" || window.location.pathname.split("/").slice(3, 4) == undefined || window.location.pathname.split("/").slice(3, 4) == undefined || window.location.pathname.split("/").slice(2, 3) == "index.html" || window.location.pathname.split("/").slice(2, 3) == "index" || window.location.pathname.split("/").slice(2, 3) == undefined) {
     headerTitle.setAttribute("hidden", "");
     if (!header.querySelector(".header-endpoint")) {
     header.insertAdjacentElement("afterbegin", headerEP);
