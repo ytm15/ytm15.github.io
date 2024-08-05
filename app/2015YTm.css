@@ -3391,7 +3391,7 @@ ytm15-pivot-bar.no-shadow {
     margin-bottom: 0;
 }
 
-.lighter-borders *:-webkit-any(.shelf, .item-section, .ap-shelf, .about-page-bottom-title, .comment-separator, .channel-about-metadata-view-count, .channel-about-metadata-header, .setting-boolean, .setting-single-option-menu, .ytm15-settings-msg, .metadata-row-header-content) {
+.lighter-borders *:-webkit-any(.shelf, .item-section, .ap-shelf, .about-page-bottom-title, .comment-separator, .channel-about-metadata-view-count, .channel-about-metadata-header, .setting-boolean, .setting-single-option-menu, .ytm15-settings-msg, .metadata-row-header-content, .error-container) {
     border-color: rgba(0, 0, 0, 0.1);
 }
 
@@ -3631,6 +3631,6 @@ html.dark {
 .dark .comment-separator {
     border-bottom: 1.2px solid rgba(255, 255, 255, 0.2);
 }
-.dark.lighter-borders *:-webkit-any(.shelf, .item-section, .ap-shelf, .about-page-bottom-title, .comment-separator, .channel-about-metadata-view-count, .channel-about-metadata-header, .setting-boolean, .setting-single-option-menu, .ytm15-settings-msg, .metadata-row-header-content) {
+.dark.lighter-borders *:-webkit-any(.shelf, .item-section, .ap-shelf, .about-page-bottom-title, .comment-separator, .channel-about-metadata-view-count, .channel-about-metadata-header, .setting-boolean, .setting-single-option-menu, .ytm15-settings-msg, .metadata-row-header-content, .error-container) {
     border-color: rgba(255, 255, 255, 0.1);
 }
