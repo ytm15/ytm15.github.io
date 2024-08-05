@@ -342,6 +342,15 @@ function settingsPage() {
       },
       {
         "type": "boolean",
+        "title": "LIGHTER_BORDER_COLORS",
+        "subtitle": "",
+        "pressed": LIGHTER_BORDER_COLORS_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "LIGHTER_BORDER_COLORS"
+      },
+      {
+        "type": "boolean",
         "title": "HEADER_SHORTER_SIZE",
         "subtitle": "",
         "pressed": HEADER_SHORTER_SIZE_expflag == "true",

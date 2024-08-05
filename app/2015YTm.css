@@ -1093,7 +1093,7 @@ input.searchbox-input {
 .shorter .header-button.menu-button ytm15-icon {
     margin: 0;
 }
-.white-colors .header-button {
+.white-colors :not([data-mode="search"], [data-mode="searching"]) .header-button {
     color: #f1f1f1;
 }
 .non-red:not([ischannel="true"]) .header-button {
