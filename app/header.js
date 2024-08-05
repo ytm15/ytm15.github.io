@@ -20,6 +20,37 @@ function renderHeader() {
     }
     });
 
+    function hbStorageChange(){
+    if (HEADER_SHORTER_SIZE_expflag == "true") {
+    headerBar.classList.add("shorter");
+    } else {
+    headerBar.classList.remove("shorter");
+    };
+    if (HEADER_RED_STYLE_expflag == "true") {
+    headerBar.classList.remove("non-red");
+    } else {
+    headerBar.classList.add("non-red");
+    };
+    if (HEADER_WHITE_BTN_COLORS_expflag == "true") {
+    headerBar.classList.add("white-colors");
+    } else {
+    headerBar.classList.remove("white-colors");
+    };
+    };
+    hbStorageChange();
+    window.addEventListener("storage", function(){
+    hbStorageChange();
+    });
+
+    const headerEP = document.createElement("div");
+    headerEP.classList.add("header-endpoint", "ytm15-home-logo");
+    headerEP.ariaLabel = _2015YT_text_string;
+    headerEPSrc = "yt_wordmark_header_light.png"
+    if (DARK_THEME_option == "true") {
+    headerEPSrc = "yt_wordmark_header_dark.png"
+    }
+    headerEP.innerHTML = `<img class="ytm15-img-icon ytm15-img youtube-logo-icon ringo-logo" src="${headerEPSrc}">`;
+
     const backBtn = document.createElement("button");
     backBtn.classList.add("icon-button", "header-button", "back-button");
     backBtn.onclick = function(){history.back()};
@@ -139,11 +170,35 @@ function renderHeader() {
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results") {
     headerTitle.setAttribute("hidden", "");
     }
+
+    if (WEB_ENABLE_PIVOT_BAR_expflag == "true" && HEADER_RED_STYLE_expflag == "false" && (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == undefined || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "trending")) {
+    if (window.location.pathname.split("/").slice(3, 4) == "index.html" || window.location.pathname.split("/").slice(3, 4) == "index" || window.location.pathname.split("/").slice(3, 4) == "index.html" || window.location.pathname.split("/").slice(3, 4) == undefined || window.location.pathname.split("/").slice(2, 3) == "index.html" || window.location.pathname.split("/").slice(2, 3) == "index" || window.location.pathname.split("/").slice(2, 3) == undefined) {
+    headerTitle.setAttribute("hidden", "");
+    if (!header.querySelector(".header-endpoint")) {
+    header.insertAdjacentElement("afterbegin", headerEP);
+    }
+    }
+    } else {
+    headerTitle.removeAttribute("hidden", "");
+    headerEP.remove();
+    }
     window.addEventListener('hashchange', function (event) {
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results") {
     headerTitle.setAttribute("hidden", "");
     } else {
     headerTitle.removeAttribute("hidden", "");
+    }
+
+    if (WEB_ENABLE_PIVOT_BAR_expflag == "true" && HEADER_RED_STYLE_expflag == "false" && (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == undefined || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "trending")) {
+    if (window.location.pathname.split("/").slice(3, 4) == "index.html" || window.location.pathname.split("/").slice(3, 4) == "index" || window.location.pathname.split("/").slice(3, 4) == "index.html" || window.location.pathname.split("/").slice(3, 4) == undefined || window.location.pathname.split("/").slice(2, 3) == "index.html" || window.location.pathname.split("/").slice(2, 3) == "index" || window.location.pathname.split("/").slice(2, 3) == undefined) {
+    headerTitle.setAttribute("hidden", "");
+    if (!header.querySelector(".header-endpoint")) {
+    header.insertAdjacentElement("afterbegin", headerEP);
+    }
+    }
+    } else {
+    headerTitle.removeAttribute("hidden", "");
+    headerEP.remove();
     }
     });
 

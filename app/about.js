@@ -462,6 +462,18 @@ a few hours later:
 --"TIMESTATUS_NEW_STYLE"
 <br>
 --"LIGHTER_BORDER_COLORS"
+<br><br>
+06 Aug 2024:
+<br>
+-Added 4 new expflags (updater's note: man, I got on a role with expflags recently, welp can't stop now):
+<br>
+--"HEADER_SHORTER_SIZE"
+<br>
+--"HEADER_WHITE_BTN_COLORS"
+<br>
+--"HEADER_RED_STYLE" (enabled by default)
+<br>
+--"PIVOT_SHORTER_SIZE"
     </div>
     </div>
     </div>

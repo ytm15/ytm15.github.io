@@ -95,6 +95,14 @@ COMPACT_ITEM_LARGER_THUMBNAILS_expflag = localStorage.getItem("COMPACT_ITEM_LARG
 PIVOT_DISABLE_SHADOW_expflag = localStorage.getItem("PIVOT_DISABLE_SHADOW");
 TIMESTATUS_NEW_STYLE_expflag = localStorage.getItem("TIMESTATUS_NEW_STYLE");
 LIGHTER_BORDER_COLORS_expflag = localStorage.getItem("LIGHTER_BORDER_COLORS");
+HEADER_SHORTER_SIZE_expflag = localStorage.getItem("HEADER_SHORTER_SIZE");
+HEADER_WHITE_BTN_COLORS_expflag = localStorage.getItem("HEADER_WHITE_BTN_COLORS");
+HEADER_RED_STYLE_expflag = localStorage.getItem("HEADER_RED_STYLE");
+if (HEADER_RED_STYLE_expflag == undefined) {
+localStorage.setItem("HEADER_RED_STYLE", "true");
+HEADER_RED_STYLE_expflag = localStorage.getItem("HEADER_RED_STYLE");
+}
+PIVOT_SHORTER_SIZE_expflag = localStorage.getItem("PIVOT_SHORTER_SIZE");
 
 if (DISABLE_YTM15_APP_BORDER_expflag == "true") {
     documentHTML.classList.add("no-app-border");
@@ -546,6 +554,11 @@ function renderPivotBar(){
       pivotBar.classList.add("no-shadow");
     } else {
       pivotBar.classList.remove("no-shadow");
+    }
+    if (PIVOT_SHORTER_SIZE_expflag == "true") {
+      documentHTML.classList.add("shorter-pivot");
+    } else {
+      documentHTML.classList.remove("shorter-pivot");
     }
     pivotBarItems = [
     {

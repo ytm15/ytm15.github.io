@@ -342,12 +342,39 @@ function settingsPage() {
       },
       {
         "type": "boolean",
-        "title": "LIGHTER_BORDER_COLORS",
+        "title": "HEADER_SHORTER_SIZE",
         "subtitle": "",
-        "pressed": LIGHTER_BORDER_COLORS_expflag == "true",
+        "pressed": HEADER_SHORTER_SIZE_expflag == "true",
         "pressed-default": false,
         "disabled": false,
-        "lsitem": "LIGHTER_BORDER_COLORS"
+        "lsitem": "HEADER_SHORTER_SIZE"
+      },
+      {
+        "type": "boolean",
+        "title": "HEADER_WHITE_BTN_COLORS",
+        "subtitle": "",
+        "pressed": HEADER_WHITE_BTN_COLORS_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "HEADER_WHITE_BTN_COLORS"
+      },
+      {
+        "type": "boolean",
+        "title": "HEADER_RED_STYLE",
+        "subtitle": "",
+        "pressed": HEADER_RED_STYLE_expflag == "true",
+        "pressed-default": true,
+        "disabled": false,
+        "lsitem": "HEADER_RED_STYLE"
+      },
+      {
+        "type": "boolean",
+        "title": "PIVOT_SHORTER_SIZE",
+        "subtitle": "",
+        "pressed": PIVOT_SHORTER_SIZE_expflag == "true",
+        "pressed-default": true,
+        "disabled": false,
+        "lsitem": "PIVOT_SHORTER_SIZE"
       }
       ];
       settingBlocks.forEach(function(item){
