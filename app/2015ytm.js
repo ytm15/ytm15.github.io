@@ -565,13 +565,13 @@ function renderPivotBar(){
       "name": Home_text_string,
       "pivotName": "w2w",
       "iconPath": "M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z",
-      "link": "#"
+      "link": ""
     },
     {
       "name": Trending_text_string,
       "pivotName": "trending",
       "iconPath": "M14.72,17.64c-0.32,0.28-0.83,0.56-1.23,0.69c-1.14,0.38-2.27-0.07-3.05-0.71c-0.11-0.09-0.07-0.26,0.06-0.31  c1.19-0.38,1.89-1.3,2.09-2.22c0.2-0.88-0.16-1.64-0.31-2.51c-0.12-0.72-0.11-1.34,0.12-2c0.04-0.11,0.2-0.13,0.25-0.02  c0.71,1.59,2.72,2.29,3.07,4.04c0.03,0.16,0.05,0.32,0.05,0.48C15.8,16.02,15.4,17.03,14.72,17.64 M17.55,9.62  c-0.75-0.7-1.63-1.2-2.36-1.93c-1.49-1.51-2-3.64-1.34-5.66c0.11-0.33-0.2-0.63-0.51-0.49c-0.71,0.31-1.39,0.76-1.98,1.24  C8.38,5.2,7.27,9.26,8.65,12.92c0.03,0.13,0.08,0.26,0.08,0.39c0,0.26-0.16,0.5-0.39,0.6c-0.26,0.12-0.54,0.04-0.74-0.15  c-0.06-0.06-0.12-0.12-0.17-0.19c-0.96-1.26-1.32-2.95-1.05-4.52c0.07-0.4-0.43-0.62-0.67-0.31c-1.21,1.57-1.81,3.67-1.69,5.65  c0.04,0.59,0.13,1.18,0.29,1.75c0.2,0.71,0.49,1.4,0.88,2.03c1.21,2.01,3.34,3.46,5.63,3.75c2.43,0.31,5.06-0.14,6.94-1.87  c2.09-1.93,2.85-5,1.73-7.68c-0.04-0.11-0.09-0.21-0.14-0.32c-0.25-0.52-0.55-1.01-0.91-1.45C18.17,10.24,17.87,9.92,17.55,9.62z",
-      "link": "#/trending"
+      "link": "trending"
     }
     ];
     pivotBar.innerHTML = "";
@@ -580,7 +580,7 @@ function renderPivotBar(){
       pivotBarItem.classList.add("pivot-bar-item");
       pivotBarItem.id = item.name;
       pivotTabSelected = false;
-      if (window.location.hash == item.link || (window.location.hash == "" || window.location.hash == "#/") && item.pivotName == "w2w") {
+      if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == item.link || (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == undefined) && item.pivotName == "w2w") {
       pivotTabSelected = true;
       }
       pivotBarItem.innerHTML = `<div role="tab" aria-selected="${pivotTabSelected}" class="pivot-bar-item-tab has-ripple pivot-${item.pivotName}">
@@ -590,7 +590,7 @@ function renderPivotBar(){
 </div>
 </div>`;
       pivotBarItem.querySelector(".pivot-bar-item-tab").onclick = function(){
-        window.location.hash = item.link;
+        window.location.hash = "#/" + item.link;
       }
       pivotBar.appendChild(pivotBarItem);
     });
