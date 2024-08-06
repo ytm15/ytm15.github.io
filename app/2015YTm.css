@@ -890,6 +890,7 @@ ytm15-header-bar {
 }
 ytm15-header-bar.non-red:not([ischannel="true"]) {
     background-color: #fff;
+    box-shadow: 0px 1px 4px 0px rgba(0,0,0,0.15);
 }
 @supports (position: sticky) {
 ytm15-header-bar {
@@ -3754,5 +3755,8 @@ html.dark {
     background-color: #303030;
 }
 .dark .non-red:not([ischannel="true"]) .ytm15-header {
+    color: #f1f1f1;
+}
+.dark .pivot-bar-item-tab[aria-selected="true"] {
     color: #f1f1f1;
 }
