@@ -3561,7 +3561,7 @@ dialog.ytm15-dialog {
     display: flex;
     flex-direction: column;
     flex-shrink: 0;
-    padding: 20px 20px 0;
+    padding: 22px 22px 0;
 }
 .ytm15-dialog h2 {
     font-size: 1.8rem;
@@ -3571,7 +3571,7 @@ dialog.ytm15-dialog {
     overflow-y: auto;
     overflow-x: hidden;
     max-height: 100vh;
-    padding: 0 20px;
+    padding: 0 22px;
 }
 .dialog-buttons {
     padding: 12px 20px 20px;
@@ -3620,9 +3620,10 @@ dialog.ytm15-dialog {
 /* Radios */
 .material-radio {
     padding: 12px 0;
-    font-size: 1.5rem;
+    font-size: 1.6rem;
     display: flex;
     flex-direction: row;
+    align-items: center;
 }
 .material-radio input {
     appearance: none;
@@ -3695,7 +3696,7 @@ label.radio-label {
     box-sizing: border-box;
     cursor: pointer;
     position: relative;
-    padding-left: 16px;
+    padding-left: 18px;
 }
 
 /* Global dark theme */
