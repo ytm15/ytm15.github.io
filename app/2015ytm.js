@@ -113,6 +113,12 @@ localStorage.setItem("HEADER_RED_STYLE", "true");
 HEADER_RED_STYLE_expflag = localStorage.getItem("HEADER_RED_STYLE");
 }
 PIVOT_SHORTER_SIZE_expflag = localStorage.getItem("PIVOT_SHORTER_SIZE");
+DARK_THEME_HASH_COLOR_expflag = localStorage.getItem("DARK_THEME_HASH_COLOR");
+if (DARK_THEME_HASH_COLOR_expflag == undefined) {
+localStorage.setItem("DARK_THEME_HASH_COLOR", "#30");
+DARK_THEME_HASH_COLOR_expflag = localStorage.getItem("DARK_THEME_HASH_COLOR");
+}
+SUBSCRIBE_BTN_UPPERCASE_expflag = localStorage.getItem("SUBSCRIBE_BTN_UPPERCASE");
 
 if (DISABLE_YTM15_APP_BORDER_expflag == "true") {
     documentHTML.classList.add("no-app-border");
@@ -139,10 +145,17 @@ if (WEB_CHANNELS_HEADER_NO_LEFT_MARGIN_expflag == "true") {
 } else {
     
 };
+
 if (LIGHTER_BORDER_COLORS_expflag == "true") {
     documentHTML.classList.add("lighter-borders");
 } else {
     documentHTML.classList.remove("lighter-borders");
+};
+
+if (DARK_THEME_HASH_COLOR_expflag == "#30") {
+    documentHTML.classList.remove("dark-28");
+} else if (DARK_THEME_HASH_COLOR_expflag == "#28") {
+    documentHTML.classList.add("dark-28");
 };
 };
 
@@ -212,6 +225,9 @@ Ok_text_string = "Ok";
 function renderSubscribeBtn(parent) {
     const mtrlBtnCont = document.createElement("div");
     mtrlBtnCont.classList.add("material-button-container", "compact", "subscribe-button");
+    if (SUBSCRIBE_BTN_UPPERCASE_expflag == "true") {
+    mtrlBtnCont.classList.add("subscribe-uppercase");
+    }
     mtrlBtnCont.dataset.style = "BRAND";
     mtrlBtnCont.dataset.iconOnly = "false";
     mtrlBtnCont.setAttribute("is-busy", "false");

@@ -230,6 +230,9 @@ function renderHeader() {
     menuBtn.onclick = function(){
     menuRenderer();
     menuCont.setAttribute("style", "top: 0; right: 0; position: fixed;");
+    if (HEADER_SHORTER_SIZE_expflag == "true") {
+    menuCont.setAttribute("style", "top: 0; right: 0; position: fixed; margin: 2px 7px;");
+    }
 
     const menuItemSettings = document.createElement("div");
     menuItemSettings.classList.add("menu-item");

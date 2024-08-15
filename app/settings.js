@@ -253,12 +253,12 @@ function settingsPage() {
         {
           "title": "Holo",
           "selected": DEFAULT_MEDIA_POPUP_MENU_STYLE_expflag == "Holo",
-          "selected-default": false
+          "selected-default": true
         },
         {
           "title": "Material",
           "selected": DEFAULT_MEDIA_POPUP_MENU_STYLE_expflag == "Material",
-          "selected-default": true
+          "selected-default": false
         },
         {
           "title": "Material_2",
@@ -389,6 +389,33 @@ function settingsPage() {
         "pressed-default": true,
         "disabled": false,
         "lsitem": "PIVOT_SHORTER_SIZE"
+      },
+      {
+        "type": "option-menu",
+        "title": "DARK_THEME_HASH_COLOR",
+        "subtitle": "",
+        "options": [
+        {
+          "title": "#30",
+          "selected": DARK_THEME_HASH_COLOR_expflag == "#30",
+          "selected-default": true
+        },
+        {
+          "title": "#28",
+          "selected": DARK_THEME_HASH_COLOR_expflag == "#28",
+          "selected-default": false
+        }
+        ],
+        "lsitem": "DARK_THEME_HASH_COLOR"
+      },
+      {
+        "type": "boolean",
+        "title": "SUBSCRIBE_BTN_UPPERCASE",
+        "subtitle": "",
+        "pressed": SUBSCRIBE_BTN_UPPERCASE_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "SUBSCRIBE_BTN_UPPERCASE"
       }
       ];
       settingBlocks.forEach(function(item){

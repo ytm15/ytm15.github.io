@@ -1417,6 +1417,14 @@ a {
    margin-top: 16px;
 }
 
+.material-button-container.subscribe-button.subscribe-uppercase {
+    font-size: 1.5rem;
+    text-transform: uppercase;
+}
+.subscribe-uppercase .button-text {
+    margin-bottom: -3px;
+}
+
 /* Watchpage frame container, miniplayer, and other related watch stuff */
 ytm15app.has-miniplayer {
     margin-bottom: 124px;
@@ -3949,4 +3957,26 @@ html.dark {
 }
 .dark .pivot-bar-item-tab[aria-selected="true"] {
     color: #f1f1f1;
+}
+
+/* Dark 28 */
+html.dark.dark-28 {
+    background-color: #282828;
+}
+.dark.dark-28 ytm15-header-bar.non-red:not([ischannel="true"]) {
+    background-color: #282828;
+}
+.dark.dark-28 ytm15-pivot-bar {
+    background-color: #282828;
+}
+.dark.dark-28 .searching-overlay {
+    background-color: #282828;
+}
+.dark.dark-28 .watchpage-frame-items ytm15-watch {
+    background-color: #282828;
+}
+@media (min-width: 800px) and (min-device-width: 550px) and (orientation: landscape) {
+.dark.dark-28 .watchpage-frame-items ytm15-watch::after {
+    background-color: #282828;
+}
 }

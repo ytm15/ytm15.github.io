@@ -480,6 +480,14 @@ a few hours later:
 -Started working on dialogs
 <br>
 -Made settings option menus work
+<br><br>
+16 Aug 2024:
+<br>
+-Added 2 new expflags:
+<br>
+--"DARK_THEME_HASH_COLOR" (with options)
+<br>
+--"SUBSCRIBE_BTN_UPPERCASE"
     </div>
     </div>
     </div>
