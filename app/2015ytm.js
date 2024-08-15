@@ -196,6 +196,7 @@ NoChannels_text_string = "This channel doesn't feature any other channels.";
 Comments_text_string = "Comments";
 CommentsError_text_string = "Comments are either disabled or unavailable."
 PinnedBy_text_string = "Pinned by ";
+Cancel_text_string = "Cancel"
 
 function renderSubscribeBtn(parent) {
     const mtrlBtnCont = document.createElement("div");
@@ -1632,6 +1633,67 @@ setTimeout(function() {
     document.body.classList.remove("modal-open");
     menuCont.classList.remove("closing");
     menuCont.style = "";
+}, 300);
+}
+
+const dialogCont = document.createElement("div");
+dialogCont.classList.add("dialog-container");
+
+const ytm15Dialog = document.createElement("dialog");
+ytm15Dialog.setAttribute("role", "dialog");
+ytm15Dialog.ariaModal = true;
+ytm15Dialog.ariaLive = "polite";
+ytm15Dialog.classList.add("ytm15-dialog");
+ytm15Dialog.setAttribute("tabindex", "-1");
+
+const dialogHeader = document.createElement("div");
+dialogHeader.classList.add("dialog-header");
+dialogHeader.id = "dialogHeaderId";
+dialogHeader.innerHTML = `<h2 class="modal-title">Title</h2>`;
+const dialogBody = document.createElement("div");
+dialogBody.classList.add("dialog-body", "user-text");
+dialogBody.id = "dialogBodyId";
+dialogBody.innerHTML = `<p class="secondary-text">body</p>`;
+
+ytm15Dialog.setAttribute("aria-labelledby", dialogHeader.id);
+ytm15Dialog.setAttribute("aria-describedby", dialogBody.id);
+
+const dialogButtons = document.createElement("div");
+dialogButtons.classList.add("dialog-buttons");
+
+const dialogBtnCancel = document.createElement("div");
+dialogBtnCancel.innerHTML = `<div class="material-button-container compact cancel-button" data-style="CALLACTION_TEXT" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button" aria-label="${Cancel_text_string}"><div class="button-text">${Cancel_text_string}</div></button></div>`;
+dialogButtons.appendChild(dialogBtnCancel);
+dialogBtnCancel.querySelector(".material-button-container").onclick = function(){
+  dialogRemove();
+}
+dialogBtnCancel.insertAdjacentElement("beforebegin", dialogBtnCancel.querySelector(".material-button-container"));
+dialogBtnCancel.remove();
+
+ytm15Dialog.appendChild(dialogHeader);
+ytm15Dialog.appendChild(dialogBody);
+ytm15Dialog.appendChild(dialogButtons);
+
+const dialogOverlay = document.createElement("div");
+dialogOverlay.classList.add("ytm15-overlay");
+dialogOverlay.onclick = function(){
+  dialogRemove();
+}
+dialogCont.appendChild(ytm15Dialog);
+dialogCont.appendChild(dialogOverlay);
+
+function dialogRenderer() {
+    document.body.appendChild(dialogCont);
+    document.body.classList.add("modal-open");
+}
+
+function dialogRemove() {
+    dialogCont.classList.add("closing");
+setTimeout(function() {
+    document.body.removeChild(dialogCont);
+    document.body.classList.remove("modal-open");
+    dialogCont.classList.remove("closing");
+    dialogCont.style = "";
 }, 300);
 }
 

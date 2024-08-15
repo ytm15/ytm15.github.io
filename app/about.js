@@ -474,6 +474,10 @@ a few hours later:
 --"HEADER_RED_STYLE" (enabled by default)
 <br>
 --"PIVOT_SHORTER_SIZE"
+<br><br>
+15 Aug 2024:
+<br>
+-Started working on dialogs
     </div>
     </div>
     </div>

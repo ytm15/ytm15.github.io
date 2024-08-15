@@ -1097,7 +1097,7 @@ input.searchbox-input {
 .white-colors :not([data-mode="search"], [data-mode="searching"], [data-mode="settings"]) .back-button, .white-colors :not([data-mode="search"], [data-mode="searching"], [data-mode="settings"]) .header-content .header-button {
     color: #f1f1f1;
 }
-.non-red:not([ischannel="true"]) .back-button, .non-red:not([ischannel="true"]) .header-content .header-button {
+.non-red:not([ischannel="true"]) .header-button.back-button, .non-red:not([ischannel="true"]) .header-content .header-button {
     color: rgba(0,0,0,0.5);
 }
 
@@ -3509,6 +3509,109 @@ ytm15-pivot-bar.no-shadow {
     border-color: rgba(0, 0, 0, 0.1);
 }
 
+/* Dialogs */
+.dialog-container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    align-items: center;
+    z-index: 5;
+}
+dialog.ytm15-dialog {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    max-height: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    overflow-y: auto;
+    font-size: 1.4rem;
+    color: #111;
+    background-color: #fff;
+    padding: 0;
+    margin: 0 auto;
+    border-width: initial;
+    border-style: none;
+    border-color: initial;
+    border-image: initial;
+    border-radius: 2px;
+    animation: dialog-open .3s ease-in-out;
+    box-shadow: 0px 5px 12px 1px rgba(0, 0, 0, 0.3);
+}
+.closing dialog.ytm15-dialog {
+    animation: dialog-close .3s ease-in-out;
+}
+@media (min-width: 330px) and (min-height: 330px) {
+.dialog-container {
+    margin: 0px 40px;
+}
+dialog.ytm15-dialog {
+    max-height: calc(100% - 40px);
+    min-width: 260px;
+    max-width: 356px;
+}
+}
+.dialog-header {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    padding: 20px 20px 0;
+}
+.ytm15-dialog h2 {
+    font-size: 1.8rem;
+    font-weight: 500;
+}
+.dialog-body {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 100vh;
+    padding: 0 20px;
+}
+.dialog-buttons {
+    padding: 12px 20px 20px;
+    flex-shrink: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+@keyframes dialog-open {
+0% {
+    opacity: 0;
+    transform: translateY(10px);
+}
+100% {
+
+}
+}
+@keyframes dialog-close {
+0% {
+
+}
+100% {
+    opacity: 0;
+    transform: translateY(-10px);
+}
+}
+.dialog-container .ytm15-overlay {
+    animation: overlay-fade .3s;
+}
+.dialog-container.closing .ytm15-overlay {
+    animation: overlay-fade-out .3s;
+}
+.dialog-container.closing {
+    pointer-events: none;
+}
+
+.modal-title {
+    -webkit-line-clamp: initial;
+    max-height: none;
+}
+
 /* Global dark theme */
 html.dark {
     color: #f1f1f1;
@@ -3543,7 +3646,7 @@ html.dark {
 .dark input {
     color: #f1f1f1;
 }
-.dark .non-red:not([ischannel="true"]) .back-button, .dark .non-red:not([ischannel="true"]) .header-content .header-button {
+.dark .non-red:not([ischannel="true"]) .ytm15-header:not([data-mode="settings"]) .header-button.back-button, .dark .non-red:not([ischannel="true"]) .ytm15-header:not([data-mode="settings"]) .header-content .header-button {
     color: #f1f1f1;
 }
 .dark .ytm15-header[data-mode="searching"] .header-button {
