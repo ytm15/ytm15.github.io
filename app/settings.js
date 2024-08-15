@@ -20,7 +20,7 @@ function renderSettingBoolean(parent, sbTitle, sbSubtitle, isPressed, isDisabled
 
     parent.appendChild(settingBoolean);
 }
-function renderSettingOptionMenu(parent, somTitle, somSubtitle) {
+function renderSettingOptionMenu(parent, somTitle, somSubtitle, somArray, somLSItem) {
     const settingOptionMenu = document.createElement("div");
     settingOptionMenu.classList.add("setting-single-option-menu", "has-ripple");
     const sbLabel = document.createElement("label");
@@ -29,6 +29,9 @@ function renderSettingOptionMenu(parent, somTitle, somSubtitle) {
     settingTitleSubBlock.classList.add("setting-title-subtitle-block");
     settingTitleSubBlock.role = "button";
     settingTitleSubBlock.tabindex = "0";
+    settingTitleSubBlock.onclick = function(){
+      dialogRenderer(somTitle, "", "options", somArray, somLSItem, true);
+    }
     const settingTitle = document.createElement("h3");
     settingTitle.id = "setting-title-subtitle-block-title";
     settingTitle.innerHTML = somTitle;
@@ -221,25 +224,26 @@ function settingsPage() {
         "options": [
         {
           "title": "Holo",
-          "selected": false,
+          "selected": DEFAULT_POPUP_MENU_STYLE_expflag == "Holo",
           "selected-default": false
         },
         {
           "title": "Material",
-          "selected": true,
+          "selected": DEFAULT_POPUP_MENU_STYLE_expflag == "Material",
           "selected-default": true
         },
         {
           "title": "Material_2",
-          "selected": false,
+          "selected": DEFAULT_POPUP_MENU_STYLE_expflag == "Material_2",
           "selected-default": false
         },
         {
           "title": "YouTube",
-          "selected": false,
+          "selected": DEFAULT_POPUP_MENU_STYLE_expflag == "YouTube",
           "selected-default": false
         }
-        ]
+        ],
+        "lsitem": "DEFAULT_POPUP_MENU_STYLE"
       },
       {
         "type": "option-menu",
@@ -248,25 +252,26 @@ function settingsPage() {
         "options": [
         {
           "title": "Holo",
-          "selected": true,
-          "selected-default": true
-        },
-        {
-          "title": "Material",
-          "selected": false,
+          "selected": DEFAULT_MEDIA_POPUP_MENU_STYLE_expflag == "Holo",
           "selected-default": false
         },
         {
+          "title": "Material",
+          "selected": DEFAULT_MEDIA_POPUP_MENU_STYLE_expflag == "Material",
+          "selected-default": true
+        },
+        {
           "title": "Material_2",
-          "selected": false,
+          "selected": DEFAULT_MEDIA_POPUP_MENU_STYLE_expflag == "Material_2",
           "selected-default": false
         },
         {
           "title": "YouTube",
-          "selected": false,
+          "selected": DEFAULT_MEDIA_POPUP_MENU_STYLE_expflag == "YouTube",
           "selected-default": false
         }
-        ]
+        ],
+        "lsitem": "DEFAULT_MEDIA_POPUP_MENU_STYLE"
       },
       {
         "type": "boolean",
@@ -399,7 +404,7 @@ function settingsPage() {
       };
       });
       };
-      renderSettingOptionMenu(settingsPage, item.title, optSubtitle);
+      renderSettingOptionMenu(settingsPage, item.title, optSubtitle, item.options, item.lsitem);
       };
       });
       }
@@ -409,6 +414,8 @@ function settingsPage() {
     };
 
     settingsEventListenFunc();
+
+    updateSettingsPage = function(){settingsEventListenFunc();};
 
     window.addEventListener("hashchange", function(event){
     settingsEventListenFunc();

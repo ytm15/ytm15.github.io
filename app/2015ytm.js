@@ -81,6 +81,16 @@ documentHTML = document.querySelector("html");
 
 function localStorageChange(){
 DISABLE_YTM15_APP_BORDER_expflag = localStorage.getItem("DISABLE_YTM15_APP_BORDER");
+DEFAULT_POPUP_MENU_STYLE_expflag = localStorage.getItem("DEFAULT_POPUP_MENU_STYLE");
+if (DEFAULT_POPUP_MENU_STYLE_expflag == undefined) {
+localStorage.setItem("DEFAULT_POPUP_MENU_STYLE", "Material");
+DEFAULT_POPUP_MENU_STYLE_expflag = localStorage.getItem("DEFAULT_POPUP_MENU_STYLE");
+}
+DEFAULT_MEDIA_POPUP_MENU_STYLE_expflag = localStorage.getItem("DEFAULT_MEDIA_POPUP_MENU_STYLE");
+if (DEFAULT_MEDIA_POPUP_MENU_STYLE_expflag == undefined) {
+localStorage.setItem("DEFAULT_MEDIA_POPUP_MENU_STYLE", "Holo");
+DEFAULT_MEDIA_POPUP_MENU_STYLE_expflag = localStorage.getItem("DEFAULT_MEDIA_POPUP_MENU_STYLE");
+}
 WEB_ENABLE_DARK_THEME_OPTION_expflag = localStorage.getItem("WEB_ENABLE_DARK_THEME_OPTION");
 DARK_THEME_option = localStorage.getItem("DARK_THEME");
 WEB_CHANNELS_HEADER_NO_LEFT_MARGIN_expflag = localStorage.getItem("WEB_CHANNELS_HEADER_NO_LEFT_MARGIN");
@@ -196,7 +206,8 @@ NoChannels_text_string = "This channel doesn't feature any other channels.";
 Comments_text_string = "Comments";
 CommentsError_text_string = "Comments are either disabled or unavailable."
 PinnedBy_text_string = "Pinned by ";
-Cancel_text_string = "Cancel"
+Cancel_text_string = "Cancel";
+Ok_text_string = "Ok";
 
 function renderSubscribeBtn(parent) {
     const mtrlBtnCont = document.createElement("div");
@@ -839,7 +850,16 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         const rect = menuBtn.getBoundingClientRect();
         const menuRect = menuCont.getBoundingClientRect();
         const menuAlign = function() {
+        menuCont.classList.remove("menu-style-holo", "menu-style-mtrl-2", "menu-style-youtube");
+        if (DEFAULT_MEDIA_POPUP_MENU_STYLE_expflag == "Holo") {
         menuCont.classList.add("menu-style-holo");
+        } else if (DEFAULT_MEDIA_POPUP_MENU_STYLE_expflag == "Material") {
+
+        } else if (DEFAULT_MEDIA_POPUP_MENU_STYLE_expflag == "Material_2") {
+        menuCont.classList.add("menu-style-mtrl-2");
+        } else if (DEFAULT_MEDIA_POPUP_MENU_STYLE_expflag == "YouTube") {
+        menuCont.classList.add("menu-style-youtube");
+        }
         menuCont.setAttribute("style", `left: ${rect.left - menuCont.offsetWidth + window.scrollX + 11}px; top: ${rect.top + window.scrollY - 10}px; margin: 7px;`);
         if (rect.left - menuCont.offsetWidth + window.scrollX + 11 < 0) {
         menuCont.setAttribute("style", `left: 0px; top: ${rect.top + window.scrollY - 10}px; margin: 7px;`);
@@ -1155,7 +1175,16 @@ function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLen
         const rect = menuBtn.getBoundingClientRect();
         const menuRect = menuCont.getBoundingClientRect();
         const menuAlign = function() {
+        menuCont.classList.remove("menu-style-holo", "menu-style-mtrl-2", "menu-style-youtube");
+        if (DEFAULT_MEDIA_POPUP_MENU_STYLE_expflag == "Holo") {
         menuCont.classList.add("menu-style-holo");
+        } else if (DEFAULT_MEDIA_POPUP_MENU_STYLE_expflag == "Material") {
+
+        } else if (DEFAULT_MEDIA_POPUP_MENU_STYLE_expflag == "Material_2") {
+        menuCont.classList.add("menu-style-mtrl-2");
+        } else if (DEFAULT_MEDIA_POPUP_MENU_STYLE_expflag == "YouTube") {
+        menuCont.classList.add("menu-style-youtube");
+        }
         menuCont.setAttribute("style", `left: ${rect.left - menuCont.offsetWidth + window.scrollX + 11}px; top: ${rect.top + window.scrollY - 10}px; margin: 7px;`);
         if (rect.left - menuCont.offsetWidth + window.scrollX + 11 < 0) {
         menuCont.setAttribute("style", `left: 0px; top: ${rect.top + window.scrollY - 10}px; margin: 7px;`);
@@ -1624,6 +1653,16 @@ function menuRenderer() {
     } else {
       menuBtnCancel.removeAttribute("hidden");
     };
+    menuCont.classList.remove("menu-style-holo", "menu-style-mtrl-2", "menu-style-youtube");
+    if (DEFAULT_POPUP_MENU_STYLE_expflag == "Holo") {
+    menuCont.classList.add("menu-style-holo");
+    } else if (DEFAULT_MEDIA_POPUP_MENU_STYLE_expflag == "Material") {
+
+    } else if (DEFAULT_POPUP_MENU_STYLE_expflag == "Material_2") {
+    menuCont.classList.add("menu-style-mtrl-2");
+    } else if (DEFAULT_POPUP_MENU_STYLE_expflag == "YouTube") {
+    menuCont.classList.add("menu-style-youtube");
+    }
 }
 
 function menuRemove() {
@@ -1649,11 +1688,13 @@ ytm15Dialog.setAttribute("tabindex", "-1");
 const dialogHeader = document.createElement("div");
 dialogHeader.classList.add("dialog-header");
 dialogHeader.id = "dialogHeaderId";
-dialogHeader.innerHTML = `<h2 class="modal-title">Title</h2>`;
+dialogHeader.innerHTML = `<h2 class="modal-title"></h2>`;
+dialogHeader.querySelector("h2").innerHTML = "Title";
 const dialogBody = document.createElement("div");
 dialogBody.classList.add("dialog-body", "user-text");
 dialogBody.id = "dialogBodyId";
-dialogBody.innerHTML = `<p class="secondary-text">body</p>`;
+dialogBody.innerHTML = `<p class="secondary-text"></p>`;
+dialogBody.querySelector("p").innerHTML = "body";
 
 ytm15Dialog.setAttribute("aria-labelledby", dialogHeader.id);
 ytm15Dialog.setAttribute("aria-describedby", dialogBody.id);
@@ -1667,7 +1708,8 @@ dialogButtons.appendChild(dialogBtnCancel);
 dialogBtnCancel.querySelector(".material-button-container").onclick = function(){
   dialogRemove();
 }
-dialogBtnCancel.insertAdjacentElement("beforebegin", dialogBtnCancel.querySelector(".material-button-container"));
+const dialogBtnCancel1 = dialogBtnCancel.querySelector(".material-button-container");
+dialogBtnCancel.insertAdjacentElement("beforebegin", dialogBtnCancel1);
 dialogBtnCancel.remove();
 
 ytm15Dialog.appendChild(dialogHeader);
@@ -1682,7 +1724,55 @@ dialogOverlay.onclick = function(){
 dialogCont.appendChild(ytm15Dialog);
 dialogCont.appendChild(dialogOverlay);
 
-function dialogRenderer() {
+function dialogRenderer(dlHeader, dlBody, dlType, optList, optLSItem, isSettings) {
+    dialogHeader.querySelector("h2").innerHTML = dlHeader;
+    dialogBody.querySelector("p").innerHTML = dlBody;
+    if (dlType == "options") {
+    const ytm15Options = document.createElement("div");
+    ytm15Options.classList.add("ytm15-options");
+    dialogBody.innerHTML = "";
+    dialogBody.appendChild(ytm15Options);
+    optList.forEach(function(item){
+    const optionSelectableItem = document.createElement("div");
+    optionSelectableItem.classList.add("option-selectable-item");
+    const materialRadio = document.createElement("div");
+    materialRadio.classList.add("material-radio");
+    const radioInput = document.createElement("label");
+    radioInput.classList.add("radio-input", "has-ripple");
+    const optInput = document.createElement("input");
+    optInput.name = "options";
+    optInput.id = item.title;
+    optInput.type = "radio";
+    if (item.selected == true) {
+    optInput.setAttribute("checked", "");
+    }
+    radioInput.appendChild(optInput);
+    const optLabel = document.createElement("label");
+    optLabel.classList.add("radio-label");
+    optLabel.setAttribute("for", optInput.id);
+    optLabel.textContent = item.title;
+
+    ytm15Options.appendChild(optionSelectableItem);
+    optionSelectableItem.appendChild(materialRadio);
+    materialRadio.appendChild(radioInput);
+    materialRadio.appendChild(optLabel);
+    });
+
+    const dialogBtnOkOpt = document.createElement("div");
+    dialogBtnOkOpt.innerHTML = `<div class="material-button-container compact cancel-button" data-style="CALLACTION_TEXT" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button" aria-label="${Cancel_text_string}"><div class="button-text">${Ok_text_string}</div></button></div>`;
+    dialogButtons.appendChild(dialogBtnOkOpt);
+    dialogBtnOkOpt.querySelector(".material-button-container").onclick = function(){
+    localStorage.setItem(optLSItem, ytm15Options.querySelector("input:checked").id);
+    localStorageChange();
+    if (isSettings) {
+    updateSettingsPage();
+    }
+    dialogRemove();
+    }
+    const dialogBtnOkOpt1 = dialogBtnOkOpt.querySelector(".material-button-container");
+    dialogBtnOkOpt.insertAdjacentElement("beforebegin", dialogBtnOkOpt1);
+    dialogBtnOkOpt.remove();
+    }
     document.body.appendChild(dialogCont);
     document.body.classList.add("modal-open");
 }
@@ -1694,6 +1784,14 @@ setTimeout(function() {
     document.body.classList.remove("modal-open");
     dialogCont.classList.remove("closing");
     dialogCont.style = "";
+    dialogHeader.innerHTML = `<h2 class="modal-title"></h2>`;
+    dialogHeader.querySelector("h2").innerHTML = "Title";
+    dialogBody.innerHTML = `<p class="secondary-text"></p>`;
+    dialogBody.querySelector("p").innerHTML = "body";
+    dialogButtons.innerHTML = "";
+    dialogButtons.appendChild(dialogBtnCancel);
+    dialogBtnCancel.insertAdjacentElement("beforebegin", dialogBtnCancel1);
+    dialogBtnCancel.remove();
 }, 300);
 }
 

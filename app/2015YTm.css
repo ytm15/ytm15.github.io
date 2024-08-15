@@ -3545,6 +3545,7 @@ dialog.ytm15-dialog {
 }
 .closing dialog.ytm15-dialog {
     animation: dialog-close .3s ease-in-out;
+    animation-fill-mode: forwards;
 }
 @media (min-width: 330px) and (min-height: 330px) {
 .dialog-container {
@@ -3602,14 +3603,99 @@ dialog.ytm15-dialog {
 }
 .dialog-container.closing .ytm15-overlay {
     animation: overlay-fade-out .3s;
+    animation-fill-mode: forwards;
 }
 .dialog-container.closing {
     pointer-events: none;
+}
+.dialog-buttons .material-button-container, .dialog-buttons .material-button {
+    min-width: 4em;
 }
 
 .modal-title {
     -webkit-line-clamp: initial;
     max-height: none;
+}
+
+/* Radios */
+.material-radio {
+    padding: 12px 0;
+    font-size: 1.5rem;
+    display: flex;
+    flex-direction: row;
+}
+.material-radio input {
+    appearance: none;
+    border-radius: 50%;
+    width: 18px;
+    height: 18px;
+    border: 2px solid rgba(0,0,0,0.5);
+    padding: 7px;
+    background-clip: content-box;
+    position: relative;
+    margin: 0;
+    animation: radiounchecked .4s ease-in-out;
+    cursor: pointer;
+}
+.material-radio input:checked {
+    background-color: #068fd4;
+    border-color: #068fd4;
+    padding: 3px;
+    animation: radiochecked .4s ease-in-out;
+}
+@keyframes radiochecked {
+0% {
+    border: 2px solid rgba(0,0,0,0.5);
+    background-color: transparent;
+    padding: 0;
+}
+50% {
+    border-width: 9px;
+    background-color: transparent;
+    transform: scale(0.9);
+    padding: 0;
+}
+60% {
+    border-width: 2px;
+    background-color: #068fd4;
+}
+100% {
+    padding: 3px;
+}
+}
+@keyframes radiounchecked {
+0% {
+    border: 2px solid #068fd4;
+    background-color: #068fd4;
+    padding: 3px;
+}
+50% {
+    border: 2px solid rgba(0,0,0,0.5);
+    background-color: rgba(0,0,0,0.5);
+    padding: 0;
+}
+60% {
+    border-width: 9px;
+    padding: 0;
+    transform: scale(0.9);
+}
+100% {
+    padding: 3px;
+}
+}
+label.radio-input {
+    display: inline-flex;
+    border-radius: 50%;
+    padding: 10px;
+    margin: -10px;
+}
+label.radio-label {
+    display: inline-block;
+    flex-grow: 1;
+    box-sizing: border-box;
+    cursor: pointer;
+    position: relative;
+    padding-left: 16px;
 }
 
 /* Global dark theme */

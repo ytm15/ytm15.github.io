@@ -478,6 +478,8 @@ a few hours later:
 15 Aug 2024:
 <br>
 -Started working on dialogs
+<br>
+-Made settings option menus work
     </div>
     </div>
     </div>
