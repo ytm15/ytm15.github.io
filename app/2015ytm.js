@@ -83,6 +83,9 @@ metaColorElm = document.querySelector('meta[name="theme-color"]');
 metaColor1 = "#BA1B12";
 metaColor2 = "#DDDDDD";
 metaColor3 = "#151515";
+metaColor4 = "#909090";
+metaColor5 = "#464646";
+defaultMetaColor = metaColor1;
 
 function localStorageChange(){
 DISABLE_YTM15_APP_BORDER_expflag = localStorage.getItem("DISABLE_YTM15_APP_BORDER");
@@ -159,11 +162,15 @@ if (LIGHTER_BORDER_COLORS_expflag == "true") {
 
 if (HEADER_RED_STYLE_expflag == "false") {
     metaColorElm.content = metaColor2;
-    if (DARK_THEME_option == "true") {
+    defaultMetaColor = metaColor2;
+    if (DARK_THEME_option == "true" && WEB_ENABLE_DARK_THEME_OPTION_expflag == "true") {
     metaColorElm.content = metaColor3;
+    defaultMetaColor = metaColor3;
     }
+    defaultMetaColor = metaColorElm.content;
 } else {
     metaColorElm.content = metaColor1;
+    defaultMetaColor = metaColor1;
 };
 
 if (DARK_THEME_HASH_COLOR_expflag == "#30") {
@@ -178,6 +185,30 @@ localStorageChange();
 window.addEventListener("storage", function(){
 localStorageChange();
 });
+
+function metaColorChange(){
+if (headerBar.querySelector("header").dataset.mode == 'search') {
+metaColorElm.content = metaColor4;
+if (DARK_THEME_option == "true" && WEB_ENABLE_DARK_THEME_OPTION_expflag == "true") {
+metaColorElm.content = metaColor3;
+}
+} else if (headerBar.querySelector("header").dataset.mode == 'normal') {
+metaColorElm.content = defaultMetaColor;
+} else if (headerBar.querySelector("header").dataset.mode == 'searching') {
+metaColorElm.content = metaColor4;
+if (DARK_THEME_option == "true" && WEB_ENABLE_DARK_THEME_OPTION_expflag == "true") {
+metaColorElm.content = metaColor3;
+}
+} else if (headerBar.querySelector("header").dataset.mode == 'settings') {
+metaColorElm.content = metaColor4;
+if (DARK_THEME_option == "true" && WEB_ENABLE_DARK_THEME_OPTION_expflag == "true") {
+metaColorElm.content = metaColor3;
+}
+}
+if (headerIsChannel == 'true' && headerBar.querySelector("header").dataset.mode == 'normal') {
+metaColorElm.content = metaColor5;
+}
+}
 
 APIbaseURL = "https://inv.tux.pizza/";
 
@@ -1300,6 +1331,8 @@ const headerBar = document.querySelector("ytm15-header-bar");
 
 const pageCont = document.querySelector('.page-container');
 
+metaColorChange();
+
 if (WEB_ENABLE_PIVOT_BAR_expflag == "true" && window.location.pathname.split("/").slice(3, 4)[0] !== "settings.html" && window.location.pathname.split("/").slice(3, 4)[0] !== "settings" && window.location.pathname.split("/").slice(2, 3)[0] !== "settings.html" && window.location.pathname.split("/").slice(2, 3)[0] !== "settings") {
   renderPivotBar();
 }
@@ -1831,6 +1864,8 @@ function searching(parent, sbInput) {
     /* header.setAttribute('data-mode', 'searching'); */
     header.dataset.mode = 'searching';
 
+    metaColorChange();
+
     const input = document.querySelector(".searchbox-input");
     input.focus();
 
@@ -1846,6 +1881,7 @@ function searching(parent, sbInput) {
     backBtn.onclick = function(){
         /* header.setAttribute('data-mode', dataMode); */
         header.dataset.mode = dataMode;
+        metaColorChange();
         searchOverlay.setAttribute('hidden', '');
         if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "channel" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "playlist" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "comments") {
             
@@ -1857,6 +1893,7 @@ function searching(parent, sbInput) {
 }
 
 function hashDetector() {
+    metaColorChange();
 if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] !== "channel") {
     wasPrevChannelPage = false;
 }
