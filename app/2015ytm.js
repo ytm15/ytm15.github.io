@@ -79,6 +79,11 @@ dataModeChange();
 
 documentHTML = document.querySelector("html");
 
+metaColorElm = document.querySelector('meta[name="theme-color"]');
+metaColor1 = "#BA1B12";
+metaColor2 = "#DDDDDD";
+metaColor3 = "#151515";
+
 function localStorageChange(){
 DISABLE_YTM15_APP_BORDER_expflag = localStorage.getItem("DISABLE_YTM15_APP_BORDER");
 DEFAULT_POPUP_MENU_STYLE_expflag = localStorage.getItem("DEFAULT_POPUP_MENU_STYLE");
@@ -150,6 +155,15 @@ if (LIGHTER_BORDER_COLORS_expflag == "true") {
     documentHTML.classList.add("lighter-borders");
 } else {
     documentHTML.classList.remove("lighter-borders");
+};
+
+if (HEADER_RED_STYLE_expflag == "false") {
+    metaColorElm.content = metaColor2;
+    if (DARK_THEME_option == "true") {
+    metaColorElm.content = metaColor3;
+    }
+} else {
+    metaColorElm.content = metaColor1;
 };
 
 if (DARK_THEME_HASH_COLOR_expflag == "#30") {
