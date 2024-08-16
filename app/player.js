@@ -813,7 +813,8 @@ video.load();
 YTmVideoId = playerVideoId;
 
 const playerxhttpr = new XMLHttpRequest();
-playerxhttpr.open('GET', 'https://inv.tux.pizza/api/v1/videos/' + YTmVideoId, true);
+/* playerxhttpr.open('GET', 'https://inv.tux.pizza/api/v1/videos/' + YTmVideoId, true); */
+playerxhttpr.open('GET', 'https://invidious.jing.rocks/api/v1/videos/' + YTmVideoId, true);
  
 playerxhttpr.send();
 

@@ -3786,6 +3786,7 @@ html.dark {
 }
 .dark input {
     color: #f1f1f1;
+    caret-color: #f1f1f1;
 }
 .dark .non-red:not([ischannel="true"]) .ytm15-header:not([data-mode="settings"]) .header-button.back-button, .dark .non-red:not([ischannel="true"]) .ytm15-header:not([data-mode="settings"]) .header-content .header-button {
     color: #f1f1f1;
@@ -4021,6 +4022,9 @@ html.dark {
 }
 .dark [data-style="CALLACTION_TEXT"] .material-button::before {
     background-color: rgba(62, 166, 239, 0.15);
+}
+.dark .comment-text a {
+    color: #3ea6ef;
 }
 
 /* Dark 28 */

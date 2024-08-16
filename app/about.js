@@ -490,6 +490,8 @@ a few hours later:
 --"SUBSCRIBE_BTN_UPPERCASE"
 <br>
 -Comments now support dark theme
+<br>
+-The watchpage now uses the "invidious.jing.rocks" instance instead of "inv.tux.pizza" (this change was done to try and get rid of the "this helps protect our community" thing that's been popping up on certain invidious instances' watchpages recently)
     </div>
     </div>
     </div>
