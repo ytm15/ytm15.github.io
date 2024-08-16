@@ -1421,6 +1421,10 @@ pTMPAnimName = "player-to-miniplayer"
 if (WEB_ENABLE_PIVOT_BAR_expflag == "true") {
   mpTPAnimName = "miniplayer-to-player-pivot"
   pTMPAnimName = "player-to-miniplayer-pivot"
+  if (PIVOT_SHORTER_SIZE_expflag == "true") {
+  mpTPAnimName = "miniplayer-to-player-pivot-2"
+  pTMPAnimName = "player-to-miniplayer-pivot-2"
+  }
 }
 
 const exitWatch = document.createElement("button");

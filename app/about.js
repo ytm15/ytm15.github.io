@@ -488,6 +488,8 @@ a few hours later:
 --"DARK_THEME_HASH_COLOR" (with options)
 <br>
 --"SUBSCRIBE_BTN_UPPERCASE"
+<br>
+-Comments now support dark theme
     </div>
     </div>
     </div>

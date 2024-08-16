@@ -1509,6 +1509,48 @@ ytm15app.has-miniplayer {
     margin-bottom: 52px;
 }
 }
+@keyframes miniplayer-to-player-pivot-2 {
+0% {
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    /* min-height: 0; */
+    min-height: 120px;
+    margin-left: auto;
+    margin-bottom: 48px;
+}
+100% {
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    min-height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    margin-left: auto;
+    margin-bottom: 0;
+}
+}
+@keyframes player-to-miniplayer-pivot-2 {
+0% {
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    min-height: 100%;
+    max-width: 100%;
+    max-height: 100%;
+    margin-left: auto;
+    margin-bottom: 0;
+}
+100% {
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    /* min-height: 0; */
+    min-height: 120px;
+    margin-left: auto;
+    margin-bottom: 48px;
+}
+}
 @keyframes watch-overlay-in {
 0% {
     opacity: 0;
@@ -1545,6 +1587,9 @@ ytm15app.has-miniplayer {
 [has-pivot-bar="true"] #watchpageFrame_Container {
     animation-name: miniplayer-to-player-pivot;
 }
+.shorter-pivot [has-pivot-bar="true"] #watchpageFrame_Container {
+    animation-name: miniplayer-to-player-pivot-2;
+}
 #watchpageFrame_Container.miniplayer {
     bottom: 0px;
     right: 0px;
@@ -1559,6 +1604,7 @@ ytm15app.has-miniplayer {
     margin-bottom: 52px;
 }
 .shorter-pivot [has-pivot-bar="true"] #watchpageFrame_Container.miniplayer {
+    animation-name: player-to-miniplayer-pivot-2;
     margin-bottom: 48px;
 }
 .watchpage-frame-overlay {
@@ -3957,6 +4003,24 @@ html.dark {
 }
 .dark .pivot-bar-item-tab[aria-selected="true"] {
     color: #f1f1f1;
+}
+.dark .material-button-container[data-style="CALLACTION_TEXT"] {
+    color: #3ea6ef;
+}
+.dark .pinned-comment-badge {
+    color: #ff4e45;
+}
+.dark .comment-header {
+    color: rgba(255,255,255,0.6);
+}
+.dark .comment-details {
+    color: rgba(255,255,255,0.5);
+}
+.dark [data-is-beta="true"] .comments-header-text::after {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+.dark [data-style="CALLACTION_TEXT"] .material-button::before {
+    background-color: rgba(62, 166, 239, 0.15);
 }
 
 /* Dark 28 */
