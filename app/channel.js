@@ -90,7 +90,7 @@ function channelPage() {
     };
 
     const getChannelData = new XMLHttpRequest();
-    getChannelData.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0], true);
+    getChannelData.open('GET', APIbaseURLWatch + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0], true);
  
     getChannelData.onerror = function(event) {
     console.error("An error occurred with this operation (" + getChannelData.status + ")");
@@ -122,13 +122,16 @@ function channelPage() {
     const response = JSON.parse(getChannelData.response);
     /* console.log(response); */
 
-    response.subCount = chSubCount;
+    /* response.subCount = chSubCount;
     var chValuesInterval = setInterval(function(){
      response.subCount = chSubCount;
      if (response.subCount !== 0) {
      clearInterval(chValuesInterval);
      }
-    }, 10);
+    }, 10); */
+    if (Number(response.subCount) == 0) {
+    response.subCount = "No";
+    }
 
     wasPrevChannelPage = true;
 
@@ -311,12 +314,12 @@ function channelPage() {
     channelSubCount.textContent = response.subCount.toLocaleString() + " subscribers";
     channelSub.appendChild(channelSubCount);
 
-    var chSubCountChange = setInterval(function(){
+    /* var chSubCountChange = setInterval(function(){
      channelSubCount.textContent = response.subCount.toLocaleString() + " subscribers";
      if (response.subCount !== 0) {
      clearInterval(chSubCountChange);
      }
-    }, 10);
+    }, 10); */
 
     channelHeaderDetails.appendChild(channelTitle);
     channelHeaderDetails.appendChild(channelSub);
@@ -469,7 +472,7 @@ function channelPage() {
     if (item.snippet.type == "multiplechannels") {
     item.contentDetails.channels.forEach(function(item1){
     const getShelfChannels = new XMLHttpRequest();
-    getShelfChannels.open('GET', APIbaseURL + 'api/v1/channels/' + item1, true);
+    getShelfChannels.open('GET', APIbaseURLWatch + 'api/v1/channels/' + item1, true);
  
     getShelfChannels.onerror = function(event) {
     console.error("An error occurred with this operation (" + getShelfChannels.status + ")");
@@ -1319,7 +1322,7 @@ function channelVideosContin(continuation, contItemParent) {
 
     channelShelfMatchesURLId.contentDetails.channels.forEach(function(item1){
     const getShelfChannels = new XMLHttpRequest();
-    getShelfChannels.open('GET', APIbaseURL + 'api/v1/channels/' + item1, true);
+    getShelfChannels.open('GET', APIbaseURLWatch + 'api/v1/channels/' + item1, true);
  
     getShelfChannels.onerror = function(event) {
     console.error("An error occurred with this operation (" + getShelfChannels.status + ")");
@@ -1403,7 +1406,7 @@ function channelVideosContin(continuation, contItemParent) {
     if (item.snippet.type == "multiplechannels") {
     item.contentDetails.channels.forEach(function(item1){
     const getShelfChannels = new XMLHttpRequest();
-    getShelfChannels.open('GET', APIbaseURL + 'api/v1/channels/' + item1, true);
+    getShelfChannels.open('GET', APIbaseURLWatch + 'api/v1/channels/' + item1, true);
  
     getShelfChannels.onerror = function(event) {
     console.error("An error occurred with this operation (" + getShelfChannels.status + ")");

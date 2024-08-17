@@ -492,6 +492,10 @@ a few hours later:
 -Comments now support dark theme
 <br>
 -The watchpage now uses the "invidious.jing.rocks" instance instead of "inv.tux.pizza" (this change was done to try and get rid of the "this helps protect our community" thing that's been popping up on certain invidious instances' watchpages recently)
+<br><br>
+17 Aug 2024
+<br>
+-Channel pages now use the "invidious.jing.rocks" instance in order to fix the missing banner bug
     </div>
     </div>
     </div>
