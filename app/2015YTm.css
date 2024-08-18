@@ -2951,7 +2951,7 @@ ytm15-channels-header {
 /* Settings page */
 ytm15-settings {
     display: block;
-    height: calc(100vh - 56px);
+    min-height: calc(100vh - 56px);
     animation: settingsBG .3s ease-in-out;
 }
 settings-page {
