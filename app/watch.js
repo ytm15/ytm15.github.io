@@ -1,8 +1,8 @@
 function renderWatchPage(parent) {
-  watchContainer.setAttribute("style", ``);
-  playerCont.setAttribute("style", ``);
-  watchOverlay.setAttribute("style", ``);
-  pivotBar.setAttribute("style", ``);
+    watchContainer.setAttribute("style", ``);
+    playerCont.setAttribute("style", ``);
+    watchOverlay.setAttribute("style", ``);
+    pivotBar.setAttribute("style", ``);
 
     parent.innerHTML = "";
     const spinner = document.querySelector(".spinner-container.full-height");
@@ -350,8 +350,27 @@ function renderWatchPage(parent) {
     mtrlBtnContShare.ariaBusy = "false";
     mtrlBtnContShare.setAttribute("disabled", "false");
     mtrlBtnContShare.innerHTML = `<button class="material-button" aria-label="${Share_text_string}" aria-pressed="false">
-<div class="button-text">${Share_text_string}</div><img class="ytm15-img-icon ytm15-img button-icon share-icon" src="ic_share.png">
+<div class="button-text">${Share_text_string}</div><img class="ytm15-img-icon ytm15-img button-icon share-icon" src="ic_share.png"></img>
 </button>`
+
+    if (WATCH_USE_MTRL_ICONS_expflag == "true") {
+    mtrlBtnCont.innerHTML = `<button class="material-button" aria-label="${videoMetadataLikeCountAL}" aria-pressed="false">
+<ytm15-icon class="like-icon button-icon"><svg viewBox="0 0 24 24" fill=""><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1.91l-.01-.01L23 10z"></path></svg></ytm15-icon><div class="button-text">${videoMetadataLikeCount}</div>
+</button>`
+
+    mtrlBtnContDislike.innerHTML = `<button class="material-button" aria-label="${videoMetadataDislikeCountAL}" aria-pressed="false">
+<ytm15-icon class="dislike-icon button-icon"><svg viewBox="0 0 24 24" fill=""><path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v1.91l.01.01L1 14c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"></path></svg></ytm15-icon><div class="button-text">${videoMetadataDislikeCount}</div>
+</button>`
+
+    mtrlBtnContShare.innerHTML = `<button class="material-button" aria-label="${Share_text_string}" aria-pressed="false">
+<ytm15-icon class="share-icon button-icon"><svg viewBox="0 0 24 24" fill=""><path d="M21,12L14,5V9C7,10 4,15 3,20C5.5,16.5 9,14.9 14,14.9V19L21,12Z" style="
+    transform: scale(1.3);
+    transform-origin: center;
+"></path></svg></ytm15-icon><div class="button-text">${Share_text_string}</div>
+</button>`
+
+    metadataActions.classList.add("use-mtrl-icons");
+    };
 
     const actionsSpacer = document.createElement("div");
     actionsSpacer.classList.add("video-metadata-actions-spacer");

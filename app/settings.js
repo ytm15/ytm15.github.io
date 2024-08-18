@@ -416,6 +416,15 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "SUBSCRIBE_BTN_UPPERCASE"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_USE_MTRL_ICONS",
+        "subtitle": "",
+        "pressed": WATCH_USE_MTRL_ICONS_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_USE_MTRL_ICONS"
       }
       ];
       settingBlocks.forEach(function(item){
