@@ -498,7 +498,7 @@ a few hours later:
 -Channel pages now use the "invidious.jing.rocks" instance in order to fix the missing banner bug
 <br><br>
 18 Aug 2024:
-<br><br>
+<br>
 -Added a new expflag: "WATCH_USE_MTRL_ICONS"
     </div>
     </div>
