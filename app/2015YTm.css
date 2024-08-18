@@ -2175,6 +2175,9 @@ ytm15-badge:empty, .standalone-badge-supported ytm15-badge:empty {
     overflow: hidden;
     min-width: 0;
 }
+.video-metadata-actions.use-mtrl-icons button {
+    padding: 0.7em;
+}
 .video-metadata-actions [aria-pressed="false"] .button-icon.pressed {
     display: none;
 }
