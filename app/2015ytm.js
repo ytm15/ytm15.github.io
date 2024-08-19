@@ -82,7 +82,7 @@ documentHTML = document.querySelector("html");
 metaColorElm = document.querySelector('meta[name="theme-color"]');
 metaColor1 = "#BA1B12";
 metaColor2 = "#DDDDDD";
-metaColor3 = "#151515";
+metaColor3 = "#131313";
 metaColor4 = "#909090";
 metaColor5 = "#464646";
 defaultMetaColor = metaColor1;
