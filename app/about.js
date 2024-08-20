@@ -503,7 +503,7 @@ a few hours later:
 <br><br>
 20 Aug 2024:
 <br>
--The player's previous and next buttons are now shown and now work
+-The player's previous and next buttons are now shown and now work (however, the previous video url gets resetted when you click on a video item)
     </div>
     </div>
     </div>

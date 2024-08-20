@@ -60,6 +60,7 @@ function renderWatchPage(parent) {
     prevVidBtn.onclick = function(){
     playerNextVideoId = playerVideoId;
     playerVideoId = playerPrevVideoId[0];
+    playerFrame.src = playerEmbedURLYT + playerVideoId + playerEmbedURLYTEnd;
     renderWatchPage(ytm15Watch);
     }
     } else {
@@ -74,6 +75,7 @@ function renderWatchPage(parent) {
     nextVidBtn.onclick = function(){
     playerPrevVideoId.splice(0, 0, playerVideoId);
     playerVideoId = playerNextVideoId;
+    playerFrame.src = playerEmbedURLYT + playerVideoId + playerEmbedURLYTEnd;
     renderWatchPage(ytm15Watch);
     }
     } else {

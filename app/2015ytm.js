@@ -726,6 +726,7 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         watchFrame.scrolling = "yes";
         }
         watchFrame.src = "watch.html?v=" + itemVideoId;
+        playerPrevVideoId = [""];
         playerVideoId = itemVideoId;
         /* playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd; */
         playerFrame.src = playerEmbedURLYT + playerVideoId + playerEmbedURLYTEnd;
@@ -894,6 +895,7 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         watchFrame.scrolling = "yes";
         }
         watchFrame.src = "watch.html?v=" + itemVideoId;
+        playerPrevVideoId = [""];
         playerVideoId = itemVideoId;
         /* playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd; */
         playerFrame.src = playerEmbedURLYT + playerVideoId + playerEmbedURLYTEnd;
@@ -1047,6 +1049,7 @@ function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLen
         watchFrame.scrolling = "yes";
         }
         watchFrame.src = "watch.html?v=" + itemVideoId;
+        playerPrevVideoId = [""];
         playerVideoId = itemVideoId;
         /* playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd; */
         playerFrame.src = playerEmbedURLYT + playerVideoId + playerEmbedURLYTEnd;
@@ -1156,6 +1159,7 @@ function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLen
         watchFrame.scrolling = "yes";
         }
         watchFrame.src = "watch.html?v=" + itemVideoId;
+        playerPrevVideoId = [""];
         playerVideoId = itemVideoId;
         /* playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd; */
         playerFrame.src = playerEmbedURLYT + playerVideoId + playerEmbedURLYTEnd;
@@ -1220,6 +1224,7 @@ function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLen
         watchFrame.scrolling = "yes";
         }
         watchFrame.src = "watch.html?v=" + itemVideoId;
+        playerPrevVideoId = [""];
         playerVideoId = itemVideoId;
         /* playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd; */
         playerFrame.src = playerEmbedURLYT + playerVideoId + playerEmbedURLYTEnd;
