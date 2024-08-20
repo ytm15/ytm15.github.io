@@ -7,6 +7,7 @@ Please check out <a href="https://vorapis.pages.dev/#/">Vorapis 2013/V3</a>, ano
 ## To-do list
 - Add one or more expflags for newer watch UIs
 - Make the newer UIs more accurate and complete
-- (possibly / tentative) Change this whole project's name (it isn't just the 2015 YT UI anymore so it's about time)
+- (possibly / tentative) Change this whole project's name (it doesn't just have the 2015 YT UI anymore so it's about time for a name-change)
+- Add expflags for the player
 
 ### More stuff will be added here later
