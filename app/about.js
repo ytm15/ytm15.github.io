@@ -500,6 +500,10 @@ a few hours later:
 18 Aug 2024:
 <br>
 -Added a new expflag: "WATCH_USE_MTRL_ICONS"
+<br><br>
+20 Aug 2024:
+<br>
+-The player's previous and next buttons are now shown and now work
     </div>
     </div>
     </div>

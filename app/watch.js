@@ -52,6 +52,36 @@ function renderWatchPage(parent) {
     if (getWatchData.status === 200) {
     const data = JSON.parse(getWatchData.response);
 
+    playerNextVideoId = data.recommendedVideos[0].videoId;
+
+    if (playerPrevVideoId[0] !== playerVideoId && playerPrevVideoId[0] !== "") {
+    prevVidBtn.ariaDisabled = "false";
+    prevVidBtn.classList.remove("controls-btn-disabled");
+    prevVidBtn.onclick = function(){
+    playerNextVideoId = playerVideoId;
+    playerVideoId = playerPrevVideoId[0];
+    renderWatchPage(ytm15Watch);
+    }
+    } else {
+    prevVidBtn.onclick = undefined;
+    prevVidBtn.ariaDisabled = "true";
+    prevVidBtn.classList.add("controls-btn-disabled");
+    }
+
+    if (playerNextVideoId !== playerVideoId && playerNextVideoId !== "") {
+    nextVidBtn.ariaDisabled = "false";
+    nextVidBtn.classList.remove("controls-btn-disabled");
+    nextVidBtn.onclick = function(){
+    playerPrevVideoId.splice(0, 0, playerVideoId);
+    playerVideoId = playerNextVideoId;
+    renderWatchPage(ytm15Watch);
+    }
+    } else {
+    nextVidBtn.onclick = undefined;
+    nextVidBtn.ariaDisabled = "true";
+    nextVidBtn.classList.add("controls-btn-disabled");
+    }
+
     contItem.remove();
 
     const scwnr = document.createElement("div");

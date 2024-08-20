@@ -750,7 +750,8 @@ video.addEventListener("loadstart", function(e){
     playerTitle.innerHTML = video.dataset.title;
     videoPlayer.classList.remove("player-options-shown");
     videoPlayer.classList.remove("player-mini-mode");
-    videoPlayer.classList.add("hide-prev-next-btns");
+    /* videoPlayer.classList.add("hide-prev-next-btns"); */
+    videoPlayer.classList.remove("hide-prev-next-btns");
     closeIFramePlayer();
     closePlayerDialog();
 });

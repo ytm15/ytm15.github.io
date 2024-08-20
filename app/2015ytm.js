@@ -220,6 +220,9 @@ playerEmbedURLEnd = "?autoplay=1&quality=dash&player_style=youtube&local=true";
 playerEmbedURLYT = "https://www.youtube.com/embed/";
 playerEmbedURLYTEnd = "?autoplay=1&enablejsapi=1&rel=0&origin=" + location.origin + "&widget_referrer=" + location.origin;
 
+playerPrevVideoId = [""];
+playerNextVideoId = "";
+
 Subscribe_text_string = "Subscribe"
 Home_text_string = "Home"
 Popular_text_string = "Popular"
