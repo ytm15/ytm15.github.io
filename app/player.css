@@ -422,6 +422,8 @@ stroke-dashoffset: 187; }
     align-self: center;
     -webkit-filter: drop-shadow(rgba(0, 0, 0, 0.4) 0px 1px 2px);
     display: none;
+    max-height: 1.2em;
+    -webkit-line-clamp: 1;
 }
 .player-is-fullscreen .player-title {
     display: -webkit-box;

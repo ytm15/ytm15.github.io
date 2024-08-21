@@ -510,6 +510,8 @@ a few hours later:
 -Added a left margin to the player's progress container and modified the player dialog's top border a bit
 <br>
 -Changed the player's play-pause button look to the material-style one
+<br>
+-Changed the max-height of the player's title
     </div>
     </div>
     </div>
