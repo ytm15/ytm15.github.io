@@ -100,12 +100,14 @@
 .player-controls-middle .controls-button.play-pause-button {
     height: 56px;
     width: 56px;
-    padding: 0;
+    padding: 6px;
+    box-sizing: content-box;
     margin: 0 60px;
 }
 @media (max-width: 299px) and (orientation: landscape), (max-width: 299px) and (orientation: portrait) {
 .player-controls-middle .controls-button.play-pause-button {
     padding: 8px;
+    box-sizing: border-box;
     margin: 0 12px;
 }
 }
@@ -247,7 +249,7 @@
 }
 @media (min-width: 550px) and (orientation: portrait), (min-width: 800px) and (orientation: landscape) {
 .player-controls-middle .controls-button.play-pause-button {
-    padding: 0px;
+    padding: 6px;
     margin: 0 80px;
     height: 64px;
     width: 64px;
