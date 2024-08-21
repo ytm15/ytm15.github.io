@@ -124,7 +124,8 @@ toggleButton.classList.add("controls-button", "toggle-button", "play-pause-butto
 toggleButton.ariaLabel = "Play video";
 toggleButton.ariaPressed = "false";
 toggleButton.title = "Toggle Play";
-toggleButton.innerHTML = `<img class="player-img-icon button-icon play-icon" src="ic_vidcontrol_play.png"></img>`;
+/* toggleButton.innerHTML = `<img class="player-img-icon button-icon play-icon" src="ic_vidcontrol_play.png"></img>`; */
+toggleButton.innerHTML = `<img class="player-img-icon button-icon play-icon" src="ic_vidcontrol_pause_play_11.png"></img>`;
 controlsMiddle.appendChild(toggleButton);
 const nextVidBtn = document.createElement("button");
 nextVidBtn.classList.add("controls-button", "controls-btn-disabled", "next-vid-button", "has-ripple");
@@ -370,7 +371,8 @@ function toggleFullScreen() {
 
 function updateToggleButton() {
   videoPlayer.classList.remove("player-ended");
-  toggleButton.innerHTML = video.paused ? `<img class="player-img-icon button-icon play-icon" src="ic_vidcontrol_play.png"></img>` : `<img class="player-img-icon button-icon pause-icon" src="ic_vidcontrol_pause.png"></img>`;
+  /* toggleButton.innerHTML = video.paused ? `<img class="player-img-icon button-icon play-icon" src="ic_vidcontrol_play.png"></img>` : `<img class="player-img-icon button-icon pause-icon" src="ic_vidcontrol_pause.png"></img>`; */
+  toggleButton.innerHTML = video.paused ? `<img class="player-img-icon button-icon play-icon" src="ic_vidcontrol_pause_play_11.png"></img>` : `<img class="player-img-icon button-icon pause-icon" src="ic_vidcontrol_pause_play_00.png"></img>`;
   toggleButton.ariaLabel = video.paused ? "Play video" : "Pause video";
   toggleButton.ariaPressed = video.paused ? "false" : "true";
   if (video.ended) {

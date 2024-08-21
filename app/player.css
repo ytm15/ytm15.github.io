@@ -152,6 +152,7 @@
     flex-basis: auto;
     height: 30px;
     align-items: center;
+    margin-left: 12px;
 }
 .progress {
     flex: 10;
@@ -224,6 +225,10 @@
     width: 56px;
     height: 56px;
     margin: 0;
+}
+.player-controls-middle .controls-button.play-pause-button .player-img-icon[src*="ic_vidcontrol_pause_play"]:not([src*="2018"]) {
+    transform: scale(0.65);
+    transform-origin: center;
 }
 /* .play-pause-button .player-img-icon.pause-icon {
     width: 38px;
@@ -648,6 +653,7 @@ video.storyboard-video {
     min-height: 10px;
     background-color: #303030;
     border: 0;
+    /* border-top: 1px solid rgba(255, 255, 255, 0.5); */
     border-top: 1px solid rgba(255, 255, 255, 0.5);
     border-radius: 1px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.8);

@@ -504,6 +504,12 @@ a few hours later:
 20 Aug 2024:
 <br>
 -The player's previous and next buttons are now shown and now work (however, the previous video url gets resetted when you click on a video item)
+<br><br>
+21 Aug 2024:
+<br>
+-Added a left margin to the player's progress container and modified the player dialog's top border a bit
+<br>
+-Changed the player's play-pause button look to the material-style one
     </div>
     </div>
     </div>
