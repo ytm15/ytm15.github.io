@@ -2081,6 +2081,9 @@ ytm15-video-metadata.item:first-child, ytm15-video-metadata.item:last-child {
     width: 15px;
     vertical-align: sub;
 }
+.metadata-badge-container ytm15-icon.unlisted {
+    width: 17px;
+}
 .video-metadata-view-count {
     font-size: 1.25rem;
 }
@@ -4048,6 +4051,10 @@ html.dark {
 }
 .dark .video-metadata-actions [aria-pressed="true"] {
     color: #3ea6ef;
+}
+.dark .metadata-badge[data-type=BADGE_STYLE_TYPE_SIMPLE] {
+    background-color: rgba(255,255,255,0.1);
+    color: #aaa;
 }
 
 /* Dark 28 */
