@@ -97,6 +97,10 @@
 .controls-button.controls-btn-disabled .player-img-icon {
     opacity: .5;
 }
+.player-controls-middle .controls-button.controls-btn-disabled .player-img-icon {
+    opacity: .7;
+    filter: invert(0.8);
+}
 .player-controls-middle .controls-button.play-pause-button {
     height: 56px;
     width: 56px;

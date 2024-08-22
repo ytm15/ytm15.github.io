@@ -512,6 +512,10 @@ a few hours later:
 -Changed the player's play-pause button look to the material-style one
 <br>
 -Changed the max-height of the player's title
+<br><br>
+22 Aug 2024:
+<br>
+-Disabled prev and next player buttons are now grey
     </div>
     </div>
     </div>
