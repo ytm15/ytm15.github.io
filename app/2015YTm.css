@@ -3769,6 +3769,10 @@ label.radio-label {
     padding-left: 18px;
 }
 
+.btn-font-500 .button-text {
+    font-weight: 500;
+}
+
 /* Global dark theme */
 html.dark {
     color: #f1f1f1;
@@ -4066,4 +4070,32 @@ html.dark.dark-28 {
 .dark.dark-28 .watchpage-frame-items ytm15-watch::after {
     background-color: #282828;
 }
+}
+
+/* Dark 21 */
+html.dark.dark-21 {
+    background-color: #212121;
+}
+.dark.dark-21 ytm15-header-bar.non-red:not([ischannel="true"]) {
+    background-color: #212121;
+}
+.dark.dark-21 ytm15-pivot-bar {
+    background-color: #212121;
+}
+.dark.dark-21 .searching-overlay {
+    background-color: #212121;
+}
+.dark.dark-21 .watchpage-frame-items ytm15-watch {
+    background-color: #212121;
+}
+@media (min-width: 800px) and (min-device-width: 550px) and (orientation: landscape) {
+.dark.dark-21 .watchpage-frame-items ytm15-watch::after {
+    background-color: #212121;
+}
+}
+.dark.dark-21 ytm15-channels-header {
+    background-color: #181818;
+}
+.dark.dark-21 .playlist-header-container {
+    background-color: #181818;
 }

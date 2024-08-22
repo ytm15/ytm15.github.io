@@ -128,6 +128,7 @@ DARK_THEME_HASH_COLOR_expflag = localStorage.getItem("DARK_THEME_HASH_COLOR");
 }
 SUBSCRIBE_BTN_UPPERCASE_expflag = localStorage.getItem("SUBSCRIBE_BTN_UPPERCASE");
 WATCH_USE_MTRL_ICONS_expflag = localStorage.getItem("WATCH_USE_MTRL_ICONS");
+BTN_FONT_WEIGHT_500_expflag = localStorage.getItem("BTN_FONT_WEIGHT_500");
 
 if (DISABLE_YTM15_APP_BORDER_expflag == "true") {
     documentHTML.classList.add("no-app-border");
@@ -176,9 +177,20 @@ if (HEADER_RED_STYLE_expflag == "false") {
 
 if (DARK_THEME_HASH_COLOR_expflag == "#30") {
     documentHTML.classList.remove("dark-28");
+    documentHTML.classList.remove("dark-21");
 } else if (DARK_THEME_HASH_COLOR_expflag == "#28") {
     documentHTML.classList.add("dark-28");
+    documentHTML.classList.remove("dark-21");
+} else if (DARK_THEME_HASH_COLOR_expflag == "#21") {
+    documentHTML.classList.remove("dark-28");
+    documentHTML.classList.add("dark-21");
 };
+
+if (BTN_FONT_WEIGHT_500_expflag == "true") {
+    documentHTML.classList.add("btn-font-500");
+} else {
+    documentHTML.classList.remove("btn-font-500");
+}
 };
 
 localStorageChange();

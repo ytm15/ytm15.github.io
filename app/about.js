@@ -516,6 +516,10 @@ a few hours later:
 22 Aug 2024:
 <br>
 -Disabled prev and next player buttons are now grey
+<br>
+-Added a new expflag: "BTN_FONT_WEIGHT_500"
+<br>
+-Added a new option to the "DARK_THEME_HASH_COLOR" expflag: "#21"
     </div>
     </div>
     </div>

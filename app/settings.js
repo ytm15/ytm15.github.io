@@ -404,6 +404,11 @@ function settingsPage() {
           "title": "#28",
           "selected": DARK_THEME_HASH_COLOR_expflag == "#28",
           "selected-default": false
+        },
+        {
+          "title": "#21",
+          "selected": DARK_THEME_HASH_COLOR_expflag == "#21",
+          "selected-default": false
         }
         ],
         "lsitem": "DARK_THEME_HASH_COLOR"
@@ -425,6 +430,15 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "WATCH_USE_MTRL_ICONS"
+      },
+      {
+        "type": "boolean",
+        "title": "BTN_FONT_WEIGHT_500",
+        "subtitle": "",
+        "pressed": BTN_FONT_WEIGHT_500_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "BTN_FONT_WEIGHT_500"
       }
       ];
       settingBlocks.forEach(function(item){
