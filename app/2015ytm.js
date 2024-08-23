@@ -1713,7 +1713,9 @@ function openIFrameFallbackPlayer(parent){
 playerOptIFrame.addEventListener("click", function(){openIFrameFallbackPlayer(playerOptCont)});
 
 window.addEventListener("popstate", function(){
+if (document.querySelector("#watchpageFrame_Container")) {
   exitWatch.onclick();
+};
 });
 
 const menuContain = document.createElement("div");
