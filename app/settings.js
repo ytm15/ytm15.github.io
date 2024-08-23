@@ -439,6 +439,33 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "BTN_FONT_WEIGHT_500"
+      },
+      {
+        "type": "option-menu",
+        "title": "WATCH_AUTONAV_BAR_STYLE",
+        "subtitle": "",
+        "options": [
+        {
+          "title": "2015",
+          "selected": WATCH_AUTONAV_BAR_STYLE_expflag == "2015",
+          "selected-default": true
+        },
+        {
+          "title": "2016",
+          "selected": WATCH_AUTONAV_BAR_STYLE_expflag == "2016",
+          "selected-default": false
+        }
+        ],
+        "lsitem": "WATCH_AUTONAV_BAR_STYLE"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_AUTONAV_TITLE_USE_UPNEXT",
+        "subtitle": "",
+        "pressed": WATCH_AUTONAV_TITLE_USE_UPNEXT_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_AUTONAV_TITLE_USE_UPNEXT"
       }
       ];
       settingBlocks.forEach(function(item){

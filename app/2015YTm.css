@@ -2387,6 +2387,10 @@ h3.video-owner-title {
     flex-grow: 1;
     margin-bottom: 0;
 }
+.autonav-bar.style-2016 .autonav-bar-title {
+    font-size: 1.4rem;
+    opacity: .7;
+}
 @media (min-width: 550px) and (min-device-height: 800px) and (orientation: portrait) {
 .ytm15-single-column-watch-next-results [section-identifier="related-media"] .item {
     display: inline-block;

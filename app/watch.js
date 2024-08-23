@@ -456,7 +456,15 @@ function renderWatchPage(parent) {
 
     const autonavBar = document.createElement("div");
     autonavBar.classList.add("autonav-bar");
+    if (WATCH_AUTONAV_BAR_STYLE_expflag == "2016") {
+    autonavBar.classList.add("style-2016");
+    } else if (WATCH_AUTONAV_BAR_STYLE_expflag == "2015") {
+    autonavBar.classList.remove("style-2016");
+    }
     autonavBar.innerHTML = `<h3 class="autonav-bar-title">${Suggestions_text_string}</h3>`;
+    if (WATCH_AUTONAV_TITLE_USE_UPNEXT_expflag == "true") {
+    autonavBar.innerHTML = `<h3 class="autonav-bar-title">${UpNext_text_string}</h3>`;
+    }
     itemSectRelated.querySelector(".lazy-list").appendChild(autonavBar);
 
     data.recommendedVideos.forEach(function(item) {

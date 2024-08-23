@@ -520,6 +520,14 @@ a few hours later:
 -Added a new expflag: "BTN_FONT_WEIGHT_500"
 <br>
 -Added a new option to the "DARK_THEME_HASH_COLOR" expflag: "#21"
+<br><br>
+23 Aug 2024:
+<br>
+-Added 2 new expflags:
+<br>
+--"WATCH_AUTONAV_BAR_STYLE"
+<br>
+--"WATCH_AUTONAV_TITLE_USE_UPNEXT"
     </div>
     </div>
     </div>

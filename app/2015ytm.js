@@ -129,6 +129,12 @@ DARK_THEME_HASH_COLOR_expflag = localStorage.getItem("DARK_THEME_HASH_COLOR");
 SUBSCRIBE_BTN_UPPERCASE_expflag = localStorage.getItem("SUBSCRIBE_BTN_UPPERCASE");
 WATCH_USE_MTRL_ICONS_expflag = localStorage.getItem("WATCH_USE_MTRL_ICONS");
 BTN_FONT_WEIGHT_500_expflag = localStorage.getItem("BTN_FONT_WEIGHT_500");
+WATCH_AUTONAV_BAR_STYLE_expflag = localStorage.getItem("WATCH_AUTONAV_BAR_STYLE");
+if (WATCH_AUTONAV_BAR_STYLE_expflag == undefined) {
+localStorage.setItem("WATCH_AUTONAV_BAR_STYLE", "2015");
+WATCH_AUTONAV_BAR_STYLE_expflag = localStorage.getItem("WATCH_AUTONAV_BAR_STYLE");
+}
+WATCH_AUTONAV_TITLE_USE_UPNEXT_expflag = localStorage.getItem("WATCH_AUTONAV_TITLE_USE_UPNEXT");
 
 if (DISABLE_YTM15_APP_BORDER_expflag == "true") {
     documentHTML.classList.add("no-app-border");
@@ -283,6 +289,7 @@ CommentsError_text_string = "Comments are either disabled or unavailable."
 PinnedBy_text_string = "Pinned by ";
 Cancel_text_string = "Cancel";
 Ok_text_string = "Ok";
+UpNext_text_string = "Up next";
 
 function renderSubscribeBtn(parent) {
     const mtrlBtnCont = document.createElement("div");
