@@ -528,6 +528,8 @@ a few hours later:
 --"WATCH_AUTONAV_BAR_STYLE"
 <br>
 --"WATCH_AUTONAV_TITLE_USE_UPNEXT"
+<br>
+-The watchpage now collapses into a miniplayer when going to another page
     </div>
     </div>
     </div>

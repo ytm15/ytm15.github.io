@@ -1712,6 +1712,10 @@ function openIFrameFallbackPlayer(parent){
 
 playerOptIFrame.addEventListener("click", function(){openIFrameFallbackPlayer(playerOptCont)});
 
+window.addEventListener("popstate", function(){
+  exitWatch.onclick();
+});
+
 const menuContain = document.createElement("div");
 menuContain.id = "menu";
 menuContain.classList.add("menu-container");
@@ -1890,6 +1894,29 @@ setTimeout(function() {
     dialogBtnCancel.remove();
 }, 300);
 }
+
+metaColorBeforeMP = metaColorElm.content;
+
+// credit to Sean McPherson for the original code: https://codepen.io/SeanMcP/pen/RmWJvV
+function callback(mutationsList, observer) {
+    /* console.log('Mutations:', mutationsList) */
+    /* console.log('Observer:', observer) */
+    mutationsList.forEach(mutation => {
+        if (mutation.attributeName === 'class') {
+            if (mutation.target.classList.contains("has-watchpage")) {
+            metaColorBeforeMP = metaColorElm.content;
+            metaColorElm.content = "#000000";
+            } else {
+            metaColorElm.content = metaColorBeforeMP;
+            }
+        }
+    })
+}
+
+const classMutationObserver = new MutationObserver(callback);
+
+classMutationObserver.observe(document.body, { attributes: true });
+// end of code
 
 function searching(parent, sbInput) {
     const headerBar = document.querySelector("ytm15-header-bar");
