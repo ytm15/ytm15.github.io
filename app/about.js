@@ -530,6 +530,12 @@ a few hours later:
 --"WATCH_AUTONAV_TITLE_USE_UPNEXT"
 <br>
 -The watchpage now collapses into a miniplayer when going to another page
+<br><br>
+23 - 24 Aug 2024:
+<br>
+-Added a new expflag:
+<br>
+--"APP_DEMATERIALIZE_UI" (basically reverts the whole interface to the 2013 - 2014 look. as of now it's incomplete so there's alot of css that needs to be added for this expflag)
     </div>
     </div>
     </div>

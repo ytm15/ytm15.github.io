@@ -466,6 +466,15 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "WATCH_AUTONAV_TITLE_USE_UPNEXT"
+      },
+      {
+        "type": "boolean",
+        "title": "APP_DEMATERIALIZE_UI",
+        "subtitle": "",
+        "pressed": APP_DEMATERIALIZE_UI_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "APP_DEMATERIALIZE_UI"
       }
       ];
       settingBlocks.forEach(function(item){

@@ -963,6 +963,9 @@ ytm15-header-bar[ischannel="true"] {
 .shorter .header-content {
     margin-left: 0;
 }
+.shorter .header-button.back-button[hidden]~.header-content {
+    margin-left: 16px;
+}
 .header-buttons {
     flex-shrink: 0;
     display: flex;
@@ -3781,6 +3784,242 @@ label.radio-label {
 
 .btn-font-500 .button-text {
     font-weight: 500;
+}
+
+/* Dematerialized/2013 style */
+html.style-2013 {
+    background-color: #EEEEEE;
+}
+.style-2013 ytm15-header-bar {
+    background-color: transparent;
+    box-shadow: none;
+}
+.style-2013 .ytm15-header {
+    background: linear-gradient(#f4f4f4, #e1e1e1);
+    border-bottom: 1.5px solid #cacaca;
+    padding: 0;
+    color: #747474;
+}
+.style-2013 .shorter .header-button.back-button {
+    margin: 0;
+}
+.style-2013 .header-content {
+    margin-left: 0;
+}
+.style-2013 .ytm15Searchbox {
+    margin-left: 0;
+}
+.style-2013 .searching-overlay {
+    background-color: transparent;
+}
+.style-2013 .header-title {
+    font-weight: 400;
+    font-size: 1.75rem;
+}
+.style-2013 .item-section {
+    border-bottom: 0;
+}
+.style-2013 .shelf {
+    border-bottom: 0;
+}
+.style-2013 .tab-bar {
+    background-color: #fff;
+    border-bottom: 1.5px solid #dddddd;
+    animation: none;
+    color: #111;
+    font-size: 1.6rem;
+    text-transform: capitalize;
+    font-weight: 400;
+}
+.style-2013 [hidden][hidden].tab-bar {
+    animation: none;
+    display: none;
+}
+.style-2013 .ytm15-header[data-mode="searching"]~.tab-bar {
+    animation: none;
+    height: 48px;
+    background-color: #fff;
+}
+.style-2013 h1, .style-2013 h2, .style-2013 h3, .style-2013 h4, .style-2013 .subhead {
+    font-weight: 300;
+}
+.style-2013 ytm15-channels-header {
+    background-color: #fff;
+}
+.style-2013 .material-button-container.compact {
+    margin: 0;
+}
+.style-2013 .material-button {
+    padding: 0.7em;
+}
+.style-2013 .compact-channel .thumbnail-img, .style-2013 .compact-channel .thumbnail-bg {
+    border-radius: 0;
+}
+.style-2013 .material-button-container[data-style="BRAND"] .material-button {
+    background: linear-gradient(#E62117, #d62117);
+    border: 1.2px solid #d10000;
+}
+.style-2013 .material-button-container[data-style="BRAND"] {
+    color: #f1f1f1
+}
+.style-2013 .button-text {
+    font-weight: 300;
+}
+.style-2013 .profile-icon, .style-2013 .profile-img {
+    border-radius: 0;
+}
+.style-2013 .compact-channel .compact-media-item-thumbnail {
+    width: 70px;
+}
+@media (min-aspect-ratio: 13 / 9) and (orientation: landscape), (min-width: 550px) and (orientation: portrait), (min-width: 800px) and (orientation: landscape) {
+.style-2013 .compact-channel .compact-media-item-thumbnail, .style-2013 .compact-channel .compact-media-item-thumbnail.large {
+    width: 101px;
+}
+}
+.style-2013 .shelf-header {
+    padding: 16px 10px;
+    padding-bottom: 12px;
+    border-bottom: 1.2px solid rgba(0,0,0,0.2);
+    margin: 0 6px;
+}
+.style-2013 .compact-media-item {
+    padding-left: 10px;
+    padding-right: 10px;
+    margin: 2px 6px;
+    border-bottom: 1.2px solid rgba(0,0,0,0.2);
+}
+.style-2013 .tab[aria-selected="true"] {
+    border-bottom-color: #ee0202;
+    color: #111;
+}
+.style-2013 .tabbar-tab-container {
+    position: relative;
+}
+.style-2013 .tabbar-tab-container::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    height: 30px;
+    border-left: 1.5px solid #ddd;
+}
+.style-2013 .thumbnail-overlay-time-status {
+    border-radius: 0;
+}
+.style-2013 .video-metadata-actions button .button-text {
+    font-weight: 300;
+}
+.style-2013 .video-owner-subscribe-button .material-button-container.subscribe-button .material-button {
+    padding: 0.7em;
+    border-radius: 2px;
+}
+.style-2013 .video-owner-subscribe-button {
+    margin: 0;
+}
+.style-2013 .video-owner-icon-and-title {
+    margin-right: 0px;
+}
+.style-2013 .autonav-bar {
+    text-transform: uppercase;
+    border-bottom: 1.2px solid rgba(0,0,0,0.2);
+    padding: 16px 10px;
+    padding-bottom: 15px;
+    margin: 0 6px;
+}
+.style-2013 .tab[aria-selected="true"] .ytm15-img-icon {
+    filter: invert(1);
+    -webkit-filter: invert(1);
+}
+.style-2013 .searching-overlay:not([hidden])~.page-container>page {
+    animation-name: page-expand-in;
+    transform: unset;
+    height: unset;
+    overflow: unset;
+}
+.style-2013 .compact-media-item-metadata-content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.style-2013 #player h1, .style-2013 #player h2, .style-2013 #player h3, .style-2013 #player h4, .style-2013 #player .subhead {
+    font-weight: normal;
+}
+.style-2013 .watchpage-frame-items ytm15-watch {
+    background-color: #eee;
+}
+@media (min-width: 800px) and (min-device-width: 550px) and (orientation: landscape) {
+.style-2013 .watchpage-frame-items ytm15-watch::after {
+    background-color: #eeeeee;
+    border-left: 1.2px solid rgba(0,0,0,0.2);
+}
+}
+.style-2013 .section {
+    background-color: #fff;
+    border-bottom: 1px solid #c5c5c5;
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.3);
+}
+.style-2013 .dropdown-select {
+    margin: 4px 5px;
+}
+.style-2013 ytm15-channel-sub-menu .dropdown-select {
+    margin: 4px 5px;
+    padding: 8px;
+    border-bottom: 1.2px solid rgba(0,0,0,0.2);
+}
+.style-2013 .dropdown-text {
+    font-size: 1.6rem;
+    min-width: 70px;
+}
+.style-2013 .dropdown-select ytm15-icon.dropdown-arrow-icon {
+    margin: 0;
+    padding: 0;
+    bottom: -17px;
+    transform: rotate(-45deg);
+    right: -17px;
+}
+.style-2013 .dropdown-select ytm15-icon.dropdown-arrow-icon path {
+    transform: scale(1.5);
+    transform-origin: center;
+}
+.style-2013 .dropdown-select ytm15-icon.sort-icon {
+    display: none;
+}
+.style-2013 .playlist-header-container {
+    background-color: #fff;
+}
+.style-2013 .card {
+    background-color: #fff;
+    margin: 10px;
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 2px;
+    box-shadow: 0px 2px 2px -1px rgba(0,0,0,0.3);
+}
+.style-2013 .media-item-thumbnail {
+    padding-bottom: 0;
+    margin: -10px;
+    margin-bottom: 0;
+}
+.style-2013 .shorter .header-button.back-button[hidden]~.header-content {
+    margin-left: 0;
+}
+.style-2013 .media-item-thumbnail::before {
+    padding-bottom: 56.25%;
+    content: "";
+    display: block;
+}
+@media (min-aspect-ratio: 13 / 9) and (orientation: landscape), (min-width: 800px) and (min-device-width: 550px) and (orientation: landscape) {
+.style-2013 .media-item-thumbnail {
+    margin: 0;
+}
+}
+.style-2013 h3.media-headline {
+    font-size: 1.75rem;
+}
+.style-2013 .media-item-details {
+    margin-top: 10px;
+}
+.style-2013 .media-item {
+    padding: 10px;
 }
 
 /* Global dark theme */
