@@ -1719,9 +1719,17 @@ function openIFrameFallbackPlayer(parent){
 
 playerOptIFrame.addEventListener("click", function(){openIFrameFallbackPlayer(playerOptCont)});
 
+metaColorBeforeWP = metaColorElm.content;
+
 window.addEventListener("popstate", function(){
 if (document.querySelector("#watchpageFrame_Container")) {
   exitWatch.onclick();
+};
+if (!document.body.classList.contains("has-watchpage")) {
+setTimeout(function(){
+  metaColorBeforeWP = metaColorElm.content;
+  console.log(metaColorBeforeWP);
+}, 10);
 };
 });
 
@@ -1904,8 +1912,6 @@ setTimeout(function() {
 }, 300);
 }
 
-metaColorBeforeMP = metaColorElm.content;
-
 // credit to Sean McPherson for the original code: https://codepen.io/SeanMcP/pen/RmWJvV
 function callback(mutationsList, observer) {
     /* console.log('Mutations:', mutationsList) */
@@ -1913,10 +1919,10 @@ function callback(mutationsList, observer) {
     mutationsList.forEach(mutation => {
         if (mutation.attributeName === 'class') {
             if (mutation.target.classList.contains("has-watchpage")) {
-            metaColorBeforeMP = metaColorElm.content;
+            metaColorBeforeWP = metaColorElm.content;
             metaColorElm.content = "#000000";
             } else {
-            metaColorElm.content = metaColorBeforeMP;
+            metaColorElm.content = metaColorBeforeWP;
             }
         }
     })
