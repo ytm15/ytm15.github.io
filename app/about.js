@@ -557,6 +557,15 @@ a few hours later:
     `;
     section.appendChild(sectLazyList);
 
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+      Array.from(sectLazyList.querySelectorAll(".ap-shelf")).forEach(function(item){
+      item.classList.add('card');
+      });
+      Array.from(sectLazyList.querySelectorAll(".about-page-bottom-title")).forEach(function(item){
+      item.classList.add('card');
+      });
+    }
+
     const parent = document.querySelector(".page-container");
     parent.appendChild(page);
     page.appendChild(tabContainer);

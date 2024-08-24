@@ -57,6 +57,9 @@ function playlistPage(){
 
     const playlistHeader = document.createElement("ytm15-playlist-header");
     playlistHeader.innerHTML = `<div class="playlist-header-container"><div class="playlist-header-content"></div></div>`;
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+      playlistHeader.querySelector(".playlist-header-container").classList.add('card');
+    }
     const playlistHeaderContn = playlistHeader.querySelector(".playlist-header-content");
     playlistHeader.dataset.isBeta = true;
 
@@ -118,6 +121,9 @@ function playlistPage(){
 
     const itemSect = document.createElement("div");
     itemSect.classList.add("item-section");
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+      itemSect.classList.add('card');
+    }
     sectLazyList.appendChild(itemSect);
 
     const lazyList = document.createElement("div");

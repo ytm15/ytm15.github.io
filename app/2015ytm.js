@@ -312,6 +312,11 @@ function renderSubscribeBtn(parent) {
     mtrlBtnCont.innerHTML = `<button class="material-button" aria-label="${Subscribe_text_string}">
 <img class="ytm15-img-icon ytm15-img button-icon subscribe-icon" src="subscribe_mark.png"></img><div class="button-text">${Subscribe_text_string}</div>
 </button>`
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+    mtrlBtnCont.innerHTML = `<button class="material-button" aria-label="${Subscribe_text_string}">
+<img class="ytm15-img-icon ytm15-img button-icon subscribe-icon" src="ic_subscribe.png"></img><div class="button-text">${Subscribe_text_string}</div>
+</button>`
+    }
     parent.appendChild(mtrlBtnCont);
 }
 
@@ -460,6 +465,9 @@ function renderCommentSection(parent, mediaType, cmSource, isCMPage){
     const commentSection = document.createElement("div");
     commentSection.classList.add("comment-section");
     commentSection.dataset.isBeta = true;
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+      commentSection.classList.add('card');
+    }
     if (mediaType == "video" && !isCMPage) {
      commentSection.classList.add("watch-next-results-content");
      commentSection.dataset.contentType = "result";
@@ -579,6 +587,14 @@ ${pinnedCMBadge}
 </div>
 </div>
 `;
+
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+      commentCont.insertAdjacentElement("afterbegin", commentCont.querySelector(".comment-header"));
+      const commentFooter = document.createElement("div");
+      commentFooter.classList.add("comment-footer");
+      commentFooter.appendChild(commentCont.querySelector(".comment-published-time"));
+      commentCont.querySelector(".comment-text").insertAdjacentElement("afterend", commentFooter);
+    }
 
     const getCommentsTitle = new XMLHttpRequest();
     getCommentsTitle.open('GET', APIbaseURL + 'api/v1/channels/' + item.authorId, true);
@@ -1045,6 +1061,13 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         }
         video.appendChild(media);
         parent.appendChild(video);
+
+        videoParent = video.parentElement;
+        if (videoParent.parentElement.classList.contains("item-section")) {
+        if (APP_DEMATERIALIZE_UI_expflag == "true") {
+        videoParent.parentElement.classList.add('card');
+        }
+        }
 }
 
 function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLength, itemTitle, itemAuthor, itemAuthorId, itemPublishedText, itemViewCount) {
@@ -1052,6 +1075,9 @@ function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLen
 
         const itemSect = document.createElement("div");
         itemSect.classList.add('item-section');
+        if (APP_DEMATERIALIZE_UI_expflag == "true") {
+        itemSect.classList.add('card');
+        }
 
         const LazyList = document.createElement("div");
         LazyList.classList.add('lazy-list', 'no-animation');
@@ -1351,6 +1377,14 @@ function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLen
         parent.appendChild(itemSect);
         } else {
         parent.appendChild(video);
+        }
+
+        if (APP_DEMATERIALIZE_UI_expflag == "true") {
+        media.insertAdjacentElement("afterbegin", channel);
+        channel.appendChild(author);
+        channel.appendChild(extEndpoint);
+        views.classList.remove("media-stats");
+        views.classList.add("media-byline");
         }
 }
 
@@ -1728,7 +1762,6 @@ if (document.querySelector("#watchpageFrame_Container")) {
 if (!document.body.classList.contains("has-watchpage")) {
 setTimeout(function(){
   metaColorBeforeWP = metaColorElm.content;
-  console.log(metaColorBeforeWP);
 }, 10);
 };
 });

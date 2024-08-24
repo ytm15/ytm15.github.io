@@ -466,6 +466,9 @@ function renderData() {
 
     const shelf = document.createElement("div");
     shelf.classList.add('shelf');
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+    shelf.classList.add('card');
+    }
 
     pageCont.innerHTML = "";
 
@@ -613,6 +616,9 @@ function renderDataTrending(homeShelfTrendingType, shelfTitle) {
 
     const shelf = document.createElement("div");
     shelf.classList.add('shelf');
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+    shelf.classList.add('card');
+    }
 
     sectLazyList.appendChild(shelf);
 

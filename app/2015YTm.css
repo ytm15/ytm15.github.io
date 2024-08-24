@@ -3789,6 +3789,7 @@ label.radio-label {
 /* Dematerialized/2013 style */
 html.style-2013 {
     background-color: #EEEEEE;
+    color: #484848;
 }
 .style-2013 ytm15-header-bar {
     background-color: transparent;
@@ -3796,9 +3797,11 @@ html.style-2013 {
 }
 .style-2013 .ytm15-header {
     background: linear-gradient(#f4f4f4, #e1e1e1);
-    border-bottom: 1.5px solid #cacaca;
+    border-bottom: 1.3px solid #ddd;
     padding: 0;
     color: #747474;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.15);
+    z-index: 1;
 }
 .style-2013 .shorter .header-button.back-button {
     margin: 0;
@@ -3824,7 +3827,7 @@ html.style-2013 {
 }
 .style-2013 .tab-bar {
     background-color: #fff;
-    border-bottom: 1.5px solid #dddddd;
+    border-bottom: 1.3px solid #dddddd;
     animation: none;
     color: #111;
     font-size: 1.6rem;
@@ -3917,6 +3920,8 @@ html.style-2013 {
 }
 .style-2013 .video-owner-icon-and-title {
     margin-right: 0px;
+    padding: 13px 14px;
+    padding-right: 0;
 }
 .style-2013 .autonav-bar {
     text-transform: uppercase;
@@ -3985,7 +3990,7 @@ html.style-2013 {
     display: none;
 }
 .style-2013 .playlist-header-container {
-    background-color: #fff;
+    padding: 10px;
 }
 .style-2013 .card {
     background-color: #fff;
@@ -3996,8 +4001,7 @@ html.style-2013 {
 }
 .style-2013 .media-item-thumbnail {
     padding-bottom: 0;
-    margin: -10px;
-    margin-bottom: 0;
+    margin: 0 -10px;
 }
 .style-2013 .shorter .header-button.back-button[hidden]~.header-content {
     margin-left: 0;
@@ -4007,19 +4011,231 @@ html.style-2013 {
     content: "";
     display: block;
 }
-@media (min-aspect-ratio: 13 / 9) and (orientation: landscape), (min-width: 800px) and (min-device-width: 550px) and (orientation: landscape) {
-.style-2013 .media-item-thumbnail {
-    margin: 0;
-}
-}
-.style-2013 h3.media-headline {
-    font-size: 1.75rem;
-}
 .style-2013 .media-item-details {
     margin-top: 10px;
 }
 .style-2013 .media-item {
     padding: 10px;
+}
+.style-2013 .media-channel {
+    margin-bottom: 8px;
+    margin-top: 1px;
+    display: flex;
+    align-items: center;
+}
+.style-2013 .media-channel .media-byline.small-text {
+    font-size: 1.3rem;
+    opacity: .8;
+}
+@media (min-aspect-ratio: 13 / 9) and (orientation: landscape), (min-width: 800px) and (min-device-width: 550px) and (orientation: landscape) {
+.style-2013 .media-item {
+    padding: 15px;
+}
+.style-2013 .media-item-thumbnail {
+    margin: 0;
+    margin-top: 56px;
+}
+.style-2013 .media-item-details {
+    margin-top: 56px;
+}
+.style-2013 .media-channel {
+    flex-grow: unset;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    width: unset;
+    padding-bottom: 8px;
+    border-bottom: 1.2px solid rgba(0, 0, 0, 0.2);
+    margin-bottom: 12px;
+}
+.style-2013 .media-item-info {
+    flex-grow: 1;
+    align-items: center;
+}
+.style-2013 .media-item-menu {
+    height: 100%;
+}
+.style-2013 .media-item-metadata .subhead {
+    margin-left: 0;
+}
+}
+.style-2013 h3.media-headline {
+    font-size: 1.75rem;
+}
+.style-2013 .ap-shelf {
+    border-bottom: none;
+}
+.style-2013 .about-page-bottom-title {
+    border-bottom: none;
+}
+.style-2013 .ap-shelf-header {
+    padding: 16px 8px;
+    padding-bottom: 12px;
+    margin: 0 6px;
+    border-bottom: 1.2px solid rgba(0, 0, 0, 0.2);
+    margin-bottom: 8px;
+}
+.style-2013 .lazy-list>[class*="compact"]:nth-of-type(1) {
+    padding-top: 3px;
+}
+.style-2013 .comment-section {
+    border-bottom: none;
+}
+.style-2013 .ytm15-message {
+    font-weight: 300;
+}
+.style-2013 .video-owner-prof-icon {
+    width: 38px;
+    height: 38px;
+}
+.style-2013 .video-owner-sub-count {
+    font-size: 1.25rem;
+}
+.style-2013 h3.video-owner-title {
+    font-size: 1.5rem;
+}
+@media (min-width: 800px) and (min-device-width: 550px) and (orientation: landscape) {
+.style-2013 .video-owner-icon-and-title {
+    margin-right: -14px;
+    margin-bottom: 0;
+}
+.style-2013 .video-owner-subscribe-button {
+    margin-left: 53px;
+    margin-top: -3px;
+}
+}
+.style-2013 ytm15-img-icon.subscribe-icon {
+    width: 18px;
+}
+.style-2013 ytm15-channels-header {
+    background-color: #fff;
+    box-shadow: 0px 1px 3px 0px rgba(0, 0, 0, 0.3);
+}
+.style-2013 .playlist-title-wrapper {
+    padding: 10px 10px 0;
+    margin: -10px -10px 0;
+}
+.style-2013 .playlist-title-and-owner {
+    font-weight: 300;
+}
+.style-2013 .playlist-title {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+.style-2013 .playlist-owner-text {
+    font-size: 12.5px;
+    opacity: .6;
+}
+.style-2013 .playlist-video-list-header {
+    margin: 0;
+    border-bottom: 1.2px solid rgba(0, 0, 0, 0.2);
+    padding: 15px 10px 14px;
+    margin: 0 6px;
+    font-weight: 400;
+    text-transform: uppercase;
+}
+.style-2013 .channels-header-channel {
+    flex-direction: row;
+    justify-content: unset;
+    align-items: center;
+    padding: 16px 13px;
+}
+.style-2013 .channels-header-icon {
+    margin-top: 0;
+    width: 40px;
+    height: 40px;
+}
+.style-2013 .channels-header-details {
+    flex-grow: 1;
+    margin-top: 0;
+    margin-left: 14px;
+}
+.style-2013 .channels-header-title {
+    font-size: 1.6rem;
+    padding-right: 133px;
+}
+.style-2013 .channels-header-subscribe-button {
+    flex-direction: row-reverse;
+    padding: 0;
+    position: relative;
+}
+.style-2013 .channels-header-subscriber-count {
+    padding-left: 0;
+    font-size: 1.25rem;
+    font-weight: 300;
+}
+.style-2013 .channels-header-subscribe-button .subscribe-button {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+@media (min-width: 550px) and (orientation: portrait), (min-width: 800px) and (orientation: landscape) {
+.style-2013 .channels-header-icon {
+    width: 90px;
+    height: 90px;
+}
+.style-2013 .channels-header-title {
+    font-size: 1.8rem;
+}
+.style-2013 .channels-header-subscriber-count {
+    font-size: 1.4rem;
+}
+}
+.style-2013 .comments-header-top {
+    padding: 10px 10px 8px;
+}
+.style-2013 .comments-header-text {
+    text-transform: uppercase;
+}
+.style-2013 .comment-separator {
+    margin: 0 8px;
+}
+.style-2013 ytm15-comment {
+    padding: 10px 0 0 10px;
+}
+.style-2013 .comment-content {
+    padding: 0 10px;
+}
+.style-2013 .comment-text {
+    font-weight: 300;
+    margin-bottom: 0;
+}
+.style-2013 .comment-header {
+    color: inherit;
+    font-size: 1.4rem;
+    margin-bottom: 3px;
+}
+.style-2013 .comment-details {
+    margin-right: -10px;
+}
+.style-2013 .comment-count {
+    min-width: 0;
+}
+.style-2013 .comment-icons {
+    min-width: 50px;
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+}
+.style-2013 #cm-icon-dislike .comment-count {
+    min-width: 0;
+}
+.style-2013 button.comment-icon-button {
+    margin-right: 0;
+    margin-left: 3px;
+}
+.style-2013 .comment-footer {
+    margin-top: 3px;
+    font-size: 1.2rem;
+    opacity: .6;
+}
+.style-2013 .media-item-metadata .small-text {
+    font-size: 1.4rem;
+}
+.style-2013 div.media-icon {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
 }
 
 /* Global dark theme */

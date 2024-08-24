@@ -93,6 +93,9 @@ function renderWatchPage(parent) {
     itemSectMetadata.dataset.contentType = "result";
     itemSectMetadata.setAttribute("section-identifier", "video-metadata");
     itemSectMetadata.innerHTML = `<div class="lazy-list no-animation"></div>`;
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+      itemSectMetadata.classList.add('card');
+    }
     scwnr.appendChild(itemSectMetadata);
     const videoMetadata = document.createElement("ytm15-video-metadata");
     videoMetadata.classList.add("item");
@@ -421,6 +424,9 @@ function renderWatchPage(parent) {
     itemSectOwner.dataset.contentType = "result";
     itemSectOwner.setAttribute("section-identifier", "video-owner-metadata");
     itemSectOwner.innerHTML = `<div class="lazy-list no-animation"></div>`;
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+      itemSectOwner.classList.add('card');
+    }
     W2ndHalf.appendChild(itemSectOwner);
     const videoMetadata2 = document.createElement("ytm15-video-metadata");
     videoMetadata2.classList.add("item");
@@ -452,6 +458,9 @@ function renderWatchPage(parent) {
     itemSectRelated.dataset.contentType = "related";
     itemSectRelated.setAttribute("section-identifier", "related-media");
     itemSectRelated.innerHTML = `<div class="lazy-list no-animation"></div>`;
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+      itemSectRelated.classList.add('card');
+    }
     W2ndHalf.appendChild(itemSectRelated);
 
     const autonavBar = document.createElement("div");

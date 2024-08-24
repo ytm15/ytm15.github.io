@@ -390,6 +390,9 @@ function channelPage() {
 
     const itemSect = document.createElement("div");
     itemSect.classList.add("item-section");
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+      itemSect.classList.add('card');
+    }
 
     const lazyList = document.createElement("div");
     lazyList.classList.add("lazy-list", "no-animation");
@@ -403,6 +406,9 @@ function channelPage() {
     data.items.forEach(function(item) {
     const shelf = document.createElement("div");
     shelf.classList.add('shelf');
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+    shelf.classList.add('card');
+    }
 
     if (item.snippet.type !== "channelsectiontypeundefined") {
     sectLazyList.appendChild(shelf);
@@ -828,6 +834,9 @@ function channelPage() {
 
     const itemSect = document.createElement("div");
     itemSect.classList.add("item-section");
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+      itemSect.classList.add('card');
+    }
     sectLazyList.appendChild(itemSect);
 
     const lazyList = document.createElement("div");
@@ -930,6 +939,9 @@ function channelVideosContin(continuation, contItemParent) {
 
     const itemSection = document.createElement("div");
     itemSection.classList.add('item-section');
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+      itemSection.classList.add('card');
+    }
     contItemParent.appendChild(itemSection);
 
     const lazyList = document.createElement("div");
@@ -1091,6 +1103,9 @@ function channelVideosContin(continuation, contItemParent) {
 
     const itemSect = document.createElement("div");
     itemSect.classList.add("item-section");
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+      itemSect.classList.add('card');
+    }
     sectLazyList.appendChild(itemSect);
 
     const lazyList = document.createElement("div");
@@ -1192,6 +1207,9 @@ function channelVideosContin(continuation, contItemParent) {
 
     const itemSection = document.createElement("div");
     itemSection.classList.add('item-section');
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+      itemSection.classList.add('card');
+    }
     contItemParent.appendChild(itemSection);
 
     const lazyList = document.createElement("div");
@@ -1304,6 +1322,9 @@ function channelVideosContin(continuation, contItemParent) {
 
     const itemSect = document.createElement("div");
     itemSect.classList.add("item-section");
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+      itemSect.classList.add('card');
+    }
 
     const lazyList = document.createElement("div");
     lazyList.classList.add("lazy-list", "no-animation");
@@ -1353,6 +1374,9 @@ function channelVideosContin(continuation, contItemParent) {
     data.items.forEach(function(item) {
     const shelf = document.createElement("div");
     shelf.classList.add('shelf');
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+    shelf.classList.add('card');
+    }
 
     if (item.snippet.type == "multiplechannels") {
     sectLazyList.appendChild(shelf);
@@ -1534,6 +1558,9 @@ function channelVideosContin(continuation, contItemParent) {
 
     const itemSect = document.createElement("div");
     itemSect.classList.add("item-section");
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+      itemSect.classList.add('card');
+    }
     sectLazyList.appendChild(itemSect);
 
     const lazyList = document.createElement("div");
