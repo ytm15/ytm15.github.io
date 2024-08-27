@@ -4350,9 +4350,9 @@ html.style-2013 {
     padding-bottom: 14px;
 }
 .style-2013 .header-button .ytm15-img-icon {
-    width: 27px;
-    height: 27px;
-    margin: -8px;
+    width: 28px;
+    height: 28px;
+    margin: -9px;
 }
 .style-2013 .media-item-menu .ytm15-img-icon {
     width: 15px;
@@ -4404,6 +4404,21 @@ html.style-2013 {
 }
 .style-2013 .standalone-badge-supported ytm15-badge {
     font-weight: 300;
+}
+.style-2013 .header-button {
+    width: 50px;
+    height: 46px;
+    padding: 10px 12px;
+}
+.style-2013 .shorter .header-button.menu-button {
+    width: 50px;
+}
+.style-2013 .header-button .ytm15-img-icon.back-icon {
+    width: 15px;
+    height: 15px;
+}
+.style-2013 .vertical-list>div.expand-shelf-button-container>button.icon-button {
+    color: #aaa;
 }
 
 /* Global dark theme */

@@ -607,6 +607,9 @@ ${pinnedCMBadge}
 </button>
 <span class="comment-count">${cmReplyCount}</span>
 </div>`;
+      if (commentCont.querySelector(".pinned-comment-badge")) {
+      commentCont.insertAdjacentElement("afterbegin", commentCont.querySelector(".pinned-comment-badge"));
+      }
     }
 
     const getCommentsTitle = new XMLHttpRequest();
