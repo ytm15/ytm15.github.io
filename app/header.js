@@ -232,7 +232,7 @@ function renderHeader() {
     menuBtn.onclick = function(){
     menuRenderer();
     menuCont.setAttribute("style", "top: 0; right: 0; position: fixed;");
-    if (HEADER_SHORTER_SIZE_expflag == "true") {
+    if (HEADER_SHORTER_SIZE_expflag == "true" && APP_DEMATERIALIZE_UI_expflag !== "true") {
     menuCont.setAttribute("style", "top: 0; right: 0; position: fixed; margin: 2px 7px;");
     }
 
@@ -314,6 +314,12 @@ function renderHeader() {
     menuBtn.setAttribute("aria-label", "Menu");
     menuBtn.setAttribute("aria-haspopup", "true");
     menuBtn.innerHTML = `<ytm15-icon class="menu-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg></ytm15-icon>`;
+
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+    backBtn.innerHTML = `<img class="ytm15-img-icon ytm15-img back-icon" src="abc_ic_ab_back_holo_light.png">`;
+    searchBtn.innerHTML = `<img class="ytm15-img-icon ytm15-img search-icon" src="ic_menu_search.png">`;
+    menuBtn.innerHTML = `<img class="ytm15-img-icon ytm15-img menu-icon" src="abc_ic_menu_moreoverflow_normal_holo_light.png">`;
+    };
 
     if (window.location.pathname.split("/").slice(3, 4) == "settings.html" || window.location.pathname.split("/").slice(3, 4) == "settings" || window.location.pathname.split("/").slice(2, 3) == "settings.html" || window.location.pathname.split("/").slice(2, 3) == "settings") {
     menuBtn.setAttribute("hidden", "");

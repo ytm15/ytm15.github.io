@@ -536,6 +536,10 @@ a few hours later:
 -Added a new expflag:
 <br>
 --"APP_DEMATERIALIZE_UI" (basically reverts the whole interface to the 2013 - 2014 look. as of now it's incomplete so there's alot of css that needs to be added for this expflag)
+<br><br>
+27 Aug 2024:
+<br>
+-Made updates to the dematerialized/2013-style css and js
     </div>
     </div>
     </div>

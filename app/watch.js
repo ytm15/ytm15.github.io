@@ -324,6 +324,9 @@ function renderWatchPage(parent) {
     const metadataActions = document.createElement("div");
     metadataActions.classList.add("video-metadata-actions");
     videoMetadata.appendChild(metadataActions);
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+    videoMetadata.appendChild(metadataDescBox);
+    };
 
     const mtrlBtnCont = document.createElement("div");
     mtrlBtnCont.classList.add("material-button-container", "compact", "like-button");
@@ -405,6 +408,11 @@ function renderWatchPage(parent) {
 </button>`
 
     metadataActions.classList.add("use-mtrl-icons");
+    };
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+    mtrlBtnCont.querySelector("button").appendChild(mtrlBtnCont.querySelector(".button-text"));
+    mtrlBtnContDislike.querySelector("button").appendChild(mtrlBtnContDislike.querySelector(".button-text"));
+    mtrlBtnContShare.querySelector("button").appendChild(mtrlBtnContShare.querySelector(".button-text"));
     };
 
     const actionsSpacer = document.createElement("div");

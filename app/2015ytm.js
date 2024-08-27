@@ -594,6 +594,19 @@ ${pinnedCMBadge}
       commentFooter.classList.add("comment-footer");
       commentFooter.appendChild(commentCont.querySelector(".comment-published-time"));
       commentCont.querySelector(".comment-text").insertAdjacentElement("afterend", commentFooter);
+      commentCont.querySelector(".comment-details").innerHTML = `<div class="comment-icons" id="cm-icon-like">
+<button class="icon-button comment-icon-button" aria-label="Like this comment"><img class="ytm15-img-icon ytm15-img like-icon comment-action-icon" src="ic_comment_like.png"></button>
+<span class="comment-count">${item.likeCount.toLocaleString()}</span>
+</div>
+<div class="comment-icons" id="cm-icon-dislike">
+<button class="icon-button comment-icon-button" aria-label="Dislike this comment"><img class="ytm15-img-icon ytm15-img dis-icon comment-action-icon" src="ic_comment_dislike.png"></button>
+<span class="comment-count"></span>
+</div>
+<div class="comment-icons" id="cm-icon-reply">
+<button class="icon-button comment-icon-button" aria-label="Reply to this comment"><img class="ytm15-img-icon ytm15-img reply-icon comment-action-icon" src="ic_comment_reply.png">
+</button>
+<span class="comment-count">${cmReplyCount}</span>
+</div>`;
     }
 
     const getCommentsTitle = new XMLHttpRequest();
@@ -1013,6 +1026,9 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         menuBtn.setAttribute("aria-label", "Action menu");
         menuBtn.setAttribute("aria-haspopup", "true");
         menuBtn.innerHTML = `<ytm15-icon class="menu-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg></ytm15-icon>`;
+        if (APP_DEMATERIALIZE_UI_expflag == "true") {
+        menuBtn.innerHTML = `<img class="ytm15-img-icon ytm15-img menu-icon inactive" src="contextual_menu_anchor_normal.png"><img class="ytm15-img-icon ytm15-img menu-icon active" src="contextual_menu_anchor_pressed.png">`;
+        };
         mediaMenu.appendChild(menuBtn);
 
         media.appendChild(thumbnail);
@@ -1351,6 +1367,9 @@ function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLen
         menuBtn.setAttribute("aria-label", "Action menu");
         menuBtn.setAttribute("aria-haspopup", "true");
         menuBtn.innerHTML = `<ytm15-icon class="menu-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg></ytm15-icon>`;
+        if (APP_DEMATERIALIZE_UI_expflag == "true") {
+        menuBtn.innerHTML = `<img class="ytm15-img-icon ytm15-img menu-icon inactive" src="contextual_menu_anchor_normal.png"><img class="ytm15-img-icon ytm15-img menu-icon active" src="contextual_menu_anchor_pressed.png">`;
+        };
         mediaMenu.appendChild(menuBtn);
 
         media.appendChild(thumbnail);
