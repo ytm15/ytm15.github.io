@@ -81,7 +81,7 @@ documentHTML = document.querySelector("html");
 
 metaColorElm = document.querySelector('meta[name="theme-color"]');
 metaColor1 = "#BA1B12";
-metaColor2 = "#DDDDDD";
+metaColor2 = "#CCCCCC";
 metaColor3 = "#131313";
 metaColor4 = "#B9B9B9";
 metaColor5 = "#464646";
@@ -176,10 +176,18 @@ if (HEADER_RED_STYLE_expflag == "false") {
     metaColorElm.content = metaColor3;
     defaultMetaColor = metaColor3;
     }
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+    metaColorElm.content = "#000000";
+    defaultMetaColor = "#000000";
+    }
     defaultMetaColor = metaColorElm.content;
 } else {
     metaColorElm.content = metaColor1;
     defaultMetaColor = metaColor1;
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+    metaColorElm.content = "#000000";
+    defaultMetaColor = "#000000";
+    }
 };
 
 if (DARK_THEME_HASH_COLOR_expflag == "#30") {
@@ -233,6 +241,9 @@ metaColorElm.content = metaColor3;
 }
 if (headerIsChannel == 'true' && headerBar.querySelector("header").dataset.mode == 'normal') {
 metaColorElm.content = metaColor5;
+}
+if (APP_DEMATERIALIZE_UI_expflag == "true") {
+metaColorElm.content = "#000000";
 }
 }
 
@@ -1977,7 +1988,8 @@ function callback(mutationsList, observer) {
             metaColorBeforeWP = metaColorElm.content;
             metaColorElm.content = "#000000";
             } else {
-            metaColorElm.content = metaColorBeforeWP;
+            /* metaColorElm.content = metaColorBeforeWP; */
+            metaColorChange();
             }
         }
     })
