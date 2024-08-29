@@ -1152,6 +1152,7 @@ function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLen
 
         const time = document.createElement('div');
         time.classList.add('thumbnail-overlay-time-status');
+        time.dataset.thumbnailSize = "large";
         if (TIMESTATUS_NEW_STYLE_expflag == "true") {
         time.classList.add('new-style');
         }

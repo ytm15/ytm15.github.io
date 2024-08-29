@@ -286,6 +286,9 @@ opacity: 1;
 font-size: 1.2rem;
 font-weight: 300;
 }
+.thumbnail-overlay-time-status[data-thumbnail-size="large"] {
+    margin: 8px;
+}
 .thumbnail-overlay-time-status.new-style {
     border: 0;
     border-radius: 2px;
