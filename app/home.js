@@ -76,6 +76,11 @@ function renderData() {
     tab1.href = "#/trending";
     tab1.innerHTML = `<img class="ytm15-img-icon ytm15-img home-icon" src="ic_tab_trending.png"></img>`
 
+    if (DISABLE_TAB_ICONS_expflag == "true") {
+    tab.innerHTML = Home_text_string;
+    tab1.innerHTML = Trending_text_string;
+    }
+
     tabBar.appendChild(tabBarTabs);
     tabBarTabs.appendChild(tBTabCont);
     tBTabCont.appendChild(tab);

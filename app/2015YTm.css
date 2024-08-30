@@ -4417,11 +4417,30 @@ html.style-2013 {
     width: 50px;
 }
 .style-2013 .header-button .ytm15-img-icon.back-icon {
-    width: 15px;
-    height: 15px;
+    width: 10px;
+    height: 16px;
+    margin: 0;
+    object-fit: cover;
 }
 .style-2013 .vertical-list>div.expand-shelf-button-container>button.icon-button {
     color: #aaa;
+}
+.style-2013 .header-button .ytm15-img-icon.youtube-logo-icon.action-bar-logo {
+    margin: 0;
+    width: 37px;
+    height: 32px;
+    animation: none;
+}
+.style-2013 .header-button.back-button {
+    width: unset;
+    padding: unset;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 3px;
+}
+.style-2013 [hidden][hidden] {
+    display: none;
 }
 
 /* Global dark theme */

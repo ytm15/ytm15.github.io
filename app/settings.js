@@ -475,6 +475,15 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "APP_DEMATERIALIZE_UI"
+      },
+      {
+        "type": "boolean",
+        "title": "DISABLE_TAB_ICONS",
+        "subtitle": "",
+        "pressed": DISABLE_TAB_ICONS_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "DISABLE_TAB_ICONS"
       }
       ];
       settingBlocks.forEach(function(item){

@@ -540,6 +540,12 @@ a few hours later:
 27 Aug 2024:
 <br>
 -Made updates to the dematerialized/2013-style css and js
+<br><br>
+30 Aug 2024:
+<br>
+-The back button now has the YT logo in the 2013 UI
+<br>
+-Added a new expflag: "DISABLE_TAB_ICONS" (recommended to enable this when using YTm15 with the 2013 UI enabled)
     </div>
     </div>
     </div>

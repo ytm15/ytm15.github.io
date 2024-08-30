@@ -316,7 +316,7 @@ function renderHeader() {
     menuBtn.innerHTML = `<ytm15-icon class="menu-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg></ytm15-icon>`;
 
     if (APP_DEMATERIALIZE_UI_expflag == "true") {
-    backBtn.innerHTML = `<img class="ytm15-img-icon ytm15-img back-icon" src="abc_ic_ab_back_holo_light.png">`;
+    backBtn.innerHTML = `<img class="ytm15-img-icon ytm15-img back-icon" src="abc_ic_ab_back_holo_light.png"><img class="ytm15-img-icon ytm15-img youtube-logo-icon action-bar-logo" src="action_bar_logo_release.png">`;
     searchBtn.innerHTML = `<img class="ytm15-img-icon ytm15-img search-icon" src="ic_menu_search.png">`;
     menuBtn.innerHTML = `<img class="ytm15-img-icon ytm15-img menu-icon" src="abc_ic_menu_moreoverflow_normal_holo_light.png">`;
     };
