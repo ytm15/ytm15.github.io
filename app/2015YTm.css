@@ -4460,6 +4460,10 @@ html.style-2013 {
 }
 .style-2013 .video-metadata-title-container {
     transition: none;
+    animation: none;
+}
+.style-2013 .video-metadata-title {
+    animation: none;
 }
 .style-2013 .video-metadata-actions button {
     padding: 0.6em 0.4em;

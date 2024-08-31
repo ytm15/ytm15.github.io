@@ -471,7 +471,9 @@ function renderWatchPage(parent) {
     item.dataset.iconOnly = false;
     });
     actionsSpacer.remove();
+    if (mtrlBtnContShare.querySelector("path")) {
     mtrlBtnContShare.querySelector("path").setAttribute("style", `transform: scale(1.2);transform-origin: center;`);
+    }
     }
 
     const itemSectRelated = document.createElement("div");
