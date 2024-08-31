@@ -493,6 +493,15 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "WATCH_ENABLE_NEW_UI"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_TILTE_FONT_WEIGHT_500",
+        "subtitle": "",
+        "pressed": WATCH_TILTE_FONT_WEIGHT_500_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_TILTE_FONT_WEIGHT_500"
       }
       ];
       settingBlocks.forEach(function(item){

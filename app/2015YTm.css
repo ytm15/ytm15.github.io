@@ -2544,6 +2544,7 @@ ytm15-menu-button {
     padding-top: 6px;
     color: rgba(0,0,0,0.6);
     font-size: 1.4rem;
+    white-space: pre-line;
 }
 .ap-shelf-text a, .ap-footer-text a {
     color: #068fd4;
@@ -3878,8 +3879,10 @@ label.radio-label {
     margin-bottom: 1px;
 }
 .slim-style-2017 h2.video-metadata-title {
-    font-weight: 500;
     margin-bottom: 6px;
+}
+.slim-style-2017 h2.video-metadata-title.is-font-500 {
+    font-weight: 500;
 }
 .slim-style-2017 .video-metadata-header-content {
     padding-bottom: 9px;
@@ -3916,7 +3919,7 @@ label.radio-label {
     margin: 0 8px;
 }
 .slim-style-2017 .video-metadata-actions button .button-text {
-    margin-top: 6px;
+    margin-top: 8px;
 }
 .slim-style-2017 .video-metadata-actions ytm15-icon {
     width: 24px;

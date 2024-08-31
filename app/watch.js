@@ -154,6 +154,9 @@ function renderWatchPage(parent) {
     metaTitleCont.appendChild(metaTitleCont2);
     const metaTitle = document.createElement("h2");
     metaTitle.classList.add("video-metadata-title");
+    if (WATCH_TILTE_FONT_WEIGHT_500_expflag == "true") {
+    metaTitle.classList.add("is-font-500");
+    }
     metaTitle.innerHTML = data.title;
     metaTitleCont2.appendChild(metaTitle);
     var badgesData
