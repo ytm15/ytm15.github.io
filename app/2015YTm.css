@@ -2050,19 +2050,49 @@ ytm15-video-metadata.item:first-child, ytm15-video-metadata.item:last-child {
 .video-metadata-title-container {
     transition: max-height .3s ease-out;
     overflow: hidden;
-    max-height: 3.4em;
+    /* max-height: 3.4em; */
+    animation: watch-title-close .3s ease-out;
 }
 [aria-expanded="true"] .video-metadata-title-container {
-    max-height: 5.5em;
+    /* max-height: 5.5em; */
+    animation: watch-title-open .3s ease-out;
+}
+@keyframes watch-title-clamp-rmv {
+0% {
+    -webkit-line-clamp: unset;
+    max-height: unset;
+}
+100% {
+    -webkit-line-clamp: unset;
+    max-height: unset;
+}
+}
+@keyframes watch-title-open {
+0% {
+    max-height: 3.5em;
+}
+100% {
+    max-height: 6em;
+}
+}
+@keyframes watch-title-close {
+0% {
+    max-height: 6em;
+}
+100% {
+    max-height: 3.5em;
+}
 }
 .video-metadata-title {
     -webkit-line-clamp: 2;
     max-height: 2.5em;
     margin-bottom: 5px;
+    animation: watch-title-clamp-rmv .3s ease-out;
 }
 [aria-expanded="true"] .video-metadata-title {
     -webkit-line-clamp: unset;
     max-height: unset;
+    animation: none;
 }
 .badge-supported {
     display: flex;
@@ -3600,7 +3630,7 @@ ytm15-pivot-bar.no-shadow {
     margin-bottom: 0;
 }
 
-.lighter-borders *:-webkit-any(.shelf, .item-section, .ap-shelf, .about-page-bottom-title, .comment-separator, .channel-about-metadata-view-count, .channel-about-metadata-header, .setting-boolean, .setting-single-option-menu, .ytm15-settings-msg, .metadata-row-header-content, .error-container, .comment-section) {
+.lighter-borders *:-webkit-any(.shelf, .item-section, .ap-shelf, .about-page-bottom-title, .comment-separator, .channel-about-metadata-view-count, .channel-about-metadata-header, .setting-boolean, .setting-single-option-menu, .ytm15-settings-msg, .metadata-row-header-content, .error-container, .comment-section), .lighter-borders .slim-style-2017 *:-webkit-any(.ytm15-video-owner, .video-metadata-description-box) {
     border-color: rgba(0, 0, 0, 0.1);
 }
 
@@ -3796,6 +3826,111 @@ label.radio-label {
 
 .btn-font-500 .button-text {
     font-weight: 500;
+}
+
+/* Slim/2017 watchpage style */
+.slim-style-2017 .ytm15-video-owner {
+    border-top: 1.2px solid rgba(0, 0, 0, 0.2);
+    padding: 9px 16px;
+    flex-direction: row;
+    align-items: center;
+    justify-content: unset;
+}
+.slim-style-2017 .video-metadata-description-box {
+    transition-property: max-height, margin, border;
+    border-top: 0px solid rgba(0,0,0,0.2);
+}
+.slim-style-2017 [aria-expanded="true"]~.video-metadata-description-box {
+    border-top-width: 1.2px;
+    transition-property: max-height, margin;
+}
+.slim-style-2017 .video-metadata-info {
+    padding: 16px;
+}
+.slim-style-2017 .video-published-date {
+    display: block;
+}
+.slim-style-2017 .video-metadata-description {
+    display: block;
+}
+.slim-style-2017 .video-metadata-description:not(:empty) {
+    margin-top: 22px;
+}
+.slim-style-2017 .video-metadata-description:not(:empty)::before {
+    content: unset;
+}
+.slim-style-2017 .video-owner-icon-and-title {
+    padding: 9px 16px;
+    margin: -9px -16px;
+    padding-right: 0;
+}
+.slim-style-2017 .video-owner-prof-icon {
+    width: 34px;
+    height: 34px;
+}
+.slim-style-2017 .video-owner-subscribe-button {
+    margin-left: 16px;
+    margin-top: -50px;
+    margin-bottom: -50px;
+}
+.slim-style-2017 h3.video-owner-title {
+    font-size: 1.6rem;
+    margin-bottom: 1px;
+}
+.slim-style-2017 h2.video-metadata-title {
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+.slim-style-2017 .video-metadata-header-content {
+    padding-bottom: 9px;
+}
+.slim-style-2017 .video-owner-sub-count {
+    font-size: 1.25rem;
+}
+.slim-style-2017 .video-metadata-view-count {
+    font-size: 1.2rem;
+}
+.slim-style-2017 .video-metadata-header-content ytm15-icon path {
+    transform: scale(1.5);
+}
+.slim-style-2017 .video-metadata-header-content ytm15-icon {
+    margin-right: 0;
+    color: rgba(0,0,0,0.4);
+}
+.slim-style-2017 .video-metadata-actions {
+    padding: 0px 4px 13px;
+    justify-content: center;
+}
+.slim-style-2017 .video-metadata-actions .material-button-container.compact {
+    margin: -25px -12px;
+    font-size: 1.2rem;
+    border-radius: 50%;
+}
+.slim-style-2017 .video-metadata-actions button {
+    flex-direction: column;
+    align-items: center;
+    padding: 26px;
+    border-radius: 50%;
+}
+.slim-style-2017 .video-metadata-actions .material-button-container[data-icon-only="false"] .button-icon {
+    margin: 0 8px;
+}
+.slim-style-2017 .video-metadata-actions button .button-text {
+    margin-top: 6px;
+}
+.slim-style-2017 .video-metadata-actions ytm15-icon {
+    width: 24px;
+    height: 24px;
+}
+.slim-style-2017 .video-metadata-header {
+    z-index: 1;
+}
+.slim-style-2017 .video-metadata-actions .material-button-container.compact + .material-button-container.compact {
+    margin-left: -12px;
+}
+.slim-style-2017 .video-owner-subscribe-button .material-button-container.subscribe-button .material-button {
+    padding: 50px 15px;
+    border-radius: 50%;
 }
 
 /* Dematerialized/2013 style */
@@ -4683,7 +4818,7 @@ html.dark {
 .dark .comment-separator {
     border-bottom: 1.2px solid rgba(255, 255, 255, 0.2);
 }
-.dark.lighter-borders *:-webkit-any(.shelf, .item-section, .ap-shelf, .about-page-bottom-title, .comment-separator, .channel-about-metadata-view-count, .channel-about-metadata-header, .setting-boolean, .setting-single-option-menu, .ytm15-settings-msg, .metadata-row-header-content, .error-container, .comment-section) {
+.dark.lighter-borders *:-webkit-any(.shelf, .item-section, .ap-shelf, .about-page-bottom-title, .comment-separator, .channel-about-metadata-view-count, .channel-about-metadata-header, .setting-boolean, .setting-single-option-menu, .ytm15-settings-msg, .metadata-row-header-content, .error-container, .comment-section), .dark.lighter-borders .slim-style-2017 *:-webkit-any(.ytm15-video-owner, .video-metadata-description-box) {
     border-color: rgba(255, 255, 255, 0.1);
 }
 .dark ytm15-header-bar.non-red:not([ischannel="true"]) {
@@ -4722,6 +4857,9 @@ html.dark {
 .dark .metadata-badge[data-type=BADGE_STYLE_TYPE_SIMPLE] {
     background-color: rgba(255,255,255,0.1);
     color: #aaa;
+}
+.dark .slim-style-2017 .video-metadata-header-content ytm15-icon {
+    color: rgba(255,255,255,0.6);
 }
 
 /* Dark 28 */

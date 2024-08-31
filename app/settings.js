@@ -484,6 +484,15 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "DISABLE_TAB_ICONS"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_ENABLE_NEW_UI",
+        "subtitle": "",
+        "pressed": WATCH_ENABLE_NEW_UI_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_ENABLE_NEW_UI"
       }
       ];
       settingBlocks.forEach(function(item){

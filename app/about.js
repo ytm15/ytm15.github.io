@@ -546,6 +546,10 @@ a few hours later:
 -The back button now has the YT logo in the 2013 UI
 <br>
 -Added a new expflag: "DISABLE_TAB_ICONS" (recommended to enable this when using YTm15 with the 2013 UI enabled)
+<br><br>
+31 Aug 2024:
+<br>
+-Added a new expflag: "WATCH_ENABLE_NEW_UI" (turns the watch UI into the 2017 one)
     </div>
     </div>
     </div>

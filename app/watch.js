@@ -99,6 +99,9 @@ function renderWatchPage(parent) {
     scwnr.appendChild(itemSectMetadata);
     const videoMetadata = document.createElement("ytm15-video-metadata");
     videoMetadata.classList.add("item");
+    if (WATCH_ENABLE_NEW_UI_expflag == "true") {
+    videoMetadata.classList.add("slim-style-2017");
+    }
     itemSectMetadata.querySelector(".lazy-list").appendChild(videoMetadata);
     const metadataHeader = document.createElement("button");
     metadataHeader.classList.add("video-metadata-header", "has-ripple");
@@ -460,6 +463,16 @@ function renderWatchPage(parent) {
     });
     videoOwner.querySelector(".profile-img").onload = function(){videoOwner.querySelector(".profile-img").classList.add('loaded');}; 
     videoMetadata2.appendChild(videoOwner);
+    if (WATCH_ENABLE_NEW_UI_expflag == "true") {
+    videoMetadata.appendChild(videoOwner);
+    itemSectOwner.remove();
+    videoMetadata.appendChild(metadataDescBox);
+    Array.from(metadataActions.querySelectorAll('[data-icon-only="true"]')).forEach(function(item){
+    item.dataset.iconOnly = false;
+    });
+    actionsSpacer.remove();
+    mtrlBtnContShare.querySelector("path").setAttribute("style", `transform: scale(1.2);transform-origin: center;`);
+    }
 
     const itemSectRelated = document.createElement("div");
     itemSectRelated.classList.add("item-section", "watch-next-results-content");

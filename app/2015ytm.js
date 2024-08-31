@@ -137,6 +137,7 @@ WATCH_AUTONAV_BAR_STYLE_expflag = localStorage.getItem("WATCH_AUTONAV_BAR_STYLE"
 WATCH_AUTONAV_TITLE_USE_UPNEXT_expflag = localStorage.getItem("WATCH_AUTONAV_TITLE_USE_UPNEXT");
 APP_DEMATERIALIZE_UI_expflag = localStorage.getItem("APP_DEMATERIALIZE_UI");
 DISABLE_TAB_ICONS_expflag = localStorage.getItem("DISABLE_TAB_ICONS");
+WATCH_ENABLE_NEW_UI_expflag = localStorage.getItem("WATCH_ENABLE_NEW_UI");
 
 if (DISABLE_YTM15_APP_BORDER_expflag == "true") {
     documentHTML.classList.add("no-app-border");
