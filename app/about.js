@@ -383,7 +383,7 @@ a few hours later:
 --"WATCH_TILTE_FONT_WEIGHT_500"
 -YTm15 now uses the "white-space: pre-line" css for its shelves' texts instead of using "<br>" elements for each text
 
-02 Sep 2024:
+01 Sep 2024:
 -YTm15 now globally uses the "invidious.jing.rocks" instance instead of "inv.tux.pizza" (since the tux pizza instance got shut down)
     </div>
     </div>
