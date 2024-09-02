@@ -90,8 +90,9 @@ function channelPage() {
     };
 
     const getChannelData = new XMLHttpRequest();
-    getChannelData.open('GET', APIbaseURLWatch + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0], true);
- 
+    /* getChannelData.open('GET', APIbaseURLWatch + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0], true); */
+    getChannelData.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0], true);
+
     getChannelData.onerror = function(event) {
     console.error("An error occurred with this operation (" + getChannelData.status + ")");
 
@@ -478,7 +479,7 @@ function channelPage() {
     if (item.snippet.type == "multiplechannels") {
     item.contentDetails.channels.forEach(function(item1){
     const getShelfChannels = new XMLHttpRequest();
-    getShelfChannels.open('GET', APIbaseURLWatch + 'api/v1/channels/' + item1, true);
+    getShelfChannels.open('GET', APIbaseURL + 'api/v1/channels/' + item1, true);
  
     getShelfChannels.onerror = function(event) {
     console.error("An error occurred with this operation (" + getShelfChannels.status + ")");
@@ -1343,7 +1344,7 @@ function channelVideosContin(continuation, contItemParent) {
 
     channelShelfMatchesURLId.contentDetails.channels.forEach(function(item1){
     const getShelfChannels = new XMLHttpRequest();
-    getShelfChannels.open('GET', APIbaseURLWatch + 'api/v1/channels/' + item1, true);
+    getShelfChannels.open('GET', APIbaseURL + 'api/v1/channels/' + item1, true);
  
     getShelfChannels.onerror = function(event) {
     console.error("An error occurred with this operation (" + getShelfChannels.status + ")");
@@ -1430,7 +1431,7 @@ function channelVideosContin(continuation, contItemParent) {
     if (item.snippet.type == "multiplechannels") {
     item.contentDetails.channels.forEach(function(item1){
     const getShelfChannels = new XMLHttpRequest();
-    getShelfChannels.open('GET', APIbaseURLWatch + 'api/v1/channels/' + item1, true);
+    getShelfChannels.open('GET', APIbaseURL + 'api/v1/channels/' + item1, true);
  
     getShelfChannels.onerror = function(event) {
     console.error("An error occurred with this operation (" + getShelfChannels.status + ")");
