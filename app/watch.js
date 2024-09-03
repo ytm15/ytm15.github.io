@@ -20,8 +20,8 @@ function renderWatchPage(parent) {
     insertYTmPlayer(playerCont2);
 
     const getWatchData = new XMLHttpRequest();
-    /* getWatchData.open('GET', APIbaseURLWatch + 'api/v1/videos/' + playerVideoId, true); */
-    getWatchData.open('GET', APIbaseURL + 'api/v1/videos/' + playerVideoId, true);
+    /* getWatchData.open('GET', APIbaseURL + 'api/v1/videos/' + playerVideoId, true); */
+    getWatchData.open('GET', APIbaseURLWatch + 'api/v1/videos/' + playerVideoId, true);
 
     getWatchData.onerror = function(event) {
     console.error("An error occurred with this operation (" + getWatchData.status + ")");

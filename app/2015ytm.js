@@ -250,7 +250,7 @@ metaColorElm.content = "#000000";
 }
 }
 
-APIbaseURL = "https://invidious.jing.rocks/";
+APIbaseURL = "https://inv.tux.pizza/";
 APIbaseURLWatch = "https://invidious.jing.rocks/";
 
 playerVideoId = "e";

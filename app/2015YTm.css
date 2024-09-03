@@ -2681,6 +2681,16 @@ h3.ap-bottom-title-text {
     font-weight: 300;
     border-bottom: 1.2px solid rgba(0, 0, 0, 0.2);
 }
+.menu-content.menu-style-holo.menu-style-dropdown {
+    padding: 0;
+}
+.menu-content.menu-style-holo.menu-style-dropdown .menu-item-button {
+    font-weight: 400;
+    padding: 15px 10px;
+}
+.menu-content.menu-style-holo.menu-style-dropdown:not(.closing) {
+    animation: menu-open .2s;
+}
 @keyframes menu-open {
 0% {
     opacity: 0;
@@ -4583,6 +4593,12 @@ html.style-2013 {
 }
 .style-2013 [hidden][hidden] {
     display: none;
+}
+.style-2013 .about-page-footer {
+    background-color: #fff;
+}
+.style-2013 .ap-shelf-text {
+    font-weight: 300;
 }
 
 /* Global dark theme */

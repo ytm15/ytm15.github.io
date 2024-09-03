@@ -59,8 +59,7 @@ What is YTm15/YouTube Mobile 2015?
     </div>
 
     <div class="ap-shelf-content">
-    <div class="ap-shelf-text">
-YouTube Mobile 2015 (also known as YTm15) is a project of mine to rebuild the 2015 version of the interface of YouTube for mobile. The creator of YTm15 is Yacine Ghuloum.
+    <div class="ap-shelf-text">YouTube Mobile 2015 (also known as YTm15) is a project of mine to rebuild the 2015 version of the interface of YouTube for mobile. The creator of YTm15 is Yacine Ghuloum.
 
 This project has been ongoing since Feb 2024, in an effort to ensure that you can relive a nostalgic experience of what it was like to use the YouTube mobile app back in 2015. (or just for people who want to use YT with an older look ig)
 
@@ -79,8 +78,7 @@ Stuff YTm15 makes use of
     </div>
 
     <div class="ap-shelf-content">
-    <div class="ap-shelf-text">
-APIs:
+    <div class="ap-shelf-text">APIs:
 -Invidious API (<a href="https://docs.invidious.io/api/">https://docs.invidious.io/api/</a>)
 
 -YouTube Operational API (<a href="https://yt.lemnoslife.com/">https://yt.lemnoslife.com/</a>)
@@ -106,8 +104,7 @@ Changelog
     </div>
 
     <div class="ap-shelf-content">
-    <div class="ap-shelf-text">
-22 Feb 2024:
+    <div class="ap-shelf-text">22 Feb 2024:
 -Initial development started
 
 15 Mar 2024:
@@ -385,6 +382,9 @@ a few hours later:
 
 01 Sep 2024:
 -YTm15 now globally uses the "invidious.jing.rocks" instance instead of "inv.tux.pizza" (since the tux pizza instance got shut down)
+
+03 Sep 2024:
+-The "inv.tux.pizza" instance is back up again so YTm15 now uses it instead of the jing.rocks one (however the jing.rocks one is still used for the watchpage)
     </div>
     </div>
     </div>
