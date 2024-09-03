@@ -2688,6 +2688,9 @@ h3.ap-bottom-title-text {
     font-weight: 400;
     padding: 15px 10px;
 }
+html:not(.style-2013) .menu-content.menu-style-holo.menu-style-dropdown .menu-item-button {
+    border-bottom: 0;
+}
 .menu-content.menu-style-holo.menu-style-dropdown:not(.closing) {
     animation: menu-open .2s;
 }
@@ -4626,7 +4629,7 @@ html.style-2013 {
 .style-2013 h4.settings-page-header {
     display: none;
 }
-.style.2013 .ytm15-single-column-watch-next-results [section-identifier="related-media"] .item:last-child {
+.style-2013 .ytm15-single-column-watch-next-results [section-identifier="related-media"] .item:last-child {
     margin-bottom: 0;
 }
 
