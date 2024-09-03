@@ -237,6 +237,11 @@ function renderWatchPage(parent) {
     descInfo.classList.add("video-metadata-info", "description-container");
     descInfo.innerHTML = `<div class="video-published-date"><span style="font-style:italic;opacity:.8;">Retrieving published date...</span></div>
 <div class="video-metadata-description user-text">${data.descriptionHtml}</div>`;
+    Array.from(descInfo.querySelector(".video-metadata-description").querySelectorAll('[data-onclick="jump_to_time"]')).forEach(function(ts){
+    ts.onclick = function(e){
+    playerJumpTime(e, ts.dataset.jumpTime);
+    };
+    });
     const getPublishDate = new XMLHttpRequest();
     getPublishDate.open('GET', 'https://yt.lemnoslife.com/noKey/videos?part=contentDetails,id,liveStreamingDetails,localizations,player,recordingDetails,snippet,statistics,status,topicDetails&id=' + playerVideoId, true);
  

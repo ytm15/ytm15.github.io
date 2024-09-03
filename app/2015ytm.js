@@ -601,6 +601,11 @@ ${pinnedCMBadge}
 </div>
 </div>
 `;
+    Array.from(commentCont.querySelector(".comment-text").querySelectorAll('[data-onclick="jump_to_time"]')).forEach(function(ts){
+    ts.onclick = function(e){
+    playerJumpTime(e, ts.dataset.jumpTime);
+    };
+    });
 
     if (APP_DEMATERIALIZE_UI_expflag == "true") {
       commentCont.insertAdjacentElement("afterbegin", commentCont.querySelector(".comment-header"));
@@ -2003,6 +2008,37 @@ const classMutationObserver = new MutationObserver(callback);
 
 classMutationObserver.observe(document.body, { attributes: true });
 // end of code
+
+function playerJumpTime(e, jumpTime){
+  e.preventDefault();
+  if (!app.querySelector("#watchpageFrame_Container")) {
+  app.insertAdjacentElement("afterbegin", watchContainer);
+  if (watchContainer.classList.contains("miniplayer")) {
+  watchContainer.classList.remove("miniplayer");
+  app.classList.remove("has-miniplayer");
+  }
+  playerPrevVideoId = [""];
+  playerVideoId = e.target.href.split("=")[1].split("&")[0];
+  playerFrame.src = playerEmbedURLYT + playerVideoId + playerEmbedURLYTEnd;
+  renderWatchPage(ytm15Watch);
+  }
+  if (app.querySelector("#watchpageFrame_Container")) {
+  openWatch.onclick();
+  if (playerVideoId !== e.target.href.split("=")[1].split("&")[0]) {
+  playerPrevVideoId = [""];
+  playerVideoId = e.target.href.split("=")[1].split("&")[0];
+  playerFrame.src = playerEmbedURLYT + playerVideoId + playerEmbedURLYTEnd;
+  renderWatchPage(ytm15Watch);
+  };
+  };
+  if (video) {
+  video.currentTime = jumpTime;
+  };
+  if (document.querySelector(".player-iframe")) {
+  playerFrame.src = playerEmbedURLYT + playerVideoId + playerEmbedURLYTEnd + "&t=" + jumpTime + "s";
+  };
+  return false;
+};
 
 function searching(parent, sbInput) {
     const headerBar = document.querySelector("ytm15-header-bar");

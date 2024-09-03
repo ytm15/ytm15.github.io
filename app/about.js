@@ -385,6 +385,7 @@ a few hours later:
 
 03 Sep 2024:
 -The "inv.tux.pizza" instance is back up again so YTm15 now uses it instead of the jing.rocks one (however the jing.rocks one is still used for the watchpage)
+-Timestamps in video descriptions and comments now work
     </div>
     </div>
     </div>

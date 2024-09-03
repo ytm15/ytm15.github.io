@@ -4600,6 +4600,32 @@ html.style-2013 {
 .style-2013 .ap-shelf-text {
     font-weight: 300;
 }
+.style-2013 .channel-about-metadata-header {
+    padding: 22px 8px 14px;
+    margin: 0 8px;
+}
+.style-2013 .channel-about-metadata-view-count {
+    padding: 16px 8px;
+    margin: 0 8px;
+    font-weight: 300;
+}
+.style-2013 .channel-about-metadata-description {
+    font-weight: 300;
+}
+.style-2013 .settings-pages-container {
+    padding: 4px 16px;
+}
+.style-2013 h3#setting-title-subtitle-block-title {
+    font-weight: 400;
+    font-size: 1.8rem;
+}
+.style-2013 .setting-title-subtitle-block {
+    color: inherit;
+    padding: 13px 10px;
+}
+.style-2013 h4.settings-page-header {
+    display: none;
+}
 
 /* Global dark theme */
 html.dark {
