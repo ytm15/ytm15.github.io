@@ -3912,7 +3912,7 @@ label.radio-label {
 }
 .slim-style-2017 .video-metadata-actions {
     padding: 0px 4px 13px;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 .slim-style-2017 .video-metadata-actions .material-button-container.compact {
     margin: -25px -12px;
@@ -4625,6 +4625,9 @@ html.style-2013 {
 }
 .style-2013 h4.settings-page-header {
     display: none;
+}
+.style.2013 .ytm15-single-column-watch-next-results [section-identifier="related-media"] .item:last-child {
+    margin-bottom: 0;
 }
 
 /* Global dark theme */
