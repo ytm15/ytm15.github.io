@@ -139,6 +139,7 @@ APP_DEMATERIALIZE_UI_expflag = localStorage.getItem("APP_DEMATERIALIZE_UI");
 DISABLE_TAB_ICONS_expflag = localStorage.getItem("DISABLE_TAB_ICONS");
 WATCH_ENABLE_NEW_UI_expflag = localStorage.getItem("WATCH_ENABLE_NEW_UI");
 WATCH_TILTE_FONT_WEIGHT_500_expflag = localStorage.getItem("WATCH_TILTE_FONT_WEIGHT_500");
+USE_NEW_SUBSCRIBE_ICON_expflag = localStorage.getItem("USE_NEW_SUBSCRIBE_ICON");
 
 if (DISABLE_YTM15_APP_BORDER_expflag == "true") {
     documentHTML.classList.add("no-app-border");
@@ -330,6 +331,10 @@ function renderSubscribeBtn(parent) {
     mtrlBtnCont.innerHTML = `<button class="material-button" aria-label="${Subscribe_text_string}">
 <img class="ytm15-img-icon ytm15-img button-icon subscribe-icon" src="ic_subscribe.png"></img><div class="button-text">${Subscribe_text_string}</div>
 </button>`
+    }
+    if (USE_NEW_SUBSCRIBE_ICON_expflag == "true") {
+    mtrlBtnCont.querySelector("img").src = "subscribe_mark_2018.png";
+    mtrlBtnCont.querySelector("img").classList.add("style-2018");
     }
     parent.appendChild(mtrlBtnCont);
 }

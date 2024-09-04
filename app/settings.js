@@ -502,6 +502,15 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "WATCH_TILTE_FONT_WEIGHT_500"
+      },
+      {
+        "type": "boolean",
+        "title": "USE_NEW_SUBSCRIBE_ICON",
+        "subtitle": "",
+        "pressed": USE_NEW_SUBSCRIBE_ICON_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "USE_NEW_SUBSCRIBE_ICON"
       }
       ];
       settingBlocks.forEach(function(item){

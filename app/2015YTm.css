@@ -2965,6 +2965,10 @@ ytm15-channels-header {
     width: 15px;
     height: 15px;
 }
+.ytm15-img-icon.subscribe-icon.style-2018 {
+    width: 18px;
+    height: 13px;
+}
 
 .continuation-item ~ .continuation-item {
     display: none;
@@ -4335,6 +4339,7 @@ html.style-2013 {
     flex-grow: 1;
     margin-top: 0;
     margin-left: 14px;
+    min-width: 0;
 }
 .style-2013 .channels-header-title {
     font-size: 1.6rem;
@@ -4656,22 +4661,22 @@ html.style-2013 {
 }
 .style-2013 .miniplayer .watchpage-frame-items ytm15-watch {
     opacity: 0;
-	animation: player-watch-2013-close .3s;
+    animation: player-watch-2013-close .3s;
 }
 @keyframes player-watch-2013-close {
 0% {
-	opacity: 1;
+    opacity: 1;
 }
 100% {
-	opacity: 0;
+    opacity: 0;
 }
 }
 @keyframes player-watch-2013-open {
 0% {
-	opacity: 0;
+    opacity: 0;
 }
 100% {
-	opacity: 1;
+    opacity: 1;
 }
 }
 @keyframes watch-ytheader-hide-2013 {
@@ -4680,13 +4685,13 @@ html.style-2013 {
     z-index: 5;
 }
 100% {
-    transform: translateY(-100%);
+    transform: translateY(-101%);
     z-index: 5;
 }
 }
 @keyframes watch-ytheader-show-2013 {
 0% {
-    transform: translateY(-100%);
+    transform: translateY(-101%);
     z-index: 5;
 }
 100% {
@@ -4696,7 +4701,7 @@ html.style-2013 {
 }
 .style-2013 .has-watchpage ytm15-header-bar {
     animation: watch-ytheader-hide-2013 .3s ease-in-out;
-    transform: translateY(-100%);
+    transform: translateY(-101%);
     z-index: 5;
 }
 .style-2013 .has-miniplayer ytm15-header-bar {
