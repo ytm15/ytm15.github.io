@@ -2677,8 +2677,8 @@ h3.ap-bottom-title-text {
     animation: menu-close-alt .2s ease-out;
 }
 .menu-content.menu-style-holo .menu-item-button {
-    padding: 15px 8px;
-    font-weight: 300;
+    /* padding: 15px 8px; */
+    /* font-weight: 300; */
     border-bottom: 1.2px solid rgba(0, 0, 0, 0.2);
 }
 .menu-content.menu-style-holo.menu-style-dropdown {
@@ -2693,6 +2693,14 @@ html:not(.style-2013) .menu-content.menu-style-holo.menu-style-dropdown .menu-it
 }
 .menu-content.menu-style-holo.menu-style-dropdown:not(.closing) {
     animation: menu-open .2s;
+}
+.menu-content.menu-style-holo.is-watch {
+    background-color: #ddd;
+    box-shadow: 0px 1.2px 3px 1px rgba(0, 0, 0, 0.6);
+}
+.menu-content.menu-style-holo.is-watch .menu-item-button {
+    padding: 15px 9px;
+    font-weight: 300;
 }
 @keyframes menu-open {
 0% {
@@ -4123,6 +4131,7 @@ html.style-2013 {
 }
 .style-2013 .watchpage-frame-items ytm15-watch {
     background-color: #eee;
+	animation: player-watch-2013-open .3s;
 }
 @media (min-width: 800px) and (min-device-width: 550px) and (orientation: landscape) {
 .style-2013 .watchpage-frame-items ytm15-watch::after {
@@ -4616,11 +4625,11 @@ html.style-2013 {
     font-weight: 300;
 }
 .style-2013 .settings-pages-container {
-    padding: 4px 16px;
+    padding: 1px 16px;
 }
 .style-2013 h3#setting-title-subtitle-block-title {
     font-weight: 400;
-    font-size: 1.8rem;
+    font-size: 1.75rem;
 }
 .style-2013 .setting-title-subtitle-block {
     color: inherit;
@@ -4631,6 +4640,68 @@ html.style-2013 {
 }
 .style-2013 .ytm15-single-column-watch-next-results [section-identifier="related-media"] .item:last-child {
     margin-bottom: 0;
+}
+.style-2013 .settings-categories-container {
+    padding: 0 16px;
+}
+.style-2013 .settings-category {
+    font-size: 17.5px;
+    padding: 15px 13px;
+}
+.style-2013 .watchpage-frame-overlay {
+    background-color: transparent;
+}
+.style-2013 .watchpage-frame-items {
+    animation: none;
+}
+.style-2013 .miniplayer .watchpage-frame-items ytm15-watch {
+    opacity: 0;
+	animation: player-watch-2013-close .3s;
+}
+@keyframes player-watch-2013-close {
+0% {
+	opacity: 1;
+}
+100% {
+	opacity: 0;
+}
+}
+@keyframes player-watch-2013-open {
+0% {
+	opacity: 0;
+}
+100% {
+	opacity: 1;
+}
+}
+@keyframes watch-ytheader-hide-2013 {
+0% {
+    transform: translateY(0%);
+    z-index: 5;
+}
+100% {
+    transform: translateY(-100%);
+    z-index: 5;
+}
+}
+@keyframes watch-ytheader-show-2013 {
+0% {
+    transform: translateY(-100%);
+    z-index: 5;
+}
+100% {
+    transform: translateY(0%);
+    z-index: 5;
+}
+}
+.style-2013 .has-watchpage ytm15-header-bar {
+    animation: watch-ytheader-hide-2013 .3s ease-in-out;
+    transform: translateY(-100%);
+    z-index: 5;
+}
+.style-2013 .has-miniplayer ytm15-header-bar {
+    animation: watch-ytheader-show-2013 .3s ease-in-out;
+    z-index: 5;
 }
 
 /* Global dark theme */
@@ -4799,6 +4870,9 @@ html.dark {
 }
 .dark .menu-content.menu-style-holo {
     /* background-color: #252525; */
+    background-color: #303030;
+}
+.dark .menu-content.menu-style-holo.is-watch {
     background-color: #303030;
 }
 .dark .menu-content.menu-style-holo .menu-item-button {

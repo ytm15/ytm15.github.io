@@ -235,6 +235,9 @@ function renderHeader() {
     if (HEADER_SHORTER_SIZE_expflag == "true" && APP_DEMATERIALIZE_UI_expflag !== "true") {
     menuCont.setAttribute("style", "top: 0; right: 0; position: fixed; margin: 2px 7px;");
     }
+	if (APP_DEMATERIALIZE_UI_expflag == "true") {
+    menuCont.setAttribute("style", "top: 36px; right: 0; position: fixed; transform-origin: top;");
+    }
 
     const menuItemSettings = document.createElement("div");
     menuItemSettings.classList.add("menu-item");

@@ -996,6 +996,7 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         const menuRect = menuCont.getBoundingClientRect();
         const menuAlign = function() {
         menuCont.classList.remove("menu-style-holo", "menu-style-mtrl-2", "menu-style-youtube");
+		menuCont.classList.add("is-watch");
         if (DEFAULT_MEDIA_POPUP_MENU_STYLE_expflag == "Holo") {
         menuCont.classList.add("menu-style-holo");
         } else if (DEFAULT_MEDIA_POPUP_MENU_STYLE_expflag == "Material") {
@@ -1338,6 +1339,7 @@ function renderMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLen
         const menuRect = menuCont.getBoundingClientRect();
         const menuAlign = function() {
         menuCont.classList.remove("menu-style-holo", "menu-style-mtrl-2", "menu-style-youtube");
+		menuCont.classList.add("is-watch");
         if (DEFAULT_MEDIA_POPUP_MENU_STYLE_expflag == "Holo") {
         menuCont.classList.add("menu-style-holo");
         } else if (DEFAULT_MEDIA_POPUP_MENU_STYLE_expflag == "Material") {
@@ -1558,6 +1560,9 @@ setTimeout(function(){
   playerCont.setAttribute("style", ``);
   watchOverlay.setAttribute("style", ``);
   pivotBar.setAttribute("style", ``);
+  if (APP_DEMATERIALIZE_UI_expflag == "true") {
+  ytm15Watch.setAttribute("style", ``);
+  }
   }
 }, 01);
 document.body.classList.remove("has-watchpage");
@@ -1628,6 +1633,9 @@ setTimeout(function(){
   playerCont.setAttribute("style", ``);
   watchOverlay.setAttribute("style", ``);
   pivotBar.setAttribute("style", ``);
+  if (APP_DEMATERIALIZE_UI_expflag == "true") {
+  ytm15Watch.setAttribute("style", ``);
+  }
   }
 }, 01);
 document.body.classList.add("has-watchpage");
@@ -1662,6 +1670,9 @@ setTimeout(function() {
   playerCont.setAttribute("style", ``);
   watchOverlay.setAttribute("style", ``);
   pivotBar.setAttribute("style", ``);
+  if (APP_DEMATERIALIZE_UI_expflag == "true") {
+  ytm15Watch.setAttribute("style", ``);
+  }
 }, 300);
 };
 closeVideo.setAttribute("aria-label", "Close video");
@@ -1740,12 +1751,18 @@ watchContainer.setAttribute("style", `animation: ${pTMPAnimName} .08s; animation
 playerCont.setAttribute("style", `animation: player-cont-to-miniplayer .08s; animation-play-state: paused; animation-direction: normal; animation-delay: -${miniplayerAnimation}s;`);
 watchOverlay.setAttribute("style", `animation: watch-overlay-out .08s; animation-play-state: paused; animation-direction: normal; animation-delay: -${miniplayerAnimation}s;`);
 pivotBar.setAttribute("style", `animation: pivot-bar-show .08s; animation-play-state: paused; animation-direction: normal; animation-delay: -${miniplayerAnimation}s;`);
+if (APP_DEMATERIALIZE_UI_expflag == "true") {
+ytm15Watch.setAttribute("style", `animation: player-watch-2013-close .08s; animation-play-state: paused; animation-direction: normal; animation-delay: -${miniplayerAnimation}s;`);
+}
 if (watchContainer.classList.contains("miniplayer")) {
 miniplayerAnimation = (e.detail.y[1] + Math.round(e.detail.y[0] / 10)) * 100 / 1000000;
 watchContainer.setAttribute("style", `animation: ${mpTPAnimName} .08s; animation-play-state: paused; animation-direction: reverse; animation-delay: -${miniplayerAnimation}s;`);
 playerCont.setAttribute("style", `animation: miniplayer-to-player-cont .08s; animation-play-state: paused; animation-direction: reverse; animation-delay: -${miniplayerAnimation}s;`);
 watchOverlay.setAttribute("style", `animation: watch-overlay-in .08s; animation-play-state: paused; animation-direction: reverse; animation-delay: -${miniplayerAnimation}s;`);
 pivotBar.setAttribute("style", `animation: pivot-bar-hide .08s; animation-play-state: paused; animation-direction: reverse; animation-delay: -${miniplayerAnimation}s;`);
+if (APP_DEMATERIALIZE_UI_expflag == "true") {
+ytm15Watch.setAttribute("style", `animation: player-watch-2013-open .08s; animation-play-state: paused; animation-direction: reverse; animation-delay: -${miniplayerAnimation}s;`);
+}
 }
   };
 });
@@ -1757,11 +1774,17 @@ playerCont.addEventListener('swiperelease', function (e) {
   playerCont.setAttribute("style", `animation: player-cont-to-miniplayer .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
   watchOverlay.setAttribute("style", `animation: watch-overlay-out .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
   pivotBar.setAttribute("style", `animation: pivot-bar-show .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
+  if (APP_DEMATERIALIZE_UI_expflag == "true") {
+  ytm15Watch.setAttribute("style", `animation: player-watch-2013-close .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
+  }
   if (watchContainer.classList.contains("miniplayer")) {
   watchContainer.setAttribute("style", `animation: ${mpTPAnimName} .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
   playerCont.setAttribute("style", `animation: miniplayer-to-player-cont .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
   watchOverlay.setAttribute("style", `animation: watch-overlay-in .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
   pivotBar.setAttribute("style", `animation: pivot-bar-hide .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
+  if (APP_DEMATERIALIZE_UI_expflag == "true") {
+  ytm15Watch.setAttribute("style", `animation: player-watch-2013-open .08s; animation-play-state: paused; animation-direction: normal; animation-delay: 0s;`);
+  }
   }
   }, 0);
 });
@@ -1845,7 +1868,7 @@ function menuRenderer() {
     } else {
       menuBtnCancel.removeAttribute("hidden");
     };
-    menuCont.classList.remove("menu-style-holo", "menu-style-mtrl-2", "menu-style-youtube");
+    menuCont.classList.remove("menu-style-holo", "menu-style-mtrl-2", "menu-style-youtube", "is-watch");
     if (DEFAULT_POPUP_MENU_STYLE_expflag == "Holo") {
     menuCont.classList.add("menu-style-holo");
     } else if (DEFAULT_MEDIA_POPUP_MENU_STYLE_expflag == "Material") {

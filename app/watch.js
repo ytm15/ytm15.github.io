@@ -3,6 +3,9 @@ function renderWatchPage(parent) {
     playerCont.setAttribute("style", ``);
     watchOverlay.setAttribute("style", ``);
     pivotBar.setAttribute("style", ``);
+	if (APP_DEMATERIALIZE_UI_expflag == "true") {
+      ytm15Watch.setAttribute("style", ``);
+    }
 
     parent.innerHTML = "";
     const spinner = document.querySelector(".spinner-container.full-height");
