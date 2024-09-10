@@ -85,6 +85,10 @@
     z-index: 1;
     margin: 0 50%;
     transition: opacity .6s;
+    pointer-events: none;
+}
+.controls-visible .player-controls-middle > * {
+    pointer-events: auto;
 }
 .player-controls-middle .controls-button {
     padding: 6px;
@@ -100,6 +104,7 @@
 .player-controls-middle .controls-button.controls-btn-disabled .player-img-icon {
     opacity: .7;
     filter: invert(0.8);
+    -webkit-filter: invert(0.8);
 }
 .player-controls-middle .controls-button.play-pause-button {
     height: 56px;

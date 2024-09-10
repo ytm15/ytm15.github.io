@@ -389,6 +389,9 @@ a few hours later:
 
 04 Sep 2024:
 -Added a new expflag: "USE_NEW_SUBSCRIBE_ICON"
+
+10 Sep 2024:
+-the dematerialized UI for YTm15 now supports dark theme
     </div>
     </div>
     </div>

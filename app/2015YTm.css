@@ -4150,11 +4150,11 @@ html.style-2013 {
 }
 .style-2013 .dropdown-select {
     margin: 4px 5px;
+    padding: 8px;
+    border-bottom: 1.2px solid rgba(0,0,0,0.2);
 }
 .style-2013 ytm15-channel-sub-menu .dropdown-select {
     margin: 4px 5px;
-    padding: 8px;
-    border-bottom: 1.2px solid rgba(0,0,0,0.2);
 }
 .style-2013 .dropdown-text {
     font-size: 1.6rem;
@@ -5044,4 +5044,186 @@ html.dark.dark-21 {
 }
 .dark.dark-21 .playlist-header-container {
     background-color: #181818;
+}
+
+/* Global dark theme for dematerialized/2013 UI */
+.style-2013.dark .card {
+    background-color: #303030;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+}
+html.style-2013.dark {
+    background-color: #282828;
+}
+.style-2013.dark .shelf-header {
+    border-bottom-color: rgba(255,255,255,0.2);
+}
+.style-2013.dark .compact-media-item {
+    border-bottom-color: rgba(255,255,255,0.2);
+}
+@media (min-aspect-ratio: 13 / 9) and (orientation: landscape), (min-width: 800px) and (min-device-width: 550px) and (orientation: landscape) {
+.style-2013.dark .media-channel {
+    border-bottom-color: rgba(255,255,255,0.2);
+}
+}
+.style-2013.dark .material-button-container[data-style="BRAND"] {
+    color: #f1f1f1;
+}
+.style-2013.dark ytm15-channels-header {
+    background-color: #303030;
+}
+.style-2013.dark .watchpage-frame-items ytm15-watch {
+    background-color: #282828;
+}
+@media (min-width: 800px) and (min-device-width: 550px) and (orientation: landscape) {
+.style-2013.dark .watchpage-frame-items ytm15-watch::after {
+    background-color: #282828;
+    border-left-color: rgba(255,255,255,0.2);
+}
+}
+.style-2013.dark .video-metadata-actions {
+    border-top-color: rgba(255,255,255,0.2);
+}
+.style-2013.dark .autonav-bar {
+    border-bottom-color: rgba(255,255,255,0.2);
+}
+.style-2013.dark .comment-header {
+    color: inherit;
+}
+.style-2013.dark .ytm15-video-owner .material-button-container[data-style="BRAND"] .material-button {
+    background: linear-gradient(#404040, #333);
+    border-color: #505050;
+}
+.style-2013.dark .ytm15-video-owner .material-button-container[data-style="BRAND"] {
+    color: #aaa;
+}
+.style-2013.dark .ytm15-img-icon.comment-action-icon {
+    opacity: 1;
+    filter: brightness(1.5);
+    -webkit-filter: brightness(1.5);
+}
+.style-2013.dark .tab-bar {
+    background-color: #303030;
+    border-bottom-color: #454545;
+    color: #f1f1f1;
+}
+.style-2013.dark .tab[aria-selected="true"] {
+    color: #f1f1f1;
+}
+.style-2013.dark .tabbar-tab-container::after {
+    border-left-color: #505050;
+}
+.style-2013.dark .ytm15-header {
+    background: linear-gradient(#333, #252525);
+    border-bottom-color: #454545;
+    color: #909090;
+}
+.style-2013.dark .header-button .ytm15-img-icon {
+    filter: invert(1);
+    -webkit-filter: invert(1);
+}
+.style-2013.dark .header-button .ytm15-img-icon.youtube-logo-icon.action-bar-logo {
+    filter: none;
+    -webkit-filter: none;
+}
+.style-2013.dark .section {
+    background-color: #303030;
+    border-bottom-color: #333;
+}
+.style-2013.dark .dropdown-select {
+    border-bottom-color: rgba(255,255,255,0.2);
+}
+.style-2013.dark .ap-shelf-header {
+    border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+.style-2013.dark .about-page-footer {
+    background-color: #303030;
+}
+.style-2013.dark .ytm15-header[data-mode="searching"]~.tab-bar {
+    background-color: #303030;
+}
+.style-2013.dark .searching-overlay {
+    background-color: transparent;
+}
+.style-2013.dark .media-item-menu .ytm15-img-icon {
+    filter: brightness(0.6);
+    -webkit-filter: brightness(0.6);
+}
+.style-2013.dark .playlist-video-list-header {
+    border-bottom-color: rgba(255,255,255,0.2);
+}
+
+/* Dark 28 for dematerialized/2013 UI */
+html.style-2013.dark.dark-28 {
+    background-color: #212121;
+}
+.style-2013.dark.dark-28 .card {
+    background-color: #282828;
+}
+.style-2013.dark.dark-28 ytm15-channels-header {
+    background-color: #282828;
+}
+.style-2013.dark.dark-28 .watchpage-frame-items ytm15-watch {
+    background-color: #212121;
+}
+@media (min-width: 800px) and (min-device-width: 550px) and (orientation: landscape) {
+.style-2013.dark.dark-28 .watchpage-frame-items ytm15-watch::after {
+    background-color: #212121;
+}
+}
+.style-2013.dark.dark-28 .tab-bar {
+    background-color: #282828;
+}
+.style-2013.dark.dark-28 .ytm15-header {
+    background: linear-gradient(#303030, #222);
+}
+.style-2013.dark.dark-28 .ytm15-header[data-mode="searching"]~.tab-bar {
+    background-color: #282828;
+}
+.style-2013.dark.dark-28 .section {
+    background-color: #282828;
+    border-bottom-color: #232323;
+}
+.style-2013.dark.dark-28 .about-page-footer {
+    background-color: #282828;
+}
+.style-2013.dark.dark-28 .ytm15-video-owner .material-button-container[data-style="BRAND"] .material-button {
+    background: linear-gradient(#353535, #292929);
+}
+
+/* Dark 21 for dematerialized/2013 UI */
+html.style-2013.dark.dark-21 {
+    background-color: #181818;
+}
+.style-2013.dark.dark-21 .card {
+    background-color: #212121;
+}
+.style-2013.dark.dark-21 ytm15-channels-header {
+    background-color: #212121;
+}
+.style-2013.dark.dark-21 .watchpage-frame-items ytm15-watch {
+    background-color: #181818;
+}
+@media (min-width: 800px) and (min-device-width: 550px) and (orientation: landscape) {
+.style-2013.dark.dark-21 .watchpage-frame-items ytm15-watch::after {
+    background-color: #181818;
+}
+}
+.style-2013.dark.dark-21 .tab-bar {
+    background-color: #212121;
+}
+.style-2013.dark.dark-21 .ytm15-header {
+    background: linear-gradient(#282828, #181818);
+}
+.style-2013.dark.dark-21 .ytm15-header[data-mode="searching"]~.tab-bar {
+    background-color: #212121;
+}
+.style-2013.dark.dark-21 .section {
+    background-color: #212121;
+    border-bottom-color: #232323;
+}
+.style-2013.dark.dark-21 .about-page-footer {
+    background-color: #212121;
+}
+.style-2013.dark.dark-21 .ytm15-video-owner .material-button-container[data-style="BRAND"] .material-button {
+    background: linear-gradient(#323232, #252525);
 }
