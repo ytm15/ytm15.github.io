@@ -104,6 +104,47 @@ Changelog
     </div>
 
     <div class="ap-shelf-content">
+    <div class="ap-shelf-text">Changelog has moved. <a href="#/about/changelog">Click here to view it</a>
+    </div>
+    </div>
+    </div>
+    <!-- <div class="item-section"> -->
+    <!-- <div class="lazy-list no-animation"> -->
+    <div class="about-page-bottom-title">
+    <h3 class="ap-bottom-title-text">YTm15, a project to bring back YT's old mobile UI</h3>
+    </div>
+    <footer class="about-page-footer">
+    <div class="ap-footer-content">
+    <h3 class="ap-footer-text">Have any questions/issues/requests/bugs/feedback? <a href="https://github.com/ytm15/ytm15.github.io/issues">Visit our Github's issues page</a></h3>
+    <h4 class="ap-footer-text small subhead" id="ap-footer-links">Links: <a href="https://ytm15.github.io/">Landing page</a> | <a href="https://github.com/ytm15/ytm15.github.io/">Github page</a></h4>
+    <h4 class="ap-footer-text small subhead" id="ap-footer-copyright-and-copyleft-text">© 2015, YouTube and Google | (ↄ) 2024, Yacine's remakes</h4>
+    <h4 class="ap-footer-text small subhead">Please note that YTm15 is not associated with, affiliated with, developed, approved, or endorsed by YouTube or Google!</h4>
+    </div>
+    </footer>
+    <!-- </div> -->
+    <!-- </div> -->
+    `;
+    section.appendChild(sectLazyList);
+
+    const parent = document.querySelector(".page-container");
+    parent.appendChild(page);
+    page.appendChild(tabContainer);
+    tabContainer.appendChild(tabContent);
+    tabContent.appendChild(aboutPage);
+    aboutPage.appendChild(section);
+
+    var title = document.querySelector("title");
+    title.textContent = 'About - 2015YouTube';
+
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] == "changelog") {
+      sectLazyList.innerHTML = `<div class="ap-shelf">
+    <div class="ap-shelf-header">
+    <h3>
+Changelog
+    </h3>
+    </div>
+
+    <div class="ap-shelf-content">
     <div class="ap-shelf-text">22 Feb 2024:
 -Initial development started
 
@@ -392,26 +433,18 @@ a few hours later:
 
 10 Sep 2024:
 -the dematerialized UI for YTm15 now supports dark theme
+
+15 Sep 2024:
+-YTm15's changelog has been moved to its own separate page
+-Dialogs and radio buttons now support dark theme
     </div>
     </div>
     </div>
-    <!-- <div class="item-section"> -->
-    <!-- <div class="lazy-list no-animation"> -->
-    <div class="about-page-bottom-title">
-    <h3 class="ap-bottom-title-text">YTm15, a project to bring back YT's old mobile UI</h3>
-    </div>
-    <footer class="about-page-footer">
-    <div class="ap-footer-content">
-    <h3 class="ap-footer-text">Have any questions/issues/requests/bugs/feedback? <a href="https://github.com/ytm15/ytm15.github.io/issues">Visit our Github's issues page</a></h3>
-    <h4 class="ap-footer-text small subhead" id="ap-footer-links">Links: <a href="https://ytm15.github.io/">Landing page</a> | <a href="https://github.com/ytm15/ytm15.github.io/">Github page</a></h4>
-    <h4 class="ap-footer-text small subhead" id="ap-footer-copyright-and-copyleft-text">© 2015, YouTube and Google | (ↄ) 2024, Yacine's remakes</h4>
-    <h4 class="ap-footer-text small subhead">Please note that YTm15 is not associated with, affiliated with, developed, approved, or endorsed by YouTube or Google!</h4>
-    </div>
-    </footer>
-    <!-- </div> -->
-    <!-- </div> -->
-    `;
-    section.appendChild(sectLazyList);
+`;
+      title.textContent = 'Changelog - 2015YouTube';
+      headerTitle.setAttribute("aria-label", "YTm15 Changelog");
+      headerTitle.textContent = "YTm15 Changelog";
+    }
 
     if (APP_DEMATERIALIZE_UI_expflag == "true") {
       Array.from(sectLazyList.querySelectorAll(".ap-shelf")).forEach(function(item){
@@ -421,14 +454,4 @@ a few hours later:
       item.classList.add('card');
       });
     }
-
-    const parent = document.querySelector(".page-container");
-    parent.appendChild(page);
-    page.appendChild(tabContainer);
-    tabContainer.appendChild(tabContent);
-    tabContent.appendChild(aboutPage);
-    aboutPage.appendChild(section);
-
-    var title = document.querySelector("title");
-    title.textContent = 'About - 2015YouTube';
 }

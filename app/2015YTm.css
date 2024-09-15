@@ -2664,10 +2664,12 @@ h3.ap-bottom-title-text {
 }
 .menu-content.closing {
     animation: menu-close .3s ease-out;
+    animation-fill-mode: forwards;
     opacity: 0;
 }
 .menu-content.menu-style-youtube.closing {
     animation: menu-close-alt .2s ease-out;
+    animation-fill-mode: forwards;
 }
 .menu-content.menu-style-holo {
     box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.6);
@@ -2675,6 +2677,7 @@ h3.ap-bottom-title-text {
 }
 .menu-content.menu-style-holo.closing {
     animation: menu-close-alt .2s ease-out;
+    animation-fill-mode: forwards;
 }
 .menu-content.menu-style-holo .menu-item-button {
     /* padding: 15px 8px; */
@@ -4995,6 +4998,59 @@ html.dark {
 .dark .slim-style-2017 .video-metadata-header-content ytm15-icon {
     color: rgba(255,255,255,0.6);
 }
+.dark dialog.ytm15-dialog {
+    background-color: #282828;
+    color: #f1f1f1;
+}
+.dark .material-radio input:checked {
+    background-color: #3ea6ef;
+    border-color: #3ea6ef;
+    animation-name: radiocheckedark;
+}
+.dark .material-radio input {
+    border-color: rgba(255,255,255,0.6);
+    animation-name: radiouncheckedark;
+}
+@keyframes radiocheckedark {
+0% {
+    border: 2px solid rgba(255,255,255,0.6);
+    background-color: transparent;
+    padding: 0;
+}
+50% {
+    border-width: 9px;
+    background-color: transparent;
+    transform: scale(0.9);
+    padding: 0;
+}
+60% {
+    border-width: 2px;
+    background-color: #3ea6ef;
+}
+100% {
+    padding: 3px;
+}
+}
+@keyframes radiouncheckedark {
+0% {
+    border: 2px solid #3ea6ef;
+    background-color: #3ea6ef;
+    padding: 3px;
+}
+50% {
+    border: 2px solid rgba(255,255,255,0.6);
+    background-color: rgba(255,255,255,0.6);
+    padding: 0;
+}
+60% {
+    border-width: 9px;
+    padding: 0;
+    transform: scale(0.9);
+}
+100% {
+    padding: 3px;
+}
+}
 
 /* Dark 28 */
 html.dark.dark-28 {
@@ -5044,6 +5100,9 @@ html.dark.dark-21 {
 }
 .dark.dark-21 .playlist-header-container {
     background-color: #181818;
+}
+.dark.dark-21 dialog.ytm15-dialog {
+    background-color: #212121;
 }
 
 /* Global dark theme for dematerialized/2013 UI */
