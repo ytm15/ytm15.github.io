@@ -38,15 +38,21 @@ function renderWatchPage(parent) {
 <span class="error-text">There was an error connecting to the server</span>
 </div>
 <div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry"><div class="button-text">Retry</div></button></div>`;
+    /* if (JSON.parse(getWatchData.response)) {
+    const data = JSON.parse(getWatchData.response);
+    if (data.error) {
+    error.querySelector(".error-text").textContent = data.error;
+    }
+    } */
+    const errorBtn = error.querySelector("button");
+    errorBtn.onclick = function(){renderWatchPage(parent)};
+    parent.appendChild(error);
     if (JSON.parse(getWatchData.response)) {
     const data = JSON.parse(getWatchData.response);
     if (data.error) {
     error.querySelector(".error-text").textContent = data.error;
     }
     }
-    const errorBtn = error.querySelector("button");
-    errorBtn.onclick = function(){renderWatchPage(parent)};
-    parent.appendChild(error);
     return;
     };
 
