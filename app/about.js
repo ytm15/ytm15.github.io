@@ -437,6 +437,9 @@ a few hours later:
 15 Sep 2024:
 -YTm15's changelog has been moved to its own separate page
 -Dialogs and radio buttons now support dark theme
+
+19 Sep 2024:
+-YTm15 now uses the "inv.nadeko.net" instance for the player and watchpage instead of "invidious.jing.rocks"
     </div>
     </div>
     </div>

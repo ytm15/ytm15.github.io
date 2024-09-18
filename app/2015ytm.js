@@ -252,7 +252,7 @@ metaColorElm.content = "#000000";
 }
 
 APIbaseURL = "https://inv.tux.pizza/";
-APIbaseURLWatch = "https://invidious.jing.rocks/";
+APIbaseURLWatch = "https://inv.nadeko.net/";
 
 playerVideoId = "e";
 playerEmbedURL = "https://invidious.fi/embed/";
