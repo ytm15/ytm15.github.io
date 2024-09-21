@@ -181,16 +181,16 @@ if (HEADER_RED_STYLE_expflag == "false") {
     defaultMetaColor = metaColor3;
     }
     if (APP_DEMATERIALIZE_UI_expflag == "true") {
-    metaColorElm.content = "#000000";
-    defaultMetaColor = "#000000";
+    metaColorElm.content = "transparent";
+    defaultMetaColor = "transparent";
     }
     defaultMetaColor = metaColorElm.content;
 } else {
     metaColorElm.content = metaColor1;
     defaultMetaColor = metaColor1;
     if (APP_DEMATERIALIZE_UI_expflag == "true") {
-    metaColorElm.content = "#000000";
-    defaultMetaColor = "#000000";
+    metaColorElm.content = "transparent";
+    defaultMetaColor = "transparent";
     }
 };
 
@@ -247,7 +247,7 @@ if (headerIsChannel == 'true' && headerBar.querySelector("header").dataset.mode 
 metaColorElm.content = metaColor5;
 }
 if (APP_DEMATERIALIZE_UI_expflag == "true") {
-metaColorElm.content = "#000000";
+metaColorElm.content = "transparent";
 }
 }
 
