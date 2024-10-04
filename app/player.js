@@ -817,7 +817,7 @@ YTmVideoId = playerVideoId;
 
 const playerxhttpr = new XMLHttpRequest();
 /* playerxhttpr.open('GET', 'https://inv.tux.pizza/api/v1/videos/' + YTmVideoId, true); */
-playerxhttpr.open('GET', 'https://inv.nadeko.net/api/v1/videos/' + YTmVideoId, true);
+playerxhttpr.open('GET', 'https://invidious.kornineq.de/api/v1/videos/' + YTmVideoId, true);
  
 playerxhttpr.send();
 

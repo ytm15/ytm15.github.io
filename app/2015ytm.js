@@ -251,7 +251,7 @@ metaColorElm.content = "#000000";
 }
 }
 
-APIbaseURL = "https://inv.tux.pizza/";
+APIbaseURL = "https://invidious.kornineq.de/";
 APIbaseURLWatch = "https://inv.nadeko.net/";
 
 playerVideoId = "e";
@@ -479,7 +479,7 @@ dataModeChange();
 renderHeader();
 
 function renderCommentSection(parent, mediaType, cmSource, isCMPage){
-    var cmBaseAPIURL = 'https://inv.tux.pizza/api/v1/comments/';
+    var cmBaseAPIURL = 'https://invidious.kornineq.de/api/v1/comments/';
 
     const commentSection = document.createElement("div");
     commentSection.classList.add("comment-section");

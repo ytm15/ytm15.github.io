@@ -76,6 +76,7 @@ transition: margin .2s, padding .2s;
     scroll-snap-stop: normal;
     scroll-snap-align: start;
     flex-shrink: 0;
+    transition: transform .25s;
 }
 .tab-content:empty {
     display: none;

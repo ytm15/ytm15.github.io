@@ -440,6 +440,11 @@ a few hours later:
 
 19 Sep 2024:
 -YTm15 now uses the "inv.nadeko.net" instance for the player and watchpage instead of "invidious.jing.rocks"
+
+04 Oct 2024:
+-YTm15 now globally uses the "invidious.kornineq.de" instance instead of "inv.tux.pizza"
+-Channel pages' homepage now appear for channels that don't have them
+-Instead of channels now showing a spinner when switching from one channel page to another, pages now go left or right depending on where go to
     </div>
     </div>
     </div>
