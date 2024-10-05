@@ -66,6 +66,9 @@ function channelPage() {
 
       if (document.querySelector(".tabs-content-container")) {
       Array.from(document.querySelector(".tabs-content-container").querySelectorAll(".tab-content")).forEach(function(itemTab){
+      tabTimO = setTimeout(function(){
+      itemTab.setAttribute("hidden", "");
+      }, 250);
       if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == itemTab.getAttribute("tab-title")) {
       if (itemTab.previousSibling && !itemTab.previousSibling.getAttribute("hidden")) {
       itemTab.previousSibling.setAttribute("style", "transform: translateX(-100%); scroll-snap-align: none;");

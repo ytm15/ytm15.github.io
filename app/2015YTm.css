@@ -5052,6 +5052,12 @@ html.dark {
     padding: 3px;
 }
 }
+.dark .slim-style-2017 .ytm15-video-owner {
+    border-color: rgba(255, 255, 255, 0.2);
+}
+.dark .slim-style-2017 .video-metadata-description-box {
+    border-color: rgba(255, 255, 255, 0.2);
+}
 
 /* Dark 28 */
 html.dark.dark-28 {

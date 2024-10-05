@@ -295,9 +295,6 @@ function renderWatchPage(parent) {
     getLicense.onload = function(){
       if (getLicense.status === 200) {
       const response = JSON.parse(getLicense.response);
-      if (metadataHeader.ariaExpanded == "true") {
-      metadataDescBox.setAttribute("style", "max-height: " + metadataDescBox.scrollHeight + "px");
-      }
       licenseText = "Standard YouTube License";
       /* if (response.items[0].contentDetails.licensedContent == false) */ 
       if (response.items[0].status.license == "creativeCommon") {
@@ -306,6 +303,9 @@ function renderWatchPage(parent) {
       descRow.querySelector(".metadata-row-container").innerHTML += `<div class="metadata-row">
 <span class="metadata-row-title">License</span><span class="metadata-row-items"><span class="metadata-row-item">${licenseText}</span></span>
 </div>`;
+      if (metadataHeader.ariaExpanded == "true") {
+      metadataDescBox.setAttribute("style", "max-height: " + metadataDescBox.scrollHeight + "px");
+      }
       } else {
       console.error("An error occurred with this operation (" + getLicense.status + ")");
       }
@@ -320,9 +320,6 @@ function renderWatchPage(parent) {
       if (getMetadataMusic.status === 200) {
       const response = JSON.parse(getMetadataMusic.response);
       if (response.items[0].musics.length !== 0) {
-      if (metadataHeader.ariaExpanded == "true") {
-      metadataDescBox.setAttribute("style", "max-height: " + metadataDescBox.scrollHeight + "px");
-      }
       descRow.querySelector(".metadata-row-container").innerHTML += `<div class="metadata-row-header">
 <h3 class="metadata-row-header-content">${DescMusic_text_string}</h3>
 </div>
@@ -331,9 +328,6 @@ function renderWatchPage(parent) {
 <a target="_blank" href="https://web.archive.org/web/20180625160512/https://support.google.com/youtube/answer/7680188">${LearnMore_text_string}</a>
 </div>`;
       response.items[0].musics.forEach(function(item){
-      if (metadataHeader.ariaExpanded == "true") {
-      metadataDescBox.setAttribute("style", "max-height: " + metadataDescBox.scrollHeight + "px");
-      }
       descRow.querySelector(".metadata-row-container").innerHTML += `<div class="metadata-row">
 <span class="metadata-row-title">${Song_text_string}</span><span class="metadata-row-items"><span class="metadata-row-item">${item.song}</span></span>
 </div>
@@ -344,6 +338,9 @@ function renderWatchPage(parent) {
 <span class="metadata-row-title">${Album_text_string}</span><span class="metadata-row-items"><span class="metadata-row-item">${item.album}</span></span>
 </div>`;
       });
+      if (metadataHeader.ariaExpanded == "true") {
+      metadataDescBox.setAttribute("style", "max-height: " + metadataDescBox.scrollHeight + "px");
+      }
       }
       } else {
       console.error("An error occurred with this operation (" + getMetadataMusic.status + ")");
