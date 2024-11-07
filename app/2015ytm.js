@@ -312,6 +312,7 @@ PinnedBy_text_string = "Pinned by ";
 Cancel_text_string = "Cancel";
 Ok_text_string = "Ok";
 UpNext_text_string = "Up next";
+Replies_text_string = "Replies";
 
 function renderSubscribeBtn(parent) {
     const mtrlBtnCont = document.createElement("div");
@@ -478,7 +479,7 @@ dataModeChange();
 
 renderHeader();
 
-function renderCommentSection(parent, mediaType, cmSource, isCMPage){
+function renderCommentSection(parent, mediaType, cmSource, isCMPage, comntId, comntContinuation){
     var cmBaseAPIURL = 'https://invidious.kornineq.de/api/v1/comments/';
 
     const commentSection = document.createElement("div");
@@ -497,7 +498,9 @@ function renderCommentSection(parent, mediaType, cmSource, isCMPage){
     commentsHeader.classList.add("comment-section-header");
     commentCount = `<span style="opacity: .6; font-style: italic;">Retrieving count...</span>`;
     commentsHeader.innerHTML = `<div class="comments-header-top"><h2 class="comments-header-text"><span class="cmh-text-title">${Comments_text_string}</span><span class="cmh-text-comment-count">${commentCount}</span></h2></div>`;
+    if (comntId == "" || comntId == undefined) {
     commentSection.appendChild(commentsHeader);
+    }
 
     var commentSeparator = document.createElement("div");
     commentSeparator.classList.add("comment-separator");
@@ -507,7 +510,7 @@ function renderCommentSection(parent, mediaType, cmSource, isCMPage){
     lazyList.classList.add("lazy-list");
     commentSection.appendChild(lazyList);
 
-    function retrieveComments(continuation){
+    function retrieveComments(continuation, inReplyThread){
     if (continuation == "") {
     lazyList.innerHTML = ``;
     }
@@ -606,6 +609,11 @@ ${pinnedCMBadge}
 </div>
 </div>
 `;
+    commentCont.querySelector("#cm-icon-reply").querySelector("button").onclick = function(){
+      commentMediaSource = "?v=" + cmSource;
+      window.location.href = "#/comments/" + commentMediaSource + "&id=" + item.commentId + "&continuation=" + continuation;
+    }
+
     Array.from(commentCont.querySelector(".comment-text").querySelectorAll('[data-onclick="jump_to_time"]')).forEach(function(ts){
     ts.onclick = function(e){
     playerJumpTime(e, ts.dataset.jumpTime);
@@ -631,6 +639,10 @@ ${pinnedCMBadge}
 </button>
 <span class="comment-count">${cmReplyCount}</span>
 </div>`;
+      commentCont.querySelector("#cm-icon-reply").querySelector("button").onclick = function(){
+      commentMediaSource = "?v=" + cmSource;
+      window.location.href = "#/comments/" + commentMediaSource + "&id=" + item.commentId + "&continuation=" + continuation;
+      }
       if (commentCont.querySelector(".pinned-comment-badge")) {
       commentCont.insertAdjacentElement("afterbegin", commentCont.querySelector(".pinned-comment-badge"));
       }
@@ -663,23 +675,40 @@ ${pinnedCMBadge}
     comment.appendChild(commentCont);
     
     commentThread.appendChild(comment);
+    if (inReplyThread) {
+    commentReplies.appendChild(comment);
+    }
 
     const cmRepliesBtnCont = document.createElement("div");
     cmRepliesBtnCont.classList.add("comment-replies-button");
     cmRepliesBtnCont.innerHTML = `<div class="material-button-container reply-button" data-style="CALLACTION_TEXT" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button" aria-label="View replies"><div class="button-text">View replies</div></button></div>`;
-    if (item.replies) {
+    if (item.replies && (comntId == "" || comntId == undefined)) {
     commentThread.appendChild(cmRepliesBtnCont);
     cmRepliesBtnCont.querySelector(".button-text").innerHTML = `View ${item.replies.replyCount.toLocaleString()} replies`;
     cmRepliesBtnCont.querySelector("button").ariaLabel = cmRepliesBtnCont.querySelector(".button-text").textContent;
+    cmRepliesBtnCont.querySelector("button").onclick = function(){
+      commentMediaSource = "?v=" + cmSource;
+      window.location.href = "#/comments/" + commentMediaSource + "&id=" + item.commentId + "&continuation=" + continuation;
+    }
     }
 
     var commentSeparator = document.createElement("div");
     commentSeparator.classList.add("comment-separator");
+    if (comntId == "" || comntId == undefined) {
     commentThread.appendChild(commentSeparator);
+    };
+    if (comntId == item.commentId) {
     lazyList.appendChild(commentThread);
+    commentThread.dataset.viewingReplies = true;
+    commentReplies = document.createElement("ytm15-comment-replies");
+    commentThread.appendChild(commentReplies);
+    retrieveComments(item.replies.continuation, true);
+    } else if (comntId == "" || comntId == undefined) {
+    lazyList.appendChild(commentThread);
+    };
     });
 
-    if (data.continuation) {
+    if (data.continuation && (inReplyThread || comntId == "" || comntId == undefined)) {
     const nextContinCont = document.createElement("div");
     nextContinCont.classList.add("next-continuation-cont");
     nextContinCont.innerHTML = `<div class="next-continuation">
@@ -688,7 +717,7 @@ ${pinnedCMBadge}
     nextContinCont.querySelector("button").dataset.continuation = data.continuation;
     nextContinCont.querySelector("button").onclick = function(){
     nextContinCont.remove();
-    retrieveComments(nextContinCont.querySelector("button").dataset.continuation);
+    retrieveComments(nextContinCont.querySelector("button").dataset.continuation, inReplyThread);
     };
     commentSection.appendChild(nextContinCont);
     }
@@ -698,7 +727,11 @@ ${pinnedCMBadge}
     }
     };
     };
+    if (comntId !== "" && comntId !== undefined) {
+    retrieveComments(comntContinuation);
+    } else {
     retrieveComments("");
+    };
 };
 
 const pivotBar = document.createElement("ytm15-pivot-bar");

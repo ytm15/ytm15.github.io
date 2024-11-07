@@ -3434,12 +3434,25 @@ ytm15-comment {
     font-size: 1.3rem;
     word-wrap: break-word;
 }
+[data-viewing-replies="true"]>ytm15-comment {
+    background-color: #eee;
+}
+ytm15-comment-replies {
+    display: block;
+}
 .comment-pfp-container {
     flex-shrink: 0;
 }
 .comment-pfp-container .comment-icon {
     width: 45px;
     height: 45px;
+}
+ytm15-comment-replies .comment-pfp-container .comment-icon {
+    width: 26px;
+    height: 26px;
+}
+ytm15-comment-replies .comment-pfp-container {
+    margin-left: 19px;
 }
 .comment-content {
     flex-grow: 1;
@@ -3499,6 +3512,10 @@ ytm15-comment {
     justify-content: center;
     height: 36px;
     align-items: center;
+}
+ytm15-comment-replies .comment-icons#cm-icon-reply {
+    visibility: hidden;
+    pointer-events: none;
 }
 .comment-action-icon {
     width: 16px;

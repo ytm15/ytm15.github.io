@@ -33,7 +33,7 @@ function commentsPage(){
     const sectLazyList = document.createElement("div");
     sectLazyList.classList.add('lazy-list');
 
-    renderCommentSection(sectLazyList, "video", window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("v").slice(1, 2).toString().split("=").slice(1, 2).toString(), true);
+    renderCommentSection(sectLazyList, "video", window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("v").slice(1, 2).toString().split("=").slice(1, 2).toString(), true, window.location.hash.split("?").slice(1, 2).toString().split("&").slice(1, 2).toString().split("id").slice(1, 2).toString().split("=").slice(1, 2).toString(), window.location.hash.split("?").slice(1, 2).toString().split("&").slice(2, 3).toString().split("continuation").slice(1, 2).toString().split("=").slice(1, 2).toString());
 
     section.appendChild(sectLazyList);
 
@@ -44,4 +44,10 @@ function commentsPage(){
 
     var title = document.querySelector("title");
     title.textContent = Comments_text_string + ' - 2015YouTube';
+
+    if (window.location.hash.split("?").slice(1, 2).toString().split("&").slice(1, 2).toString().split("id").slice(1, 2).toString().split("=").slice(1, 2).toString() !== "" && window.location.hash.split("?").slice(1, 2).toString().split("&").slice(1, 2).toString().split("id").slice(1, 2).toString().split("=").slice(1, 2).toString() !== undefined) {
+    title.textContent = Replies_text_string + ' - 2015YouTube';
+    headerTitle.setAttribute("aria-label", Replies_text_string);
+    headerTitle.textContent = Replies_text_string;
+    }
 };

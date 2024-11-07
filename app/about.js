@@ -445,6 +445,9 @@ a few hours later:
 -YTm15 now globally uses the "invidious.kornineq.de" instance instead of "inv.tux.pizza"
 -Channel pages' homepage now appear for channels that don't have them
 -Instead of channels now showing a spinner when switching from one channel page to another, pages now go left or right depending on where go to
+
+07 - 08 Nov 2024:
+-Started working on replies for comments
     </div>
     </div>
     </div>
