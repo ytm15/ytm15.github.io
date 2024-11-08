@@ -448,6 +448,9 @@ a few hours later:
 
 07 - 08 Nov 2024:
 -Started working on replies for comments
+
+08 Nov 2024:
+-Video dates are now retrieved from the same API used for the video metadata itself
     </div>
     </div>
     </div>

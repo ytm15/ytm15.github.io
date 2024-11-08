@@ -251,7 +251,7 @@ function renderWatchPage(parent) {
     playerJumpTime(e, ts.dataset.jumpTime);
     };
     });
-    const getPublishDate = new XMLHttpRequest();
+    /* const getPublishDate = new XMLHttpRequest();
     getPublishDate.open('GET', 'https://yt.lemnoslife.com/noKey/videos?part=contentDetails,id,liveStreamingDetails,localizations,player,recordingDetails,snippet,statistics,status,topicDetails&id=' + playerVideoId, true);
  
     getPublishDate.send();
@@ -269,7 +269,16 @@ function renderWatchPage(parent) {
       } else {
       console.error("An error occurred with this operation (" + getPublishDate.status + ")");
       }
+    }; */
+    const options = {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric'
     };
+    const timestamp = Number(data.published + "000");
+    const videoDate = new Date(timestamp);
+    const formattedDate = new Intl.DateTimeFormat('en-US', options).format(videoDate);
+    descInfo.querySelector(".video-published-date").innerHTML = "Published on " + formattedDate;
     metadataDescBox.appendChild(descInfo);
     if (descInfo.querySelectorAll('[href*="hashtag"]').toString() !== "") {
     Array.from(descInfo.querySelectorAll('[href*="hashtag"]')).forEach(function(item){
