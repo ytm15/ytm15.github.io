@@ -451,6 +451,7 @@ a few hours later:
 
 08 Nov 2024:
 -Video dates are now retrieved from the same API used for the video metadata itself
+-Added some more tabs to the pivot bar (will create the actual tabs soon)
     </div>
     </div>
     </div>
