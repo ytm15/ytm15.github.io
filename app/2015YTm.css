@@ -3423,6 +3423,43 @@ ytm15-playlist-header[data-is-beta="true"]::before {
 .cmh-text-comment-count:empty {
     display: none;
 }
+.comment-simplebox {
+    display: flex;
+    padding: 7px 16px;
+}
+.comment-simplebox-icon {
+    width: 45px;
+    height: 45px;
+    margin-right: 16px;
+}
+.comment-simplebox-input {
+    overflow: hidden;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+.comment-simplebox-placeholder {
+    flex-grow: 1;
+}
+.comment-simplebox-reply {
+    width: 100%;
+    height: 100%;
+    text-align: initial;
+    font-size: 1.4rem;
+    padding: 6px 0px;
+    opacity: .5;
+}
+[data-viewing-replies="true"] .comment-simplebox {
+    padding: 16px;
+    padding-top: 15px;
+    padding-bottom: 13px;
+}
+[data-viewing-replies="true"] .comment-simplebox-icon {
+    width: 26px;
+    height: 26px;
+    margin-left: 19px;
+}
 ytm15-comment-thread {
     min-height: 15px;
     display: block;
@@ -4729,6 +4766,28 @@ html.style-2013 {
     animation: watch-ytheader-show-2013 .3s ease-in-out;
     z-index: 5;
 }
+.style-2013 .comment-simplebox {
+    padding: 4px 10px;
+    padding-right: 8px;
+    padding-bottom: 10px;
+    align-items: center;
+}
+.style-2013 .comment-simplebox-icon {
+    margin-right: 10px;
+}
+.style-2013 .comment-simplebox-placeholder {
+    border-bottom: 1.2px solid rgba(0,0,0,0.2);
+}
+.style-2013 .comment-simplebox-reply {
+    padding: 6px;
+}
+.style-2013 [data-viewing-replies="true"] .comment-simplebox {
+    padding: 10px;
+    padding-right: 8px;
+}
+.style-2013.lighter-borders *:-webkit-any(.ap-shelf-header, .compact-media-item, .media-channel, .shelf-header, .video-metadata-actions, .comment-simplebox-placeholder, .autonav-bar) {
+    border-color: rgba(0, 0, 0, 0.1);
+}
 
 /* Global dark theme */
 html.dark {
@@ -4973,6 +5032,9 @@ html.dark {
 .dark .comment-separator {
     border-bottom: 1.2px solid rgba(255, 255, 255, 0.2);
 }
+.dark .comment-section {
+    border-bottom-color: rgba(255, 255, 255, 0.2);
+}
 .dark.lighter-borders *:-webkit-any(.shelf, .item-section, .ap-shelf, .about-page-bottom-title, .comment-separator, .channel-about-metadata-view-count, .channel-about-metadata-header, .setting-boolean, .setting-single-option-menu, .ytm15-settings-msg, .metadata-row-header-content, .error-container, .comment-section), .dark.lighter-borders .slim-style-2017 *:-webkit-any(.ytm15-video-owner, .video-metadata-description-box) {
     border-color: rgba(255, 255, 255, 0.1);
 }
@@ -5075,6 +5137,9 @@ html.dark {
 .dark .slim-style-2017 .video-metadata-description-box {
     border-color: rgba(255, 255, 255, 0.2);
 }
+.dark [data-viewing-replies="true"]>ytm15-comment {
+    background-color: #282828;
+}
 
 /* Dark 28 */
 html.dark.dark-28 {
@@ -5096,6 +5161,9 @@ html.dark.dark-28 {
 .dark.dark-28 .watchpage-frame-items ytm15-watch::after {
     background-color: #282828;
 }
+}
+.dark.dark-28 [data-viewing-replies="true"]>ytm15-comment {
+    background-color: #212121;
 }
 
 /* Dark 21 */
@@ -5128,11 +5196,15 @@ html.dark.dark-21 {
 .dark.dark-21 dialog.ytm15-dialog {
     background-color: #212121;
 }
+.dark.dark-21 [data-viewing-replies="true"]>ytm15-comment {
+    background-color: #191919;
+}
 
 /* Global dark theme for dematerialized/2013 UI */
 .style-2013.dark .card {
     background-color: #303030;
     border-bottom: 1px solid rgba(0,0,0,0.1);
+    border-color: rgba(0,0,0,0.1);
 }
 html.style-2013.dark {
     background-color: #282828;
@@ -5233,6 +5305,12 @@ html.style-2013.dark {
 }
 .style-2013.dark .playlist-video-list-header {
     border-bottom-color: rgba(255,255,255,0.2);
+}
+.style-2013.dark .comment-simplebox-placeholder {
+    border-bottom-color: rgba(255, 255, 255, 0.2);
+}
+.style-2013.dark.lighter-borders *:-webkit-any(.ap-shelf-header, .compact-media-item, .media-channel, .shelf-header, .video-metadata-actions, .comment-simplebox-placeholder, .autonav-bar) {
+    border-color: rgba(255, 255, 255, 0.1);
 }
 
 /* Dark 28 for dematerialized/2013 UI */

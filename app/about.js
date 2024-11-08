@@ -452,6 +452,9 @@ a few hours later:
 08 Nov 2024:
 -Video dates are now retrieved from the same API used for the video metadata itself
 -Added some more tabs to the pivot bar (will create the actual tabs soon)
+-Started working on comment simpleboxes
+-Updated the background of the comment of which you are viewing replies on in the replies page to support dark theme
+-The "lighter borders" flag now works with the 2013/dematerialized theme
     </div>
     </div>
     </div>

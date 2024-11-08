@@ -316,6 +316,8 @@ Replies_text_string = "Replies";
 Subs_text_string = "Subscriptions";
 Notifs_text_string = "Notifications";
 Library_text_string = "Library";
+AddComment_text_string = "Add a public comment...";
+AddReply_text_string = "Add a public reply..."
 
 function renderSubscribeBtn(parent) {
     const mtrlBtnCont = document.createElement("div");
@@ -501,6 +503,24 @@ function renderCommentSection(parent, mediaType, cmSource, isCMPage, comntId, co
     commentsHeader.classList.add("comment-section-header");
     commentCount = `<span style="opacity: .6; font-style: italic;">Retrieving count...</span>`;
     commentsHeader.innerHTML = `<div class="comments-header-top"><h2 class="comments-header-text"><span class="cmh-text-title">${Comments_text_string}</span><span class="cmh-text-comment-count">${commentCount}</span></h2></div>`;
+
+    function renderCommentSB(CSBstring, parent){
+    const commentSimplebox = document.createElement("div");
+    commentSimplebox.classList.add("comment-simplebox");
+    commentSimplebox.innerHTML = `
+<div class="profile-icon comment-simplebox-icon">
+<img class="profile-img ytm15-img lazy" loading="lazy" src="https://yt3.ggpht.com/a/default-user=s100-c-k-c0x00ffffff-no-rj"></img>
+</div>
+<div class="comment-simplebox-input">
+<div class="comment-simplebox-placeholder">
+<button class="comment-simplebox-reply">${CSBstring}</button>
+</div>
+</div>
+`;
+    commentSimplebox.querySelector(".profile-img").onload = function(){this.classList.add('loaded');};
+    parent.appendChild(commentSimplebox);
+    };
+    renderCommentSB(AddComment_text_string, commentsHeader);
     if (comntId == "" || comntId == undefined) {
     commentSection.appendChild(commentsHeader);
     }
@@ -703,6 +723,8 @@ ${pinnedCMBadge}
     if (comntId == item.commentId) {
     lazyList.appendChild(commentThread);
     commentThread.dataset.viewingReplies = true;
+    renderCommentSB(AddReply_text_string, commentThread);
+    commentThread.appendChild(commentSeparator);
     commentReplies = document.createElement("ytm15-comment-replies");
     commentThread.appendChild(commentReplies);
     retrieveComments(item.replies.continuation, true);
