@@ -667,8 +667,9 @@ video.storyboard-video {
     background-color: #303030;
     border: 0;
     /* border-top: 1px solid rgba(255, 255, 255, 0.5); */
-    border-top: 1px solid rgba(255, 255, 255, 0.5);
-    border-radius: 1px;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    /* border-radius: 1px; */
+    border-radius: 2px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.8);
     box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.8);
     z-index: 1;
@@ -703,9 +704,43 @@ video.storyboard-video {
 }
 }
 
+.player-dialog-overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    left: 0;
+    right: 0;
+    transition: opacity .2s ease-in-out;
+    opacity: 0;
+    pointer-events: none;
+}
+[open].player-options-dialog~.player-dialog-overlay {
+    opacity: 1;
+    pointer-events: unset;
+}
+
 .player-dialog-header {
     padding: 13px 16px;
     border-bottom: 1.2px solid rgba(255,255,255,0.1);
+}
+
+.player-dialog-footer .controls-button {
+    height: unset;
+    width: unset;
+    padding: 17px 16px;
+    font-size: 15px;
+    border-radius: 0;
+    flex-grow: 1;
+}
+.player-dialog-footer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    border-top: 1.2px solid rgba(255,255,255,0.1);
+}
+.player-dialog-footer .controls-button~.controls-button {
+    border-left: 1px solid rgba(255,255,255,0.1);
 }
 
 h3.player-dialog-title {
@@ -716,8 +751,10 @@ h3.player-dialog-title {
 .player-dialog-content {
     padding: 13px 15px;
     overflow: auto;
-    max-height: calc(100vh - 122px);
+    /* max-height: calc(100vh - 122px); */
+    max-height: calc(100vh - 171px);
     border-top: 1px solid rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 .player-dialog-header .controls-button.close-plyr-dialog-button {

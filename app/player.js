@@ -214,6 +214,8 @@ fullScreenBtn.innerHTML = `<img class="player-img-icon button-icon fullscreen-ic
 <img class="player-img-icon button-icon fullscreen-icon active" src="ic_vidcontrol_fullscreen_off_pressed.png"></img>`;
 fullScreenBtn.ariaPressed = "false";
 btnsCont.appendChild(fullScreenBtn);
+const playerDialogOverlay = document.createElement("div");
+playerDialogOverlay.classList.add("player-dialog-overlay");
 const playerOptDialog = document.createElement("dialog");
 playerOptDialog.classList.add("player-options-dialog");
 playerOptDialog.id = "";
@@ -223,19 +225,25 @@ playerOptDialog.innerHTML = `
 </div>
 <div class="player-dialog-content">
 </div>
+<div class="player-dialog-footer">
+</div>
 `;
 const playerDialogHeader = playerOptDialog.querySelector(".player-dialog-header");
+const playerDialogFooter = playerOptDialog.querySelector(".player-dialog-footer");
 const playerDialogTitle = playerOptDialog.querySelector(".player-dialog-title");
 const playerDialogContent = playerOptDialog.querySelector(".player-dialog-content");
 playerOptCont.appendChild(playerOptDialog);
+playerOptCont.appendChild(playerDialogOverlay);
 const playerOptCloseDialog = document.createElement("button");
 playerOptCloseDialog.classList.add("controls-button", "close-plyr-dialog-button", "has-ripple");
 playerOptCloseDialog.title = "Close dialog";
 playerOptCloseDialog.ariaLabel = "Close dialog";
-playerOptCloseDialog.innerHTML = `<img class="player-img-icon button-icon hide-icon inactive" src="ic_vidcontrol_hide_controls.png"></img>
-<img class="player-img-icon button-icon hide-icon active" src="ic_vidcontrol_hide_controls_pressed.png"></img>`;
+playerOptCloseDialog.innerHTML = `<!-- <img class="player-img-icon button-icon hide-icon inactive" src="ic_vidcontrol_hide_controls.png"></img> -->
+<!-- <img class="player-img-icon button-icon hide-icon active" src="ic_vidcontrol_hide_controls_pressed.png"></img> -->
+Close`;
 playerOptCloseDialog.ariaPressed = "false";
-playerDialogHeader.appendChild(playerOptCloseDialog);
+/* playerDialogHeader.appendChild(playerOptCloseDialog); */
+playerDialogFooter.appendChild(playerOptCloseDialog);
 const playerOptItem = document.createElement("div");
 playerOptItem.classList.add("player-options-item");
 playerOptContent.appendChild(playerOptItem);

@@ -455,6 +455,10 @@ a few hours later:
 -Started working on comment simpleboxes
 -Updated the background of the comment of which you are viewing replies on in the replies page to support dark theme
 -The "lighter borders" flag now works with the 2013/dematerialized theme
+
+20 Nov 2024:
+-The player's dialog now has an overlay
+-The player's dialog's close icon button is now a bottom text button + player dialog footer has been introduced
     </div>
     </div>
     </div>
