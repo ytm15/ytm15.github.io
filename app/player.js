@@ -825,7 +825,7 @@ YTmVideoId = playerVideoId;
 
 const playerxhttpr = new XMLHttpRequest();
 /* playerxhttpr.open('GET', 'https://inv.tux.pizza/api/v1/videos/' + YTmVideoId, true); */
-playerxhttpr.open('GET', 'https://invidious.kornineq.de/api/v1/videos/' + YTmVideoId, true);
+playerxhttpr.open('GET', 'https://invidious.nerdvpn.de/api/v1/videos/' + YTmVideoId, true);
  
 playerxhttpr.send();
 
@@ -888,7 +888,7 @@ sbxhttpr.onload = function() {
           data.captions.forEach(function(item) {
           const vidTrack = document.createElement("track");
           vidTrack.kind = "captions";
-          vidTrack.src = "https://inv.tux.pizza" + item.url;
+          vidTrack.src = "https://invidious.nerdvpn.de" + item.url;
           vidTrack.srclang = item.language_code;
           vidTrack.label = item.label;
           video.appendChild(vidTrack);
