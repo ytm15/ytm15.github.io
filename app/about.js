@@ -444,7 +444,7 @@ a few hours later:
 04 Oct 2024:
 -YTm15 now globally uses the "invidious.kornineq.de" instance instead of "inv.tux.pizza"
 -Channel pages' homepage now appear for channels that don't have them
--Instead of channels now showing a spinner when switching from one channel page to another, pages now go left or right depending on where go to
+-Instead of channels now showing a spinner when switching from one channel page to another, pages now go left or right depending on where you go to
 
 07 - 08 Nov 2024:
 -Started working on replies for comments
@@ -459,6 +459,9 @@ a few hours later:
 20 Nov 2024:
 -The player's dialog now has an overlay
 -The player's dialog's close icon button is now a bottom text button + player dialog footer has been introduced
+
+29 Nov 2024:
+-YTm15 now uses the "inv.nadeko.net" instance for the API it uses instead of "invidious.kornineq.de"
     </div>
     </div>
     </div>

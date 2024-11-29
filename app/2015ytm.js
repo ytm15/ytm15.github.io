@@ -251,7 +251,7 @@ metaColorElm.content = "#000000";
 }
 }
 
-APIbaseURL = "https://invidious.kornineq.de/";
+APIbaseURL = "https://inv.nadeko.net/";
 APIbaseURLWatch = "https://inv.nadeko.net/";
 
 playerVideoId = "e";
