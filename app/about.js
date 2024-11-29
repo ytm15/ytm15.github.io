@@ -461,7 +461,7 @@ a few hours later:
 -The player's dialog's close icon button is now a bottom text button + player dialog footer has been introduced
 
 29 Nov 2024:
--YTm15 now uses the "inv.nadeko.net" instance for the API it uses instead of "invidious.kornineq.de"
+-YTm15 now uses the "invidious.nerdvpn.de" instance for the API it uses instead of "invidious.kornineq.de"
     </div>
     </div>
     </div>
