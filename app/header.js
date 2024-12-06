@@ -208,7 +208,7 @@ function renderHeader() {
     headerButtons.classList.add("header-buttons");
 
     const searchBtn = document.createElement("button");
-    searchBtn.classList.add("icon-button", "header-button");
+    searchBtn.classList.add("icon-button", "header-button", "search-button");
     searchBtn.onclick = function(){searching(searchDropdown, input);};
     searchBtn.setAttribute("aria-label", SearchYT_text_string);
     searchBtn.setAttribute("aria-haspopup", "false");

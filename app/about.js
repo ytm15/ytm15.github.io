@@ -462,6 +462,10 @@ a few hours later:
 
 29 Nov 2024:
 -YTm15 now uses the "invidious.nerdvpn.de" instance for the API it uses instead of "invidious.kornineq.de"
+
+06 Dec 2024:
+-Added subscriptions and account tabs on the homepage (non-pivot) (these tabs are currently placeholders, the actual ones will be created soon)
+-Finally fixed the searchbox dropdown for dematerialized/2013 UI
     </div>
     </div>
     </div>

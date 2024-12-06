@@ -4051,7 +4051,7 @@ html.style-2013 {
     margin-left: 0;
 }
 .style-2013 .ytm15Searchbox {
-    margin-left: 0;
+    margin-left: 4px;
 }
 .style-2013 .searching-overlay {
     background-color: transparent;
@@ -4531,9 +4531,31 @@ html.style-2013 {
 .style-2013 .ytm15-video-owner {
     padding: 11px;
 }
+.style-2013 .searchbox-dropdown {
+    background-color: #f1f1f1;
+    left: 23px;
+    right: 54px;
+    max-height: calc(100vh - 55px);
+    box-shadow: 0px 2px 7px 0 rgba(0, 0, 0, 0.4);
+    border-radius: 2px;
+    max-width: 434px;
+}
 .style-2013 .shorter .searchbox-dropdown {
     top: 46px;
-    max-height: calc(100vh - 46px);
+    max-height: calc(100vh - 55px);
+}
+.style-2013 .searchbox-form {
+    max-width: 400px;
+}
+.style-2013 .ytm15-header[data-mode="searching"]>.not-search-mode {
+    display: flex;
+    flex-grow: 0;
+}
+.style-2013 .ytm15-header[data-mode="searching"]>.not-search-mode .header-title {
+    display: none;
+}
+.style-2013 .ytm15-header[data-mode="searching"]>.not-search-mode .header-button.search-button {
+    display: none;
 }
 .style-2013 .ytm15-video-owner .material-button-container[data-style="BRAND"] .material-button {
     border-color: #ccc;

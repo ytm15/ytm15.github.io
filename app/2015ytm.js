@@ -318,6 +318,7 @@ Notifs_text_string = "Notifications";
 Library_text_string = "Library";
 AddComment_text_string = "Add a public comment...";
 AddReply_text_string = "Add a public reply..."
+Account_text_string = "Account";
 
 function renderSubscribeBtn(parent) {
     const mtrlBtnCont = document.createElement("div");
