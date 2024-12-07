@@ -4052,6 +4052,7 @@ html.style-2013 {
 }
 .style-2013 .ytm15Searchbox {
     margin-left: 4px;
+    height: 100%;
 }
 .style-2013 .searching-overlay {
     background-color: transparent;
@@ -4544,8 +4545,57 @@ html.style-2013 {
     top: 46px;
     max-height: calc(100vh - 55px);
 }
+.style-2013 .searchbox-dropdown .sbdd-list-cont {
+    font-size: 1.8rem;
+    color: #111;
+}
+.style-2013 .searchbox-dropdown a.sbdd-suggestion-link {
+    border-top: 1.2px solid rgba(0, 0, 0, 0.1);
+}
+.style-2013 .searchbox-dropdown .sbdd-item-icon path:nth-of-type(1) {
+    display: initial!important;
+}
+.style-2013 .searchbox-dropdown .sbdd-item-icon path:nth-of-type(2) {
+    display: none;
+}
 .style-2013 .searchbox-form {
     max-width: 400px;
+    align-items: stretch;
+    position: relative;
+}
+.style-2013 input.searchbox-input {
+    height: 100%;
+    padding: 2px 11px;
+    padding-right: 0;
+}
+.style-2013 input.searchbox-input.title {
+    font-size: 1.8rem;
+}
+.style-2013 input::-webkit-input-placeholder {
+    padding-left: 26px;
+    background-image: url("ic_menu_search.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-x: 2px;
+}
+.style-2013 .searchbox-input-wrapper::after {
+    content: "";
+    border: 1px solid rgba(0,0,0,0.3);
+    border-top: 0;
+    position: absolute;
+    height: 4px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none;
+}
+.style-2013 [data-mode="searching"] .searchbox-input-wrapper::after {
+    border-width: 2px;
+    border-color: #009ACE;
+}
+.style-2013 input[type="search" i]::-webkit-search-cancel-button {
+    border-radius: 0;
+    transition: none;
 }
 .style-2013 .ytm15-header[data-mode="searching"]>.not-search-mode {
     display: flex;

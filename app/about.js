@@ -466,6 +466,10 @@ a few hours later:
 06 Dec 2024:
 -Added subscriptions and account tabs on the homepage (non-pivot) (these tabs are currently placeholders, the actual ones will be created soon)
 -Finally fixed the searchbox dropdown for dematerialized/2013 UI
+
+07 Dec 2024:
+-Updated the searchbox/input for dematerialized/2013 UI
+-added borders to search suggestions, increased font size, and changed font color for 2013 UI
     </div>
     </div>
     </div>
