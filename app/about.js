@@ -470,6 +470,9 @@ a few hours later:
 07 Dec 2024:
 -Updated the searchbox/input for dematerialized/2013 UI
 -added borders to search suggestions, increased font size, and changed font color for 2013 UI
+
+02 Jan 2025 (1st update of 2025!):
+-every xmlhttprequest ytm15 makes which uses the invidious nerdvpn api now uses username password authentication and "withcredentials" (at the moment this isn't working to fix the issue with its api rn, but I'll try to figure it out soon)
     </div>
     </div>
     </div>

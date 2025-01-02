@@ -21,7 +21,8 @@ function searchPage() {
     };
 
     const getSearchData = new XMLHttpRequest();
-    getSearchData.open('GET', APIbaseURL + 'api/v1/search?q=' + searchValueNotDecoded + `&page=1&sort_by=${searchParamSort}&date=${searchParamDate}&duration=${searchParamDuration}&type=${searchParamType}&features=${searchParamFeatures}`, true);
+    getSearchData.open('GET', APIbaseURL + 'api/v1/search?q=' + searchValueNotDecoded + `&page=1&sort_by=${searchParamSort}&date=${searchParamDate}&duration=${searchParamDuration}&type=${searchParamType}&features=${searchParamFeatures}`, true, 'ytm15', 'JQJ53KrLAEY6E5qhgcm38PkSzw3bZXmk');
+    getSearchData.withCredentials = true;
 
     getSearchData.onerror = function(event) {
     console.error("An error occurred with this operation (" + getSearchData.status + ")");
@@ -161,7 +162,8 @@ function searchPageContin(continuation, contItemParent) {
     contItemParent.appendChild(contItem);
 
     const getSearchData1 = new XMLHttpRequest();
-    getSearchData1.open('GET', APIbaseURL + 'api/v1/search?q=' + searchValueNotDecoded + `&page=${continuation}&sort_by=${searchParamSort}&date=${searchParamDate}&duration=${searchParamDuration}&type=${searchParamType}&features=${searchParamFeatures}`, true);
+    getSearchData1.open('GET', APIbaseURL + 'api/v1/search?q=' + searchValueNotDecoded + `&page=${continuation}&sort_by=${searchParamSort}&date=${searchParamDate}&duration=${searchParamDuration}&type=${searchParamType}&features=${searchParamFeatures}`, true, 'ytm15', 'JQJ53KrLAEY6E5qhgcm38PkSzw3bZXmk');
+    getSearchData1.withCredentials = true;
  
     getSearchData1.onerror = function(event) {
     console.error("An error occurred with this operation (" + getSearchData1.status + ")");

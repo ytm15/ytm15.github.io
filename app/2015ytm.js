@@ -486,7 +486,7 @@ dataModeChange();
 renderHeader();
 
 function renderCommentSection(parent, mediaType, cmSource, isCMPage, comntId, comntContinuation){
-    var cmBaseAPIURL = 'https://invidious.kornineq.de/api/v1/comments/';
+    var cmBaseAPIURL = 'https://invidious.nerdvpn.de/api/v1/comments/';
 
     const commentSection = document.createElement("div");
     commentSection.classList.add("comment-section");
@@ -549,7 +549,8 @@ function renderCommentSection(parent, mediaType, cmSource, isCMPage, comntId, co
     lazyList.appendChild(contItem);
 
     const getCommentsData = new XMLHttpRequest();
-    getCommentsData.open('GET', cmBaseAPIURL + cmSource + "?continuation=" + continuation, true);
+    getCommentsData.open('GET', cmBaseAPIURL + cmSource + "?continuation=" + continuation, true, 'ytm15', 'JQJ53KrLAEY6E5qhgcm38PkSzw3bZXmk');
+    getCommentsData.withCredentials = true;
 
     getCommentsData.onerror = function(event) {
     console.error("An error occurred with this operation (" + getCommentsData.status + ")");
@@ -673,7 +674,8 @@ ${pinnedCMBadge}
     }
 
     const getCommentsTitle = new XMLHttpRequest();
-    getCommentsTitle.open('GET', APIbaseURL + 'api/v1/channels/' + item.authorId, true);
+    getCommentsTitle.open('GET', APIbaseURL + 'api/v1/channels/' + item.authorId, true, 'ytm15', 'JQJ53KrLAEY6E5qhgcm38PkSzw3bZXmk');
+    getCommentsTitle.withCredentials = true;
 
     getCommentsTitle.onerror = function(event) {
     console.error("An error occurred with this operation (" + getCommentsTitle.status + ")");
