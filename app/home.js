@@ -155,11 +155,12 @@ function renderData() {
 
         const getHomeData = new XMLHttpRequest();
         if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] !== "trending") {
-        getHomeData.open('GET', APIbaseURL + 'api/v1/trending', true, "ytm15", "JQJ53KrLAEY6E5qhgcm38PkSzw3bZXmk");
+        getHomeData.open('GET', APIbaseURL + 'api/v1/trending', true, 'ytm15', 'JQJ53KrLAEY6E5qhgcm38PkSzw3bZXmk');
         } else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "trending") {
         /* getHomeData.open('GET', APIbaseURL + 'api/v1/trending?type=' + trendType, true); */
-        getHomeData.open('GET', APIbaseURL + 'api/v1/trending?type=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("trtype").slice(1, 2).toString().split("=").slice(1, 2).toString(), true, "ytm15", "JQJ53KrLAEY6E5qhgcm38PkSzw3bZXmk");
+        getHomeData.open('GET', APIbaseURL + 'api/v1/trending?type=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("trtype").slice(1, 2).toString().split("=").slice(1, 2).toString(), true, 'ytm15', 'JQJ53KrLAEY6E5qhgcm38PkSzw3bZXmk');
         }
+        getHomeData.withCredentials = true;
 
         getHomeData.onerror = function(event) {
         console.error("An error occurred with this operation (" + getHomeData.status + ")");
@@ -287,7 +288,8 @@ function renderData() {
 
         const getHomeData1 = new XMLHttpRequest();
 
-        getHomeData1.open('GET', APIbaseURL + 'api/v1/popular', true, "ytm15", "JQJ53KrLAEY6E5qhgcm38PkSzw3bZXmk");
+        getHomeData1.open('GET', APIbaseURL + 'api/v1/popular', true, 'ytm15', 'JQJ53KrLAEY6E5qhgcm38PkSzw3bZXmk');
+        getHomeData1.withCredentials = true;
 
         getHomeData1.onerror = function(event) {
         console.error("An error occurred with this operation (" + getHomeData1.status + ")");
@@ -419,7 +421,8 @@ function renderData() {
 
     const getHomeData3 = new XMLHttpRequest();
 
-    getHomeData3.open('GET', APIbaseURL + 'api/v1/popular', true, "ytm15", "JQJ53KrLAEY6E5qhgcm38PkSzw3bZXmk");
+    getHomeData3.open('GET', APIbaseURL + 'api/v1/popular', true, 'ytm15', 'JQJ53KrLAEY6E5qhgcm38PkSzw3bZXmk');
+    getHomeData3.withCredentials = true;
 
     getHomeData3.onerror = function(event) {
         console.error("An error occurred with this operation (" + getHomeData3.status + ")");
@@ -616,10 +619,11 @@ function renderDataTrending(homeShelfTrendingType, shelfTitle) {
 
     const getHomeData2 = new XMLHttpRequest();
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] !== "trending") {
-    getHomeData2.open('GET', APIbaseURL + 'api/v1/trending?type=' + homeShelfTrendingType, true, "ytm15", "JQJ53KrLAEY6E5qhgcm38PkSzw3bZXmk");
+    getHomeData2.open('GET', APIbaseURL + 'api/v1/trending?type=' + homeShelfTrendingType, true, 'ytm15', 'JQJ53KrLAEY6E5qhgcm38PkSzw3bZXmk');
     } else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "trending") {
-    getHomeData2.open('GET', APIbaseURL + 'api/v1/trending?type=' + trendType, true, "ytm15", "JQJ53KrLAEY6E5qhgcm38PkSzw3bZXmk");
+    getHomeData2.open('GET', APIbaseURL + 'api/v1/trending?type=' + trendType, true, 'ytm15', 'JQJ53KrLAEY6E5qhgcm38PkSzw3bZXmk');
     }
+    getHomeData2.withCredentials = true;
 
     getHomeData2.onerror = function(event) {
     console.error("An error occurred with this operation (" + getHomeData2.status + ")");
