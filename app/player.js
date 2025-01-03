@@ -825,8 +825,8 @@ YTmVideoId = playerVideoId;
 
 const playerxhttpr = new XMLHttpRequest();
 /* playerxhttpr.open('GET', 'https://inv.tux.pizza/api/v1/videos/' + YTmVideoId, true); */
-playerxhttpr.open('GET', 'https://invidious.nerdvpn.de/api/v1/videos/' + YTmVideoId, true, 'ytm15', 'JQJ53KrLAEY6E5qhgcm38PkSzw3bZXmk');
-playerxhttpr.withCredentials = true;
+playerxhttpr.open('GET', 'https://invidious.nerdvpn.de/api/v1/videos/' + YTmVideoId, true);
+playerxhttpr.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs=');
  
 playerxhttpr.send();
 

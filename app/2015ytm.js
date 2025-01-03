@@ -549,8 +549,8 @@ function renderCommentSection(parent, mediaType, cmSource, isCMPage, comntId, co
     lazyList.appendChild(contItem);
 
     const getCommentsData = new XMLHttpRequest();
-    getCommentsData.open('GET', cmBaseAPIURL + cmSource + "?continuation=" + continuation, true, 'ytm15', 'JQJ53KrLAEY6E5qhgcm38PkSzw3bZXmk');
-    getCommentsData.withCredentials = true;
+    getCommentsData.open('GET', cmBaseAPIURL + cmSource + "?continuation=" + continuation, true);
+    getCommentsData.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs=');
 
     getCommentsData.onerror = function(event) {
     console.error("An error occurred with this operation (" + getCommentsData.status + ")");
@@ -674,8 +674,8 @@ ${pinnedCMBadge}
     }
 
     const getCommentsTitle = new XMLHttpRequest();
-    getCommentsTitle.open('GET', APIbaseURL + 'api/v1/channels/' + item.authorId, true, 'ytm15', 'JQJ53KrLAEY6E5qhgcm38PkSzw3bZXmk');
-    getCommentsTitle.withCredentials = true;
+    getCommentsTitle.open('GET', APIbaseURL + 'api/v1/channels/' + item.authorId, true);
+    getCommentsTitle.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs=');
 
     getCommentsTitle.onerror = function(event) {
     console.error("An error occurred with this operation (" + getCommentsTitle.status + ")");

@@ -473,6 +473,9 @@ a few hours later:
 
 02 Jan 2025 (1st update of 2025!):
 -every xmlhttprequest ytm15 makes which uses the invidious nerdvpn api now uses username password authentication and "withcredentials" (at the moment this isn't working to fix the issue with its api rn, but I'll try to figure it out soon)
+
+03 Jan 2025:
+-all "withcredentials" enabled requests now use the "setRequestHeader" method instead of "withcredentials"
     </div>
     </div>
     </div>

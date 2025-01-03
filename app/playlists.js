@@ -15,8 +15,8 @@ function playlistPage(){
     };
 
     const getPlaylistData = new XMLHttpRequest();
-    getPlaylistData.open('GET', APIbaseURL + 'api/v1/playlists/' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("list").slice(1, 2).toString().split("=").slice(1, 2).toString(), true, 'ytm15', 'JQJ53KrLAEY6E5qhgcm38PkSzw3bZXmk');
-    getPlaylistData.withCredentials = true;
+    getPlaylistData.open('GET', APIbaseURL + 'api/v1/playlists/' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("list").slice(1, 2).toString().split("=").slice(1, 2).toString(), true);
+    getPlaylistData.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs=');
  
     getPlaylistData.onerror = function(event) {
     console.error("An error occurred with this operation (" + getPlaylistData.status + ")");
