@@ -4219,6 +4219,9 @@ html.style-2013 {
     font-size: 1.6rem;
     min-width: 70px;
 }
+.style-2013 ytm15-icon~.dropdown-text {
+    margin-left: 2px;
+}
 .style-2013 .dropdown-select ytm15-icon.dropdown-arrow-icon {
     margin: 0;
     padding: 0;
@@ -4689,6 +4692,10 @@ html.style-2013 {
     background-image: url("spinner_76_outer_holo.png");
     animation-direction: reverse;
 }
+.style-2013 .spinner-container[hidden]::after {
+    margin-top: -45px;
+    margin-left: 0;
+}
 @keyframes spinner-2013 {
 0% {
     transform: rotate(0deg);
@@ -4859,6 +4866,9 @@ html.style-2013 {
 }
 .style-2013.lighter-borders *:-webkit-any(.ap-shelf-header, .compact-media-item, .media-channel, .shelf-header, .video-metadata-actions, .comment-simplebox-placeholder, .autonav-bar) {
     border-color: rgba(0, 0, 0, 0.1);
+}
+.style-2013 .error-container {
+    border-bottom: 0;
 }
 
 /* Global dark theme */

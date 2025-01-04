@@ -476,6 +476,10 @@ a few hours later:
 
 03 Jan 2025:
 -all "withcredentials" enabled requests now use the "setRequestHeader" method instead of "withcredentials"
+
+04 Jan 2025:
+-errors now no-longer have a bottom border on 2013 UI
+-fixed the menu positioning for menu dropdowns on 2013 ui
     </div>
     </div>
     </div>

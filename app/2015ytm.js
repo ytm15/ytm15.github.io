@@ -382,8 +382,9 @@ function renderToggleBtn(parent, isDisabled, isPressed, LSItem){
 function renderDropdownSelect(ddText, parent, ddItems, ddisChannelSort) {
     const dropdownSelect = document.createElement("div");
     dropdownSelect.classList.add("dropdown-select", "has-ripple");
+    dropdownSelect.innerHTML = `<div class="dropdown-select-point"></div>`;
     if (ddisChannelSort) {
-    dropdownSelect.innerHTML = `<ytm15-icon class="sort-icon" style="
+    dropdownSelect.innerHTML = `<div class="dropdown-select-point"></div><ytm15-icon class="sort-icon" style="
     width: 26px;
     height: 26px;
     margin: -2px 0;
@@ -413,6 +414,13 @@ function renderDropdownSelect(ddText, parent, ddItems, ddisChannelSort) {
         menuCont.setAttribute("style", `left: ${rect.left - menuCont.offsetWidth + window.scrollX + 11}px; top: ${rect.top + window.scrollY - 10}px; margin: 8px 12px;`);
         if (rect.left - menuCont.offsetWidth + window.scrollX + 11 < 0) {
         menuCont.setAttribute("style", `left: 0px; top: ${rect.top + window.scrollY - 10}px; margin: 8px 12px;`);
+        }
+        if (APP_DEMATERIALIZE_UI_expflag == "true") {
+        const rect = dropdownPoint.getBoundingClientRect();
+        menuCont.setAttribute("style", `left: ${rect.left + window.scrollX - 12}px; top: ${rect.top + window.scrollY + 25}px; margin: 0px 4px;`);
+        if (rect.left + window.scrollX - 12 < 0) {
+        menuCont.setAttribute("style", `left: 0px; top: ${rect.top + window.scrollY + 25}px; margin: 0px 4px;`);
+        }
         }
         }
 
@@ -458,6 +466,7 @@ function renderDropdownSelect(ddText, parent, ddItems, ddisChannelSort) {
     dropdownSelect.appendChild(dropdownSelectText);
     dropdownSelect.innerHTML += `<ytm15-icon class="dropdown-arrow-icon"><svg viewBox="0 0 24 24" fill=""><path d="M7,10L12,15L17,10H7Z"></path></svg></ytm15-icon>`;
     var dropdownArrowIcon = dropdownSelect.querySelector(".dropdown-arrow-icon");
+    var dropdownPoint = dropdownSelect.querySelector(".dropdown-select-point");
     parent.appendChild(dropdownSelect);
 }
 
