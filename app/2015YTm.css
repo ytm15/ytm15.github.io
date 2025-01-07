@@ -4932,7 +4932,7 @@ html.style-2013 {
     color: #f1f1f1;
     border-top: 1px solid rgba(255,255,255,0.2);
 }
-.style-2013 .toggle-button {
+.style-2013 ytm15-toggle-button-container .toggle-button {
     width: 80px;
 }
 .style-2013 .setting-boolean ytm15-toggle-button-container {
@@ -5505,6 +5505,9 @@ html.style-2013.dark {
 }
 .style-2013.dark .toggle-button-circle::after {
     background-color: #99999960;
+}
+.style-2013.dark .error-container {
+    border-bottom: 0;
 }
 
 /* Dark 28 for dematerialized/2013 UI */
