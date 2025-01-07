@@ -480,6 +480,10 @@ a few hours later:
 04 Jan 2025:
 -errors now no-longer have a bottom border on 2013 UI
 -fixed the menu positioning for menu dropdowns on 2013 ui
+
+07 Jan 2025:
+-updated the css for the settings page a bit
+-toggle buttons/switches are now holo-themed on the 2013 UI
     </div>
     </div>
     </div>

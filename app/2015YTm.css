@@ -3133,6 +3133,9 @@ ytm15-settings.page-visible {
     background-color: #f3f3f3;
     touch-action: none;
 }
+.shorter~.page-container .settings-categories-container {
+    top: 48px;
+}
 .settings-category {
     transition: background .2s ease-in-out;
 }
@@ -4120,6 +4123,9 @@ html.style-2013 {
 .style-2013 .compact-channel .compact-media-item-thumbnail, .style-2013 .compact-channel .compact-media-item-thumbnail.large {
     width: 101px;
 }
+.style-2013 .shorter~.page-container .settings-categories-container {
+    top: 46px;
+}
 }
 .style-2013 .shelf-header {
     padding: 16px 10px;
@@ -4772,6 +4778,8 @@ html.style-2013 {
 .style-2013 h3#setting-title-subtitle-block-title {
     font-weight: 400;
     font-size: 1.75rem;
+    -webkit-line-clamp: 4;
+    max-height: 6em;
 }
 .style-2013 .setting-title-subtitle-block {
     color: inherit;
@@ -4789,6 +4797,42 @@ html.style-2013 {
 .style-2013 .settings-category {
     font-size: 17.5px;
     padding: 15px 13px;
+}
+.style-2013 .settings-category[aria-pressed="true"] {
+    transition: none;
+    background-color: #068fd4;
+    color: #f1f1f1;
+}
+@media (min-aspect-ratio: 13 / 9) and (orientation: landscape), (min-width: 550px) and (orientation: portrait), (min-width: 800px) and (orientation: landscape) {
+.style-2013 .settings-pages-container {
+    padding: 16px;
+}
+.style-2013 .settings-categories-container {
+    background-color: transparent;
+    border-right: 0;
+    padding: 20px;
+    padding-left: 0px;
+}
+.style-2013 .setting-title-subtitle-block {
+    padding-left: 55px;
+}
+.style-2013 .inner-settings-page-container {
+    border-top: 1.2px solid rgba(0,0,0,0.2);
+}
+.style-2013 .settings-category {
+    transition: none;
+}
+}
+@media (min-width: 800px) and (orientation: landscape) {
+.style-2013 .settings-categories-container {
+    padding-left: 70px;
+    max-width: 430px;
+}
+.style-2013 .settings-pages-container {
+    margin-left: 430px;
+    margin-right: 80px;
+    padding-top: 60px;
+}
 }
 .style-2013 .watchpage-frame-overlay {
     background-color: transparent;
@@ -4864,11 +4908,60 @@ html.style-2013 {
     padding: 10px;
     padding-right: 8px;
 }
-.style-2013.lighter-borders *:-webkit-any(.ap-shelf-header, .compact-media-item, .media-channel, .shelf-header, .video-metadata-actions, .comment-simplebox-placeholder, .autonav-bar) {
+.style-2013 .toggle-button-track {
+    border-radius: 0;
+    background-color: #99999940;
+    height: 22px;
+    width: 80px;
+    top: 0;
+}
+.style-2013 .toggle-button-circle::after {
+    border-radius: 2px;
+    width: 40px;
+    transition: none;
+    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.4);
+    margin: 1px;
+    width: 38px;
+    height: 20px;
+    box-sizing: border-box;
+    background-color: #99999960;
+    content: "Off";
+    font-size: 13px;
+    text-transform: uppercase;
+    padding: 3px;
+    color: #f1f1f1;
+    border-top: 1px solid rgba(255,255,255,0.2);
+}
+.style-2013 .toggle-button {
+    width: 80px;
+}
+.style-2013 .setting-boolean ytm15-toggle-button-container {
+    flex-shrink: 0;
+}
+.style-2013 .toggle-button-circle {
+    top: 0;
+    left: 0;
+    padding: 0px;
+    overflow: unset;
+    border-radius: 2px;
+    transition: none;
+    width: 40px;
+}
+.style-2013 [aria-pressed=true] .toggle-button-circle {
+    transform: translateX(40px);
+}
+.style-2013 [aria-pressed=true] .toggle-button-circle::after {
+    background-color: #0099cccc;
+    content: "On";
+}
+.style-2013.lighter-borders *:-webkit-any(.ap-shelf-header, .compact-media-item, .media-channel, .shelf-header, .video-metadata-actions, .comment-simplebox-placeholder, .autonav-bar, .inner-settings-page-container) {
     border-color: rgba(0, 0, 0, 0.1);
 }
 .style-2013 .error-container {
     border-bottom: 0;
+}
+.style-2013 .ytm15-settings-msg {
+    font-weight: 300;
 }
 
 /* Global dark theme */
@@ -4949,6 +5042,7 @@ html.dark {
     background-color: #282828;
     border-right: 1.2px solid rgba(255, 255, 255, 0.15);
 }
+
 }
 .dark .settings-category {
     border-bottom: 1.2px solid rgba(255, 255, 255, 0.15);
@@ -5391,8 +5485,26 @@ html.style-2013.dark {
 .style-2013.dark .comment-simplebox-placeholder {
     border-bottom-color: rgba(255, 255, 255, 0.2);
 }
-.style-2013.dark.lighter-borders *:-webkit-any(.ap-shelf-header, .compact-media-item, .media-channel, .shelf-header, .video-metadata-actions, .comment-simplebox-placeholder, .autonav-bar) {
+@media (min-aspect-ratio: 13 / 9) and (orientation: landscape), (min-width: 550px) and (orientation: portrait), (min-width: 800px) and (orientation: landscape) {
+.style-2013.dark .settings-categories-container {
+    background-color: transparent;
+    border-right: 0;
+}
+.style-2013.dark .inner-settings-page-container {
+    border-color: rgba(255,255,255,0.2);
+}
+}
+.style-2013.dark.lighter-borders *:-webkit-any(.ap-shelf-header, .compact-media-item, .media-channel, .shelf-header, .video-metadata-actions, .comment-simplebox-placeholder, .autonav-bar, .inner-settings-page-container) {
     border-color: rgba(255, 255, 255, 0.1);
+}
+.style-2013.dark .toggle-button-track {
+    background-color: #333333b0;
+}
+.style-2013.dark [aria-pressed=true] .toggle-button-circle::after {
+    background-color: #0099cccc;
+}
+.style-2013.dark .toggle-button-circle::after {
+    background-color: #99999960;
 }
 
 /* Dark 28 for dematerialized/2013 UI */
