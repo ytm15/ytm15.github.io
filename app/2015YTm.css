@@ -4954,6 +4954,82 @@ html.style-2013 {
     background-color: #0099cccc;
     content: "On";
 }
+.style-2013 dialog.ytm15-dialog {
+    box-shadow: 0px 3px 6px 1px rgba(0,0,0,0.4);
+    background-color: #f5f5f5;
+    border-top: 1px solid rgba(0,0,0,0.1);
+    animation: dialog-open-holo .2s;
+}
+.style-2013 .dialog-buttons {
+    border-top: 1px solid rgba(0,0,0,0.15);
+    padding: 0;
+    justify-content: center;
+}
+.style-2013 .dialog-buttons .material-button-container.compact {
+    margin: 0;
+}
+.style-2013 .dialog-buttons .material-button-container {
+    width: 100%;
+    border-radius: 0;
+    border-left: 1px solid rgba(0, 0, 0, 0.15);
+    text-transform: unset;
+    font-size: 1.4rem;
+    color: #111;
+}
+.style-2013 .dialog-buttons .material-button {
+    flex-grow: 1;
+    border-radius: 0;
+    padding: 16px 10px;
+}
+.style-2013 .dialog-buttons .button-text {
+    font-weight: 400;
+}
+.style-2013 .dialog-header {
+    border-bottom: 2px solid #00ade3;
+    padding: 20px 16px;
+    color: #00ade3;
+}
+.style-2013 .ytm15-dialog h2 {
+    font-weight: 400;
+    margin: 0;
+    font-size: 1.9rem;
+}
+.style-2013 .material-radio {
+    flex-direction: row-reverse;
+    border-bottom: 1px solid rgba(0,0,0,0.15);
+    padding: 12px 16px;
+}
+.style-2013 label.radio-label {
+    padding-left: 0;
+    padding-right: 18px;
+}
+.style-2013 .ytm15-options {
+    margin: 0 -16px;
+}
+.style-2013 .dialog-body {
+    padding: 0 16px;
+}
+@keyframes dialog-open-holo {
+0% {
+    opacity: 0;
+    transform: scale(0.9);
+}
+100% {
+    
+}
+}
+@keyframes dialog-close-holo {
+0% {
+
+}
+100% {
+    opacity: 0;
+    transform: scale(0.9);
+}
+}
+.style-2013 .closing dialog.ytm15-dialog {
+    animation: dialog-close-holo .2s forwards;
+}
 .style-2013.lighter-borders *:-webkit-any(.ap-shelf-header, .compact-media-item, .media-channel, .shelf-header, .video-metadata-actions, .comment-simplebox-placeholder, .autonav-bar, .inner-settings-page-container) {
     border-color: rgba(0, 0, 0, 0.1);
 }

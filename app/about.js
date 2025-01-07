@@ -484,6 +484,9 @@ a few hours later:
 07 Jan 2025:
 -updated the css for the settings page a bit
 -toggle buttons/switches are now holo-themed on the 2013 UI
+
+08 Jan 2025:
+-updated the dialog style for the 2013 UI
     </div>
     </div>
     </div>
