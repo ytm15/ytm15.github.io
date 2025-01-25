@@ -5052,10 +5052,12 @@ html.style-2013 {
     margin-top: 26px;
     text-transform: none;
     font-size: 1.6rem;
+    border-radius: 1px;
 }
 .style-2013 .error-content ~ .material-button-container .material-button {
     padding: 0.65em 0.5em;
     min-width: 0;
+    border-radius: 1px;
 }
 .style-2013 .error-content ~ .material-button-container .material-button .button-text {
     font-weight: 400;
