@@ -487,6 +487,9 @@ a few hours later:
 
 08 Jan 2025:
 -updated the dialog style for the 2013 UI
+
+25 Jan 2025:
+-updated errors style for 2013 UI
     </div>
     </div>
     </div>

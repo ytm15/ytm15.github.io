@@ -5035,9 +5035,37 @@ html.style-2013 {
 }
 .style-2013 .error-container {
     border-bottom: 0;
+	animation: none;
 }
 .style-2013 .ytm15-settings-msg {
     font-weight: 300;
+}
+.style-2013 .error-icon {
+    width: 30px;
+    height: 30px;
+}
+.style-2013 .error-text {
+    font-weight: 400;
+    opacity: .7;
+}
+.style-2013 .error-content ~ .material-button-container {
+    margin-top: 26px;
+    text-transform: none;
+    font-size: 1.6rem;
+}
+.style-2013 .error-content ~ .material-button-container .material-button {
+    padding: 0.65em 0.5em;
+    min-width: 0;
+}
+.style-2013 .error-content ~ .material-button-container .material-button .button-text {
+    font-weight: 400;
+}
+.style-2013 .material-button.has-shadow {
+    box-shadow: 0px 1px 1px 0px rgba(0,0,0,0.6);
+    transition: none;
+}
+.style-2013 .error-content {
+	animation: none;
 }
 
 /* Global dark theme */
