@@ -79,7 +79,9 @@ Stuff YTm15 makes use of
 
     <div class="ap-shelf-content">
     <div class="ap-shelf-text">APIs:
--Invidious API (<a href="https://docs.invidious.io/api/">https://docs.invidious.io/api/</a>)
+-(formely) Invidious API (<a href="https://docs.invidious.io/api/">https://docs.invidious.io/api/</a>) [to be replaced, this API no-longer works so it will no-longer be used]
+
+-Piped API (<a href="https://docs.piped.video/docs/api-documentation/">https://docs.piped.video/docs/api-documentation/</a>)
 
 -YouTube Operational API (<a href="https://yt.lemnoslife.com/">https://yt.lemnoslife.com/</a>)
 
@@ -490,6 +492,9 @@ a few hours later:
 
 25 Jan 2025:
 -updated errors style for 2013 UI
+
+03 Mar 2025:
+-search suggestions now work again thanks to the usage of piped api over invidious
     </div>
     </div>
     </div>
