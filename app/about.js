@@ -495,6 +495,11 @@ a few hours later:
 
 03 Mar 2025:
 -search suggestions now work again thanks to the usage of piped api over invidious
+
+06 Mar 2025:
+-from now on, places that used invidious' API will now use YT-API from rapidapi, starting with searchpage
+-switched piped API instance
+-changed the no search results string
     </div>
     </div>
     </div>

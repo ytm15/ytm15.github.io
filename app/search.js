@@ -21,8 +21,11 @@ function searchPage() {
     };
 
     const getSearchData = new XMLHttpRequest();
-    getSearchData.open('GET', APIbaseURL + 'api/v1/search?q=' + searchValueNotDecoded + `&page=1&sort_by=${searchParamSort}&date=${searchParamDate}&duration=${searchParamDuration}&type=${searchParamType}&features=${searchParamFeatures}`, true);
-    getSearchData.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs=');
+    /* getSearchData.open('GET', APIbaseURL + 'api/v1/search?q=' + searchValueNotDecoded + `&page=1&sort_by=${searchParamSort}&date=${searchParamDate}&duration=${searchParamDuration}&type=${searchParamType}&features=${searchParamFeatures}`, true); */
+    getSearchData.open('GET', APIbaseURLNew + 'search?query=' + searchValueNotDecoded + `&page=1&sort_by=${searchParamSort}&upload_date=${searchParamDate}&duration=${searchParamDuration}&type=${searchParamType}&features=${searchParamFeatures}`, true);
+    /* getSearchData.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs='); */
+    getSearchData.setRequestHeader('x-rapidapi-key', '4b0791fe33mshce00ad033774274p196706jsn957349df7a8f');
+    getSearchData.setRequestHeader('x-rapidapi-host', 'yt-api.p.rapidapi.com');
 
     getSearchData.onerror = function(event) {
     console.error("An error occurred with this operation (" + getSearchData.status + ")");
@@ -95,18 +98,18 @@ function searchPage() {
     var title = document.querySelector("title");
     title.textContent = searchValue + ' - 2015YouTube';
 
-    response.forEach(function(item) {
+    response.data.forEach(function(item) {
         if (item.type == "channel") {
-        compMediaItemThumb = "https:" + item.authorThumbnails[2].url;
+        compMediaItemThumb = "https:" + item.thumbnail[1].url;
         compMediaItemLength = "";
-        compMediaItemTitle = item.author;
-        compMediaItemAuthor = item.subCount.toLocaleString() + " subscribers";
+        compMediaItemTitle = item.channelTitle;
+        compMediaItemAuthor = item.subscriberCount + " subscribers";
         compMediaItemvidId = "";
         } else if (item.type == "playlist") {
-        compMediaItemThumb = item.playlistThumbnail;
+        compMediaItemThumb = item.thumbnail[0].url;
         compMediaItemLength = item.videoCount;
         compMediaItemTitle = item.title;
-        compMediaItemAuthor = item.author;
+        compMediaItemAuthor = item.channelTitle;
         compMediaItemvidId = item.playlistId;
         } else if (item.type == "hashtag") {
         compMediaItemThumb = "https://www.gstatic.com/youtube/img/social/hashtags/hashtag_tile_icon.png";
@@ -114,30 +117,38 @@ function searchPage() {
         compMediaItemTitle = item.title;
         compMediaItemAuthor = item.channelCount;
         compMediaItemvidId = item.url;
+        } else if (item.type == "shorts_listing" || item.type == "video_listing") {
+        
+        } else if (item.type == "ad") {
+        
         } else {
-        compMediaItemThumb = item.videoThumbnails[3].url;
-        compMediaItemLength = item.lengthSeconds;
+        compMediaItemThumb = item.thumbnail[0].url;
+        compMediaItemLength = item.lengthText;
         compMediaItemTitle = item.title;
-        compMediaItemAuthor = item.author;
+        compMediaItemAuthor = item.channelTitle;
         compMediaItemvidId = item.videoId;
         }
-        renderCompactMediaItem(lazyList, "lazy-list", compMediaItemvidId, compMediaItemThumb, compMediaItemLength, compMediaItemTitle, compMediaItemAuthor, item.authorId, item.publishedText, item.viewCount, item.type);
+        if (item.type !== "shorts_listing" && item.type !== "video_listing" && item.type !== "ad") {
+        renderCompactMediaItem(lazyList, "lazy-list", compMediaItemvidId, compMediaItemThumb, compMediaItemLength, compMediaItemTitle, compMediaItemAuthor, item.channelId, item.publishedTimeText, item.viewCount, item.type);
+        }
     });
 
-    if (response.length == "0") {
+    if (response.data.length == "0") {
     const ytm15Msg = document.createElement("div");
     ytm15Msg.classList.add("ytm15-message");
     ytm15Msg.innerHTML = `<div class="ytm15-message-content"><div class="msg-text">${No_Search_Results_text_string}</div></div>`;
     lazyList.appendChild(ytm15Msg);
     }
 
-    if (response.length > "9") {
+    /* if (response.length > "9") { */
+    if (response.continuation !== "") {
     const nextContinCont = document.createElement("div");
     nextContinCont.classList.add("next-continuation-cont");
     nextContinCont.innerHTML = `<div class="next-continuation">
 <div class="material-button-container next-contin-button" data-style="" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button" data-continuation="" aria-label="More"><div class="button-text">More</div></button></div>
 </div>`;
-    nextContinCont.querySelector("button").dataset.continuation = Number(1) + 1;
+    /* nextContinCont.querySelector("button").dataset.continuation = Number(1) + 1; */
+    nextContinCont.querySelector("button").dataset.continuation = response.continuation;
     nextContinCont.querySelector("button").onclick = function(){
     nextContinCont.remove();
     searchPageContin(nextContinCont.querySelector("button").dataset.continuation, sectLazyList);
@@ -162,8 +173,11 @@ function searchPageContin(continuation, contItemParent) {
     contItemParent.appendChild(contItem);
 
     const getSearchData1 = new XMLHttpRequest();
-    getSearchData1.open('GET', APIbaseURL + 'api/v1/search?q=' + searchValueNotDecoded + `&page=${continuation}&sort_by=${searchParamSort}&date=${searchParamDate}&duration=${searchParamDuration}&type=${searchParamType}&features=${searchParamFeatures}`, true);
-    getSearchData1.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs=');
+    /* getSearchData1.open('GET', APIbaseURL + 'api/v1/search?q=' + searchValueNotDecoded + `&page=${continuation}&sort_by=${searchParamSort}&date=${searchParamDate}&duration=${searchParamDuration}&type=${searchParamType}&features=${searchParamFeatures}`, true); */
+    getSearchData1.open('GET', APIbaseURLNew + 'search?query=' + searchValueNotDecoded + `&token=${continuation}&sort_by=${searchParamSort}&upload_date=${searchParamDate}&duration=${searchParamDuration}&type=${searchParamType}&features=${searchParamFeatures}`, true);
+    /* getSearchData1.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs='); */
+    getSearchData1.setRequestHeader('x-rapidapi-key', '4b0791fe33mshce00ad033774274p196706jsn957349df7a8f');
+    getSearchData1.setRequestHeader('x-rapidapi-host', 'yt-api.p.rapidapi.com');
  
     getSearchData1.onerror = function(event) {
     console.error("An error occurred with this operation (" + getSearchData1.status + ")");
@@ -203,18 +217,18 @@ function searchPageContin(continuation, contItemParent) {
     lazyList.classList.add('lazy-list');
     itemSection.appendChild(lazyList);
 
-    response.forEach(function(item) {
+    response.data.forEach(function(item) {
         if (item.type == "channel") {
-        compMediaItemThumb = "https:" + item.authorThumbnails[2].url;
+        compMediaItemThumb = "https:" + item.thumbnail[1].url;
         compMediaItemLength = "";
-        compMediaItemTitle = item.author;
-        compMediaItemAuthor = item.subCount.toLocaleString() + " subscribers";
+        compMediaItemTitle = item.channelTitle;
+        compMediaItemAuthor = item.subscriberCount + " subscribers";
         compMediaItemvidId = "";
         } else if (item.type == "playlist") {
-        compMediaItemThumb = item.playlistThumbnail;
+        compMediaItemThumb = item.thumbnail[0].url;
         compMediaItemLength = item.videoCount;
         compMediaItemTitle = item.title;
-        compMediaItemAuthor = item.author;
+        compMediaItemAuthor = item.channelTitle;
         compMediaItemvidId = item.playlistId;
         } else if (item.type == "hashtag") {
         compMediaItemThumb = "https://www.gstatic.com/youtube/img/social/hashtags/hashtag_tile_icon.png";
@@ -222,30 +236,36 @@ function searchPageContin(continuation, contItemParent) {
         compMediaItemTitle = item.title;
         compMediaItemAuthor = item.channelCount;
         compMediaItemvidId = item.url;
+        } else if (item.type == "shorts_listing" || item.type == "video_listing") {
+        
+        } else if (item.type == "ad") {
+        
         } else {
-        compMediaItemThumb = item.videoThumbnails[3].url;
-        compMediaItemLength = item.lengthSeconds;
+        compMediaItemThumb = item.thumbnail[0].url;
+        compMediaItemLength = item.lengthText;
         compMediaItemTitle = item.title;
-        compMediaItemAuthor = item.author;
+        compMediaItemAuthor = item.channelTitle;
         compMediaItemvidId = item.videoId;
         }
-        renderCompactMediaItem(lazyList, "lazy-list", compMediaItemvidId, compMediaItemThumb, compMediaItemLength, compMediaItemTitle, compMediaItemAuthor, item.authorId, item.publishedText, item.viewCount, item.type);
+        if (item.type !== "shorts_listing" && item.type !== "video_listing" && item.type !== "ad") {
+        renderCompactMediaItem(lazyList, "lazy-list", compMediaItemvidId, compMediaItemThumb, compMediaItemLength, compMediaItemTitle, compMediaItemAuthor, item.channelId, item.publishedTimeText, item.viewCount, item.type);
+        }
     });
 
-    if (response.length == "0") {
+    if (response.data.length == "0") {
     const ytm15Msg = document.createElement("div");
     ytm15Msg.classList.add("ytm15-message");
     ytm15Msg.innerHTML = `<div class="ytm15-message-content"><div class="msg-text">${Dead_End_text_string}</div></div>`;
     lazyList.appendChild(ytm15Msg);
     }
 
-    if (response.length > "9") {
+    if (response.continuation !== "") {
     const nextContinCont = document.createElement("div");
     nextContinCont.classList.add("next-continuation-cont");
     nextContinCont.innerHTML = `<div class="next-continuation">
 <div class="material-button-container next-contin-button" data-style="" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button" data-continuation="" aria-label="More"><div class="button-text">More</div></button></div>
 </div>`;
-    nextContinCont.querySelector("button").dataset.continuation = Number(continuation) + 1;
+    nextContinCont.querySelector("button").dataset.continuation = response.continuation;
     nextContinCont.querySelector("button").onclick = function(){
     nextContinCont.remove();
     searchPageContin(nextContinCont.querySelector("button").dataset.continuation, contItemParent);
