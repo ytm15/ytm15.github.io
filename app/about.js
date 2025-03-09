@@ -500,6 +500,9 @@ a few hours later:
 -from now on, places that used invidious' API will now use YT-API from rapidapi, starting with searchpage
 -switched piped API instance
 -changed the no search results string
+
+09 - 10 Mar 2025:
+-fixed the player and watchpage with YT-API
     </div>
     </div>
     </div>

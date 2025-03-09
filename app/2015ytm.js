@@ -982,7 +982,11 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
 
         const overlaySideText = document.createElement('div');
         overlaySideText.classList.add('thumbnail-overlay-side-text');
+        if (itemLength !== "50+") {
+        overlaySideText.textContent = Number(itemLength).toLocaleString();
+        } else {
         overlaySideText.textContent = itemLength.toLocaleString();
+        }
         overlaySide.appendChild(overlaySideText);
         /* overlaySide.innerHTML += `<ytm15-icon class="playlist"><svg viewBox="0 0 24 24" fill=""><path d="M3.67 8.67h14V11h-14V8.67zm0-4.67h14v2.33h-14V4zm0 9.33H13v2.34H3.67v-2.34zm11.66 0v7l5.84-3.5-5.84-3.5z"></path></svg></ytm15-icon>`; */
         overlaySide.innerHTML += `<img class="ytm15-img-icon ytm15-img playlist-icon" src="ic_playlist.png"></img>`;
@@ -1012,15 +1016,27 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         }
 
         const vidCountByline = document.createElement('div');
+        if (itemLength !== "50+") {
+        vidCountByline.textContent = Number(itemLength).toLocaleString() + " videos";
+        } else {
         vidCountByline.textContent = itemLength.toLocaleString() + " videos";
+        }
         vidCountByline.classList.add('compact-media-byline', 'small-text');
 
         const vidCountStats = document.createElement('div');
+        if (itemLength !== "50+") {
+        vidCountStats.textContent = Number(itemLength).toLocaleString() + " videos";
+        } else {
         vidCountStats.textContent = itemLength.toLocaleString() + " videos";
+        }
         vidCountStats.classList.add('compact-media-stats', 'small-text');
 
         const hashChannelCount = document.createElement('div');
+        if (itemAuthor !== "50+") {
+        hashChannelCount.textContent = Number(itemAuthor).toLocaleString() + " channels";
+        } else {
         hashChannelCount.textContent = itemAuthor.toLocaleString() + " channels";
+        }
         hashChannelCount.classList.add('compact-media-stats', 'small-text');
 
         if (mediaType == "channel") {

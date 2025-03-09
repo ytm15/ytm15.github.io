@@ -825,8 +825,11 @@ YTmVideoId = playerVideoId;
 
 const playerxhttpr = new XMLHttpRequest();
 /* playerxhttpr.open('GET', 'https://inv.tux.pizza/api/v1/videos/' + YTmVideoId, true); */
-playerxhttpr.open('GET', 'https://invidious.nerdvpn.de/api/v1/videos/' + YTmVideoId, true);
-playerxhttpr.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs=');
+/* playerxhttpr.open('GET', 'https://invidious.nerdvpn.de/api/v1/videos/' + YTmVideoId, true);
+playerxhttpr.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs='); */
+playerxhttpr.open('GET', APIbaseURLNew + 'dl?cgeo=US&id=' + YTmVideoId, true);
+playerxhttpr.setRequestHeader('x-rapidapi-key', '4b0791fe33mshce00ad033774274p196706jsn957349df7a8f');
+playerxhttpr.setRequestHeader('x-rapidapi-host', 'yt-api.p.rapidapi.com');
  
 playerxhttpr.send();
 
@@ -846,11 +849,11 @@ Sorry about that...`;
 playerxhttpr.onload = function() {
   if (playerxhttpr.status === 200) {
       const data = JSON.parse(playerxhttpr.response);
-          video.poster = data.videoThumbnails[3].url;
+          video.poster = data.thumbnail[3].url;
           video.innerHTML = ``;
           video.dataset.title = data.title;
           /* storyboardURL = "https://inv.tux.pizza" + data.storyboards[2].url; */
-          SBVideo.src = data.formatStreams[0].url;
+          SBVideo.src = data.formats[0].url;
 
 /* const sbxhttpr = new XMLHttpRequest();
 
@@ -870,11 +873,11 @@ sbxhttpr.onload = function() {
   };
 }; */
 
-          data.formatStreams.forEach(function(item) {
-          const lastFS = data.formatStreams.slice(-1)[0]
+          data.formats.forEach(function(item) {
+          const lastFS = data.formats.slice(-1)[0]
           const vidSource = document.createElement("source");
           vidSource.src = item.url;
-          vidSource.type = item.type;
+          vidSource.type = item.mimeType;
           vidSource.setAttribute("label", item.qualityLabel);
           vidSource.setAttribute("selected", false);
           if (item == lastFS) {
@@ -886,12 +889,12 @@ sbxhttpr.onload = function() {
           };
           });
           if (data.captions) {
-          data.captions.forEach(function(item) {
+          data.captions.captionTracks.forEach(function(item) {
           const vidTrack = document.createElement("track");
           vidTrack.kind = "captions";
-          vidTrack.src = "https://invidious.nerdvpn.de" + item.url;
-          vidTrack.srclang = item.language_code;
-          vidTrack.label = item.label;
+          vidTrack.src = item.baseUrl;
+          vidTrack.srclang = item.languageCode;
+          vidTrack.label = item.name;
           video.appendChild(vidTrack);
           });
           };
