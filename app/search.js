@@ -108,6 +108,9 @@ function searchPage() {
         } else if (item.type == "playlist") {
         compMediaItemThumb = item.thumbnail[0].url;
         compMediaItemLength = item.videoCount;
+        if (item.videoCount == 0) {
+        compMediaItemLength = "50+";
+        }
         compMediaItemTitle = item.title;
         compMediaItemAuthor = item.channelTitle;
         compMediaItemvidId = item.playlistId;
@@ -227,6 +230,9 @@ function searchPageContin(continuation, contItemParent) {
         } else if (item.type == "playlist") {
         compMediaItemThumb = item.thumbnail[0].url;
         compMediaItemLength = item.videoCount;
+        if (item.videoCount == 0) {
+        compMediaItemLength = "50+";
+        }
         compMediaItemTitle = item.title;
         compMediaItemAuthor = item.channelTitle;
         compMediaItemvidId = item.playlistId;
