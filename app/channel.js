@@ -365,7 +365,10 @@ function channelPage() {
 
     const channelSubCount = document.createElement("span");
     channelSubCount.classList.add("channels-header-subscriber-count", "secondary-text");
-    channelSubCount.textContent = response.meta.subscriberCount.toLocaleString() + " subscribers";
+    channelSubCount.textContent = Number(response.meta.subscriberCount).toLocaleString() + " subscribers";
+    if (response.meta.subscriberCount == null) {
+    channelSubCount.textContent = "No subscribers";
+    }
     channelSub.appendChild(channelSubCount);
 
     /* var chSubCountChange = setInterval(function(){
@@ -395,7 +398,7 @@ function channelPage() {
     spinnerClone.removeAttribute("hidden");
     contItem.appendChild(spinnerClone);
 
-    sectLazyList.appendChild(contItem);
+    /* sectLazyList.appendChild(contItem); */
 
     /* const itemSect = document.createElement("div");
     itemSect.classList.add("item-section");
@@ -410,7 +413,7 @@ function channelPage() {
     ytm15Msg.innerHTML = `<div class="ytm15-message-content"><img class="ytm15-img-icon grey-account-icon msg-icon ytm15-img" src="ic_account_circle_grey_60.png"></img><div class="msg-text">${Channel_Home_WIP_text_string}</div></div>`;
     lazyList.appendChild(ytm15Msg); */
 
-    const getChannelHome = new XMLHttpRequest();
+    /* const getChannelHome = new XMLHttpRequest();
     getChannelHome.open('GET', 'https://yt.lemnoslife.com/noKey/channelSections?channelId=' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '&part=contentDetails,id,snippet', true);
     getChannelHome.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs=');
  
@@ -528,7 +531,7 @@ function channelPage() {
 
     /* data.forEach(function(item) {
         
-    }); */
+    }); */ /*
 
     if (item.snippet.type == "multiplechannels") {
     item.contentDetails.channels.forEach(function(item1){
@@ -663,7 +666,7 @@ function channelPage() {
     };
     };
 
-    if (item.snippet.type == "multiplechannels" && item.contentDetails.channels.length > 3) {
+    if (item.type == "multiplechannels" && item.contentDetails.channels.length > 3) {
     verticalList.appendChild(ESButtonCont);
     }
     });
@@ -675,7 +678,245 @@ function channelPage() {
     } else {
     getChannelHome.onerror();
     }
+    }; */
+
+    const itemSect = document.createElement("div");
+    itemSect.classList.add("item-section");
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+      itemSect.classList.add('card');
+    }
+
+    const lazyList = document.createElement("div");
+    lazyList.classList.add("lazy-list", "no-animation");
+    itemSect.appendChild(lazyList);
+
+    const ytm15Msg = document.createElement("div");
+    ytm15Msg.classList.add("ytm15-message");
+    ytm15Msg.innerHTML = `<div class="ytm15-message-content"><img class="ytm15-img-icon grey-account-icon msg-icon ytm15-img" src="ic_account_circle_grey_60.png"></img><div class="msg-text">${NoContent_text_string}</div></div>`;
+    lazyList.appendChild(ytm15Msg);
+
+    response.data.forEach(function(item) {
+    const shelf = document.createElement("div");
+    shelf.classList.add('shelf');
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+    shelf.classList.add('card');
+    }
+
+    if (item.type !== "channelsectiontypeundefined" && item.type !== "members_listing" && item.type !== "post") {
+    sectLazyList.appendChild(shelf);
     };
+
+    const shelfHeader = document.createElement("div");
+    shelfHeader.classList.add('shelf-header');
+    const shelfHeaderEP = document.createElement("a");
+    shelfHeaderEP.classList.add('shelf-header-endpoint');
+    shelfHeaderEP.href = "#/channel/" + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0];
+    const shelfTitleBar = document.createElement("div");
+    shelfTitleBar.classList.add('shelf-title-bar');
+    shelfTitle = "";
+    if (item.type == "video_listing" && item.title == "Videos") {
+    shelfTitle = Uploads_text_string;
+    shelfHeaderEP.href = "#/channel/" + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + "/videos";
+    } else if (item.type == "channelsectiontypeundefined") {
+    shelfTitle = undefined;
+    } else if (item.type == "channel_listing") {
+    shelfTitle = item.title;
+    /* shelfHeaderEP.href = "#/channel/" + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + "/channels?shelfid=" + item.id.split(".")[1].toString(); */
+    shelfHeaderEP.href = "#/channel/" + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + "/channels?shelfid=";
+    } else if (item.type == "video_listing" && item.title == "Popular videos") {
+    shelfTitle = PopularUploads_text_string;
+    shelfHeaderEP.href = "#/channel/" + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + "/videos?sort=popular";
+    };
+    shelfTitleBar.innerHTML = "<h3>" + shelfTitle + "</h3>";
+
+    const verticalList = document.createElement("div");
+    verticalList.classList.add('vertical-list');
+
+    const ESButtonCont = document.createElement("div");
+    ESButtonCont.classList.add('expand-shelf-button-container');
+
+    const moreIcon = document.createElement("ytm15-icon");
+    moreIcon.classList.add('show-more-icon');
+    moreIcon.innerHTML = `<svg viewBox="0 0 24 24" fill=""><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path></svg>`;
+
+    const lessIcon = document.createElement("ytm15-icon");
+    lessIcon.classList.add('show-less-icon');
+    lessIcon.innerHTML = `<svg viewBox="0 0 24 24" fill=""><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"></path></svg>`;
+
+    const ISButton = document.createElement("button");
+    ISButton.classList.add('collapse-shelf-button', 'icon-button');
+    ISButton.setAttribute('aria-label', 'Show less');
+    ISButton.setAttribute('hidden', '');
+    ISButton.onclick = function(){verticalList.classList.remove('expanded'); ISButton.setAttribute('hidden', ''); ESButton.removeAttribute('hidden');};
+
+    const ESButton = document.createElement("button");
+    ESButton.classList.add('expand-shelf-button', 'icon-button');
+    ESButton.setAttribute('aria-label', 'Show more');
+    ESButton.onclick = function(){verticalList.classList.add('expanded'); ESButton.setAttribute('hidden', ''); ISButton.removeAttribute('hidden');};
+    ESButtonCont.appendChild(ESButton);
+    ESButtonCont.appendChild(ISButton);
+
+    ESButton.appendChild(moreIcon);
+    ISButton.appendChild(lessIcon);
+
+    shelf.appendChild(shelfHeader);
+    shelfHeader.appendChild(shelfHeaderEP);
+    shelfHeaderEP.appendChild(shelfTitleBar);
+    shelf.appendChild(verticalList);
+    
+    if (item.type == "members_listing") {
+    const recShelf = document.createElement("div");
+    recShelf.classList.add("recognition-shelf", "shelf");
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+    recShelf.classList.add('card');
+    }
+    sectLazyList.appendChild(recShelf);
+    recShelf.appendChild(shelfHeader);
+    
+    shelfHeaderEP.href = "javascript:void(0)";
+    shelfTitleBar.innerHTML = "<h3>" + item.title + '</h3><h4 class="subhead">' + item.subtitle + "</h4>";
+    
+    const recShelfAvatars = document.createElement("div");
+    recShelfAvatars.classList.add("recognition-shelf-avatars");
+    recShelf.appendChild(recShelfAvatars);
+    
+    item.data.forEach(function(item){
+    const avatar = document.createElement("div");
+    avatar.classList.add("recognition-avatar");
+    recShelfAvatars.appendChild(avatar);
+    
+    const profileIcon = document.createElement('div');
+    profileIcon.classList.add('recog-avatar-icon', 'profile-icon');
+
+    const cImage = document.createElement('img');
+    cImage.classList.add('profile-img', 'ytm15-img', 'lazy');
+    cImage.loading = "lazy";
+    cImage.onload = function(){cImage.classList.add('loaded');};
+    cImage.src = item.thumbnails[0].url;
+    profileIcon.appendChild(cImage);
+    
+    avatar.appendChild(profileIcon);
+    });
+    }
+
+    if (item.type == "channel_listing") {
+    item.data.forEach(function(item1){
+        compMediaItemThumb = "https:" + item1.thumbnail[1].url;
+        compMediaItemLength = "";
+        compMediaItemTitle = item1.title;
+        compMediaItemAuthor = item1.subscriberCount + " subscribers";
+        if (item.subscriberCount == null) {
+        compMediaItemAuthor = "No subscribers";
+        }
+        compMediaItemvidId = "";
+        renderCompactMediaItem(verticalList, "shelf", compMediaItemvidId, compMediaItemThumb, compMediaItemLength, compMediaItemTitle, compMediaItemAuthor, item1.channelId, "", "", "channel");
+    });
+        if (ESButtonCont && item.type == "channel_listing" && item.data.length > 3) {
+        ESButtonCont.remove();
+        verticalList.appendChild(ESButtonCont);
+        }
+
+      if (item.data.length == 0) {
+        shelf.remove();
+        if (sectLazyList.childNodes.length == "0") {
+        itemSect.remove();
+        sectLazyList.appendChild(itemSect);
+        }
+      }
+    } else if (item.type == "video_listing") {
+    
+    /* placeholders dk what to use them for */
+    if (item.title == "Popular videos") {
+
+    } else if (item.type == "singleplaylist") {
+
+    }
+    /* end of placeholders */
+
+    var shelfSnippetType = item.type;
+    if (item.type == "video_listing") {
+    if (item.title !== "Popular videos" && item.title !== "Videos") {
+    shelfSnippetType = "singleplaylist";
+    }
+    }
+
+    if (shelfSnippetType == "singleplaylist") {
+    shelfTitle = item.title;
+    /* shelfHeaderEP.href = "#/playlist?list=" + data.playlistId; */
+    shelfHeaderEP.href = "#/playlist?list=";
+    shelfTitleBar.innerHTML = "<h3>" + shelfTitle + "</h3>";
+    if (item.subtitle !== null) {
+    shelfTitleBar.innerHTML = "<h3>" + shelfTitle + '</h3><h4 class="subhead">' + item.subtitle + "</h4>";
+    }
+    };
+
+    if (item.type !== "player") {
+    item.data.forEach(function(item){
+        if (item.type == "channel") {
+        compMediaItemThumb = "https:" + item.thumbnail[1].url;
+        compMediaItemLength = "";
+        compMediaItemTitle = item.channelTitle;
+        compMediaItemAuthor = item.subscriberCount + " subscribers";
+        if (item.subscriberCount == null) {
+        compMediaItemAuthor = "No subscribers";
+        }
+        compMediaItemvidId = "";
+        } else if (item.type == "playlist") {
+        compMediaItemThumb = item.thumbnail[0].url;
+        compMediaItemLength = item.videoCount;
+        if (item.videoCount == 0) {
+        compMediaItemLength = "50+";
+        }
+        compMediaItemTitle = item.title;
+        compMediaItemAuthor = item.author;
+        compMediaItemvidId = item.playlistId;
+        } else if (item.type == "hashtag") {
+        compMediaItemThumb = "https://www.gstatic.com/youtube/img/social/hashtags/hashtag_tile_icon.png";
+        compMediaItemLength = item.videoCount;
+        compMediaItemTitle = item.title;
+        compMediaItemAuthor = item.channelCount;
+        compMediaItemvidId = item.url;
+        } else {
+        compMediaItemThumb = item.thumbnail[2].url;
+        compMediaItemLength = item.lengthText;
+        compMediaItemTitle = item.title;
+        compMediaItemAuthor = item.channelTitle;
+        compMediaItemvidId = item.videoId;
+        }
+        cmiPublishedText = item.publishedTimeText;
+        cmiViewCount = item.viewCount;
+        cmiParent = "channel-shelf";
+        cmiType = item.type;
+        if (shelfSnippetType == "singleplaylist") {
+          /* cmiPublishedText = "";
+          cmiViewCount = ""; */
+          cmiParent = "shelf";
+          cmiType = "video";
+        }
+        renderCompactMediaItem(verticalList, cmiParent, compMediaItemvidId, compMediaItemThumb, compMediaItemLength, compMediaItemTitle, compMediaItemAuthor, item.authorId, cmiPublishedText, cmiViewCount, cmiType);
+    });
+    };
+
+      if (item.data.length > 3) {
+        verticalList.appendChild(ESButtonCont);
+      }
+      if (item.data.length == 0) {
+        shelf.remove();
+        if (sectLazyList.childNodes.length == "0") {
+        itemSect.remove();
+        sectLazyList.appendChild(itemSect);
+        }
+      }
+    };
+
+    if (item.type == "channel_listing" && item.data.length > 3) {
+    verticalList.appendChild(ESButtonCont);
+    }
+    });
+
+    if (sectLazyList.childNodes.length == "0") {
+    sectLazyList.appendChild(itemSect);
+    }
 
     tabContent.appendChild(sectionList);
     }
@@ -785,8 +1026,14 @@ function channelPage() {
 
     const getChannelVideos = new XMLHttpRequest();
     /* getChannelVideos.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '/videos?sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString(), true); */
-       getChannelVideos.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] + '?sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString(), true);
-    getChannelVideos.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs=');
+    /* getChannelVideos.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] + '?sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString(), true); */
+    /* getChannelVideos.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs='); */
+    getChannelVideos.open('GET', APIbaseURLNew + 'channel/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] + '?id=' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '&sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString(), true);
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "streams") {
+    getChannelVideos.open('GET', APIbaseURLNew + 'channel/liveStreams?id=' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '&sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString(), true);
+    }
+    getChannelVideos.setRequestHeader('x-rapidapi-key', '4b0791fe33mshce00ad033774274p196706jsn957349df7a8f');
+    getChannelVideos.setRequestHeader('x-rapidapi-host', 'yt-api.p.rapidapi.com');
  
     getChannelVideos.onerror = function(event) {
     console.error("An error occurred with this operation (" + getChannelVideos.status + ")");
@@ -817,7 +1064,9 @@ function channelPage() {
 
     contItem.remove();
 
-    if ((window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "shorts" && item !== "shorts") && (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "streams" && item !== "streams") && data.videos.length !== "0" && data.videos[0] && data.videos[0].type !== "category") {
+    /* if ((window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "shorts" && item !== "shorts") && (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "streams" && item !== "streams") && data.data.length !== "0" && data.data[0] && data.data[0].type !== "category") */
+    
+    if (data.data.length !== "0" && data.data[0] && data.data[0].type !== "category" &&  (data.data[0].type == "shorts" || data.data[0].type == "video")) {
     renderDropdownSelect("", channelSubMenu, [
       {
         "title": Mostpopular_text_string,
@@ -883,7 +1132,7 @@ function channelPage() {
       ]);
     }
 
-    if ((window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "shorts" && item !== "shorts") && (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "streams" && item !== "streams") && data.videos.length !== "0" && data.videos[0] && data.videos[0].type !== "category") {
+    if ((window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "shorts" && item !== "shorts") && (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "streams" && item !== "streams") && data.data.length !== "0" && data.data[0] && data.data[0].type !== "category") {
     sectionList.insertAdjacentElement("afterbegin", channelSubMenu);
     }
     if (CHANNELS_SEPARATE_VIDS_SHORTS_LIVE_TABS_expflag !== "true") {
@@ -901,25 +1150,32 @@ function channelPage() {
     lazyList.classList.add("lazy-list", "no-animation");
     itemSect.appendChild(lazyList);
 
-    if (data.videos.length == "0" || data.videos[0].type == "category") {
+    if (data.data.length == "0" || data.data[0].type == "category" || (data.data[0].type !== "shorts" && data.data[0].type !== "video")) {
     const ytm15Msg = document.createElement("div");
     ytm15Msg.classList.add("ytm15-message");
     ytm15Msg.innerHTML = `<div class="ytm15-message-content"><div class="msg-text">${NoVideos_text_string}</div></div>`;
     lazyList.appendChild(ytm15Msg);
     }
 
-    data.videos.forEach(function(item) {
+    if (data.data[0].type == "shorts" || data.data[0].type == "video") {
+    data.data.forEach(function(item) {
         if (item.type == "channel") {
-        compMediaItemThumb = "https:" + item.authorThumbnails[2].url;
+        compMediaItemThumb = "https:" + item.thumbnail[1].url;
         compMediaItemLength = "";
-        compMediaItemTitle = item.author;
-        compMediaItemAuthor = item.subCount.toLocaleString() + " subscribers";
+        compMediaItemTitle = item.channelTitle;
+        compMediaItemAuthor = item.subscriberCount + " subscribers";
+        if (item.subscriberCount == null) {
+        compMediaItemAuthor = "No subscribers";
+        }
         compMediaItemvidId = "";
         } else if (item.type == "playlist") {
-        compMediaItemThumb = item.playlistThumbnail;
+        compMediaItemThumb = item.thumbnail[0].url;
         compMediaItemLength = item.videoCount;
+        if (item.videoCount == 0) {
+        compMediaItemLength = "50+";
+        }
         compMediaItemTitle = item.title;
-        compMediaItemAuthor = item.author;
+        compMediaItemAuthor = item.channelTitle;
         compMediaItemvidId = item.playlistId;
         } else if (item.type == "hashtag") {
         compMediaItemThumb = "https://www.gstatic.com/youtube/img/social/hashtags/hashtag_tile_icon.png";
@@ -928,16 +1184,17 @@ function channelPage() {
         compMediaItemAuthor = item.channelCount;
         compMediaItemvidId = item.url;
         } else {
-        compMediaItemThumb = item.videoThumbnails[3].url;
-        compMediaItemLength = item.lengthSeconds;
+        compMediaItemThumb = item.thumbnail[0].url;
+        compMediaItemLength = item.lengthText;
         compMediaItemTitle = item.title;
-        compMediaItemAuthor = item.author;
+        compMediaItemAuthor = item.channelTitle;
         compMediaItemvidId = item.videoId;
         }
-        renderCompactMediaItem(lazyList, "channel-lazy-list", compMediaItemvidId, compMediaItemThumb, compMediaItemLength, compMediaItemTitle, compMediaItemAuthor, item.authorId, item.publishedText, item.viewCount, item.type);
+        renderCompactMediaItem(lazyList, "channel-lazy-list", compMediaItemvidId, compMediaItemThumb, compMediaItemLength, compMediaItemTitle, compMediaItemAuthor, item.channelId, item.publishedTimeText, item.viewCount, item.type);
     });
+    };
 
-    if (data.continuation) {
+    if (data.continuation && (data.data[0].type == "shorts" || data.data[0].type == "video")) {
     const nextContinCont = document.createElement("div");
     nextContinCont.classList.add("next-continuation-cont");
     nextContinCont.innerHTML = `<div class="next-continuation">
@@ -964,8 +1221,14 @@ function channelVideosContin(continuation, contItemParent) {
 
     const getChannelVideos1 = new XMLHttpRequest();
     /* getChannelVideos1.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '/videos?continuation=' + continuation + '&sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString(), true); */
-       getChannelVideos1.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + `/${window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0]}?continuation=` + continuation + '&sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString(), true);
-    getChannelVideos1.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs=');
+       /* getChannelVideos1.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + `/${window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0]}?continuation=` + continuation + '&sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString(), true); */
+    /* getChannelVideos1.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs='); */
+    getChannelVideos1.open('GET', APIbaseURLNew + 'channel/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] + '?id=' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '&sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString() + '&token=' + continuation, true);
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "streams") {
+    getChannelVideos1.open('GET', APIbaseURLNew + 'channel/liveStreams?id=' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '&sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString() + '&token=' + continuation, true);
+    }
+    getChannelVideos1.setRequestHeader('x-rapidapi-key', '4b0791fe33mshce00ad033774274p196706jsn957349df7a8f');
+    getChannelVideos1.setRequestHeader('x-rapidapi-host', 'yt-api.p.rapidapi.com');
  
     getChannelVideos1.onerror = function(event) {
     console.error("An error occurred with this operation (" + getChannelVideos1.status + ")");
@@ -1007,18 +1270,25 @@ function channelVideosContin(continuation, contItemParent) {
     lazyList.classList.add('lazy-list');
     itemSection.appendChild(lazyList);
 
-    data.videos.forEach(function(item) {
+    if (data.data[0].type == "shorts" || data.data[0].type == "video") {
+    data.data.forEach(function(item) {
         if (item.type == "channel") {
-        compMediaItemThumb = "https:" + item.authorThumbnails[2].url;
+        compMediaItemThumb = "https:" + item.thumbnail[1].url;
         compMediaItemLength = "";
-        compMediaItemTitle = item.author;
-        compMediaItemAuthor = item.subCount.toLocaleString() + " subscribers";
+        compMediaItemTitle = item.channelTitle;
+        compMediaItemAuthor = item.subscriberCount + " subscribers";
+        if (item.subscriberCount == null) {
+        compMediaItemAuthor = "No subscribers";
+        }
         compMediaItemvidId = "";
         } else if (item.type == "playlist") {
-        compMediaItemThumb = item.playlistThumbnail;
+        compMediaItemThumb = item.thumbnail[0].url;
         compMediaItemLength = item.videoCount;
+        if (item.videoCount == 0) {
+        compMediaItemLength = "50+";
+        }
         compMediaItemTitle = item.title;
-        compMediaItemAuthor = item.author;
+        compMediaItemAuthor = item.channelTitle;
         compMediaItemvidId = item.playlistId;
         } else if (item.type == "hashtag") {
         compMediaItemThumb = "https://www.gstatic.com/youtube/img/social/hashtags/hashtag_tile_icon.png";
@@ -1027,16 +1297,17 @@ function channelVideosContin(continuation, contItemParent) {
         compMediaItemAuthor = item.channelCount;
         compMediaItemvidId = item.url;
         } else {
-        compMediaItemThumb = item.videoThumbnails[3].url;
-        compMediaItemLength = item.lengthSeconds;
+        compMediaItemThumb = item.thumbnail[0].url;
+        compMediaItemLength = item.lengthText;
         compMediaItemTitle = item.title;
-        compMediaItemAuthor = item.author;
+        compMediaItemAuthor = item.channelTitle;
         compMediaItemvidId = item.videoId;
         }
-        renderCompactMediaItem(lazyList, "channel-lazy-list", compMediaItemvidId, compMediaItemThumb, compMediaItemLength, compMediaItemTitle, compMediaItemAuthor, item.authorId, item.publishedText, item.viewCount, item.type);
+        renderCompactMediaItem(lazyList, "channel-lazy-list", compMediaItemvidId, compMediaItemThumb, compMediaItemLength, compMediaItemTitle, compMediaItemAuthor, item.channelId, item.publishedTimeText, item.viewCount, item.type);
     });
+    };
 
-    if (data.continuation) {
+    if (data.continuation && (data.data[0].type == "shorts" || data.data[0].type == "video")) {
     const nextContinCont = document.createElement("div");
     nextContinCont.classList.add("next-continuation-cont");
     nextContinCont.innerHTML = `<div class="next-continuation">
@@ -1586,7 +1857,10 @@ function channelVideosContin(continuation, contItemParent) {
     sectLazyList.appendChild(contItem);
 
     const getChannelAbout = new XMLHttpRequest();
-    getChannelAbout.open('GET', 'https://yt.lemnoslife.com/channels?part=snippet,status,about&id=' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0], true);
+    /* getChannelAbout.open('GET', 'https://yt.lemnoslife.com/channels?part=snippet,status,about&id=' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0], true); */
+    getChannelAbout.open('GET', APIbaseURLNew + 'channel/about?id=' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0], true);
+    getChannelAbout.setRequestHeader('x-rapidapi-key', '4b0791fe33mshce00ad033774274p196706jsn957349df7a8f');
+    getChannelAbout.setRequestHeader('x-rapidapi-host', 'yt-api.p.rapidapi.com');
  
     getChannelAbout.onerror = function(event) {
     console.error("An error occurred with this operation (" + getChannelAbout.status + ")");
@@ -1611,7 +1885,7 @@ function channelVideosContin(continuation, contItemParent) {
 
     getChannelAbout.send();
 
-    channelDescription = response.descriptionHtml;
+    channelDescription = response.meta.description;
 
     getChannelAbout.onload = function() {
     if (getChannelAbout.status === 200) {
@@ -1654,10 +1928,17 @@ function channelVideosContin(continuation, contItemParent) {
 
     const channelAboutMetadataJoinDate = document.createElement("p");
     channelAboutMetadataJoinDate.classList.add("channel-about-metadata-join-date", "user-text");
-    channelAboutMetadataJoinDate.innerHTML = `<span style="opacity: .6; font-style: italic;">Retrieving join date..</span>`
+    /* channelAboutMetadataJoinDate.innerHTML = `<span style="opacity: .6; font-style: italic;">Retrieving join date..</span>`; */
+    const options = {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    };
+    const event = new Date(data.joinedDate).toLocaleDateString(undefined, options);
+    channelAboutMetadataJoinDate.innerHTML = `Joined <span class="join-date-text">${event}</span>`
     channelAboutMetadataDesc.appendChild(channelAboutMetadataJoinDate);
 
-    const getChannelJoinDate = new XMLHttpRequest();
+    /* const getChannelJoinDate = new XMLHttpRequest();
     getChannelJoinDate.open('GET', 'https://yt.lemnoslife.com/noKey/channels?part=snippet,status&id=' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0], true);
  
     getChannelJoinDate.send();
@@ -1673,17 +1954,18 @@ function channelVideosContin(continuation, contItemParent) {
       const event = new Date(response.items[0].snippet.publishedAt).toLocaleDateString(undefined, options);
       channelAboutMetadataJoinDate.innerHTML = `Joined <span class="join-date-text">${event}</span>`
     };
-    }
+    } */
 
     const channelExternalLinks = document.createElement("div");
     channelExternalLinks.classList.add("channel-external-links");
 
-    if (data.items[0].about.links.length > 0) {
+    /* if (data.items[0].about.links.length > 0) */
+    if (data.links && data.links.length > 0) {
     channelAboutMetadataDesc.appendChild(channelExternalLinks);
-    data.items[0].about.links.forEach(function(link){
+    data.links.forEach(function(link){
       const channelExternalLink = document.createElement("a");
       channelExternalLink.classList.add("channel-external-link", "has-ripple");
-      channelExternalLink.href = link.url;
+      channelExternalLink.href = link.link;
       channelExternalLink.setAttribute("tabindex", "0");
       channelExternalLink.rel = "nofollow";
       channelExternalLink.target = "_blank";
@@ -1702,8 +1984,8 @@ function channelVideosContin(continuation, contItemParent) {
 
     const channelAboutMetadataViewCount = document.createElement("p");
     channelAboutMetadataViewCount.classList.add("channel-about-metadata-view-count");
-    channelAboutMetadataViewCount.innerHTML = `<strong class="view-count-text">${data.items[0].about.stats.viewCount.toLocaleString()}</strong> views`;
-    if (data.items[0].about.stats.viewCount !== 0) {
+    channelAboutMetadataViewCount.innerHTML = `<strong class="view-count-text">${/* data.items[0].about.stats.viewCount.toLocaleString() */ Number(data.viewCount).toLocaleString()}</strong> views`;
+    if (data.viewCount !== 0 && data.viewCount !== null) {
     channelAboutMetadata.appendChild(channelAboutMetadataViewCount);
     }
     } else {

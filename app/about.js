@@ -506,6 +506,12 @@ a few hours later:
 
 19 Mar 2025:
 -got to work on channel page repairs
+
+29 - 30 Mar 2025:
+-more channel page repairs have begun (home, videos, about)
+-fixed searchpage issue where it wouldn't she the no results message when there are no results
+-viewcount and like count in watchpage now have the "number()" function
+-member shelfs on channels now exist
     </div>
     </div>
     </div>

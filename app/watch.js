@@ -206,7 +206,7 @@ function renderWatchPage(parent) {
     });
     const viewCount = document.createElement("div");
     viewCount.classList.add("video-metadata-view-count");
-    viewCount.innerHTML = `<span class="secondary-text" role="text" aria-label="${data.viewCount.toLocaleString() + " views"}">${data.viewCount.toLocaleString() + " views"}</span>`;
+    viewCount.innerHTML = `<span class="secondary-text" role="text" aria-label="${Number(data.viewCount).toLocaleString() + " views"}">${Number(data.viewCount).toLocaleString() + " views"}</span>`;
     metaTitleCont.appendChild(viewCount);
 
     metaHeaderCont.innerHTML = metaHeaderCont.innerHTML + `<ytm15-icon class="expand-icon" role="button" aria-label="Show more" aria-expanded="false"><svg viewBox="0 0 24 24" fill=""><path d="M7,10L12,15L17,10H7Z"></path></svg></ytm15-icon>`;
@@ -377,7 +377,7 @@ function renderWatchPage(parent) {
     mtrlBtnCont.setAttribute("is-busy", "false");
     mtrlBtnCont.ariaBusy = "false";
     mtrlBtnCont.setAttribute("disabled", "false");
-    videoMetadataLikeCount = data.likeCount.toLocaleString();
+    videoMetadataLikeCount = Number(data.likeCount).toLocaleString();
     videoMetadataLikeCountAL = "Like this video along with " + videoMetadataLikeCount + " other people";
     if (data.allowRatings == false) {
     videoMetadataLikeCount = "Like";

@@ -825,6 +825,28 @@ animation-duration: .28s;
    display: flex;
    flex-wrap: wrap;
 }
+.recognition-shelf-avatars {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0px 9px;
+    margin-bottom: 16px;
+    margin-top: 5px;
+}
+.recognition-avatar {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    margin: 0 7px;
+}
+.recog-avatar-icon.profile-icon {
+    width: 100%;
+    height: 100%;
+}
+.recognition-shelf-avatars::-webkit-scrollbar {
+    display: none;
+}
 
 h3 {
     font-size: 1.4rem;
@@ -5067,7 +5089,10 @@ html.style-2013 {
     transition: none;
 }
 .style-2013 .error-content {
-	animation: none;
+    animation: none;
+}
+.style-2013 .recognition-shelf-avatars {
+    margin-top: 15px;
 }
 
 /* Global dark theme */

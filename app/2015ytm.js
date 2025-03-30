@@ -1053,7 +1053,10 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
           if (channelData.status === 200) {
           const data1 = JSON.parse(channelData.response);
           /* vidCountByline.textContent = data1.items[0].about.stats.videoCount.toLocaleString() + " videos"; */
-          vidCountByline.textContent = data1.videosCount.toLocaleString() + " videos";
+          vidCountByline.textContent = Number(data1.videosCount).toLocaleString() + " videos";
+          if (data1.videosCount == null) {
+          vidCountByline.textContent = "No videos";
+          }
           } else {
           console.error("An error occurred with this operation (" + channelData.status + ")");
           }

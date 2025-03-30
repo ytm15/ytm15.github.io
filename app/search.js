@@ -98,12 +98,15 @@ function searchPage() {
     var title = document.querySelector("title");
     title.textContent = searchValue + ' - 2015YouTube';
 
-    response.data.forEach(function(item) {
+    if (!response.error) {response.data.forEach(function(item) {
         if (item.type == "channel") {
         compMediaItemThumb = "https:" + item.thumbnail[1].url;
         compMediaItemLength = "";
         compMediaItemTitle = item.channelTitle;
         compMediaItemAuthor = item.subscriberCount + " subscribers";
+        if (item.subscriberCount == null) {
+        compMediaItemAuthor = "No subscribers";
+        }
         compMediaItemvidId = "";
         } else if (item.type == "playlist") {
         compMediaItemThumb = item.thumbnail[0].url;
@@ -134,9 +137,9 @@ function searchPage() {
         if (item.type !== "shorts_listing" && item.type !== "video_listing" && item.type !== "ad") {
         renderCompactMediaItem(lazyList, "lazy-list", compMediaItemvidId, compMediaItemThumb, compMediaItemLength, compMediaItemTitle, compMediaItemAuthor, item.channelId, item.publishedTimeText, item.viewCount, item.type);
         }
-    });
+    }); };
 
-    if (response.data.length == "0") {
+    if (/* response.data.length == "0" */ response.error == "Required param missing: query") {
     const ytm15Msg = document.createElement("div");
     ytm15Msg.classList.add("ytm15-message");
     ytm15Msg.innerHTML = `<div class="ytm15-message-content"><div class="msg-text">${No_Search_Results_text_string}</div></div>`;
@@ -144,7 +147,7 @@ function searchPage() {
     }
 
     /* if (response.length > "9") { */
-    if (response.continuation !== "") {
+    if (response.continuation !== "" && response.error !== "Required param missing: query") {
     const nextContinCont = document.createElement("div");
     nextContinCont.classList.add("next-continuation-cont");
     nextContinCont.innerHTML = `<div class="next-continuation">
@@ -226,6 +229,9 @@ function searchPageContin(continuation, contItemParent) {
         compMediaItemLength = "";
         compMediaItemTitle = item.channelTitle;
         compMediaItemAuthor = item.subscriberCount + " subscribers";
+        if (item.subscriberCount == null) {
+        compMediaItemAuthor = "No subscribers";
+        }
         compMediaItemvidId = "";
         } else if (item.type == "playlist") {
         compMediaItemThumb = item.thumbnail[0].url;
