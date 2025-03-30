@@ -805,7 +805,7 @@ function channelPage() {
         compMediaItemLength = "";
         compMediaItemTitle = item1.title;
         compMediaItemAuthor = item1.subscriberCount + " subscribers";
-        if (item.subscriberCount == null) {
+        if (item1.subscriberCount == null) {
         compMediaItemAuthor = "No subscribers";
         }
         compMediaItemvidId = "";
