@@ -119,10 +119,10 @@ function searchPage() {
         compMediaItemvidId = item.playlistId;
         } else if (item.type == "hashtag") {
         compMediaItemThumb = "https://www.gstatic.com/youtube/img/social/hashtags/hashtag_tile_icon.png";
-        compMediaItemLength = item.videoCount;
-        compMediaItemTitle = item.title;
-        compMediaItemAuthor = item.channelCount;
-        compMediaItemvidId = item.url;
+        compMediaItemLength = item.videoCountText;
+        compMediaItemTitle = item.hashtag;
+        compMediaItemAuthor = item.channelCountText;
+        compMediaItemvidId = "/hashtag/" + item.hashtag.split("#")[1];
         } else if (item.type == "shorts_listing" || item.type == "video_listing") {
         
         } else if (item.type == "ad") {

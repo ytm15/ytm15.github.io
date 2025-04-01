@@ -26,7 +26,7 @@ function renderWatchPage(parent) {
     /* getWatchData.open('GET', APIbaseURL + 'api/v1/videos/' + playerVideoId, true); */
     /* getWatchData.open('GET', APIbaseURLWatch + 'api/v1/videos/' + playerVideoId, true); */
     /* getWatchData.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs='); */
-    getWatchData.open('GET', APIbaseURLNew + 'video/info?extend=1&id=' + playerVideoId, true);
+    getWatchData.open('GET', APIbaseURLNew + 'video/info?extend=1&geo=us&id=' + playerVideoId, true);
     getWatchData.setRequestHeader('x-rapidapi-key', '4b0791fe33mshce00ad033774274p196706jsn957349df7a8f');
     getWatchData.setRequestHeader('x-rapidapi-host', 'yt-api.p.rapidapi.com');
 

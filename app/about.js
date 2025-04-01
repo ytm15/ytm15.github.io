@@ -79,11 +79,13 @@ Stuff YTm15 makes use of
 
     <div class="ap-shelf-content">
     <div class="ap-shelf-text">APIs:
--(formely) Invidious API (<a href="https://docs.invidious.io/api/">https://docs.invidious.io/api/</a>) [to be replaced, this API no-longer works so it will no-longer be used]
+-(formerly) Invidious API (<a href="https://docs.invidious.io/api/">https://docs.invidious.io/api/</a>) [<!-- to be replaced -->replaced by YT-API from rapidapi, this API no-longer works so it will no-longer be used]
+
+-(formerly) YouTube Operational API (<a href="https://yt.lemnoslife.com/">https://yt.lemnoslife.com/</a>) [this API is dead so it's no-longer in use]
+
+-YT-API from RapidAPI (credit to ytjar) (<a href="https://rapidapi.com/ytjar/api/yt-api">https://rapidapi.com/ytjar/api/yt-api</a>)
 
 -Piped API (<a href="https://docs.piped.video/docs/api-documentation/">https://docs.piped.video/docs/api-documentation/</a>)
-
--YouTube Operational API (<a href="https://yt.lemnoslife.com/">https://yt.lemnoslife.com/</a>)
 
 -Return YouTube Dislike API (<a href="https://returnyoutubedislikeapi.com/swagger/">https://returnyoutubedislikeapi.com/swagger/</a>)
 
@@ -512,6 +514,9 @@ a few hours later:
 -fixed searchpage issue where it wouldn't she the no results message when there are no results
 -viewcount and like count in watchpage now have the "number()" function
 -member shelfs on channels now exist
+
+01 Apr 2025:
+-fixed search page hashtags
     </div>
     </div>
     </div>

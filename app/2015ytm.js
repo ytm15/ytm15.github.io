@@ -1029,13 +1029,16 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         } else {
         vidCountStats.textContent = itemLength.toLocaleString() + " videos";
         }
+        if (mediaType == "hashtag") {
+        vidCountStats.textContent = itemLength;
+        }
         vidCountStats.classList.add('compact-media-stats', 'small-text');
 
         const hashChannelCount = document.createElement('div');
         if (itemAuthor !== "50+") {
-        hashChannelCount.textContent = Number(itemAuthor).toLocaleString() + " channels";
+        hashChannelCount.textContent = /* Number( */itemAuthor/* ).toLocaleString() + " channels" */;
         } else {
-        hashChannelCount.textContent = itemAuthor.toLocaleString() + " channels";
+        hashChannelCount.textContent = itemAuthor /* .toLocaleString() + " channels" */;
         }
         hashChannelCount.classList.add('compact-media-stats', 'small-text');
 
