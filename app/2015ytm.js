@@ -322,6 +322,8 @@ Library_text_string = "Library";
 AddComment_text_string = "Add a public comment...";
 AddReply_text_string = "Add a public reply..."
 Account_text_string = "Account";
+Posts_text_string = "Posts";
+PostsError_text_string = "There was an error loading posts.";
 
 function renderSubscribeBtn(parent) {
     const mtrlBtnCont = document.createElement("div");
@@ -787,6 +789,173 @@ ${pinnedCMBadge}
     } else {
     retrieveComments("");
     };
+};
+
+function renderPosts(parent, postId, postSource){
+    var cmPostsAPIBase = 'https://yt-api.p.rapidapi.com/channel/community?id=';
+    
+    const postSection = document.createElement("div");
+    postSection.classList.add("item-section", "post-section");
+    postSection.dataset.isBeta = true;
+    postSection.dataset.identifier  = "post-section";
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+      postSection.classList.add('card');
+    }
+    parent.appendChild(postSection);
+    
+    const postsHeader = document.createElement("div");
+    postsHeader.classList.add("backstage-posts-header");
+    postCount = ``;
+    postsHeader.innerHTML = `<div class="posts-header-top"><h2 class="posts-header-text"><span class="posth-text-title">${Posts_text_string}</span><span class="posth-text-post-count">${postCount}</span></h2></div>`;
+    
+    if (postId == "" || postId == undefined) {
+    postSection.appendChild(postsHeader);
+    }
+    
+    var commentSeparator = document.createElement("div");
+    commentSeparator.classList.add("comment-separator");
+    
+    const lazyList = document.createElement("div");
+    lazyList.classList.add("lazy-list");
+    postSection.appendChild(lazyList);    
+    
+    function retrievePosts(continuation, inReplyThread){
+    if (continuation == "") {
+    lazyList.innerHTML = ``;
+    }
+    
+    const spinner = document.querySelector(".spinner-container.full-height");
+    const contItem = document.createElement("div");
+    contItem.classList.add("continuation-item");
+    const spinnerClone = spinner.cloneNode(true);
+    spinnerClone.classList.remove("full-height");
+    spinnerClone.removeAttribute("hidden");
+    contItem.appendChild(spinnerClone);
+    lazyList.appendChild(contItem);
+    
+    const getPostsData = new XMLHttpRequest();
+    getPostsData.open('GET', cmPostsAPIBase + postSource + "&token=" + continuation, true);
+    getPostsData.setRequestHeader('x-rapidapi-key', '4b0791fe33mshce00ad033774274p196706jsn957349df7a8f');
+    getPostsData.setRequestHeader('x-rapidapi-host', 'yt-api.p.rapidapi.com');
+    
+    getPostsData.onerror = function(event) {
+    console.error("An error occurred with this operation (" + getPostsData.status + ")");
+    contItem.remove();
+    postSection.innerHTML = `<div class="ytm15-message"><div class="ytm15-message-content"><div class="msg-text">${PostsError_text_string}</div></div></div>`;
+    return;
+    };
+
+    getPostsData.send();
+    
+    getPostsData.onload = function() {
+    if (getPostsData.status === 200) {
+    const data = JSON.parse(getPostsData.response);
+    contItem.remove();
+
+    data.data.forEach(function(item){
+    const postThread = document.createElement("ytm15-backstage-post-thread");
+    const post = document.createElement("ytm15-backstage-post");
+    post.classList.add("has-ripple");
+    const postPFPCont = document.createElement("a");
+    postPFPCont.classList.add("post-pfp-container");
+    postPFPCont.href = "#/channel/" + item.authorChannelId;
+    if (item.originalPost) {
+    postPFP = item.thumbnail[1].url;
+    } else {
+    postPFP = item.authorThumbnail[1].url;
+    };
+    postPFPCont.innerHTML = `
+<div class="profile-icon post-icon">
+<img class="profile-img ytm15-img lazy" loading="lazy" src="https:${postPFP}"></img>
+</div>
+`;
+    postPFPCont.querySelector(".profile-img").onload = function(){this.classList.add('loaded');};
+    const postCont = document.createElement("div");
+    postCont.classList.add("post-content");
+    postReplyCount = item.replyCount;
+    postLikeCount = item.voteCountText;
+    if (item.replyCount == null){postReplyCount = 0;}
+    if (item.voteCountText == null){postLikeCount = 0;}
+    postAuthor = item.authorText;
+    postAttachment = "";
+    if (item.attachment){
+    if (item.attachment.type == "image") {
+    postAttachment = `<div class="post-image-container single-image"><img class="post-img ytm15-img lazy" loading="lazy" src="${item.attachment.image.pop().url}"></img><ytm15-icon class="image-icon post-image-icon"><svg viewBox="0 0 24 24" fill=""><path d="M8.5,13.5L11,16.5L14.5,12L19,18H5M21,19V5C21,3.89 20.1,3 19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19Z"></path></svg></ytm15-icon></div>`;
+    } else if (item.attachment.type == "multi_image") {
+    postAttachment = `<div class="post-multi-image-container">`;
+    
+    multiImageLength = item.attachment.image.length;
+    postNumber = 0;
+    item.attachment.image.forEach(function(item1){
+    postNumber += 1;
+    postAttachment += `<div class="post-img-container-multi"><div class="post-image-container"><img class="post-img ytm15-img lazy" loading="lazy" src="${item1.pop().url}"></img><ytm15-icon class="image-multi-icon post-image-icon"><svg viewBox="0 0 24 24" fill=""><path d="M22,16V4A2,2 0 0,0 20,2H8A2,2 0 0,0 6,4V16A2,2 0 0,0 8,18H20A2,2 0 0,0 22,16M11,12L13.03,14.71L16,11L20,16H8M2,6V20A2,2 0 0,0 4,22H18V20H4V6"></path></svg></ytm15-icon><div class="post-image-page-number-indicator">${postNumber}/${multiImageLength}</div></div></div>`
+    });
+    
+    postAttachment += `</div>`
+    } else {
+    postAttachment = `<div class="post-unsupported-attachment-msg"><span class="subhead">${item.attachment.type} attachments are not supported on ytm15 posts yet.</span></div>`;
+    };
+    };
+    postCont.innerHTML = `<p class="post-text user-text">${item.contentText}</p>
+<div class="post-header">
+<span class="post-title"><a href="#/channel/${item.authorChannelId}">${postAuthor}</a></span>
+<span class="post-published-time">${item.publishedTimeText}</span>
+</div>
+<div class="post-attachment">${postAttachment}</div>
+<div class="post-details">
+<div class="post-icons" id="post-icon-like">
+<button class="icon-button post-icon-button" aria-label="Like this post"><ytm15-icon class="like-icon post-action-icon"><svg viewBox="0 0 24 24" fill=""><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1.91l-.01-.01L23 10z"></path></svg></ytm15-icon></button>
+<span class="post-count">${postLikeCount}</span>
+</div>
+<div class="post-icons" id="post-icon-dislike">
+<button class="icon-button post-icon-button" aria-label="Dislike this post"><ytm15-icon class="dislike-icon post-action-icon"><svg viewBox="0 0 24 24" fill=""><path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v1.91l.01.01L1 14c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"></path></svg></ytm15-icon></button>
+<span class="post-count"></span>
+</div>
+<div class="post-icons" id="post-icon-reply">
+<button class="icon-button post-icon-button" aria-label="Reply to this post"><ytm15-icon class="reply-icon post-action-icon"><svg viewBox="0 0 24 24" fill=""><path d="M18,8H6V6H18V8M18,11H6V9H18V11M18,14H6V12H18V14M22,4A2,2 0 0,0 20,2H4A2,2 0 0,0 2,4V16A2,2 0 0,0 4,18H18L22,22V4Z"></path></svg></ytm15-icon>
+</button>
+<span class="post-count">${postReplyCount}</span>
+</div>
+</div>
+`;
+    if (postCont.querySelector(".ytm15-img")) {
+    postCont.querySelectorAll(".ytm15-img").forEach(function(item){
+    item.onload = function(){this.classList.add('loaded');};
+    });
+    };
+
+    post.appendChild(postPFPCont);
+    post.appendChild(postCont);
+    
+    postThread.appendChild(post);
+        
+    var commentSeparator = document.createElement("div");
+    commentSeparator.classList.add("comment-separator");
+    postThread.appendChild(commentSeparator);
+    lazyList.appendChild(postThread);
+    });
+    
+    if (data.continuation && (inReplyThread || postId == "" || postId == undefined)) {
+    const nextContinCont = document.createElement("div");
+    nextContinCont.classList.add("next-continuation-cont");
+    nextContinCont.innerHTML = `<div class="next-continuation">
+<div class="material-button-container next-contin-button" data-style="" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button" data-continuation="" aria-label="More"><div class="button-text">More</div></button></div>
+</div>`;
+    nextContinCont.querySelector("button").dataset.continuation = data.continuation;
+    nextContinCont.querySelector("button").onclick = function(){
+    nextContinCont.remove();
+    retrievePosts(nextContinCont.querySelector("button").dataset.continuation, inReplyThread);
+    };
+    postSection.appendChild(nextContinCont);
+    }
+    
+    } else {
+    getPostsData.onerror();
+    }
+    };
+    };
+    
+    retrievePosts("");
 };
 
 const pivotBar = document.createElement("ytm15-pivot-bar");

@@ -517,6 +517,10 @@ a few hours later:
 
 01 Apr 2025:
 -fixed search page hashtags
+
+04 - 05 Apr 2025:
+-started working on community posts
+-sort by now shows when tabs in channels are separated
     </div>
     </div>
     </div>

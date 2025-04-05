@@ -110,7 +110,7 @@ function channelPage() {
 
     chSubCount = 0;
 
-    const getChannelDataYT = new XMLHttpRequest();
+    /* const getChannelDataYT = new XMLHttpRequest();
     getChannelDataYT.open('GET', 'https://yt.lemnoslife.com/noKey/channels?part=snippet,statistics,status&id=' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0], true);
     getChannelDataYT.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs=');
 
@@ -131,7 +131,7 @@ function channelPage() {
     } else {
     getChannelDataYT.onerror();
     }
-    };
+    }; */
 
     const getChannelData = new XMLHttpRequest();
     /* getChannelData.open('GET', APIbaseURLWatch + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0], true); */
@@ -207,6 +207,7 @@ function channelPage() {
     /* const videosTabExists = response.tabs.find((item) => item === "videos"); */
     const videosTabExists = response.meta.tabs.map(word => word.toLowerCase()).find(function(item){return item === "videos"});
     const homeTabExists = response.meta.tabs.map(word => word.toLowerCase()).find(function(item){return item === "home"});
+    const postsTab = response.meta.tabs.map(word => word.toLowerCase()).find(function(item){return item === "posts"});
 
     if (!homeTabExists) {
       response.meta.tabs.splice(0, 0, "home");
@@ -217,7 +218,7 @@ function channelPage() {
       response.meta.tabs.splice(1, 0, "videos");
      }
     }
-
+    
     response.meta.tabs.push("channels");
 
     response.meta.tabs.map(word => word.toLowerCase()).forEach(function(item) {
@@ -228,6 +229,12 @@ function channelPage() {
     const tab = document.createElement("a");
     tab.classList.add("tab");
     tab.setAttribute('role', 'tab');
+    if (item == "posts") {
+    item = "community";
+    }
+    if (item == "live") {
+    item = "streams";
+    }
     tab.setAttribute('aria-label', item);
     if (item == "streams") {
     tab.setAttribute('aria-label', 'live');
@@ -252,7 +259,7 @@ function channelPage() {
     if (item == "streams") {
     tab.innerHTML = "live";
     }
-
+    
     tabBarTabs.appendChild(tBTabCont);
     tBTabCont.appendChild(tab);
     if (CHANNELS_SEPARATE_VIDS_SHORTS_LIVE_TABS_expflag !== "true") {
@@ -296,6 +303,12 @@ function channelPage() {
     const tabContent = document.createElement("div");
     tabContent.classList.add('tab-content');
     tabContent.setAttribute("tab-identifier", "Channel_page");
+    if (item == "posts") {
+    item = "community";
+    }
+    if (item == "live") {
+    item = "streams";
+    }
     tabContent.setAttribute("tab-title", item);
     tabContent.setAttribute("hidden", "");
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == item) {
@@ -1132,7 +1145,7 @@ function channelPage() {
       ]);
     }
 
-    if ((window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "shorts" && item !== "shorts") && (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "streams" && item !== "streams") && data.data.length !== "0" && data.data[0] && data.data[0].type !== "category") {
+    if (/* (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "shorts" && item !== "shorts") && (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] !== "streams" && item !== "streams") && */ data.data.length !== "0" && data.data[0] && data.data[0].type !== "category") {
     sectionList.insertAdjacentElement("afterbegin", channelSubMenu);
     }
     if (CHANNELS_SEPARATE_VIDS_SHORTS_LIVE_TABS_expflag !== "true") {
@@ -1827,6 +1840,19 @@ function channelVideosContin(continuation, contItemParent) {
      if (item == "shorts" || item == "streams") {
      tabContent.remove();
      }
+    }
+    
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "community" && item == "community") {
+    var sectionList = document.createElement("div");
+    sectionList.classList.add("section-list");
+    
+    var sectLazyList = document.createElement("div");
+    sectLazyList.classList.add("lazy-list");
+    sectionList.appendChild(sectLazyList);
+    
+    renderPosts(sectLazyList, "", response.meta.channelId);
+
+    tabContent.appendChild(sectionList);
     }
     });
 
