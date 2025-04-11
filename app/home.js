@@ -153,7 +153,7 @@ function renderData() {
         /* const data = await fetchDataTrending();
         console.log(data); */
 
-        const getHomeData = new XMLHttpRequest();
+        const getHomeData = new XMLHttpsRequest();
         if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] !== "trending") {
         getHomeData.open('GET', APIbaseURL + 'api/v1/trending', true, 'ytm15', 'JQJ53KrLAEY6E5qhgcm38PkSzw3bZXmk');
         } else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "trending") {
