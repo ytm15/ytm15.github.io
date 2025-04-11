@@ -1,21 +1,21 @@
 var spinnerParent = document.querySelector("#app");
 spinner();
 
-/* async function fetchData() {
+ async function fetchData() {
     try {
-        const response = await fetch('https://invidious.protokolla.fi/api/v1/popular');
+        const response = await fetch('https://inv.nadeko.net/api/v1/popular');
         const data = await response.json();
         return data;
     } catch (error) {
         console.error('Error fetching data:', error);
     }
-} */
+} 
 
-/* async function fetchDataTrending() {
+ async function fetchDataTrending() {
     try {
         // if (urlpage !== "trending")
         if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] !== "trending") {
-        const response = await fetch('https://invidious.protokolla.fi/api/v1/trending');
+        const response = await fetch('https://inv.nadeko.net/api/v1/trending');
         const data = await response.json();
         return data;
         // else if (urlpage == "trending")
@@ -27,7 +27,7 @@ spinner();
     } catch (error) {
         console.error('Error fetching data:', error);
     }
-} */
+} 
 
 /* async function renderData() */
 function renderData() {
