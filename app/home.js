@@ -1,7 +1,7 @@
 var spinnerParent = document.querySelector("#app");
 spinner();
 
- async function fetchData() {
+ /* async function fetchData() {
     try {
         const response = await fetch('https://inv.nadeko.net/api/v1/popular');
         const data = await response.json();
