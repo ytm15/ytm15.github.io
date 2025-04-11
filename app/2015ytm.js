@@ -251,7 +251,7 @@ metaColorElm.content = "#000000";
 }
 }
 
-APIbaseURL = "https://invidious.nerdvpn.de/";
+APIbaseURL = "https://inv.nadeko.net/";
 APIbaseURLWatch = "https://inv.nadeko.net/";
 APIbaseURLNew = "https://yt-api.p.rapidapi.com/";
 APIbaseURLPiped = "https://pipedapi.leptons.xyz/";
