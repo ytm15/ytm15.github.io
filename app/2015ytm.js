@@ -251,7 +251,7 @@ metaColorElm.content = "#000000";
 }
 }
 
-APIbaseURL = "https://raw.githubusercontent.com/ytm15mod/staticinvidious/refs/heads/main/";
+APIbaseURL = "http://astounding-pudding-06a118.netlify.app/";
 APIbaseURLWatch = "https://inv.nadeko.net/";
 APIbaseURLNew = "https://yt-api.p.rapidapi.com/";
 APIbaseURLPiped = "https://pipedapi.leptons.xyz/";
