@@ -27,9 +27,9 @@ spinner();
     } catch (error) {
         console.error('Error fetching data:', error);
     }
-} 
+} */
 
- async function renderData() 
+/* async function renderData() */
 function renderData() {
     const headerTitle = document.querySelector(".header-title");
     headerTitle.setAttribute("aria-label", "");
