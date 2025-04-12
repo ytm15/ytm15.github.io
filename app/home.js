@@ -260,9 +260,22 @@ function renderData() {
 
         oldTitle.parentNode.replaceChild(title, oldTitle);
 
-        data.forEach(function(item) {
-            renderMediaItem(sectLazyList, "sect-lazy-list", item.videoId, item.videoThumbnails[3].url, item.lengthSeconds, item.title, item.author, item.authorId, item.publishedText, item.viewCount);
-        });
+    data.forEach(function(item) {
+  const thumbnailUrl = `https://i.ytimg.com/vi/${item.videoId}/maxresdefault.jpg`;
+
+  renderMediaItem(
+    sectLazyList,
+    "sect-lazy-list",
+    item.videoId,
+    thumbnailUrl,
+    item.lengthSeconds,
+    item.title,
+    item.author,
+    item.authorId,
+    item.publishedText,
+    item.viewCount
+  );
+});
     } else {
     getHomeData.onerror();
     }
@@ -369,7 +382,8 @@ function renderData() {
 
         oldTitle.parentNode.replaceChild(title, oldTitle);
 
-     data.forEach(function(item) {
+
+data.forEach(function(item) {
   const thumbnailUrl = `https://i.ytimg.com/vi/${item.videoId}/maxresdefault.jpg`;
 
   renderMediaItem(
