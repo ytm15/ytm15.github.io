@@ -384,7 +384,7 @@ function renderData() {
 
 
 data.forEach(function(item) {
-  const thumbnailUrl = `https://i.ytimg.com/vi/${item.videoId}/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAHwXeFojwmY0EFNc4SCxFKg56D2g`;
+  const thumbnailUrl = `https://i.ytimg.com/vi/${item.videoId}/sqp=-oaymwE2CNACELwBSFXyq4qpAygIARUAAIhCGAFwAcABBvABAfgBtgiAAoAPigIMCAAQARhlIFMoUTAP&rs=AOn4CLDk9TeuArqupbEuRhIqnLQWfWx6eQ&quot`
 
   renderMediaItem(
     sectLazyList,
