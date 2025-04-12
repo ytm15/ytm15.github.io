@@ -158,7 +158,7 @@ function renderData() {
         getHomeData.open('GET', APIbaseURL + 'api/v1/trending', true, 'ytm15', 'JQJ53KrLAEY6E5qhgcm38PkSzw3bZXmk');
         } else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "trending") {
         /* getHomeData.open('GET', APIbaseURL + 'api/v1/trending?type=' + trendType, true); */
-        getHomeData.open('GET', APIbaseURL + 'api/v1/trending?type=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("trtype").slice(1, 2).toString().split("=").slice(1, 2).toString(), true);
+        getHomeData.open('GET', APItrendingURL + 'api/v1/trending?type=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("trtype").slice(1, 2).toString().split("=").slice(1, 2).toString(), true);
         }
         getHomeData.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs=');
 
