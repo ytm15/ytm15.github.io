@@ -251,7 +251,8 @@ metaColorElm.content = "#000000";
 }
 }
 
-APIbaseURL = "";
+APIbaseURL = "https://inv.nadeko.net/";
+APItrendingURL = "";
 APIbaseURLWatch = "https://inv.nadeko.net/";
 APIbaseURLNew = "https://yt-api.p.rapidapi.com/";
 APIbaseURLPiped = "https://pipedapi.leptons.xyz/";
