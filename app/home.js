@@ -261,7 +261,7 @@ function renderData() {
         oldTitle.parentNode.replaceChild(title, oldTitle);
 
     data.forEach(function(item) {
-  const thumbnailUrl = `https://i.ytimg.com/vi/${item.videoId}/maxresdefault.jpg`;
+  const thumbnailUrl = `https://i.ytimg.com/vi/${item.videoId}/hqdefault.jpg?sqp=-oaymwEcCNACELwBSFXyq4qpAw4IARUAAIhCGAFwAcABBg==&rs=AOn4CLAHwXeFojwmY0EFNc4SCxFKg56D2g`;
 
   renderMediaItem(
     sectLazyList,
@@ -398,7 +398,6 @@ data.forEach(function(item) {
     item.publishedText,
     item.viewCount
   );
-});
         });
     } else {
     getHomeData1.onerror();
