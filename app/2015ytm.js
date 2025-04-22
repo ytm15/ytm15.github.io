@@ -140,6 +140,7 @@ DISABLE_TAB_ICONS_expflag = localStorage.getItem("DISABLE_TAB_ICONS");
 WATCH_ENABLE_NEW_UI_expflag = localStorage.getItem("WATCH_ENABLE_NEW_UI");
 WATCH_TILTE_FONT_WEIGHT_500_expflag = localStorage.getItem("WATCH_TILTE_FONT_WEIGHT_500");
 USE_NEW_SUBSCRIBE_ICON_expflag = localStorage.getItem("USE_NEW_SUBSCRIBE_ICON");
+LIFT_PIVOT_BAR_FOR_PHONE_expflag = localStorage.getItem("LIFT_PIVOT_BAR_FOR_PHONE");
 
 if (DISABLE_YTM15_APP_BORDER_expflag == "true") {
     documentHTML.classList.add("no-app-border");
@@ -215,6 +216,12 @@ if (APP_DEMATERIALIZE_UI_expflag == "true") {
     documentHTML.classList.add("style-2013");
 } else {
     documentHTML.classList.remove("style-2013");
+}
+
+if (LIFT_PIVOT_BAR_FOR_PHONE_expflag == "true") {
+  documentHTML.classList.add("lift-pivot");
+} else {
+  documentHTML.classList.remove("lift-pivot");
 }
 };
 
