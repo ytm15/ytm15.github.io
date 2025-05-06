@@ -5908,3 +5908,10 @@ html.style-2013.dark.dark-21 {
 .style-2013.dark.dark-21 .ytm15-video-owner .material-button-container[data-style="BRAND"] .material-button {
     background: linear-gradient(#323232, #252525);
 }
+.lift-pivot .pivot-bar-item-tab {
+    bottom: 10px;
+}
+
+.lift-pivot ytm15-pivot-bar {
+    height: 72px;
+}
