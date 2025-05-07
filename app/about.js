@@ -521,6 +521,9 @@ a few hours later:
 04 - 05 Apr 2025:
 -started working on community posts
 -sort by now shows when tabs in channels are separated
+
+07 May 2025:
+-added a new expflag: LIFT_PIVOT_BAR_FOR_PHONE (thanks and credit to legoskid for the idea)
     </div>
     </div>
     </div>
