@@ -4129,6 +4129,11 @@ label.radio-label {
     font-weight: 500;
 }
 
+/* pivot bar lift flag */
+.lift-pivot ytm15-pivot-bar {
+    padding-bottom: 20px;
+}
+
 /* Slim/2017 watchpage style */
 .slim-style-2017 .ytm15-video-owner {
     border-top: 1.2px solid rgba(0, 0, 0, 0.2);

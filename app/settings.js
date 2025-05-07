@@ -511,6 +511,15 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "USE_NEW_SUBSCRIBE_ICON"
+      },
+      {
+        "type": "boolean",
+        "title": "LIFT_PIVOT_BAR_FOR_PHONE",
+        "subtitle": "",
+        "pressed": LIFT_PIVOT_BAR_FOR_PHONE_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "LIFT_PIVOT_BAR_FOR_PHONE"
       }
       ];
       settingBlocks.forEach(function(item){
