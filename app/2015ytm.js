@@ -141,6 +141,11 @@ WATCH_ENABLE_NEW_UI_expflag = localStorage.getItem("WATCH_ENABLE_NEW_UI");
 WATCH_TILTE_FONT_WEIGHT_500_expflag = localStorage.getItem("WATCH_TILTE_FONT_WEIGHT_500");
 USE_NEW_SUBSCRIBE_ICON_expflag = localStorage.getItem("USE_NEW_SUBSCRIBE_ICON");
 LIFT_PIVOT_BAR_FOR_PHONE_expflag = localStorage.getItem("LIFT_PIVOT_BAR_FOR_PHONE");
+PIVOT_SHRINK_SPACING_expflag = localStorage.getItem("PIVOT_SHRINK_SPACING");
+if (PIVOT_SHRINK_SPACING_expflag == undefined) {
+  localStorage.setItem("PIVOT_SHRINK_SPACING", "Off");
+  PIVOT_SHRINK_SPACING_expflag = localStorage.getItem("PIVOT_SHRINK_SPACING");
+}
 
 if (DISABLE_YTM15_APP_BORDER_expflag == "true") {
     documentHTML.classList.add("no-app-border");
@@ -223,6 +228,16 @@ if (LIFT_PIVOT_BAR_FOR_PHONE_expflag == "true") {
 } else {
     documentHTML.classList.remove("lift-pivot");
 }
+if (PIVOT_SHRINK_SPACING_expflag == "Manual (looks bad on portrait)") {
+  documentHTML.classList.add("pivot-shrink");
+} else {
+  documentHTML.classList.remove("pivot-shrink");
+};
+if (PIVOT_SHRINK_SPACING_expflag == "Auto (Will turn on/off depending on rotation)") {
+  documentHTML.classList.add("pivot-shrink-auto");
+} else {
+  documentHTML.classList.remove("pivot-shrink-auto");
+};
 };
 
 localStorageChange();

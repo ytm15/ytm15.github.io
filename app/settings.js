@@ -520,6 +520,29 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "LIFT_PIVOT_BAR_FOR_PHONE"
+      },
+      {
+        "type": "option-menu",
+        "title": "PIVOT_SHRINK_SPACING",
+        "subtitle": "",
+        "options": [
+          {
+            "title": "Off",
+            "selected": PIVOT_SHRINK_SPACING_expflag == "Off",
+            "selected-default": true
+          },
+          {
+            "title": "Manual (looks bad on portrait)",
+            "selected": PIVOT_SHRINK_SPACING_expflag == "Manual (looks bad on portrait)",
+            "selected-default": false
+          },
+          {
+            "title": "Auto (Will turn on/off depending on rotation)",
+            "selected": PIVOT_SHRINK_SPACING_expflag == "Auto (Will turn on/off depending on rotation)",
+            "selected-default": false
+          }
+        ],
+        "lsitem": "PIVOT_SHRINK_SPACING"
       }
       ];
       settingBlocks.forEach(function(item){
