@@ -539,11 +539,38 @@ function settingsPage() {
           {
             "title": "Auto (Will turn on/off depending on rotation)",
             "selected": PIVOT_SHRINK_SPACING_expflag == "Auto (Will turn on/off depending on rotation)",
-            "selected-default": false
+            "selected-default": true
           }
         ],
         "lsitem": "PIVOT_SHRINK_SPACING"
-      }
+      },
+      {
+        "type": "boolean",
+        "title": "PIVOT_HIDE_NOTIFICATIONS",
+        "subtitle": "",
+        "pressed": PIVOT_HIDE_NOTIFICATIONS_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "PIVOT_HIDE_NOTIFICATIONS"
+      },
+      {
+        "type": "boolean",
+        "title": "PIVOT_NOTIFICATIONS_IS_ACTIVITY",
+        "subtitle": "",
+        "pressed": PIVOT_NOTIFICATIONS_IS_ACTIVITY_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "PIVOT_NOTIFICATIONS_IS_ACTIVITY"
+      },
+      {
+        "type": "boolean",
+        "title": "APP_HELVETICA_NEUE_FONT",
+        "subtitle": "",
+        "pressed": APP_HELVETICA_NEUE_FONT_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "APP_HELVETICA_NEUE_FONT"
+      },
       ];
       settingBlocks.forEach(function(item){
       if (item.type == "boolean") {
