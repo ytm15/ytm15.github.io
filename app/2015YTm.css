@@ -5924,3 +5924,27 @@ html.style-2013.dark.dark-21 {
         flex: 0.1 1 0%;
     }
 }
+/*Hide notifications*/
+.hide-notifications #Notifications.pivot-bar-item {
+    display:none;
+}
+/*New font*/
+.helvetica-neue {
+    font-family: 'HelveticaNeue-Light','Helvetica Neue Light','Helvetica Neue',Helvetica,Arial,sans-serif !important;
+}
+/*New error screen*/
+.tap-to-retry .error-content {
+    display:unset;
+    text-align:center;
+    margin-top: 10px;
+}
+@media (min-width: 749px) {
+.tap-to-retry .error-icon {
+    width:45px;
+    height:45px;
+}
+.tap-to-retry .error-text {
+    font-weight: 400;
+    font-size: 24px;
+}
+}

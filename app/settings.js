@@ -571,6 +571,15 @@ function settingsPage() {
         "disabled": false,
         "lsitem": "APP_HELVETICA_NEUE_FONT"
       },
+      {
+        "type": "boolean",
+        "title": "APP_NEW_ERROR_SCREEN",
+        "subtitle": "",
+        "pressed": APP_NEW_ERROR_SCREEN_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "APP_NEW_ERROR_SCREEN"
+      }
       ];
       settingBlocks.forEach(function(item){
       if (item.type == "boolean") {
