@@ -5913,3 +5913,38 @@ html.style-2013.dark.dark-21 {
 .style-2013.dark.dark-21 .ytm15-video-owner .material-button-container[data-style="BRAND"] .material-button {
     background: linear-gradient(#323232, #252525);
 }
+
+/*Pivot shrink flag*/
+.pivot-shrink .pivot-bar-item {
+    flex: 0.1 1 0%;
+}
+/*Auto version*/
+@media (min-width: 749px) {
+    .pivot-shrink-auto .pivot-bar-item {
+        flex: 0.1 1 0%;
+    }
+}
+/*Hide notifications*/
+.hide-notifications #Notifications.pivot-bar-item {
+    display:none;
+}
+/*New font*/
+.helvetica-neue {
+    font-family: 'HelveticaNeue-Light','Helvetica Neue Light','Helvetica Neue',Helvetica,Arial,sans-serif !important;
+}
+/*New error screen*/
+.tap-to-retry .error-content {
+    display:unset;
+    text-align:center;
+    margin-top: 10px;
+}
+@media (min-width: 749px) {
+.tap-to-retry .error-icon {
+    width:45px;
+    height:45px;
+}
+.tap-to-retry .error-text {
+    font-weight: 400;
+    font-size: 24px;
+}
+}

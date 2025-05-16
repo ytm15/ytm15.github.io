@@ -175,6 +175,7 @@ function renderData() {
 <span class="error-text">There was an error connecting to the server</span>
 </div>
 <div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry" onClick="location.reload();"><div class="button-text">Retry</div></button></div>`;
+        if (APP_NEW_ERROR_SCREEN_expflag == "true"){error.innerHTML=newErrorHtml};
         pageCont.before(error);
         error.querySelector("button").onclick = function(){
         renderData();
@@ -304,6 +305,7 @@ function renderData() {
 <span class="error-text">There was an error connecting to the server</span>
 </div>
 <div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry" onClick="location.reload();"><div class="button-text">Retry</div></button></div>`;
+        if (APP_NEW_ERROR_SCREEN_expflag == "true"){error.innerHTML=newErrorHtml};
         pageCont.before(error);
         error.querySelector("button").onclick = function(){
         renderData();
@@ -437,6 +439,7 @@ function renderData() {
 <span class="error-text">There was an error connecting to the server</span>
 </div>
 <div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry" onClick="location.reload();"><div class="button-text">Retry</div></button></div>`;
+        if (APP_NEW_ERROR_SCREEN_expflag == "true"){error.innerHTML=newErrorHtml};
         pageCont.before(error);
         error.querySelector("button").onclick = function(){
         renderData();

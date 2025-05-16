@@ -141,6 +141,18 @@ WATCH_ENABLE_NEW_UI_expflag = localStorage.getItem("WATCH_ENABLE_NEW_UI");
 WATCH_TILTE_FONT_WEIGHT_500_expflag = localStorage.getItem("WATCH_TILTE_FONT_WEIGHT_500");
 USE_NEW_SUBSCRIBE_ICON_expflag = localStorage.getItem("USE_NEW_SUBSCRIBE_ICON");
 LIFT_PIVOT_BAR_FOR_PHONE_expflag = localStorage.getItem("LIFT_PIVOT_BAR_FOR_PHONE");
+PIVOT_SHRINK_SPACING_expflag = localStorage.getItem("PIVOT_SHRINK_SPACING");
+PIVOT_HIDE_NOTIFICATIONS_expflag = localStorage.getItem("PIVOT_HIDE_NOTIFICATIONS");
+PIVOT_NOTIFICATIONS_IS_ACTIVITY_expflag = localStorage.getItem("PIVOT_NOTIFICATIONS_IS_ACTIVITY");
+APP_HELVETICA_NEUE_FONT_expflag = localStorage.getItem("APP_HELVETICA_NEUE_FONT");
+APP_NEW_ERROR_SCREEN_expflag = localStorage.getItem("APP_NEW_ERROR_SCREEN");newErrorHtml = `<button class="error-content" onClick="location.reload();">
+<img class="error-icon ytm15-img" src="alert_error.png"></img><br>
+<span class="error-text">Error loading<br>Tap to retry</span>
+</div></button>`;
+if (PIVOT_SHRINK_SPACING_expflag == undefined) {
+  localStorage.setItem("PIVOT_SHRINK_SPACING", "Off");
+  PIVOT_SHRINK_SPACING_expflag = localStorage.getItem("PIVOT_SHRINK_SPACING");
+}
 
 if (DISABLE_YTM15_APP_BORDER_expflag == "true") {
     documentHTML.classList.add("no-app-border");
@@ -222,6 +234,31 @@ if (LIFT_PIVOT_BAR_FOR_PHONE_expflag == "true") {
     documentHTML.classList.add("lift-pivot");
 } else {
     documentHTML.classList.remove("lift-pivot");
+}
+if (PIVOT_SHRINK_SPACING_expflag == "Manual (looks bad on portrait)") {
+  documentHTML.classList.add("pivot-shrink");
+} else {
+  documentHTML.classList.remove("pivot-shrink");
+};
+if (PIVOT_SHRINK_SPACING_expflag == "Auto (Will turn on/off depending on rotation)") {
+  documentHTML.classList.add("pivot-shrink-auto");
+} else {
+  documentHTML.classList.remove("pivot-shrink-auto");
+};
+if (PIVOT_HIDE_NOTIFICATIONS_expflag == "true") {
+  documentHTML.classList.add("hide-notifications");
+} else {
+  documentHTML.classList.remove("hide-notifications");
+}
+if (APP_HELVETICA_NEUE_FONT_expflag == "true") {
+  documentHTML.classList.add("helvetica-neue");
+} else {
+  documentHTML.classList.remove("helvetica-neue");
+}
+if (APP_NEW_ERROR_SCREEN_expflag == "true") {
+  documentHTML.classList.add("tap-to-retry");
+} else {
+  documentHTML.classList.remove("tap-to-retry");
 }
 };
 
@@ -1763,7 +1800,11 @@ metaColorChange();
 
 if (WEB_ENABLE_PIVOT_BAR_expflag == "true" && window.location.pathname.split("/").slice(3, 4)[0] !== "settings.html" && window.location.pathname.split("/").slice(3, 4)[0] !== "settings" && window.location.pathname.split("/").slice(2, 3)[0] !== "settings.html" && window.location.pathname.split("/").slice(2, 3)[0] !== "settings") {
   renderPivotBar();
+  if (PIVOT_NOTIFICATIONS_IS_ACTIVITY_expflag == "true") {
+    document.getElementById("Notifications").getElementsByClassName("pivot-bar-item-title")[0].innerHTML = "Activity"
+  }
 }
+
 
 var title = document.querySelector("title");
 
