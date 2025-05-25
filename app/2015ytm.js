@@ -145,7 +145,8 @@ PIVOT_SHRINK_SPACING_expflag = localStorage.getItem("PIVOT_SHRINK_SPACING");
 PIVOT_HIDE_NOTIFICATIONS_expflag = localStorage.getItem("PIVOT_HIDE_NOTIFICATIONS");
 PIVOT_NOTIFICATIONS_IS_ACTIVITY_expflag = localStorage.getItem("PIVOT_NOTIFICATIONS_IS_ACTIVITY");
 APP_HELVETICA_NEUE_FONT_expflag = localStorage.getItem("APP_HELVETICA_NEUE_FONT");
-APP_NEW_ERROR_SCREEN_expflag = localStorage.getItem("APP_NEW_ERROR_SCREEN");newErrorHtml = `<button class="error-content" onClick="location.reload();">
+APP_NEW_ERROR_SCREEN_expflag = localStorage.getItem("APP_NEW_ERROR_SCREEN");
+newErrorHtml = `<button class="error-content" onClick="location.reload();">
 <img class="error-icon ytm15-img" src="alert_error.png"></img><br>
 <span class="error-text">Error loading<br>Tap to retry</span>
 </div></button>`;
