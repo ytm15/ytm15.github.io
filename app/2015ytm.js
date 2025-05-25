@@ -368,6 +368,9 @@ UpNext_text_string = "Up next";
 Replies_text_string = "Replies";
 Subs_text_string = "Subscriptions";
 Notifs_text_string = "Notifications";
+if (PIVOT_NOTIFICATIONS_IS_ACTIVITY_expflag == "true") {
+  Notifs_text_string = "Activity";
+}
 Library_text_string = "Library";
 AddComment_text_string = "Add a public comment...";
 AddReply_text_string = "Add a public reply..."
@@ -1806,9 +1809,6 @@ metaColorChange();
 
 if (WEB_ENABLE_PIVOT_BAR_expflag == "true" && window.location.pathname.split("/").slice(3, 4)[0] !== "settings.html" && window.location.pathname.split("/").slice(3, 4)[0] !== "settings" && window.location.pathname.split("/").slice(2, 3)[0] !== "settings.html" && window.location.pathname.split("/").slice(2, 3)[0] !== "settings") {
   renderPivotBar();
-  if (PIVOT_NOTIFICATIONS_IS_ACTIVITY_expflag == "true") {
-    document.getElementById("Notifications").getElementsByClassName("pivot-bar-item-title")[0].innerHTML = "Activity"
-  }
 }
 
 
