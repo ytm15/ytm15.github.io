@@ -520,6 +520,65 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "LIFT_PIVOT_BAR_FOR_PHONE"
+      },
+      {
+        "type": "option-menu",
+        "title": "PIVOT_SHRINK_SPACING",
+        "subtitle": "",
+        "options": [
+          {
+            "title": "Off",
+            "selected": PIVOT_SHRINK_SPACING_expflag == "Off",
+            "selected-default": true
+          },
+          {
+            "title": "Manual (looks bad on portrait)",
+            "selected": PIVOT_SHRINK_SPACING_expflag == "Manual (looks bad on portrait)",
+            "selected-default": false
+          },
+          {
+            "title": "Auto (Will turn on/off depending on rotation)",
+            "selected": PIVOT_SHRINK_SPACING_expflag == "Auto (Will turn on/off depending on rotation)",
+            "selected-default": true
+          }
+        ],
+        "lsitem": "PIVOT_SHRINK_SPACING"
+      },
+      {
+        "type": "boolean",
+        "title": "PIVOT_HIDE_NOTIFICATIONS",
+        "subtitle": "",
+        "pressed": PIVOT_HIDE_NOTIFICATIONS_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "PIVOT_HIDE_NOTIFICATIONS"
+      },
+      {
+        "type": "boolean",
+        "title": "PIVOT_NOTIFICATIONS_IS_ACTIVITY",
+        "subtitle": "",
+        "pressed": PIVOT_NOTIFICATIONS_IS_ACTIVITY_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "PIVOT_NOTIFICATIONS_IS_ACTIVITY"
+      },
+      {
+        "type": "boolean",
+        "title": "APP_HELVETICA_NEUE_FONT",
+        "subtitle": "",
+        "pressed": APP_HELVETICA_NEUE_FONT_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "APP_HELVETICA_NEUE_FONT"
+      },
+      {
+        "type": "boolean",
+        "title": "APP_NEW_ERROR_SCREEN",
+        "subtitle": "",
+        "pressed": APP_NEW_ERROR_SCREEN_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "APP_NEW_ERROR_SCREEN"
       }
       ];
       settingBlocks.forEach(function(item){
