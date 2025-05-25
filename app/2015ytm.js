@@ -236,26 +236,31 @@ if (LIFT_PIVOT_BAR_FOR_PHONE_expflag == "true") {
 } else {
     documentHTML.classList.remove("lift-pivot");
 }
+
 if (PIVOT_SHRINK_SPACING_expflag == "Manual (looks bad on portrait)") {
   documentHTML.classList.add("pivot-shrink");
 } else {
   documentHTML.classList.remove("pivot-shrink");
 };
+
 if (PIVOT_SHRINK_SPACING_expflag == "Auto (Will turn on/off depending on rotation)") {
   documentHTML.classList.add("pivot-shrink-auto");
 } else {
   documentHTML.classList.remove("pivot-shrink-auto");
 };
+
 if (PIVOT_HIDE_NOTIFICATIONS_expflag == "true") {
   documentHTML.classList.add("hide-notifications");
 } else {
   documentHTML.classList.remove("hide-notifications");
 }
+
 if (APP_HELVETICA_NEUE_FONT_expflag == "true") {
   documentHTML.classList.add("helvetica-neue");
 } else {
   documentHTML.classList.remove("helvetica-neue");
 }
+
 if (APP_NEW_ERROR_SCREEN_expflag == "true") {
   documentHTML.classList.add("tap-to-retry");
 } else {
