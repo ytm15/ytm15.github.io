@@ -524,6 +524,14 @@ a few hours later:
 
 07 May 2025:
 -added a new expflag: LIFT_PIVOT_BAR_FOR_PHONE (thanks and credit to legoskid for the idea)
+
+25 May 2025:
+-Merged a pull request from legoskid containing 5 new expflags:
+--PIVOT_SHRINK_SPACING
+--PIVOT_HIDE_NOTIFICATIONS
+--PIVOT_NOTIFICATIONS_IS_ACTIVITY
+--APP_HELVETICA_NEUE_FONT
+--APP_NEW_ERROR_SCREEN
     </div>
     </div>
     </div>
