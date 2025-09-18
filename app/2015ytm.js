@@ -630,7 +630,7 @@ dataModeChange();
 renderHeader();
 
 function renderCommentSection(parent, mediaType, cmSource, isCMPage, comntId, comntContinuation){
-    var cmBaseAPIURL = 'https://invidious.nerdvpn.de/api/v1/comments/';
+    var cmBaseAPIURL = APP_CUSTOM_INVIDIOUS_URL_expflag + 'api/v1/comments/';//'https://invidious.nerdvpn.de/api/v1/comments/';
 
     const commentSection = document.createElement("div");
     commentSection.classList.add("comment-section");
@@ -694,7 +694,7 @@ function renderCommentSection(parent, mediaType, cmSource, isCMPage, comntId, co
 
     const getCommentsData = new XMLHttpRequest();
     getCommentsData.open('GET', cmBaseAPIURL + cmSource + "?continuation=" + continuation, true);
-    getCommentsData.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs=');
+    if (APP_DONT_AUTH_TO_INVIDIOUS_expflag == "false"){getCommentsData.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs=');};
 
     getCommentsData.onerror = function(event) {
     console.error("An error occurred with this operation (" + getCommentsData.status + ")");
