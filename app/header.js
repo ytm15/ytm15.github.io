@@ -203,9 +203,60 @@ function renderHeader() {
     headerEP.remove();
     }
     });
+    var openUrl = async function() {
+        let url = null;
+        try {
+            const regex = /(?:youtube\.com\/(?:.*[?&]v=|v\/|embed\/|.*\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/;
+            const text = await navigator.clipboard.readText();
+            console.log(text);
+            const match = text.match(regex);
+            url = (match ? match[1] : null); // "NLqAF9hrVbY"
+            console.log(url);
+        } catch (err) {
+            console.log('Could not read clipboard: ' + err);
+        };
+
+        if (!app.querySelector("#watchpageFrame_Container")) {
+            app.insertAdjacentElement("afterbegin", watchContainer);
+        };
+        if (watchContainer.classList.contains("miniplayer")) {
+            watchContainer.classList.remove("miniplayer");
+            app.classList.remove("has-miniplayer");
+            watchFrame.scrolling = "yes";
+        };
+        watchFrame.src = "watch.html?v=" + url;
+        playerPrevVideoId = [""];
+        playerVideoId = url;
+        /* playerFrame.src = playerEmbedURL + playerVideoId + playerEmbedURLEnd; */
+        playerFrame.src = playerEmbedURLYT + playerVideoId + playerEmbedURLYTEnd;
+        console.log(ytm15Watch);
+        renderWatchPage(ytm15Watch);
+    };
 
     const headerButtons = document.createElement("div");
     headerButtons.classList.add("header-buttons");
+
+    const castBtn = document.createElement("button");
+    castBtn.classList.add("icon-button", "header-button", "search-button");
+    castBtn.onclick = function(){openUrl();};
+    castBtn.setAttribute("aria-label", SearchYT_text_string);
+    castBtn.setAttribute("aria-haspopup", "false");
+    let alternateIcon = `<path data-glyph="cast-connected" d="M448,384 M21,235 v-43 q52,0,96.5,-26 t70,-70 t25.5,-96 h43 q0,64,-31.5,118 t-85.5,85.5 t-118,31.5 M21,149 v-42 q29,0,53.5,-14.5 t39,-39 t14.5,-53.5 h43 q0,30,-11.5,57.5 t-32.5,48.5 t-48.5,32 t-57.5,11 M21,64 v-64 h64 q0,27,-18.5,45.5 t-45.5,18.5 Z"/>`
+    if (HEADER_CAST_ALTERNATE_ICON_expflag == "true") {alternateIcon = `<path data-glyph="cast-connected" fill="#919191" d="M448,384 M21,235 v-43 q52,0,96.5,-26 t70,-70 t25.5,-96 h43 q0,64,-31.5,118 t-85.5,85.5 t-118,31.5 M405,299 h-298 v-35 q63,-21,110.5,-68 t67.5,-111 h120 v214 M21,149 v-42 q29,0,53.5,-14.5 t39,-39 t14.5,-53.5 h43 q0,30,-11.5,57.5 t-32.5,48.5 t-48.5,32 t-57.5,11 M21,64 v-64 h64 q0,27,-18.5,45.5 t-45.5,18.5 Z"/>`}
+    castBtn.innerHTML = `<ytm15-icon class="search-icon"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 64.7273 512 448.462"><g transform="scale(1,-1) translate(0, -480.36365)"><path data-glyph="cast-connected" d="M448,384 h-384 q-18,0,-30.5,-12.5 t-12.5,-30.5 v-64 h43 v64 h384 v-298 h-149 v-43 h149 q18,0,30.5,12.5 t12.5,30.5 v298 q0,18,-12.5,30.5 t-30.5,12.5"/>` + alternateIcon + `</g></svg></ytm15-icon>`;
+    if (window.location.pathname.split("/").slice(3, 4) == "results.html") {
+        castBtn.setAttribute("hidden", "");
+    }
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.pathname.split("/").slice(3, 4) == "settings.html" || window.location.pathname.split("/").slice(3, 4) == "settings" || window.location.pathname.split("/").slice(2, 3) == "settings.html" || window.location.pathname.split("/").slice(2, 3) == "settings") {
+        castBtn.setAttribute("hidden", "");
+    }
+    window.addEventListener('hashchange', function (event) {
+        if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.pathname.split("/").slice(3, 4) == "settings.html" || window.location.pathname.split("/").slice(3, 4) == "settings" || window.location.pathname.split("/").slice(2, 3) == "settings.html" || window.location.pathname.split("/").slice(2, 3) == "settings") {
+            castBtn.setAttribute("hidden", "");
+        } else {
+            castBtn.removeAttribute("hidden", "");
+        }
+    });
 
     const searchBtn = document.createElement("button");
     searchBtn.classList.add("icon-button", "header-button", "search-button");
@@ -345,6 +396,7 @@ function renderHeader() {
     header.appendChild(headerCont);
     headerCont.appendChild(headerTitle);
     headerCont.appendChild(headerButtons);
+    if (HEADER_CAST_BUTTON_AS_URL_BOX_expflag == "true") {headerButtons.appendChild(castBtn);};
     headerButtons.appendChild(searchBtn);
     headerButtons.appendChild(menuBtn);
 
