@@ -9,4 +9,4 @@ Please check out <a href="https://vorapis.pages.dev/#/">Vorapis 2013/V3</a>, ano
 - (possibly / tentative) Change this whole project's name (it doesn't just have the 2015 YT UI anymore so it's about time for a name-change)
 - Add expflags for the player
 
-### More stuff will be added here later
+### More info *may* be added in the future
