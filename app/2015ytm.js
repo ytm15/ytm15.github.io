@@ -170,7 +170,8 @@ if (APP_STOP_TEXT_SELECTION_expflag == undefined) {
 }
 
 newErrorHtml = `<button class="error-content" onClick="location.reload();">
-<div class="transparent-text" style="border-radius:50%;background: #c1c1c1;display: inline-block;width: 3.5rem;/*! padding: 10px; */font-size: 30px;font-weight: 500;height: 3.5rem;text-align: center;vertical-align: unset;margin-bottom: 1rem;">!</div><br>
+<!-- <img class="error-icon ytm15-img" src="alert_error.png"></img><br> -->
+<div class="transparent-text error-icon-v2" style="border-radius:50%;background: #c1c1c1;display: inline-block;width: 3.5rem;/*! padding: 10px; */font-size: 30px;font-weight: 500;height: 3.5rem;text-align: center;vertical-align: unset;margin-bottom: 1rem;">!</div><br>
 <span class="error-text">Error loading<br>Tap to retry</span>
 </div></button>`;
 if (PIVOT_SHRINK_SPACING_expflag == undefined) {
@@ -2590,3 +2591,4 @@ window.addEventListener('hashchange', function (event) {
     }
     }
 });
+
