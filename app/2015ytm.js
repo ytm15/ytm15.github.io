@@ -696,7 +696,7 @@ function renderCommentSection(parent, mediaType, cmSource, isCMPage, comntId, co
     const getCommentsData = new XMLHttpRequest();
     getCommentsData.open('GET', cmBaseAPIURL + cmSource + "?continuation=" + continuation, true);
     if (APP_DONT_AUTH_TO_INVIDIOUS_expflag == "false"){getCommentsData.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs=');};
-
+    
     getCommentsData.onerror = function(event) {
     console.error("An error occurred with this operation (" + getCommentsData.status + ")");
     contItem.remove();
@@ -1234,7 +1234,12 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
 
         } else {
         /* time.textContent = item.lengthSeconds.toLocaleString() + ' secs'; */
-        /* if (itemLength > "3599") {
+        function isNumber(value) {
+        return !isNaN(value);
+        }
+ 
+        if (isNumber(itemLength)) {
+        if (itemLength > "3599") {
         time.textContent = new Date(1000 * itemLength).toISOString().substr(11, 8)
         } else {
         time.textContent = new Date(1000 * itemLength).toISOString().substr(14, 5)
@@ -1258,8 +1263,10 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
           console.error("An error occurred with this operation (" + getVideoLength.status + ")");
           }
         };
-        } */
+        };
+        } else {
         time.textContent = itemLength;
+        }
         }
 
         const overlaySide = document.createElement('div');
@@ -1873,7 +1880,6 @@ metaColorChange();
 if (WEB_ENABLE_PIVOT_BAR_expflag == "true" && window.location.pathname.split("/").slice(3, 4)[0] !== "settings.html" && window.location.pathname.split("/").slice(3, 4)[0] !== "settings" && window.location.pathname.split("/").slice(2, 3)[0] !== "settings.html" && window.location.pathname.split("/").slice(2, 3)[0] !== "settings") {
   renderPivotBar();
 }
-
 
 var title = document.querySelector("title");
 
@@ -2591,4 +2597,3 @@ window.addEventListener('hashchange', function (event) {
     }
     }
 });
-
