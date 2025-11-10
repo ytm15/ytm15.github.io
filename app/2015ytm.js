@@ -146,8 +146,32 @@ PIVOT_HIDE_NOTIFICATIONS_expflag = localStorage.getItem("PIVOT_HIDE_NOTIFICATION
 PIVOT_NOTIFICATIONS_IS_ACTIVITY_expflag = localStorage.getItem("PIVOT_NOTIFICATIONS_IS_ACTIVITY");
 APP_HELVETICA_NEUE_FONT_expflag = localStorage.getItem("APP_HELVETICA_NEUE_FONT");
 APP_NEW_ERROR_SCREEN_expflag = localStorage.getItem("APP_NEW_ERROR_SCREEN");
+APP_CUSTOM_INVIDIOUS_URL_expflag = localStorage.getItem("APP_CUSTOM_INVIDIOUS_URL");
+if (APP_CUSTOM_INVIDIOUS_URL_expflag == undefined) {
+  localStorage.setItem("APP_CUSTOM_INVIDIOUS_URL", "https://api.allorigins.win/raw?url=https://yt.omada.cafe/");
+  APP_CUSTOM_INVIDIOUS_URL_expflag = localStorage.getItem("APP_CUSTOM_INVIDIOUS_URL");
+}
+APP_DONT_AUTH_TO_INVIDIOUS_expflag = localStorage.getItem("APP_DONT_AUTH_TO_INVIDIOUS");
+if (APP_DONT_AUTH_TO_INVIDIOUS_expflag == undefined) {
+  localStorage.setItem("APP_DONT_AUTH_TO_INVIDIOUS", "true");
+  APP_DONT_AUTH_TO_INVIDIOUS_expflag = localStorage.getItem("APP_DONT_AUTH_TO_INVIDIOUS");
+}
+APP_NO_ANDROID_ANIMATIONS_expflag = localStorage.getItem("APP_NO_ANDROID_ANIMATIONS");
+WEB_IOS_SPINNER_expflag = localStorage.getItem("WEB_IOS_SPINNER");
+HEADER_NO_SHADOW_expflag = localStorage.getItem("HEADER_NO_SHADOW");
+DARK_THEME_SEPERATE_BACKGROUND_COLOR_expflag = localStorage.getItem("DARK_THEME_SEPERATE_BACKGROUND_COLOR");
+APP_UNDERLINE_BUTTONS_expflag = localStorage.getItem("APP_UNDERLINE_BUTTONS");
+HEADER_CAST_BUTTON_AS_URL_BOX_expflag = localStorage.getItem("HEADER_CAST_BUTTON_AS_URL_BOX");
+HEADER_CAST_ALTERNATE_ICON_expflag = localStorage.getItem("HEADER_CAST_ALTERNATE_ICON");
+APP_STOP_TEXT_SELECTION_expflag = localStorage.getItem("APP_STOP_TEXT_SELECTION");
+if (APP_STOP_TEXT_SELECTION_expflag == undefined) {
+  localStorage.setItem("APP_STOP_TEXT_SELECTION", "true");
+  APP_STOP_TEXT_SELECTION_expflag = localStorage.getItem("APP_STOP_TEXT_SELECTION");
+}
+
 newErrorHtml = `<button class="error-content" onClick="location.reload();">
-<img class="error-icon ytm15-img" src="alert_error.png"></img><br>
+<!-- <img class="error-icon ytm15-img" src="alert_error.png"></img><br> -->
+<div class="transparent-text error-icon-v2" style="border-radius:50%;background: #c1c1c1;display: inline-block;width: 3.5rem;/*! padding: 10px; */font-size: 30px;font-weight: 500;height: 3.5rem;text-align: center;vertical-align: unset;margin-bottom: 1rem;">!</div><br>
 <span class="error-text">Error loading<br>Tap to retry</span>
 </div></button>`;
 if (PIVOT_SHRINK_SPACING_expflag == undefined) {
@@ -214,6 +238,9 @@ if (DARK_THEME_HASH_COLOR_expflag == "#30") {
 } else if (DARK_THEME_HASH_COLOR_expflag == "#28") {
     documentHTML.classList.add("dark-28");
     documentHTML.classList.remove("dark-21");
+} else if (DARK_THEME_HASH_COLOR_expflag == "#25") {
+    documentHTML.classList.add("dark-25");
+    documentHTML.classList.remove("dark-21");
 } else if (DARK_THEME_HASH_COLOR_expflag == "#21") {
     documentHTML.classList.remove("dark-28");
     documentHTML.classList.add("dark-21");
@@ -266,6 +293,42 @@ if (APP_NEW_ERROR_SCREEN_expflag == "true") {
 } else {
   documentHTML.classList.remove("tap-to-retry");
 }
+
+if (APP_NO_ANDROID_ANIMATIONS_expflag == "true") {
+  documentHTML.classList.add("no-animations");
+} else {
+  documentHTML.classList.remove("no-animations");
+}
+
+if (WEB_IOS_SPINNER_expflag == "true") {
+  documentHTML.classList.add("ios-spinner");
+} else {
+  documentHTML.classList.remove("ios-spinner");
+}
+
+if (HEADER_NO_SHADOW_expflag == "true") {
+  documentHTML.classList.add("header-no-shadow");
+} else {
+  documentHTML.classList.remove("header-no-shadow");
+}
+
+if (DARK_THEME_SEPERATE_BACKGROUND_COLOR_expflag == "true") {
+  documentHTML.classList.add("seperate-dark-color");
+} else {
+  documentHTML.classList.remove("seperate-dark-color");
+}
+
+if (APP_UNDERLINE_BUTTONS_expflag == "true") {
+  documentHTML.classList.add("underline");
+} else {
+  documentHTML.classList.remove("underline");
+}
+
+if (APP_STOP_TEXT_SELECTION_expflag == "true") {
+  documentHTML.classList.add("text-selection");
+} else {
+  documentHTML.classList.remove("text-selection");
+}
 };
 
 localStorageChange();
@@ -301,7 +364,7 @@ metaColorElm.content = "#000000";
 }
 }
 
-APIbaseURL = "https://invidious.nerdvpn.de/";
+APIbaseURL = APP_CUSTOM_INVIDIOUS_URL_expflag//"https://invidious.nerdvpn.de/";
 APIbaseURLWatch = "https://inv.nadeko.net/";
 APIbaseURLNew = "https://yt-api.p.rapidapi.com/";
 APIbaseURLPiped = "https://pipedapi.leptons.xyz/";
@@ -568,7 +631,7 @@ dataModeChange();
 renderHeader();
 
 function renderCommentSection(parent, mediaType, cmSource, isCMPage, comntId, comntContinuation){
-    var cmBaseAPIURL = 'https://invidious.nerdvpn.de/api/v1/comments/';
+    var cmBaseAPIURL = APP_CUSTOM_INVIDIOUS_URL_expflag + 'api/v1/comments/';//'https://invidious.nerdvpn.de/api/v1/comments/';
 
     const commentSection = document.createElement("div");
     commentSection.classList.add("comment-section");
@@ -632,7 +695,7 @@ function renderCommentSection(parent, mediaType, cmSource, isCMPage, comntId, co
 
     const getCommentsData = new XMLHttpRequest();
     getCommentsData.open('GET', cmBaseAPIURL + cmSource + "?continuation=" + continuation, true);
-    getCommentsData.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs=');
+    if (APP_DONT_AUTH_TO_INVIDIOUS_expflag == "false"){getCommentsData.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs=');};
 
     getCommentsData.onerror = function(event) {
     console.error("An error occurred with this operation (" + getCommentsData.status + ")");
@@ -2528,3 +2591,4 @@ window.addEventListener('hashchange', function (event) {
     }
     }
 });
+

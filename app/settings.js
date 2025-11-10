@@ -46,6 +46,50 @@ function renderSettingOptionMenu(parent, somTitle, somSubtitle, somArray, somLSI
 
     parent.appendChild(settingOptionMenu);
 }
+// NEW: Render a setting allowing text input (Credit to Legoskid for implementation)
+function renderSettingText(parent, stTitle, stSubtitle, stValue, stPlaceholder, stDisabled, stLSItem) {
+  const settingText = document.createElement("div");
+  settingText.classList.add("setting-text", "has-ripple");
+  const sbLabel = document.createElement("label");
+  sbLabel.classList.add("setting-label");
+  const settingTitleSubBlock = document.createElement("div");
+  settingTitleSubBlock.classList.add("setting-title-subtitle-block");
+  const settingTitle = document.createElement("h3");
+  settingTitle.id = "setting-title-subtitle-block-title";
+  settingTitle.innerHTML = stTitle;
+  const settingSubtitle = document.createElement("span");
+  settingSubtitle.id = "setting-title-subtitle-block-subtitle";
+  settingSubtitle.innerHTML = stSubtitle;
+
+  // Text input element
+  const textInput = document.createElement("input");
+  textInput.type = "text";
+  textInput.classList.add("setting-text-input");
+  textInput.value = stValue || "";
+  if (stPlaceholder) textInput.placeholder = stPlaceholder;
+  if (stDisabled) textInput.disabled = true;
+
+  // Local Storage logic for text input
+  textInput.addEventListener("input", function() {
+    if (stLSItem) {
+      localStorage.setItem(stLSItem, textInput.value);
+    }
+  });
+
+  // Load stored value if exists
+  if (stLSItem) {
+    const stored = localStorage.getItem(stLSItem);
+    if (stored !== null) textInput.value = stored;
+  }
+
+  settingText.appendChild(sbLabel);
+  sbLabel.appendChild(settingTitleSubBlock);
+  settingTitleSubBlock.appendChild(settingTitle);
+  settingTitleSubBlock.appendChild(settingSubtitle);
+  sbLabel.appendChild(textInput);
+
+  parent.appendChild(settingText);
+}
 
 function settingsPage() {
     pageCont.innerHTML = "";
@@ -191,6 +235,9 @@ function settingsPage() {
       };
       renderSettingOptionMenu(settingsPage, item.title, optSubtitle);
       };
+      if (item.type == "text") {
+        renderSettingText(settingsPage, item.title, item.subtitle, item.value, item.placeholder, item.disabled, item.lsitem);
+      }
       });
       }
       if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "expflags") {
@@ -406,6 +453,11 @@ function settingsPage() {
           "selected-default": false
         },
         {
+          "title": "#25",
+          "selected": DARK_THEME_HASH_COLOR_expflag == "#25",
+          "selected-default": false
+        },
+        {
           "title": "#21",
           "selected": DARK_THEME_HASH_COLOR_expflag == "#21",
           "selected-default": false
@@ -579,6 +631,96 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "APP_NEW_ERROR_SCREEN"
+      },
+      {
+        "type": "text",
+        "title": "APP_CUSTOM_INVIDIOUS_URL",
+        "subtitle": "This loads your home page and comments. <small>which should update and not be static</small><br>If you have your own invidious instance put it here<br>You should change CORS policy if you own your instance, otherwise use a CORS redirector",
+        "value": "https://api.allorigins.win/raw?url=https://yt.omada.cafe/",
+        "placeholder": "",
+        "disabled": false,
+        "lsitem": "APP_CUSTOM_INVIDIOUS_URL"
+      },
+      {
+        "type": "boolean",
+        "title": "APP_DONT_AUTH_TO_INVIDIOUS",
+        "subtitle": "",
+        "pressed": APP_DONT_AUTH_TO_INVIDIOUS_expflag == "true",
+        "pressed-default": true,
+        "disabled": false,
+        "lsitem": "APP_DONT_AUTH_TO_INVIDIOUS"
+      },
+      {
+        "type": "boolean",
+        "title": "APP_NO_ANDROID_ANIMATIONS",
+        "subtitle": "",
+        "pressed": APP_NO_ANDROID_ANIMATIONS_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "APP_NO_ANDROID_ANIMATIONS"
+      },
+      {
+        "type": "boolean",
+        "title": "WEB_IOS_SPINNER",
+        "subtitle": "",
+        "pressed": WEB_IOS_SPINNER_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WEB_IOS_SPINNER"
+      },
+      {
+        "type": "boolean",
+        "title": "HEADER_NO_SHADOW",
+        "subtitle": "",
+        "pressed": HEADER_NO_SHADOW_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "HEADER_NO_SHADOW"
+      },
+      {
+        "type": "boolean",
+        "title": "DARK_THEME_SEPERATE_BACKGROUND_COLOR",
+        "subtitle": "",
+        "pressed": DARK_THEME_SEPERATE_BACKGROUND_COLOR_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "DARK_THEME_SEPERATE_BACKGROUND_COLOR"
+      },
+      {
+        "type": "boolean",
+        "title": "APP_UNDERLINE_BUTTONS",
+        "subtitle": "",
+        "pressed": APP_UNDERLINE_BUTTONS_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "APP_UNDERLINE_BUTTONS"
+      },
+      {
+        "type": "boolean",
+        "title": "HEADER_CAST_BUTTON_AS_URL_BOX",
+        "subtitle": "Copy a youtube link and press cast to open it in YTm15",
+        "pressed": HEADER_CAST_BUTTON_AS_URL_BOX_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "HEADER_CAST_BUTTON_AS_URL_BOX"
+      },
+      {
+        "type": "boolean",
+        "title": "HEADER_CAST_ALTERNATE_ICON",
+        "subtitle": "",
+        "pressed": HEADER_CAST_ALTERNATE_ICON_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "HEADER_CAST_ALTERNATE_ICON"
+      },
+      {
+        "type": "boolean",
+        "title": "APP_STOP_TEXT_SELECTION",
+        "subtitle": "",
+        "pressed": APP_STOP_TEXT_SELECTION_expflag == "true",
+        "pressed-default": true,
+        "disabled": false,
+        "lsitem": "APP_STOP_TEXT_SELECTION"
       }
       ];
       settingBlocks.forEach(function(item){
@@ -596,6 +738,9 @@ function settingsPage() {
       };
       renderSettingOptionMenu(settingsPage, item.title, optSubtitle, item.options, item.lsitem);
       };
+      if (item.type == "text") {
+        renderSettingText(settingsPage, item.title, item.subtitle, item.value, item.placeholder, item.disabled, item.lsitem);
+      }
       });
       }
     } else {
@@ -610,4 +755,5 @@ function settingsPage() {
     window.addEventListener("hashchange", function(event){
     settingsEventListenFunc();
     });
+
 }
