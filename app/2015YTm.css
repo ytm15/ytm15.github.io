@@ -1212,7 +1212,7 @@ overflow: hidden;
     display: block;
     animation: page-expand-in .2s;
 }
-.no-animations .page-container,.error-container,page.home,.lazy-list,.error-content {
+.no-animations .page-container,.no-animations .error-container,.no-animations page.home,.no-animations .lazy-list,.no-animations .error-content {
     animation: none !important;
 }
 .no-animations .ytm15-img.lazy {
@@ -1228,15 +1228,15 @@ overflow: hidden;
 .no-animations ytm15-settings {
     animation: ios-page-slide 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.no-animations .settings-categories-container,.settings-pages-container {
-    transition: none !important;
+.no-animations .settings-categories-container,.no-animations .settings-pages-container {
+    transition: none;
 }
 .no-animations .page-visible .settings-pages-container {
     display: inherit;
 }
-.no-animations .settings-pages-container {
+/* .no-animations .settings-pages-container {
     display:none;
-}
+} */
 /*.no-animations .page-visible .settings-categories-container {
       animation: ios-page-slide-left 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
 }*/
@@ -3256,6 +3256,10 @@ label.setting-label {
     display: flex;
     align-items: center;
 }
+.setting-text .setting-label {
+    flex-direction: column;
+    align-items: stretch;
+}
 .setting-title-subtitle-block {
     padding: 16px 10px;
     flex-grow: 1;
@@ -3272,11 +3276,14 @@ h3#setting-title-subtitle-block-title {
     -webkit-line-clamp: 2;
     margin-top: -3px;
 }
-.setting-boolean, .setting-single-option-menu {
+.setting-boolean, .setting-single-option-menu, .setting-text {
     border-bottom: 1.2px solid rgba(0, 0, 0, 0.2);
 }
 span#setting-title-subtitle-block-subtitle {
     font-size: 14px;
+}
+input.setting-text-input {
+    margin: 0 10px 14px;
 }
 
 /* Channel about page */
@@ -4011,7 +4018,7 @@ ytm15-pivot-bar.no-shadow {
     margin-bottom: 0;
 }
 
-.lighter-borders *:-webkit-any(.shelf, .item-section, .ap-shelf, .about-page-bottom-title, .comment-separator, .channel-about-metadata-view-count, .channel-about-metadata-header, .setting-boolean, .setting-single-option-menu, .ytm15-settings-msg, .metadata-row-header-content, .error-container, .comment-section), .lighter-borders .slim-style-2017 *:-webkit-any(.ytm15-video-owner, .video-metadata-description-box) {
+.lighter-borders *:-webkit-any(.shelf, .item-section, .ap-shelf, .about-page-bottom-title, .comment-separator, .channel-about-metadata-view-count, .channel-about-metadata-header, .setting-boolean, .setting-single-option-menu, .setting-text, .ytm15-settings-msg, .metadata-row-header-content, .error-container, .comment-section), .lighter-borders .slim-style-2017 *:-webkit-any(.ytm15-video-owner, .video-metadata-description-box) {
     border-color: rgba(0, 0, 0, 0.1);
 }
 
@@ -4193,6 +4200,7 @@ dialog.ytm15-dialog {
 label.radio-input {
     display: inline-flex;
     border-radius: 50%;
+    flex-shrink: 0;
     padding: 10px;
     margin: -10px;
 }
@@ -5496,7 +5504,7 @@ html.dark {
 .dark .settings-category {
     border-bottom: 1.2px solid rgba(255, 255, 255, 0.15);
 }
-.dark .setting-boolean, .dark .setting-single-option-menu {
+.dark .setting-boolean, .dark .setting-single-option-menu, .dark .setting-text {
     border-bottom: 1.2px solid rgba(255,255,255,0.2);
 }
 .dark h3#setting-title-subtitle-block-title {
@@ -5660,7 +5668,7 @@ html.dark {
 .dark .comment-section {
     border-bottom-color: rgba(255, 255, 255, 0.2);
 }
-.dark.lighter-borders *:-webkit-any(.shelf, .item-section, .ap-shelf, .about-page-bottom-title, .comment-separator, .channel-about-metadata-view-count, .channel-about-metadata-header, .setting-boolean, .setting-single-option-menu, .ytm15-settings-msg, .metadata-row-header-content, .error-container, .comment-section), .dark.lighter-borders .slim-style-2017 *:-webkit-any(.ytm15-video-owner, .video-metadata-description-box) {
+.dark.lighter-borders *:-webkit-any(.shelf, .item-section, .ap-shelf, .about-page-bottom-title, .comment-separator, .channel-about-metadata-view-count, .channel-about-metadata-header, .setting-boolean, .setting-single-option-menu, .setting-text, .ytm15-settings-msg, .metadata-row-header-content, .error-container, .comment-section), .dark.lighter-borders .slim-style-2017 *:-webkit-any(.ytm15-video-owner, .video-metadata-description-box) {
     border-color: rgba(255, 255, 255, 0.1);
 }
 .dark ytm15-header-bar.non-red:not([ischannel="true"]) {
@@ -6086,4 +6094,3 @@ html.style-2013.dark.dark-21 {
 .style-2013.dark.dark-21 .ytm15-video-owner .material-button-container[data-style="BRAND"] .material-button {
     background: linear-gradient(#323232, #252525);
 }
-
