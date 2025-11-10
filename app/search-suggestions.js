@@ -1,6 +1,6 @@
 function renderSearchSuggestions(parent, value, sbInput) {
 const xhttpr = new XMLHttpRequest();
-xhttpr.open('GET', 'https://pipedapi.leptons.xyz/suggestions?query=' + value, true);
+xhttpr.open('GET', 'https://api.piped.private.coffee/suggestions?query=' + value, true);
 
 xhttpr.send();
  

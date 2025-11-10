@@ -61,7 +61,7 @@ What is YTm15/YouTube Mobile 2015?
     <div class="ap-shelf-content">
     <div class="ap-shelf-text">YouTube Mobile 2015 (also known as YTm15) is a project of mine to rebuild the 2015 version of the interface of YouTube for mobile. The creator of YTm15 is Yacine Ghuloum.
 
-This project has been ongoing since Feb 2024, in an effort to ensure that you can relive a nostalgic experience of what it was like to use the YouTube mobile app back in 2015. (or just for people who want to use YT with an older look ig)
+This project has been ongoing since Feb 2024, in an effort to ensure that you can relive a nostalgic experience of what it was like to use the YouTube mobile app back in 2015. (Or just for people who want to use YT with an older look<!-- ig -->)
 
 YTm15 is based off of version 10 of the Android YT app
 <!-- The line below was previously: "Please note that YTm15 as it is in its current state is unfinished, so a lot of things you'd expect to see in something like this (e.g. channel pages, search page, playlist page, and even watchpage) are not present/built/finished in this app yet" -->
@@ -532,6 +532,22 @@ a few hours later:
 --PIVOT_NOTIFICATIONS_IS_ACTIVITY
 --APP_HELVETICA_NEUE_FONT
 --APP_NEW_ERROR_SCREEN
+
+05 - 08 Nov 2025 (First update in months. Sorry for not updating YTm15 in a while):
+-Merged legoskid's "Fix stuff + Add expflags" pull request (With my own modifications) containing 10 new expflags:
+--APP_CUSTOM_INVIDIOUS_URL
+--APP_DONT_AUTH_TO_INVIDIOUS
+--APP_NO_ANDROID_ANIMATIONS
+--WEB_IOS_SPINNER
+--HEADER_NO_SHADOW
+--DARK_THEME_SEPERATE_BACKGROUND_COLOR
+--APP_UNDERLINE_BUTTONS
+--HEADER_CAST_BUTTON_AS_URL_BOX
+--HEADER_CAST_ALTERNATE_ICON
+--APP_STOP_TEXT_SELECTION
+-More updates from the following pull request:
+--The "APP_NEW_ERROR_SCREEN" expflag now looks more similar to YouTube v13
+--While the video details page has been fixed, comments and the homepage should have been fixed, but as of the time of updating, the new Invidious instance "yt.omada.cafe" doesn't work
     </div>
     </div>
     </div>
