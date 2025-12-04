@@ -636,7 +636,7 @@ function settingsPage() {
         "type": "text",
         "title": "APP_CUSTOM_INVIDIOUS_URL",
         "subtitle": "This loads your home page and comments. <small>which should update and not be static</small><br>If you have your own invidious instance put it here<br>You should change CORS policy if you own your instance, otherwise use a CORS redirector",
-        "value": "https://api.allorigins.win/raw?url=https://yt.omada.cafe/",
+        "value": "https://api.codetabs.com/v1/proxy?quest=https://inv.perditum.com/",
         "placeholder": "",
         "disabled": false,
         "lsitem": "APP_CUSTOM_INVIDIOUS_URL"
