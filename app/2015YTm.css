@@ -2591,6 +2591,9 @@ ytm15-menu-button {
 .compact-channel.shelf-item .media-item-menu {
     display: none;
 }
+.no-lines .ytm15-video-owner,.no-lines .watch-next-results-content {
+    border:unset !important;
+}
 
 /* About 2015YouTube */
 .about-page-heading, .about-page-subheading {

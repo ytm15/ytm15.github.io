@@ -721,6 +721,15 @@ function settingsPage() {
         "pressed-default": true,
         "disabled": false,
         "lsitem": "APP_STOP_TEXT_SELECTION"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_UI_NO_LINES",
+        "subtitle": "",
+        "pressed": WATCH_UI_NO_LINES_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_UI_NO_LINES"
       }
       ];
       settingBlocks.forEach(function(item){

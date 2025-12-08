@@ -168,6 +168,7 @@ if (APP_STOP_TEXT_SELECTION_expflag == undefined) {
   localStorage.setItem("APP_STOP_TEXT_SELECTION", "true");
   APP_STOP_TEXT_SELECTION_expflag = localStorage.getItem("APP_STOP_TEXT_SELECTION");
 }
+WATCH_UI_NO_LINES_expflag = localStorage.getItem("WATCH_UI_NO_LINES");
 
 newErrorHtml = `<button class="error-content" onClick="location.reload();">
 <!-- <img class="error-icon ytm15-img" src="alert_error.png"></img><br> -->
@@ -328,6 +329,12 @@ if (APP_STOP_TEXT_SELECTION_expflag == "true") {
   documentHTML.classList.add("text-selection");
 } else {
   documentHTML.classList.remove("text-selection");
+}
+
+if (WATCH_UI_NO_LINES_expflag == "true") {
+  documentHTML.classList.add("no-lines");
+} else {
+  documentHTML.classList.remove("no-lines");
 }
 };
 
