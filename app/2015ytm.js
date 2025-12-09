@@ -147,7 +147,7 @@ PIVOT_NOTIFICATIONS_IS_ACTIVITY_expflag = localStorage.getItem("PIVOT_NOTIFICATI
 APP_HELVETICA_NEUE_FONT_expflag = localStorage.getItem("APP_HELVETICA_NEUE_FONT");
 APP_NEW_ERROR_SCREEN_expflag = localStorage.getItem("APP_NEW_ERROR_SCREEN");
 APP_CUSTOM_INVIDIOUS_URL_expflag = localStorage.getItem("APP_CUSTOM_INVIDIOUS_URL");
-if (APP_CUSTOM_INVIDIOUS_URL_expflag == undefined) {
+if (APP_CUSTOM_INVIDIOUS_URL_expflag == undefined || APP_CUSTOM_INVIDIOUS_URL_expflag == "") {
   localStorage.setItem("APP_CUSTOM_INVIDIOUS_URL", "https://api.codetabs.com/v1/proxy?quest=https://inv.perditum.com/");
   APP_CUSTOM_INVIDIOUS_URL_expflag = localStorage.getItem("APP_CUSTOM_INVIDIOUS_URL");
 }
