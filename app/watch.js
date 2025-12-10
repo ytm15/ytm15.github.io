@@ -571,7 +571,11 @@ function renderWatchPage(parent) {
         renderCompactMediaItem(itemSectRelated.querySelector(".lazy-list"), "related-media-lazy-list", compMediaItemvidId, compMediaItemThumb, compMediaItemLength, compMediaItemTitle, compMediaItemAuthor, item.channelId, "", item.viewCount, item.type);
     });
 
-    renderCommentSection(W2ndHalf, "video", playerVideoId, false);
+    if (WATCH_COMMENT_SECTION_LEFT_expflag == "true") {
+      renderCommentSection(videoMetadata, "video", playerVideoId, false);
+    } else {
+      renderCommentSection(W2ndHalf, "video", playerVideoId, false);
+    }
 
     parent.innerHTML = "";
 

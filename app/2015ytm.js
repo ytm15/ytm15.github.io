@@ -169,6 +169,7 @@ if (APP_STOP_TEXT_SELECTION_expflag == undefined) {
   APP_STOP_TEXT_SELECTION_expflag = localStorage.getItem("APP_STOP_TEXT_SELECTION");
 }
 WATCH_UI_NO_LINES_expflag = localStorage.getItem("WATCH_UI_NO_LINES");
+WATCH_COMMENT_SECTION_LEFT_expflag = localStorage.getItem("WATCH_COMMENT_SECTION_LEFT");
 
 newErrorHtml = `<button class="error-content" onClick="location.reload();">
 <!-- <img class="error-icon ytm15-img" src="alert_error.png"></img><br> -->
@@ -646,6 +647,9 @@ function renderCommentSection(parent, mediaType, cmSource, isCMPage, comntId, co
     if (APP_DEMATERIALIZE_UI_expflag == "true") {
       commentSection.classList.add('card');
     }
+    if (WATCH_COMMENT_SECTION_LEFT_expflag == "true" || WATCH_UI_NO_LINES_expflag == "false") {
+      commentSection.style.borderTop = "1.2px solid rgba(0,0,0,0.2)"
+    };
     if (mediaType == "video" && !isCMPage) {
      commentSection.classList.add("watch-next-results-content");
      commentSection.dataset.contentType = "result";

@@ -730,6 +730,15 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "WATCH_UI_NO_LINES"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_COMMENT_SECTION_LEFT",
+        "subtitle": "",
+        "pressed": WATCH_COMMENT_SECTION_LEFT_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_COMMENT_SECTION_LEFT"
       }
       ];
       settingBlocks.forEach(function(item){
