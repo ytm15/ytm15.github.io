@@ -647,7 +647,7 @@ function renderCommentSection(parent, mediaType, cmSource, isCMPage, comntId, co
     if (APP_DEMATERIALIZE_UI_expflag == "true") {
       commentSection.classList.add('card');
     }
-    if (WATCH_COMMENT_SECTION_LEFT_expflag == "true" || WATCH_UI_NO_LINES_expflag == "false") {
+    if (WATCH_COMMENT_SECTION_LEFT_expflag == "true" && WATCH_UI_NO_LINES_expflag == "false") {
       commentSection.style.borderTop = "1.2px solid rgba(0,0,0,0.2)"
     };
     if (mediaType == "video" && !isCMPage) {
