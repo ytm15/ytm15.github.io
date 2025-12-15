@@ -739,6 +739,24 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "WATCH_COMMENT_SECTION_LEFT"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_DOWNLOAD_BUTTON",
+        "subtitle": "",
+        "pressed": WATCH_DOWNLOAD_BUTTON_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_DOWNLOAD_BUTTON"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_SAVE_BUTTON",
+        "subtitle": "",
+        "pressed": WATCH_SAVE_BUTTON_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_SAVE_BUTTON"
       }
       ];
       settingBlocks.forEach(function(item){

@@ -170,6 +170,8 @@ if (APP_STOP_TEXT_SELECTION_expflag == undefined) {
 }
 WATCH_UI_NO_LINES_expflag = localStorage.getItem("WATCH_UI_NO_LINES");
 WATCH_COMMENT_SECTION_LEFT_expflag = localStorage.getItem("WATCH_COMMENT_SECTION_LEFT");
+WATCH_DOWNLOAD_BUTTON_expflag = localStorage.getItem("WATCH_DOWNLOAD_BUTTON");
+WATCH_SAVE_BUTTON_expflag = localStorage.getItem("WATCH_SAVE_BUTTON");
 
 newErrorHtml = `<button class="error-content" onClick="location.reload();">
 <!-- <img class="error-icon ytm15-img" src="alert_error.png"></img><br> -->
@@ -398,6 +400,8 @@ Channel_Home_WIP_text_string = "Channel pages' home pages haven't been built yet
 No_Search_Results_text_string = "No results found. Try different keywords";
 Dead_End_text_string = "Looks like you've reached the end";
 Share_text_string = "Share";
+Download_text_string = "Download";
+Save_text_string = "Save";
 DescMusic_text_string = "Music in this video";
 LearnMore_text_string = "Learn more";
 Song_text_string = "Song";
