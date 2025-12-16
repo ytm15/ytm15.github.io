@@ -472,8 +472,10 @@ function renderWatchPage(parent) {
 "></path></svg></ytm15-icon><div class="button-text">${Share_text_string}</div>
 </button>`
 
-    mtrlBtnContDownload.innerHTML = `<button class="material-button" aria-label="${Download_text_string}" aria-pressed="false">
-<img class="ytm15-img-icon ytm15-img button-icon download-icon" src="ic_download.png"></img><div class="button-text">${Download_text_string}</div>
+    mtrlBtnContDownload.innerHTML = `<button class="material-button" aria-label="${Download_text_string}" aria-pressed="false"><ytm15-icon class="save-icon button-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12,2 C6.49,2,2,6.49,2,12 s4.49,10,10,10 s10,-4.49,10,-10 S17.51,2,12,2 m-1.4,8 V6 h3 v4 h3 l-4.5,4 l-4.5,-4 h3 m6,7 H7 v-2 h10 v2 Z" style="
+    transform: scale(1.2);
+    transform-origin: center;
+"></path></svg></ytm15-icon><div class="button-text">${Download_text_string}</div>
 </button>`
 
     mtrlBtnContSave.innerHTML = `<button class="material-button" aria-label="${Save_text_string}" aria-pressed="false">
@@ -501,7 +503,7 @@ function renderWatchPage(parent) {
     metadataActions.appendChild(mtrlBtnContShare);
     metadataActions.appendChild(actionsSpacer);
     if (WATCH_DOWNLOAD_BUTTON_expflag == "true") {metadataActions.appendChild(mtrlBtnContDownload);};
-    if (WATCH_SAVE_BUTTON_expflag == "true" && WATCH_ENABLE_NEW_UI_expflag == "false") {metadataActions.appendChild(mtrlBtnContSave);};
+    if (WATCH_SAVE_BUTTON_expflag == "true" && WATCH_ENABLE_NEW_UI_expflag == "true") {metadataActions.appendChild(mtrlBtnContSave);};
 
     const W2ndHalf = document.createElement("div");
     W2ndHalf.classList.add("wnr-2nd-half", "watch-next-results-content");
