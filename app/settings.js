@@ -757,6 +757,15 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "WATCH_SAVE_BUTTON"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_HIDE_SUBSCRIBE_ICON",
+        "subtitle": "",
+        "pressed": WATCH_HIDE_SUBSCRIBE_ICON_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_HIDE_SUBSCRIBE_ICON"
       }
       ];
       settingBlocks.forEach(function(item){

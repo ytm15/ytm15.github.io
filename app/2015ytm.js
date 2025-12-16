@@ -172,6 +172,7 @@ WATCH_UI_NO_LINES_expflag = localStorage.getItem("WATCH_UI_NO_LINES");
 WATCH_COMMENT_SECTION_LEFT_expflag = localStorage.getItem("WATCH_COMMENT_SECTION_LEFT");
 WATCH_DOWNLOAD_BUTTON_expflag = localStorage.getItem("WATCH_DOWNLOAD_BUTTON");
 WATCH_SAVE_BUTTON_expflag = localStorage.getItem("WATCH_SAVE_BUTTON");
+WATCH_HIDE_SUBSCRIBE_ICON_expflag = localStorage.getItem("WATCH_HIDE_SUBSCRIBE_ICON");
 
 newErrorHtml = `<button class="error-content" onClick="location.reload();">
 <!-- <img class="error-icon ytm15-img" src="alert_error.png"></img><br> -->
@@ -338,6 +339,12 @@ if (WATCH_UI_NO_LINES_expflag == "true") {
   documentHTML.classList.add("no-lines");
 } else {
   documentHTML.classList.remove("no-lines");
+}
+
+if (WATCH_HIDE_SUBSCRIBE_ICON_expflag == "true") {
+  documentHTML.classList.add("no-subscribe-icon");
+} else {
+  documentHTML.classList.remove("no-subscribe-icon");
 }
 };
 

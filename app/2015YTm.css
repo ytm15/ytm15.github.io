@@ -3078,6 +3078,9 @@ ytm15-channels-header {
     width: 18px;
     height: 13px;
 }
+.no-subscribe-icon .ytm15-img-icon.subscribe-icon {
+    display:none;
+}
 
 .continuation-item ~ .continuation-item {
     display: none;
