@@ -130,6 +130,12 @@ function settingsPage() {
       "title": AboutYTm15_text_string,
       "link": "index.html#/about",
       "id": "about"
+    },
+    {
+      "type": "option",
+      "title": Feedback_text_string,
+      "link": "#/feedback",
+      "id": "feedback"
     }
     ];
 
@@ -239,6 +245,29 @@ function settingsPage() {
         renderSettingText(settingsPage, item.title, item.subtitle, item.value, item.placeholder, item.disabled, item.lsitem);
       }
       });
+      }
+      if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "feedback") {
+      /* innerSettingsPageCont.innerHTML = `
+<div class="ytm15-settings-msg">${SettingsMSG2_text_string}</div>
+`; */
+      innerSettingsPageCont.innerHTML = "";
+      var settingsPage = document.createElement("settings-page");
+      settingsPageHeader.id = "expflags";
+      settingsPage.classList.add(settingsPageHeader.id);
+      settingsPage.style.userSelect = "unset";
+      settingsPage.style.msUserSelect = "unset";
+      settingsPage.style.mozUserSelect = "unset";
+      settingsPage.style.khtmlUserSelect = "unset";
+      settingsPage.style.webkitUserSelect = "unset";
+      settingsPage.style.webkitTouchCallout = "unset";
+      innerSettingsPageCont.appendChild(settingsPage);
+      settingsPageHeader.innerHTML = Feedback_text_string;
+      settingsPageHeader.id = "feedback";
+      headerTitle.setAttribute("aria-label", Feedback_text_string);
+      headerTitle.textContent = Feedback_text_string;
+      title.textContent = Feedback_text_string + ' - 2015YouTube';
+
+      settingsPage.innerHTML="<p>Open an issue on the YTm15 GitHub:<br>https://github.com/ytm15/ytm15.github.io/issues</p><p>Check for pull requests open (If any of the features you want may be being added):<br>https://github.com/ytm15/ytm15.github.io/pulls</p><p>You can also post on r/oldyoutubelayout (the dev is active there)</p>";
       }
       if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "expflags") {
       /* innerSettingsPageCont.innerHTML = `
