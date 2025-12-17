@@ -143,7 +143,11 @@ USE_NEW_SUBSCRIBE_ICON_expflag = localStorage.getItem("USE_NEW_SUBSCRIBE_ICON");
 LIFT_PIVOT_BAR_FOR_PHONE_expflag = localStorage.getItem("LIFT_PIVOT_BAR_FOR_PHONE");
 PIVOT_SHRINK_SPACING_expflag = localStorage.getItem("PIVOT_SHRINK_SPACING");
 PIVOT_HIDE_NOTIFICATIONS_expflag = localStorage.getItem("PIVOT_HIDE_NOTIFICATIONS");
-PIVOT_NOTIFICATIONS_IS_ACTIVITY_expflag = localStorage.getItem("PIVOT_NOTIFICATIONS_IS_ACTIVITY");
+PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag = localStorage.getItem("PIVOT_NOTIFICATIONS_ICON_VARIANT");
+if (PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == undefined) {
+  localStorage.setItem("PIVOT_NOTIFICATIONS_ICON_VARIANT", "Notifications");
+  PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag = localStorage.getItem("PIVOT_NOTIFICATIONS_ICON_VARIANT");
+}
 APP_HELVETICA_NEUE_FONT_expflag = localStorage.getItem("APP_HELVETICA_NEUE_FONT");
 APP_NEW_ERROR_SCREEN_expflag = localStorage.getItem("APP_NEW_ERROR_SCREEN");
 APP_CUSTOM_INVIDIOUS_URL_expflag = localStorage.getItem("APP_CUSTOM_INVIDIOUS_URL");
@@ -450,8 +454,12 @@ UpNext_text_string = "Up next";
 Replies_text_string = "Replies";
 Subs_text_string = "Subscriptions";
 Notifs_text_string = "Notifications";
-if (PIVOT_NOTIFICATIONS_IS_ACTIVITY_expflag == "true") {
+if (PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Activity") {
   Notifs_text_string = "Activity";
+} else if (PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Inbox") {
+  Notifs_text_string = "Inbox";
+} else if (PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Shared") {
+  Notifs_text_string = "Shared";
 }
 Library_text_string = "Library";
 AddComment_text_string = "Add a public comment...";
@@ -1147,6 +1155,7 @@ function renderPivotBar(){
       "link": "library"
     }
     ];
+    if (PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Inbox") {pivotBarItems[3].iconPath = "M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"}
     pivotBar.innerHTML = "";
     pivotBarItems.forEach(function(item){
       const pivotBarItem = document.createElement("div");

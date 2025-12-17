@@ -606,13 +606,32 @@ function settingsPage() {
         "lsitem": "PIVOT_HIDE_NOTIFICATIONS"
       },
       {
-        "type": "boolean",
-        "title": "PIVOT_NOTIFICATIONS_IS_ACTIVITY",
+        "type": "option-menu",
+        "title": "PIVOT_NOTIFICATIONS_ICON_VARIANT",
         "subtitle": "",
-        "pressed": PIVOT_NOTIFICATIONS_IS_ACTIVITY_expflag == "true",
-        "pressed-default": false,
-        "disabled": false,
-        "lsitem": "PIVOT_NOTIFICATIONS_IS_ACTIVITY"
+        "options": [
+          {
+            "title": "Notifications",
+            "selected": PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Notifications",
+            "selected-default": true
+          },
+          {
+            "title": "Activity",
+            "selected": PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Activity",
+            "selected-default": false
+          },
+          {
+            "title": "Inbox",
+            "selected": PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Inbox",
+            "selected-default": false
+          },
+          {
+            "title": "Shared",
+            "selected": PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Shared",
+            "selected-default": false
+          }
+        ],
+        "lsitem": "PIVOT_NOTIFICATIONS_ICON_VARIANT"
       },
       {
         "type": "boolean",
