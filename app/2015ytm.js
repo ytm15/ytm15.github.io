@@ -437,6 +437,8 @@ if (PIVOT_NOTIFICATIONS_IS_ACTIVITY_expflag == "true") {
 Library_text_string = "Library";
 AddComment_text_string = "Add a public comment...";
 AddReply_text_string = "Add a public reply..."
+AddComment2_text_string = "Add a comment...";
+AddReply2_text_string = "Add a reply..."
 Account_text_string = "Account";
 Posts_text_string = "Posts";
 PostsError_text_string = "There was an error loading posts.";

@@ -49,7 +49,7 @@ function renderSettingOptionMenu(parent, somTitle, somSubtitle, somArray, somLSI
 // NEW: Render a setting allowing text input (Credit to Legoskid for implementation)
 function renderSettingText(parent, stTitle, stSubtitle, stValue, stPlaceholder, stDisabled, stLSItem) {
   const settingText = document.createElement("div");
-  settingText.classList.add("setting-text", "has-ripple");
+  settingText.classList.add("setting-text" /*, "has-ripple" */);
   const sbLabel = document.createElement("label");
   sbLabel.classList.add("setting-label");
   const settingTitleSubBlock = document.createElement("div");
@@ -755,5 +755,4 @@ function settingsPage() {
     window.addEventListener("hashchange", function(event){
     settingsEventListenFunc();
     });
-
 }

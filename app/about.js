@@ -548,6 +548,9 @@ a few hours later:
 -More updates from the following pull request:
 --The "APP_NEW_ERROR_SCREEN" expflag now looks more similar to YouTube v13
 --While the video details page has been fixed, comments and the homepage should have been fixed, but as of the time of updating, the new Invidious instance "yt.omada.cafe" doesn't work
+
+18 Dec 2025:
+-Removed material ripple from setting textbox options (This was done to avoid it conflicting the textbox while editing its value)
     </div>
     </div>
     </div>
