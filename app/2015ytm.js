@@ -425,6 +425,7 @@ General_text_string = "General";
 SettingsMSG_text_string = "There is no page open at the current moment";
 ExpFlags_text_string = "YTm15 Experimental Flags";
 Feedback_text_string = "Send feedback";
+InstallYtm15_text_string = "Install YTm15";
 SettingsMSG2_text_string = "To be added in the near future";
 AboutYTm15_text_string = "About YTm15";
 DarkTheme_text_string = "Dark theme";

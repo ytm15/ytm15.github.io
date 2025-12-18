@@ -136,6 +136,12 @@ function settingsPage() {
       "title": Feedback_text_string,
       "link": "#/feedback",
       "id": "feedback"
+    },
+    {
+      "type": "option",
+      "title": InstallYtm15_text_string,
+      "link": "#/install",
+      "id": "install"
     }
     ];
 
@@ -268,6 +274,29 @@ function settingsPage() {
       title.textContent = Feedback_text_string + ' - 2015YouTube';
 
       settingsPage.innerHTML="<p>Open an issue on the YTm15 GitHub:<br>https://github.com/ytm15/ytm15.github.io/issues</p><p>Check for pull requests open (If any of the features you want may be being added):<br>https://github.com/ytm15/ytm15.github.io/pulls</p><p>You can also post on r/oldyoutubelayout (the dev is active there)</p>";
+      }
+      if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "install") {
+      /* innerSettingsPageCont.innerHTML = `
+<div class="ytm15-settings-msg">${SettingsMSG2_text_string}</div>
+`; */
+      innerSettingsPageCont.innerHTML = "";
+      var settingsPage = document.createElement("settings-page");
+      settingsPageHeader.id = "expflags";
+      settingsPage.classList.add(settingsPageHeader.id);
+      settingsPage.style.userSelect = "unset";
+      settingsPage.style.msUserSelect = "unset";
+      settingsPage.style.mozUserSelect = "unset";
+      settingsPage.style.khtmlUserSelect = "unset";
+      settingsPage.style.webkitUserSelect = "unset";
+      settingsPage.style.webkitTouchCallout = "unset";
+      innerSettingsPageCont.appendChild(settingsPage);
+      settingsPageHeader.innerHTML = InstallYtm15_text_string;
+      settingsPageHeader.id = "install";
+      headerTitle.setAttribute("aria-label", InstallYtm15_text_string);
+      headerTitle.textContent = InstallYtm15_text_string;
+      title.textContent = InstallYtm15_text_string + ' - 2015YouTube';
+
+      settingsPage.innerHTML=`<table style="border-top: 1px solid;border-bottom: 1px solid;margin-bottom:1rem;"><tr style="font-size:18px;"><td><img src="icon.png" width=60 style="padding-right: 5px;"></td><td>2015YouTube<br><span style="font-size:16px;">ytm15.github.io</span></td><td class="has-ripple" style="text-align:right;width: 100%;padding-right:3rem"><span style="border:1px solid;padding:3px;font-weight:bold;text-transform:uppercase;">Get as a Webapp</td></tr></table><ol><li>Open Safari (iOS)/Chrome (Android)</li><li>Go to ytm15.github.io/app</li><li>Press "share"/the three dots</li><li>Press "Add to Home Screen"</li></ol>`;
       }
       if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "expflags") {
       /* innerSettingsPageCont.innerHTML = `
