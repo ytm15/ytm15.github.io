@@ -782,12 +782,21 @@ function settingsPage() {
         "lsitem": "HEADER_CAST_BUTTON_AS_URL_BOX"
       },
       {
-        "type": "boolean",
+        "type": "option-menu",
         "title": "HEADER_CAST_ALTERNATE_ICON",
         "subtitle": "",
-        "pressed": HEADER_CAST_ALTERNATE_ICON_expflag == "true",
-        "pressed-default": false,
-        "disabled": false,
+        "options": [
+          {
+            "title": "true",
+            "selected": PIVOT_SHRINK_SPACING_expflag == "true",
+            "selected-default": true
+          },
+          {
+            "title": "Camera",
+            "selected": PIVOT_SHRINK_SPACING_expflag == "Camera",
+            "selected-default": false
+          }
+        ],
         "lsitem": "HEADER_CAST_ALTERNATE_ICON"
       },
       {
