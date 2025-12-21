@@ -915,7 +915,7 @@ ytm15-icon>svg {
     box-shadow: none;
 }
 
-.underline button:not(h2):not(.secondary-text):not(.menu-item-button):not(.error-content),.pivot-bar-item-title {
+.underline button:not(h2):not(.secondary-text):not(.menu-item-button):not(.error-content),.underline .pivot-bar-item-title {
     text-decoration: underline;
 }
 
