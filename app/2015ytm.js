@@ -167,6 +167,10 @@ DARK_THEME_SEPERATE_BACKGROUND_COLOR_expflag = localStorage.getItem("DARK_THEME_
 APP_UNDERLINE_BUTTONS_expflag = localStorage.getItem("APP_UNDERLINE_BUTTONS");
 HEADER_CAST_BUTTON_AS_URL_BOX_expflag = localStorage.getItem("HEADER_CAST_BUTTON_AS_URL_BOX");
 HEADER_CAST_ALTERNATE_ICON_expflag = localStorage.getItem("HEADER_CAST_ALTERNATE_ICON");
+if (HEADER_CAST_ALTERNATE_ICON_expflag == undefined) {
+  localStorage.setItem("HEADER_CAST_ALTERNATE_ICON", "true");
+  HEADER_CAST_ALTERNATE_ICON_expflag = localStorage.getItem("HEADER_CAST_ALTERNATE_ICON");
+}
 APP_STOP_TEXT_SELECTION_expflag = localStorage.getItem("APP_STOP_TEXT_SELECTION");
 if (APP_STOP_TEXT_SELECTION_expflag == undefined) {
   localStorage.setItem("APP_STOP_TEXT_SELECTION", "true");
@@ -177,6 +181,11 @@ WATCH_COMMENT_SECTION_LEFT_expflag = localStorage.getItem("WATCH_COMMENT_SECTION
 WATCH_DOWNLOAD_BUTTON_expflag = localStorage.getItem("WATCH_DOWNLOAD_BUTTON");
 WATCH_SAVE_BUTTON_expflag = localStorage.getItem("WATCH_SAVE_BUTTON");
 WATCH_HIDE_SUBSCRIBE_ICON_expflag = localStorage.getItem("WATCH_HIDE_SUBSCRIBE_ICON");
+HEADER_YOUTUBE_BRANDING_expflag = localStorage.getItem("HEADER_YOUTUBE_BRANDING");
+if (HEADER_YOUTUBE_BRANDING_expflag == undefined) {
+  localStorage.setItem("HEADER_YOUTUBE_BRANDING", "YouTube");
+  HEADER_YOUTUBE_BRANDING_expflag = localStorage.getItem("HEADER_YOUTUBE_BRANDING");
+}
 
 newErrorHtml = `<button class="error-content" onClick="location.reload();">
 <!-- <img class="error-icon ytm15-img" src="alert_error.png"></img><br> -->

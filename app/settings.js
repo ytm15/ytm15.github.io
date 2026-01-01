@@ -788,12 +788,12 @@ function settingsPage() {
         "options": [
           {
             "title": "true",
-            "selected": PIVOT_SHRINK_SPACING_expflag == "true",
+            "selected": HEADER_CAST_ALTERNATE_ICON_expflag == "true",
             "selected-default": true
           },
           {
             "title": "Camera",
-            "selected": PIVOT_SHRINK_SPACING_expflag == "Camera",
+            "selected": HEADER_CAST_ALTERNATE_ICON_expflag == "Camera",
             "selected-default": false
           }
         ],
@@ -852,6 +852,29 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "WATCH_HIDE_SUBSCRIBE_ICON"
+      },
+      {
+        "type": "option-menu",
+        "title": "HEADER_YOUTUBE_BRANDING",
+        "subtitle": "",
+        "options": [
+          {
+            "title": "YouTube",
+            "selected": HEADER_YOUTUBE_BRANDING_expflag == "YouTube",
+            "selected-default": true
+          },
+          {
+            "title": "Red",
+            "selected": HEADER_YOUTUBE_BRANDING_expflag == "Red",
+            "selected-default": false
+          },
+          {
+            "title": "Premium",
+            "selected": HEADER_YOUTUBE_BRANDING_expflag == "Premium",
+            "selected-default": false
+          }
+        ],
+        "lsitem": "HEADER_YOUTUBE_BRANDING"
       }
       ];
       settingBlocks.forEach(function(item){
