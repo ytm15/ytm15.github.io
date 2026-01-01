@@ -863,7 +863,7 @@ ${pinnedCMBadge}
 
     const getCommentsTitle = new XMLHttpRequest();
     getCommentsTitle.open('GET', APIbaseURL + 'api/v1/channels/' + item.authorId, true);
-    getCommentsTitle.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs=');
+    if (APP_DONT_AUTH_TO_INVIDIOUS_expflag == "false"){getCommentsTitle.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs=');};
 
     getCommentsTitle.onerror = function(event) {
     console.error("An error occurred with this operation (" + getCommentsTitle.status + ")");
