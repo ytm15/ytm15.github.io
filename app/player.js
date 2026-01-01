@@ -857,6 +857,10 @@ Sorry about that...`;
 playerxhttpr.onload = function() {
   if (playerxhttpr.status === 200) {
       const data = JSON.parse(playerxhttpr.response);
+      if (data.code === 403) {
+          playerxhttpr.onerror();
+                    return;
+	  }
           video.poster = data.thumbnail[3].url;
           video.innerHTML = ``;
           video.dataset.title = data.title;
