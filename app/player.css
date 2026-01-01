@@ -176,6 +176,14 @@
     height: 4px;
     margin: 0 12px;
 }
+.progress::after {
+    content: '';
+    position: absolute;
+    top: -10px;
+    bottom: -10px;
+    left: -10px;
+    right: -10px;
+}
 .progress-filled {
     width: 50%;
     background: #c62118;

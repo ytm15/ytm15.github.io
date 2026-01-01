@@ -49,6 +49,18 @@ function renderHeader() {
     if (DARK_THEME_option == "true") {
     headerEPSrc = "yt_wordmark_header_dark.png"
     }
+    if (HEADER_YOUTUBE_BRANDING_expflag == "Red") {
+    headerEPSrc = "yt_red_wordmark_header_light.png"
+    }
+    if (HEADER_YOUTUBE_BRANDING_expflag == "Red" && DARK_THEME_option == "true") {
+    headerEPSrc = "yt_red_wordmark_header_dark.png"
+    }
+    if (HEADER_YOUTUBE_BRANDING_expflag == "Premium") {
+    headerEPSrc = "yt_premium_wordmark_header_light.png"
+    }
+    if (HEADER_YOUTUBE_BRANDING_expflag == "Premium" && DARK_THEME_option == "true") {
+    headerEPSrc = "yt_premium_wordmark_header_dark.png"
+    }
     headerEP.innerHTML = `<img class="ytm15-img-icon ytm15-img youtube-logo-icon ringo-logo" src="${headerEPSrc}">`;
 
     const backBtn = document.createElement("button");
