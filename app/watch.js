@@ -503,7 +503,7 @@ function renderWatchPage(parent) {
     metadataActions.appendChild(mtrlBtnContShare);
     metadataActions.appendChild(actionsSpacer);
     if (WATCH_DOWNLOAD_BUTTON_expflag == "true") {metadataActions.appendChild(mtrlBtnContDownload);};
-    if (WATCH_SAVE_BUTTON_expflag == "true" && WATCH_ENABLE_NEW_UI_expflag == "true") {metadataActions.appendChild(mtrlBtnContSave);};
+    if (WATCH_SAVE_BUTTON_expflag == "true" && WATCH_ENABLE_NEW_UI_expflag == "true") {metadataActions.appendChild(mtrlBtnContSave);metadataActions.style.flexWrap = "nowrap"};
 
     const W2ndHalf = document.createElement("div");
     W2ndHalf.classList.add("wnr-2nd-half", "watch-next-results-content");
