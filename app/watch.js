@@ -472,7 +472,7 @@ function renderWatchPage(parent) {
 "></path></svg></ytm15-icon><div class="button-text">${Share_text_string}</div>
 </button>`
 
-    mtrlBtnContDownload.innerHTML = `<button class="material-button" aria-label="${Download_text_string}" aria-pressed="false"><ytm15-icon class="save-icon button-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12,2 C6.49,2,2,6.49,2,12 s4.49,10,10,10 s10,-4.49,10,-10 S17.51,2,12,2 m-1.4,8 V6 h3 v4 h3 l-4.5,4 l-4.5,-4 h3 m6,7 H7 v-2 h10 v2 Z" style="
+    mtrlBtnContDownload.innerHTML = `<button class="material-button" aria-label="${Download_text_string}" aria-pressed="false"><ytm15-icon class="save-icon button-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12,2 C6.49,2,2,6.49,2,12 s4.49,10,10,10 s10,-4.49,10,-10 S17.51,2,12,2 m-1.7,8 V6 h3.5 v4 h2.8 l-4.5,4 l-4.5,-4 h3.5 m6,7 H7 v-1.25 h10 v1.25 Z" style="
     transform: scale(1.2);
     transform-origin: center;
 "></path></svg></ytm15-icon><div class="button-text">${Download_text_string}</div>
