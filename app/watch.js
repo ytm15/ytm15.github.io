@@ -576,6 +576,9 @@ function renderWatchPage(parent) {
     if (WATCH_AUTONAV_TITLE_USE_UPNEXT_expflag == "true") {
     autonavBar.innerHTML = `<h3 class="autonav-bar-title">${UpNext_text_string}</h3>`;
     }
+    if (WATCH_AUTOPLAY_SWITCH_expflag == "true") {
+    autonavBar.insertAdjacentHTML("beforeend",`<h3 class="autonav-bar-title" style="text-align: right;">Autoplay<button class="toggle-button" aria-pressed="false" disabled="" style="margin-left: 10px;"><div class="toggle-button-track"></div><div class="toggle-button-circle has-ripple"></div></button></h3>`);
+    }
     itemSectRelated.querySelector(".lazy-list").appendChild(autonavBar);
 
     data.relatedVideos.data.forEach(function(item) {

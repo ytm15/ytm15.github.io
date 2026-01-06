@@ -875,6 +875,15 @@ function settingsPage() {
           }
         ],
         "lsitem": "HEADER_YOUTUBE_BRANDING"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_AUTOPLAY_SWITCH",
+        "subtitle": "",
+        "pressed": WATCH_AUTOPLAY_SWITCH_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_AUTOPLAY_SWITCH"
       }
       ];
       settingBlocks.forEach(function(item){

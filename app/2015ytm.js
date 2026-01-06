@@ -186,6 +186,8 @@ if (HEADER_YOUTUBE_BRANDING_expflag == undefined) {
   localStorage.setItem("HEADER_YOUTUBE_BRANDING", "YouTube");
   HEADER_YOUTUBE_BRANDING_expflag = localStorage.getItem("HEADER_YOUTUBE_BRANDING");
 }
+WATCH_AUTOPLAY_SWITCH_expflag = localStorage.getItem("WATCH_AUTOPLAY_SWITCH");
+
 
 newErrorHtml = `<button class="error-content" onClick="location.reload();">
 <!-- <img class="error-icon ytm15-img" src="alert_error.png"></img><br> -->
