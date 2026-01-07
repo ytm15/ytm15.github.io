@@ -748,7 +748,7 @@ function settingsPage() {
       {
         "type": "boolean",
         "title": "HEADER_NO_SHADOW",
-        "subtitle": "",
+        "subtitle": "Fun fact: there was usually no shadow on non Retina (low-res) devices",
         "pressed": HEADER_NO_SHADOW_expflag == "true",
         "pressed-default": false,
         "disabled": false,
