@@ -181,6 +181,7 @@ if (APP_STOP_TEXT_SELECTION_expflag == undefined) {
   localStorage.setItem("APP_STOP_TEXT_SELECTION", "true");
   APP_STOP_TEXT_SELECTION_expflag = localStorage.getItem("APP_STOP_TEXT_SELECTION");
 }
+ERACAST_MODE_option = localStorage.getItem("ERACAST_MODE");
 WATCH_UI_NO_LINES_expflag = localStorage.getItem("WATCH_UI_NO_LINES");
 WATCH_COMMENT_SECTION_LEFT_expflag = localStorage.getItem("WATCH_COMMENT_SECTION_LEFT");
 WATCH_DOWNLOAD_BUTTON_expflag = localStorage.getItem("WATCH_DOWNLOAD_BUTTON");
@@ -498,6 +499,8 @@ SettingsMSG2_text_string = "To be added in the near future";
 AboutYTm15_text_string = "About YTm15";
 DarkTheme_text_string = "Dark theme";
 DarkThemeDesc_text_string = "Enable dark theme throughout the app";
+EraCast_text_string = "EraCast mode";
+EraCastDesc_text_string = "Connect to EraCast servers";
 About_text_string = "About";
 ReturnHomepage_text_string = "Return home";
 Reload_text_string = "Refresh";
