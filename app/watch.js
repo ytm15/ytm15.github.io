@@ -434,6 +434,28 @@ function renderWatchPage(parent) {
 <div class="button-text">${Share_text_string}</div><img class="ytm15-img-icon ytm15-img button-icon share-icon" src="ic_share.png"></img>
 </button>`
 
+    const mtrlBtnContDownload = document.createElement("div");
+    mtrlBtnContDownload.classList.add("material-button-container", "compact", "download-button");
+    mtrlBtnContDownload.dataset.style = "DEFAULT";
+    mtrlBtnContDownload.dataset.iconOnly = "true";
+    mtrlBtnContDownload.setAttribute("is-busy", "false");
+    mtrlBtnContDownload.ariaBusy = "false";
+    mtrlBtnContDownload.setAttribute("disabled", "false");
+    mtrlBtnContDownload.innerHTML = `<button class="material-button" aria-label="${Download_text_string}" aria-pressed="false">
+<div class="button-text">${Download_text_string}</div><img class="ytm15-img-icon ytm15-img button-icon download-icon" src="ic_download.png"></img>
+</button>`
+
+    const mtrlBtnContSave = document.createElement("div");
+    mtrlBtnContSave.classList.add("material-button-container", "compact", "save-button");
+    mtrlBtnContSave.dataset.style = "DEFAULT";
+    mtrlBtnContSave.dataset.iconOnly = "true";
+    mtrlBtnContSave.setAttribute("is-busy", "false");
+    mtrlBtnContSave.ariaBusy = "false";
+    mtrlBtnContSave.setAttribute("disabled", "false");
+    mtrlBtnContSave.innerHTML = `<button class="material-button" aria-label="${Save_text_string}" aria-pressed="false">
+<div class="button-text">${Save_text_string}</div><img class="ytm15-img-icon ytm15-img button-icon save-icon" src="ic_save.png"></img>
+</button>`
+
     if (WATCH_USE_MTRL_ICONS_expflag == "true") {
     mtrlBtnCont.innerHTML = `<button class="material-button" aria-label="${videoMetadataLikeCountAL}" aria-pressed="false">
 <ytm15-icon class="like-icon button-icon"><svg viewBox="0 0 24 24" fill=""><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1.91l-.01-.01L23 10z"></path></svg></ytm15-icon><div class="button-text">${videoMetadataLikeCount}</div>
@@ -450,12 +472,27 @@ function renderWatchPage(parent) {
 "></path></svg></ytm15-icon><div class="button-text">${Share_text_string}</div>
 </button>`
 
+    mtrlBtnContDownload.innerHTML = `<button class="material-button" aria-label="${Download_text_string}" aria-pressed="false"><ytm15-icon class="save-icon button-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12,2 C6.49,2,2,6.49,2,12 s4.49,10,10,10 s10,-4.49,10,-10 S17.51,2,12,2 m-1.7,8 V6 h3.5 v4 h2.8 l-4.5,4 l-4.5,-4 h3.5 m6,7 H7 v-1.25 h10 v1.25 Z" style="
+    transform: scale(1.2);
+    transform-origin: center;
+"></path></svg></ytm15-icon><div class="button-text">${Download_text_string}</div>
+</button>`
+
+    mtrlBtnContSave.innerHTML = `<button class="material-button" aria-label="${Save_text_string}" aria-pressed="false">
+<ytm15-icon class="save-icon button-icon"><svg viewBox="0 0 24 24" fill=""><path d="M14 10H3v2h11v-2zm0-4H3v2h11V6zm4 8v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM3 16h7v-2H3v2z" style="
+    transform: scale(1.3);
+    transform-origin: center;
+"></path></svg></ytm15-icon><div class="button-text">${Save_text_string}</div>
+</button>`
+
     metadataActions.classList.add("use-mtrl-icons");
     };
     if (APP_DEMATERIALIZE_UI_expflag == "true") {
     mtrlBtnCont.querySelector("button").appendChild(mtrlBtnCont.querySelector(".button-text"));
     mtrlBtnContDislike.querySelector("button").appendChild(mtrlBtnContDislike.querySelector(".button-text"));
     mtrlBtnContShare.querySelector("button").appendChild(mtrlBtnContShare.querySelector(".button-text"));
+    mtrlBtnContDownload.querySelector("button").appendChild(mtrlBtnContDownload.querySelector(".button-text"));
+    mtrlBtnContSave.querySelector("button").appendChild(mtrlBtnContSave.querySelector(".button-text"));
     };
 
     const actionsSpacer = document.createElement("div");
@@ -465,6 +502,8 @@ function renderWatchPage(parent) {
     metadataActions.appendChild(mtrlBtnContDislike);
     metadataActions.appendChild(mtrlBtnContShare);
     metadataActions.appendChild(actionsSpacer);
+    if (WATCH_DOWNLOAD_BUTTON_expflag == "true") {metadataActions.appendChild(mtrlBtnContDownload);};
+    if (WATCH_SAVE_BUTTON_expflag == "true" && WATCH_ENABLE_NEW_UI_expflag == "true") {metadataActions.appendChild(mtrlBtnContSave);metadataActions.style.flexWrap = "nowrap"};
 
     const W2ndHalf = document.createElement("div");
     W2ndHalf.classList.add("wnr-2nd-half", "watch-next-results-content");
@@ -537,6 +576,9 @@ function renderWatchPage(parent) {
     if (WATCH_AUTONAV_TITLE_USE_UPNEXT_expflag == "true") {
     autonavBar.innerHTML = `<h3 class="autonav-bar-title">${UpNext_text_string}</h3>`;
     }
+    if (WATCH_AUTOPLAY_SWITCH_expflag == "true") {
+    autonavBar.insertAdjacentHTML("beforeend",`<h3 class="autonav-bar-title" style="text-align: right;">Autoplay<button class="toggle-button" aria-pressed="false" disabled="" style="margin-left: 10px;"><div class="toggle-button-track"></div><div class="toggle-button-circle has-ripple"></div></button></h3>`);
+    }
     itemSectRelated.querySelector(".lazy-list").appendChild(autonavBar);
 
     data.relatedVideos.data.forEach(function(item) {
@@ -571,7 +613,11 @@ function renderWatchPage(parent) {
         renderCompactMediaItem(itemSectRelated.querySelector(".lazy-list"), "related-media-lazy-list", compMediaItemvidId, compMediaItemThumb, compMediaItemLength, compMediaItemTitle, compMediaItemAuthor, item.channelId, "", item.viewCount, item.type);
     });
 
-    renderCommentSection(W2ndHalf, "video", playerVideoId, false);
+    if (WATCH_COMMENT_SECTION_LEFT_expflag == "true") {
+      renderCommentSection(scwnr, "video", playerVideoId, false);
+    } else {
+      renderCommentSection(W2ndHalf, "video", playerVideoId, false);
+    }
 
     parent.innerHTML = "";
 

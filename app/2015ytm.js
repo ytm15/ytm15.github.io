@@ -143,12 +143,16 @@ USE_NEW_SUBSCRIBE_ICON_expflag = localStorage.getItem("USE_NEW_SUBSCRIBE_ICON");
 LIFT_PIVOT_BAR_FOR_PHONE_expflag = localStorage.getItem("LIFT_PIVOT_BAR_FOR_PHONE");
 PIVOT_SHRINK_SPACING_expflag = localStorage.getItem("PIVOT_SHRINK_SPACING");
 PIVOT_HIDE_NOTIFICATIONS_expflag = localStorage.getItem("PIVOT_HIDE_NOTIFICATIONS");
-PIVOT_NOTIFICATIONS_IS_ACTIVITY_expflag = localStorage.getItem("PIVOT_NOTIFICATIONS_IS_ACTIVITY");
+PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag = localStorage.getItem("PIVOT_NOTIFICATIONS_ICON_VARIANT");
+if (PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == undefined) {
+  localStorage.setItem("PIVOT_NOTIFICATIONS_ICON_VARIANT", "Notifications");
+  PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag = localStorage.getItem("PIVOT_NOTIFICATIONS_ICON_VARIANT");
+}
 APP_HELVETICA_NEUE_FONT_expflag = localStorage.getItem("APP_HELVETICA_NEUE_FONT");
 APP_NEW_ERROR_SCREEN_expflag = localStorage.getItem("APP_NEW_ERROR_SCREEN");
 APP_CUSTOM_INVIDIOUS_URL_expflag = localStorage.getItem("APP_CUSTOM_INVIDIOUS_URL");
-if (APP_CUSTOM_INVIDIOUS_URL_expflag == undefined) {
-  localStorage.setItem("APP_CUSTOM_INVIDIOUS_URL", "https://api.allorigins.win/raw?url=https://yt.omada.cafe/");
+if (APP_CUSTOM_INVIDIOUS_URL_expflag == undefined || APP_CUSTOM_INVIDIOUS_URL_expflag == "") {
+  localStorage.setItem("APP_CUSTOM_INVIDIOUS_URL", "https://api.codetabs.com/v1/proxy?quest=https://inv.perditum.com/");
   APP_CUSTOM_INVIDIOUS_URL_expflag = localStorage.getItem("APP_CUSTOM_INVIDIOUS_URL");
 }
 APP_DONT_AUTH_TO_INVIDIOUS_expflag = localStorage.getItem("APP_DONT_AUTH_TO_INVIDIOUS");
@@ -163,11 +167,29 @@ DARK_THEME_SEPERATE_BACKGROUND_COLOR_expflag = localStorage.getItem("DARK_THEME_
 APP_UNDERLINE_BUTTONS_expflag = localStorage.getItem("APP_UNDERLINE_BUTTONS");
 HEADER_CAST_BUTTON_AS_URL_BOX_expflag = localStorage.getItem("HEADER_CAST_BUTTON_AS_URL_BOX");
 HEADER_CAST_ALTERNATE_ICON_expflag = localStorage.getItem("HEADER_CAST_ALTERNATE_ICON");
+if (HEADER_CAST_ALTERNATE_ICON_expflag == undefined) {
+  localStorage.setItem("HEADER_CAST_ALTERNATE_ICON", "true");
+  HEADER_CAST_ALTERNATE_ICON_expflag = localStorage.getItem("HEADER_CAST_ALTERNATE_ICON");
+}
 APP_STOP_TEXT_SELECTION_expflag = localStorage.getItem("APP_STOP_TEXT_SELECTION");
 if (APP_STOP_TEXT_SELECTION_expflag == undefined) {
   localStorage.setItem("APP_STOP_TEXT_SELECTION", "true");
   APP_STOP_TEXT_SELECTION_expflag = localStorage.getItem("APP_STOP_TEXT_SELECTION");
 }
+WATCH_UI_NO_LINES_expflag = localStorage.getItem("WATCH_UI_NO_LINES");
+WATCH_COMMENT_SECTION_LEFT_expflag = localStorage.getItem("WATCH_COMMENT_SECTION_LEFT");
+WATCH_DOWNLOAD_BUTTON_expflag = localStorage.getItem("WATCH_DOWNLOAD_BUTTON");
+WATCH_SAVE_BUTTON_expflag = localStorage.getItem("WATCH_SAVE_BUTTON");
+WATCH_HIDE_SUBSCRIBE_ICON_expflag = localStorage.getItem("WATCH_HIDE_SUBSCRIBE_ICON");
+HEADER_YOUTUBE_BRANDING_expflag = localStorage.getItem("HEADER_YOUTUBE_BRANDING");
+if (HEADER_YOUTUBE_BRANDING_expflag == undefined) {
+  localStorage.setItem("HEADER_YOUTUBE_BRANDING", "YouTube");
+  HEADER_YOUTUBE_BRANDING_expflag = localStorage.getItem("HEADER_YOUTUBE_BRANDING");
+}
+WATCH_AUTOPLAY_SWITCH_expflag = localStorage.getItem("WATCH_AUTOPLAY_SWITCH");
+HEADER_USE_ACCOUNT_ICON_expflag = localStorage.getItem("HEADER_USE_ACCOUNT_ICON");
+HEADER_ACCOUNT_ICON_LINK_expflag = localStorage.getItem("HEADER_ACCOUNT_ICON_LINK");
+
 
 newErrorHtml = `<button class="error-content" onClick="location.reload();">
 <!-- <img class="error-icon ytm15-img" src="alert_error.png"></img><br> -->
@@ -329,6 +351,18 @@ if (APP_STOP_TEXT_SELECTION_expflag == "true") {
 } else {
   documentHTML.classList.remove("text-selection");
 }
+
+if (WATCH_UI_NO_LINES_expflag == "true") {
+  documentHTML.classList.add("no-lines");
+} else {
+  documentHTML.classList.remove("no-lines");
+}
+
+if (WATCH_HIDE_SUBSCRIBE_ICON_expflag == "true") {
+  documentHTML.classList.add("no-subscribe-icon");
+} else {
+  documentHTML.classList.remove("no-subscribe-icon");
+}
 };
 
 localStorageChange();
@@ -390,6 +424,8 @@ Channel_Home_WIP_text_string = "Channel pages' home pages haven't been built yet
 No_Search_Results_text_string = "No results found. Try different keywords";
 Dead_End_text_string = "Looks like you've reached the end";
 Share_text_string = "Share";
+Download_text_string = "Download";
+Save_text_string = "Save";
 DescMusic_text_string = "Music in this video";
 LearnMore_text_string = "Learn more";
 Song_text_string = "Song";
@@ -401,6 +437,8 @@ Settings_text_string = "Settings";
 General_text_string = "General";
 SettingsMSG_text_string = "There is no page open at the current moment";
 ExpFlags_text_string = "YTm15 Experimental Flags";
+Feedback_text_string = "Send feedback";
+InstallYtm15_text_string = "Install YTm15";
 SettingsMSG2_text_string = "To be added in the near future";
 AboutYTm15_text_string = "About YTm15";
 DarkTheme_text_string = "Dark theme";
@@ -431,8 +469,12 @@ UpNext_text_string = "Up next";
 Replies_text_string = "Replies";
 Subs_text_string = "Subscriptions";
 Notifs_text_string = "Notifications";
-if (PIVOT_NOTIFICATIONS_IS_ACTIVITY_expflag == "true") {
+if (PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Activity") {
   Notifs_text_string = "Activity";
+} else if (PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Inbox") {
+  Notifs_text_string = "Inbox";
+} else if (PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Shared") {
+  Notifs_text_string = "Shared";
 }
 Library_text_string = "Library";
 AddComment_text_string = "Add a public comment...";
@@ -641,6 +683,9 @@ function renderCommentSection(parent, mediaType, cmSource, isCMPage, comntId, co
     if (APP_DEMATERIALIZE_UI_expflag == "true") {
       commentSection.classList.add('card');
     }
+    if (WATCH_COMMENT_SECTION_LEFT_expflag == "true" && WATCH_UI_NO_LINES_expflag == "false") {
+      commentSection.style.borderTop = "1.2px solid rgba(0,0,0,0.2)"
+    };
     if (mediaType == "video" && !isCMPage) {
      commentSection.classList.add("watch-next-results-content");
      commentSection.dataset.contentType = "result";
@@ -822,7 +867,7 @@ ${pinnedCMBadge}
 
     const getCommentsTitle = new XMLHttpRequest();
     getCommentsTitle.open('GET', APIbaseURL + 'api/v1/channels/' + item.authorId, true);
-    getCommentsTitle.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs=');
+    if (APP_DONT_AUTH_TO_INVIDIOUS_expflag == "false"){getCommentsTitle.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs=');};
 
     getCommentsTitle.onerror = function(event) {
     console.error("An error occurred with this operation (" + getCommentsTitle.status + ")");
@@ -1111,7 +1156,7 @@ function renderPivotBar(){
     {
       "name": Subs_text_string,
       "pivotName": "subscriptions",
-      "iconPath": "M20,8H4V6H20V8M18,2H6V4H18V2M22,12V20A2,2 0 0,1 20,22H4A2,2 0 0,1 2,20V12A2,2 0 0,1 4,10H20A2,2 0 0,1 22,12M16,16L10,12.73V19.26L16,16Z",
+      "iconPath": "M20 8H4V6h16v2zm-2-6H6v2h12V2zm4 8v12H2V10h20zm-6 6-6-3.27v6.53L16 16z",
       "link": "subscriptions"
     },
     {
@@ -1127,6 +1172,7 @@ function renderPivotBar(){
       "link": "library"
     }
     ];
+    if (PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Inbox") {pivotBarItems[3].iconPath = "M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"}
     pivotBar.innerHTML = "";
     pivotBarItems.forEach(function(item){
       const pivotBarItem = document.createElement("div");

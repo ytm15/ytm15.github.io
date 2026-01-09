@@ -130,6 +130,18 @@ function settingsPage() {
       "title": AboutYTm15_text_string,
       "link": "index.html#/about",
       "id": "about"
+    },
+    {
+      "type": "option",
+      "title": Feedback_text_string,
+      "link": "#/feedback",
+      "id": "feedback"
+    },
+    {
+      "type": "option",
+      "title": InstallYtm15_text_string,
+      "link": "#/install",
+      "id": "install"
     }
     ];
 
@@ -239,6 +251,52 @@ function settingsPage() {
         renderSettingText(settingsPage, item.title, item.subtitle, item.value, item.placeholder, item.disabled, item.lsitem);
       }
       });
+      }
+      if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "feedback") {
+      /* innerSettingsPageCont.innerHTML = `
+<div class="ytm15-settings-msg">${SettingsMSG2_text_string}</div>
+`; */
+      innerSettingsPageCont.innerHTML = "";
+      var settingsPage = document.createElement("settings-page");
+      settingsPageHeader.id = "expflags";
+      settingsPage.classList.add(settingsPageHeader.id);
+      settingsPage.style.userSelect = "unset";
+      settingsPage.style.msUserSelect = "unset";
+      settingsPage.style.mozUserSelect = "unset";
+      settingsPage.style.khtmlUserSelect = "unset";
+      settingsPage.style.webkitUserSelect = "unset";
+      settingsPage.style.webkitTouchCallout = "unset";
+      innerSettingsPageCont.appendChild(settingsPage);
+      settingsPageHeader.innerHTML = Feedback_text_string;
+      settingsPageHeader.id = "feedback";
+      headerTitle.setAttribute("aria-label", Feedback_text_string);
+      headerTitle.textContent = Feedback_text_string;
+      title.textContent = Feedback_text_string + ' - 2015YouTube';
+
+      settingsPage.innerHTML="<p>Open an issue on the YTm15 GitHub:<br>https://github.com/ytm15/ytm15.github.io/issues</p><p>Check for pull requests open (If any of the features you want may be being added):<br>https://github.com/ytm15/ytm15.github.io/pulls</p><p>You can also post on r/oldyoutubelayout (the dev is active there)</p>";
+      }
+      if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "install") {
+      /* innerSettingsPageCont.innerHTML = `
+<div class="ytm15-settings-msg">${SettingsMSG2_text_string}</div>
+`; */
+      innerSettingsPageCont.innerHTML = "";
+      var settingsPage = document.createElement("settings-page");
+      settingsPageHeader.id = "expflags";
+      settingsPage.classList.add(settingsPageHeader.id);
+      settingsPage.style.userSelect = "unset";
+      settingsPage.style.msUserSelect = "unset";
+      settingsPage.style.mozUserSelect = "unset";
+      settingsPage.style.khtmlUserSelect = "unset";
+      settingsPage.style.webkitUserSelect = "unset";
+      settingsPage.style.webkitTouchCallout = "unset";
+      innerSettingsPageCont.appendChild(settingsPage);
+      settingsPageHeader.innerHTML = InstallYtm15_text_string;
+      settingsPageHeader.id = "install";
+      headerTitle.setAttribute("aria-label", InstallYtm15_text_string);
+      headerTitle.textContent = InstallYtm15_text_string;
+      title.textContent = InstallYtm15_text_string + ' - 2015YouTube';
+
+      settingsPage.innerHTML=`<table style="border-top: 1px solid;border-bottom: 1px solid;margin-bottom:1rem;"><tr style="font-size:18px;"><td><img src="icon.png" width=60 style="padding-right: 5px;"></td><td>2015YouTube<br><span style="font-size:16px;">ytm15.github.io</span></td><td class="has-ripple" style="text-align:right;width: 100%;padding-right:3rem"><span style="border:1px solid;padding:3px;font-weight:bold;text-transform:uppercase;">Get as a Webapp</td></tr></table><ol><li>Open Safari (iOS)/Chrome (Android)</li><li>Go to ytm15.github.io/app</li><li>Press "share"/the three dots</li><li>Press "Add to Home Screen"</li></ol>`;
       }
       if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "expflags") {
       /* innerSettingsPageCont.innerHTML = `
@@ -606,13 +664,32 @@ function settingsPage() {
         "lsitem": "PIVOT_HIDE_NOTIFICATIONS"
       },
       {
-        "type": "boolean",
-        "title": "PIVOT_NOTIFICATIONS_IS_ACTIVITY",
+        "type": "option-menu",
+        "title": "PIVOT_NOTIFICATIONS_ICON_VARIANT",
         "subtitle": "",
-        "pressed": PIVOT_NOTIFICATIONS_IS_ACTIVITY_expflag == "true",
-        "pressed-default": false,
-        "disabled": false,
-        "lsitem": "PIVOT_NOTIFICATIONS_IS_ACTIVITY"
+        "options": [
+          {
+            "title": "Notifications",
+            "selected": PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Notifications",
+            "selected-default": true
+          },
+          {
+            "title": "Activity",
+            "selected": PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Activity",
+            "selected-default": false
+          },
+          {
+            "title": "Inbox",
+            "selected": PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Inbox",
+            "selected-default": false
+          },
+          {
+            "title": "Shared",
+            "selected": PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Shared",
+            "selected-default": false
+          }
+        ],
+        "lsitem": "PIVOT_NOTIFICATIONS_ICON_VARIANT"
       },
       {
         "type": "boolean",
@@ -635,8 +712,8 @@ function settingsPage() {
       {
         "type": "text",
         "title": "APP_CUSTOM_INVIDIOUS_URL",
-        "subtitle": "This loads your home page and comments. <small>which should update and not be static</small><br>If you have your own invidious instance put it here<br>You should change CORS policy if you own your instance, otherwise use a CORS redirector",
-        "value": "https://api.allorigins.win/raw?url=https://yt.omada.cafe/",
+        "subtitle": "This loads your home page and comments. <small>which should update and not be static</small><br>If you have your own invidious instance put it here<br>You should change CORS policy if you own your instance, otherwise use a CORS redirector. If you can use a CORS disabler extension, you can also remove the starting proxy url, it will make it faster.<br><small>If you want to setup an invidious instance, there is always google, however your average PC probably will lag out (the preset instance is probably fine for you)</small><br>Clear the text box to reset the url",
+        "value": "https://api.codetabs.com/v1/proxy?quest=https://inv.perditum.com/",
         "placeholder": "",
         "disabled": false,
         "lsitem": "APP_CUSTOM_INVIDIOUS_URL"
@@ -671,7 +748,7 @@ function settingsPage() {
       {
         "type": "boolean",
         "title": "HEADER_NO_SHADOW",
-        "subtitle": "",
+        "subtitle": "Fun fact: there was usually no shadow on non Retina (low-res) devices",
         "pressed": HEADER_NO_SHADOW_expflag == "true",
         "pressed-default": false,
         "disabled": false,
@@ -705,12 +782,21 @@ function settingsPage() {
         "lsitem": "HEADER_CAST_BUTTON_AS_URL_BOX"
       },
       {
-        "type": "boolean",
+        "type": "option-menu",
         "title": "HEADER_CAST_ALTERNATE_ICON",
         "subtitle": "",
-        "pressed": HEADER_CAST_ALTERNATE_ICON_expflag == "true",
-        "pressed-default": false,
-        "disabled": false,
+        "options": [
+          {
+            "title": "true",
+            "selected": HEADER_CAST_ALTERNATE_ICON_expflag == "true",
+            "selected-default": true
+          },
+          {
+            "title": "Camera",
+            "selected": HEADER_CAST_ALTERNATE_ICON_expflag == "Camera",
+            "selected-default": false
+          }
+        ],
         "lsitem": "HEADER_CAST_ALTERNATE_ICON"
       },
       {
@@ -721,6 +807,101 @@ function settingsPage() {
         "pressed-default": true,
         "disabled": false,
         "lsitem": "APP_STOP_TEXT_SELECTION"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_UI_NO_LINES",
+        "subtitle": "",
+        "pressed": WATCH_UI_NO_LINES_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_UI_NO_LINES"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_COMMENT_SECTION_LEFT",
+        "subtitle": "",
+        "pressed": WATCH_COMMENT_SECTION_LEFT_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_COMMENT_SECTION_LEFT"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_DOWNLOAD_BUTTON",
+        "subtitle": "",
+        "pressed": WATCH_DOWNLOAD_BUTTON_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_DOWNLOAD_BUTTON"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_SAVE_BUTTON",
+        "subtitle": "",
+        "pressed": WATCH_SAVE_BUTTON_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_SAVE_BUTTON"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_HIDE_SUBSCRIBE_ICON",
+        "subtitle": "",
+        "pressed": WATCH_HIDE_SUBSCRIBE_ICON_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_HIDE_SUBSCRIBE_ICON"
+      },
+      {
+        "type": "option-menu",
+        "title": "HEADER_YOUTUBE_BRANDING",
+        "subtitle": "",
+        "options": [
+          {
+            "title": "YouTube",
+            "selected": HEADER_YOUTUBE_BRANDING_expflag == "YouTube",
+            "selected-default": true
+          },
+          {
+            "title": "Red",
+            "selected": HEADER_YOUTUBE_BRANDING_expflag == "Red",
+            "selected-default": false
+          },
+          {
+            "title": "Premium",
+            "selected": HEADER_YOUTUBE_BRANDING_expflag == "Premium",
+            "selected-default": false
+          }
+        ],
+        "lsitem": "HEADER_YOUTUBE_BRANDING"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_AUTOPLAY_SWITCH",
+        "subtitle": "",
+        "pressed": WATCH_AUTOPLAY_SWITCH_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_AUTOPLAY_SWITCH"
+      },
+      {
+        "type": "boolean",
+        "title": "HEADER_USE_ACCOUNT_ICON",
+        "subtitle": "",
+        "pressed": HEADER_USE_ACCOUNT_ICON_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "HEADER_USE_ACCOUNT_ICON"
+      },
+      {
+        "type": "text",
+        "title": "HEADER_ACCOUNT_ICON_LINK",
+        "subtitle": "",
+        "value": "",
+        "placeholder": "",
+        "disabled": false,
+        "lsitem": "HEADER_ACCOUNT_ICON_LINK"
       }
       ];
       settingBlocks.forEach(function(item){

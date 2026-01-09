@@ -915,7 +915,7 @@ ytm15-icon>svg {
     box-shadow: none;
 }
 
-.underline button:not(h2):not(.secondary-text):not(.menu-item-button):not(.error-content),.pivot-bar-item-title {
+.underline button:not(h2):not(.secondary-text):not(.menu-item-button):not(.error-content),.underline .pivot-bar-item-title {
     text-decoration: underline;
 }
 
@@ -2591,6 +2591,9 @@ ytm15-menu-button {
 .compact-channel.shelf-item .media-item-menu {
     display: none;
 }
+.no-lines .ytm15-video-owner,.no-lines .watch-next-results-content {
+    border:unset !important;
+}
 
 /* About 2015YouTube */
 .about-page-heading, .about-page-subheading {
@@ -3074,6 +3077,9 @@ ytm15-channels-header {
 .ytm15-img-icon.subscribe-icon.style-2018 {
     width: 18px;
     height: 13px;
+}
+.no-subscribe-icon .ytm15-img-icon.subscribe-icon {
+    display:none;
 }
 
 .continuation-item ~ .continuation-item {
@@ -3929,7 +3935,7 @@ ytm15-pivot-bar {
     z-index: 2;
     height: 52px;
     background-color: #fff;
-    color: rgba(0, 0, 0, 0.5);
+    color: #5f5f5f;
     box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.25);
     font-size: 1.1rem;
 }
@@ -5657,7 +5663,7 @@ html.dark {
 }
 .dark ytm15-pivot-bar {
     background-color: #303030;
-    color: rgba(255, 255, 255, 0.6);
+    color: #8f8f8f;
 }
 .dark ytm15-pivot-bar.no-shadow {
     border-top: 1.2px solid rgba(255,255,255,0.1);
