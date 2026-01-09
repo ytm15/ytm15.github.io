@@ -827,11 +827,22 @@ const playerxhttpr = new XMLHttpRequest();
 /* playerxhttpr.open('GET', 'https://inv.tux.pizza/api/v1/videos/' + YTmVideoId, true); */
 /* playerxhttpr.open('GET', 'https://invidious.nerdvpn.de/api/v1/videos/' + YTmVideoId, true);
 playerxhttpr.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs='); */
+if (ERACAST_MODE_option == "true") {
+    window.fetchEraCast1080WebmUrl().then(function(data) {
+        playerxhttpr.open('GET', data, true);
+        
+ 
+        playerxhttpr.send();
+	});
+} else {
 playerxhttpr.open('GET', APIbaseURLNew + 'dl?cgeo=US&id=' + YTmVideoId, true);
 playerxhttpr.setRequestHeader('x-rapidapi-key', '4b0791fe33mshce00ad033774274p196706jsn957349df7a8f');
 playerxhttpr.setRequestHeader('x-rapidapi-host', 'yt-api.p.rapidapi.com');
+
  
 playerxhttpr.send();
+}
+
 
 playerxhttpr.onerror = function(){
       videoPlayer.classList.add("player-has-error");
