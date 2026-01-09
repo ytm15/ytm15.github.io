@@ -113,4 +113,30 @@
       return [];
     }
   };
+
+  // @param {string} videoId
+  // @returns {Promise<string>}
+  window.fetchEraCast1080WebmUrl = async function fetchEraCast1080WebmUrl(videoId) {
+    try {
+      if (!videoId || typeof videoId !== 'string') return '';
+
+      const watchUrl = `https://www.eracast.cc/watch?v=${encodeURIComponent(videoId)}`;
+      const res = await fetch(watchUrl, { method: 'GET', mode: 'cors' });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+
+      const html = await res.text();
+
+      // This regex gets 1080p video
+      const re = /targetDiv\.setAttribute\(\s*['"]src['"]\s*,\s*['"]([^'"]*?_1080\.)['"]\s*\+\s*ext\s*\)\s*;/;
+      const m = html.match(re);
+      if (!m || !m[1]) return '';
+
+      const prefix = m[1];
+      const abs = new URL(prefix + 'mp4', watchUrl).href; // this is not the math function
+      return abs;
+    } catch (err) {
+      console.error('fetchEraCast1080WebmUrl error:', err);
+      return '';
+    }
+  };
 })();
