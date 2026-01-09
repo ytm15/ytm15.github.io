@@ -187,6 +187,8 @@ if (HEADER_YOUTUBE_BRANDING_expflag == undefined) {
   HEADER_YOUTUBE_BRANDING_expflag = localStorage.getItem("HEADER_YOUTUBE_BRANDING");
 }
 WATCH_AUTOPLAY_SWITCH_expflag = localStorage.getItem("WATCH_AUTOPLAY_SWITCH");
+HEADER_USE_ACCOUNT_ICON_expflag = localStorage.getItem("HEADER_USE_ACCOUNT_ICON");
+HEADER_ACCOUNT_ICON_LINK_expflag = localStorage.getItem("HEADER_ACCOUNT_ICON_LINK");
 
 
 newErrorHtml = `<button class="error-content" onClick="location.reload();">

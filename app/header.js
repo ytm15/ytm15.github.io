@@ -295,6 +295,9 @@ function renderHeader() {
 
     const menuBtn = document.createElement("button");
     menuBtn.classList.add("icon-button", "header-button", "menu-button");
+    if (HEADER_USE_ACCOUNT_ICON_expflag == "true") {
+        menuBtn.style.marginRight = "5px";
+    }
     menuBtn.onclick = function(){
     menuRenderer();
     menuCont.setAttribute("style", "top: 0; right: 0; position: fixed;");
@@ -382,7 +385,16 @@ function renderHeader() {
     };
     menuBtn.setAttribute("aria-label", "Menu");
     menuBtn.setAttribute("aria-haspopup", "true");
+    if (HEADER_USE_ACCOUNT_ICON_expflag == "true" && HEADER_ACCOUNT_ICON_LINK_expflag !== "") {
+        menuBtn.innerHTML = `<ytm15-icon class="menu-icon"><svg height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+        <image height="24" width="284" href="` + HEADER_ACCOUNT_ICON_LINK_expflag + `" clip-path="circle(50% at 50% 50%)" />
+        </svg>
+        </ytm15-icon>`;
+    } else if (HEADER_USE_ACCOUNT_ICON_expflag == "true") {
+        menuBtn.innerHTML = `<ytm15-icon class="menu-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12,19.2C9.5,19.2 7.29,17.92 6,16C6.03,14 10,12.9 12,12.9C14,12.9 17.97,14 18,16C16.71,17.92 14.5,19.2 12,19.2M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"></path></svg></ytm15-icon>`;
+    } else {
     menuBtn.innerHTML = `<ytm15-icon class="menu-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg></ytm15-icon>`;
+    }
 
     if (APP_DEMATERIALIZE_UI_expflag == "true") {
     backBtn.innerHTML = `<img class="ytm15-img-icon ytm15-img back-icon" src="abc_ic_ab_back_holo_light.png"><img class="ytm15-img-icon ytm15-img youtube-logo-icon action-bar-logo" src="action_bar_logo_release.png">`;

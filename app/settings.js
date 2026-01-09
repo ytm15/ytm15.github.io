@@ -884,6 +884,24 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "WATCH_AUTOPLAY_SWITCH"
+      },
+      {
+        "type": "boolean",
+        "title": "HEADER_USE_ACCOUNT_ICON",
+        "subtitle": "",
+        "pressed": HEADER_USE_ACCOUNT_ICON_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "HEADER_USE_ACCOUNT_ICON"
+      },
+      {
+        "type": "text",
+        "title": "HEADER_ACCOUNT_ICON_LINK",
+        "subtitle": "",
+        "value": "",
+        "placeholder": "",
+        "disabled": false,
+        "lsitem": "HEADER_ACCOUNT_ICON_LINK"
       }
       ];
       settingBlocks.forEach(function(item){
