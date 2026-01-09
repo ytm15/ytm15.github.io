@@ -115,10 +115,10 @@
   };
 
   // @param {string} videoId
-  // @returns {Promise<string>}
+  // @returns {Promise<{thumbnail:string,title:string,formats:{url:string}[]}|{}>}
   window.fetchEraCast1080WebmUrl = async function fetchEraCast1080WebmUrl(videoId) {
     try {
-      if (!videoId || typeof videoId !== 'string') return '';
+      if (!videoId || typeof videoId !== 'string') return {};
 
       const watchUrl = `https://www.eracast.cc/watch?v=${encodeURIComponent(videoId)}`;
       const res = await fetch(watchUrl, { method: 'GET', mode: 'cors' });
@@ -126,17 +126,31 @@
 
       const html = await res.text();
 
+      const dom = new DOMParser().parseFromString(html, 'text/html');
+      const ogImage = dom.querySelector('meta[property="og:image"]')?.getAttribute('content') || '';
+      const ogTitle = dom.querySelector('meta[property="og:title"]')?.getAttribute('content') || '';
+
       // This regex gets 1080p video
       const re = /targetDiv\.setAttribute\(\s*['"]src['"]\s*,\s*['"]([^'"]*?_1080\.)['"]\s*\+\s*ext\s*\)\s*;/;
       const m = html.match(re);
-      if (!m || !m[1]) return '';
+      if (!m || !m[1]) return {};
 
       const prefix = m[1];
-      const abs = new URL(prefix + 'mp4', watchUrl).href; // this is not the math function
-      return abs;
+      const videoUrl = new URL(prefix + 'mp4', watchUrl).href; // this is not the math function
+
+      console.log({
+        thumbnail: ogImage,
+        title: ogTitle,
+        formats: [{ url: videoUrl }]
+      });
+      return {
+        thumbnail: ogImage,
+        title: ogTitle,
+        formats: [{ url: videoUrl }]
+      };
     } catch (err) {
       console.error('fetchEraCast1080WebmUrl error:', err);
-      return '';
+      return {};
     }
   };
 })();
