@@ -614,7 +614,7 @@ function renderWatchPage(parent) {
     });
 
     if (WATCH_COMMENT_SECTION_LEFT_expflag == "true") {
-      renderCommentSection(videoMetadata, "video", playerVideoId, false);
+      renderCommentSection(scwnr, "video", playerVideoId, false);
     } else {
       renderCommentSection(W2ndHalf, "video", playerVideoId, false);
     }
