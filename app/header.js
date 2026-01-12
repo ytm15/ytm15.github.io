@@ -387,7 +387,7 @@ function renderHeader() {
     menuBtn.setAttribute("aria-haspopup", "true");
     if (HEADER_USE_ACCOUNT_ICON_expflag == "true" && HEADER_ACCOUNT_ICON_LINK_expflag !== "") {
         menuBtn.innerHTML = `<ytm15-icon class="menu-icon"><svg height="24" width="24" xmlns="http://www.w3.org/2000/svg">
-        <image height="24" width="284" href="` + HEADER_ACCOUNT_ICON_LINK_expflag + `" clip-path="circle(50% at 50% 50%)" />
+        <image height="24" width="24" href="` + HEADER_ACCOUNT_ICON_LINK_expflag + `" clip-path="circle(50% at 50% 50%)" />
         </svg>
         </ytm15-icon>`;
     } else if (HEADER_USE_ACCOUNT_ICON_expflag == "true") {
