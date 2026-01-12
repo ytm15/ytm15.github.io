@@ -152,7 +152,7 @@ APP_HELVETICA_NEUE_FONT_expflag = localStorage.getItem("APP_HELVETICA_NEUE_FONT"
 APP_NEW_ERROR_SCREEN_expflag = localStorage.getItem("APP_NEW_ERROR_SCREEN");
 APP_CUSTOM_INVIDIOUS_URL_expflag = localStorage.getItem("APP_CUSTOM_INVIDIOUS_URL");
 if (APP_CUSTOM_INVIDIOUS_URL_expflag == undefined || APP_CUSTOM_INVIDIOUS_URL_expflag == "") {
-  localStorage.setItem("APP_CUSTOM_INVIDIOUS_URL", "https://api.codetabs.com/v1/proxy?quest=https://inv.perditum.com/");
+  localStorage.setItem("APP_CUSTOM_INVIDIOUS_URL", "https://api.codetabs.com/v1/proxy?quest=https://yt.omada.cafe/");
   APP_CUSTOM_INVIDIOUS_URL_expflag = localStorage.getItem("APP_CUSTOM_INVIDIOUS_URL");
 }
 APP_DONT_AUTH_TO_INVIDIOUS_expflag = localStorage.getItem("APP_DONT_AUTH_TO_INVIDIOUS");
