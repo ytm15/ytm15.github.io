@@ -189,6 +189,10 @@ if (HEADER_YOUTUBE_BRANDING_expflag == undefined) {
 WATCH_AUTOPLAY_SWITCH_expflag = localStorage.getItem("WATCH_AUTOPLAY_SWITCH");
 HEADER_USE_ACCOUNT_ICON_expflag = localStorage.getItem("HEADER_USE_ACCOUNT_ICON");
 HEADER_ACCOUNT_ICON_LINK_expflag = localStorage.getItem("HEADER_ACCOUNT_ICON_LINK");
+if (HEADER_ACCOUNT_ICON_LINK_expflag == undefined) {
+  localStorage.setItem("HEADER_ACCOUNT_ICON_LINK", "");
+  HEADER_ACCOUNT_ICON_LINK_expflag = localStorage.getItem("HEADER_ACCOUNT_ICON_LINK");
+}
 
 
 newErrorHtml = `<button class="error-content" onClick="location.reload();">
@@ -702,7 +706,7 @@ function renderCommentSection(parent, mediaType, cmSource, isCMPage, comntId, co
     commentSimplebox.classList.add("comment-simplebox");
     commentSimplebox.innerHTML = `
 <div class="profile-icon comment-simplebox-icon">
-<img class="profile-img ytm15-img lazy" loading="lazy" src="https://yt3.ggpht.com/a/default-user=s100-c-k-c0x00ffffff-no-rj"></img>
+<img class="profile-img ytm15-img lazy" loading="lazy" src="${HEADER_ACCOUNT_ICON_LINK_expflag == "" ? "https://yt3.ggpht.com/a/default-user=s100-c-k-c0x00ffffff-no-rj" : HEADER_ACCOUNT_ICON_LINK_expflag}"></img>
 </div>
 <div class="comment-simplebox-input">
 <div class="comment-simplebox-placeholder">
