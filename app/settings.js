@@ -166,6 +166,9 @@ function settingsPage() {
     settingsPageHeader.innerHTML = Settings_text_string;
     settingsPageHeader.ariaLabel = settingsPageHeader.innerHTML;
 
+    const settingsSaveAndLoad = document.createElement("div");
+    settingsSaveAndLoad.innerHTML = `<div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Save" onclick="copy(JSON.stringify(localStorage));"><div class="button-text">Save</div></button></div><div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Load" onclick="showNotification('ABC');"><div class="button-text">Load</div></button></div>`;
+
     const innerSettingsPageCont = document.createElement("div");
     innerSettingsPageCont.classList.add("inner-settings-page-container");
     innerSettingsPageCont.innerHTML = `
@@ -175,6 +178,7 @@ function settingsPage() {
     ytm15settings.appendChild(settingsOptCont);
     ytm15settings.appendChild(settingsPagesCont);
     settingsPagesCont.appendChild(settingsPageHeader);
+    settingsPagesCont.appendChild(settingsSaveAndLoad);
     settingsPagesCont.appendChild(innerSettingsPageCont);
 
     pageCont.appendChild(page);

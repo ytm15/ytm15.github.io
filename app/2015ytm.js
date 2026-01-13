@@ -2622,6 +2622,31 @@ if (window.location.hash.split("/").join(',').split("?").join(',').split(',').sl
 function settingsHashDetector() {
 settingsPage();
 }
+function showNotification(message) {
+  const n = document.createElement('div');
+  n.className = 'notification';
+  n.setAttribute('role', 'status');
+  n.setAttribute('aria-live', 'polite');
+
+  const text = document.createElement('span');
+  text.textContent = message;
+  n.appendChild(text);
+
+  document.body.appendChild(n);
+  void n.offsetHeight;
+  n.classList.add('notification-show');
+
+  setTimeout(() => dismiss(n), 3500);
+
+  function dismiss(el) {
+    el.classList.remove('notification-show');
+    el.addEventListener('transitionend', () => {
+      if (el.parentNode) el.parentNode.removeChild(el);
+    }, { once: true });
+  }
+
+  return n;
+}
 
 if (window.location.pathname.split("/").slice(2, 3) == "2015YouTube%20(Mobile)") {
 if (window.location.pathname.split("/").slice(3, 4) == "index.html" || window.location.pathname.split("/").slice(3, 4) == undefined || window.location.pathname.split("/").slice(3, 4) == "") { 
