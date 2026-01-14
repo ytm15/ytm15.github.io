@@ -178,7 +178,6 @@ function settingsPage() {
     ytm15settings.appendChild(settingsOptCont);
     ytm15settings.appendChild(settingsPagesCont);
     settingsPagesCont.appendChild(settingsPageHeader);
-    settingsPagesCont.appendChild(settingsSaveAndLoad);
     settingsPagesCont.appendChild(innerSettingsPageCont);
 
     pageCont.appendChild(page);
@@ -315,6 +314,8 @@ function settingsPage() {
       headerTitle.setAttribute("aria-label", ExpFlags_text_string);
       headerTitle.textContent = ExpFlags_text_string;
       title.textContent = ExpFlags_text_string + ' - 2015YouTube';
+      settingsPage.appendChild(settingsSaveAndLoad);
+
       
       settingBlocks = [
       {
