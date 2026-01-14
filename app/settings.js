@@ -167,7 +167,8 @@ function settingsPage() {
     settingsPageHeader.ariaLabel = settingsPageHeader.innerHTML;
 
     const settingsSaveAndLoad = document.createElement("div");
-    settingsSaveAndLoad.innerHTML = `<div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Save" onclick="copy(JSON.stringify(localStorage));"><div class="button-text">Save</div></button></div><div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Load" onclick="showNotification('ABC');"><div class="button-text">Load</div></button></div>`;
+    settingsSaveAndLoad.style.display = "flex";
+    settingsSaveAndLoad.innerHTML = `<div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Save" onclick="navigator.clipboard.writeText(JSON.stringify(localStorage)).then(()=>{showNotification('Copied! You can share this online or keep it as a backup.')}).catch(err=>{showNotification(err);});"><div class="button-text">Save</div></button></div><div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Load" onclick="(async()=>{try{const clipboardText=await navigator.clipboard.readText();const data=JSON.parse(clipboardText);Object.keys(data).forEach(k=>{localStorage.setItem(k,JSON.stringify(data[k]))});console.log('Data imported successfully');showNotification('Imported.');}catch(err){showNotification('To import expflags, copy a saved list into your clipboard. This will overwrite your current expflags, obviously. '+err)}})();"><div class="button-text">Load</div></button></div>`;
 
     const innerSettingsPageCont = document.createElement("div");
     innerSettingsPageCont.classList.add("inner-settings-page-container");
@@ -269,6 +270,7 @@ function settingsPage() {
       settingsPage.style.khtmlUserSelect = "unset";
       settingsPage.style.webkitUserSelect = "unset";
       settingsPage.style.webkitTouchCallout = "unset";
+      settingsPage.style.letterSpacing = "1px";
       innerSettingsPageCont.appendChild(settingsPage);
       settingsPageHeader.innerHTML = Feedback_text_string;
       settingsPageHeader.id = "feedback";
@@ -292,6 +294,7 @@ function settingsPage() {
       settingsPage.style.khtmlUserSelect = "unset";
       settingsPage.style.webkitUserSelect = "unset";
       settingsPage.style.webkitTouchCallout = "unset";
+      settingsPage.style.letterSpacing = "1px";
       innerSettingsPageCont.appendChild(settingsPage);
       settingsPageHeader.innerHTML = InstallYtm15_text_string;
       settingsPageHeader.id = "install";
@@ -299,7 +302,7 @@ function settingsPage() {
       headerTitle.textContent = InstallYtm15_text_string;
       title.textContent = InstallYtm15_text_string + ' - 2015YouTube';
 
-      settingsPage.innerHTML=`<table style="border-top: 1px solid;border-bottom: 1px solid;margin-bottom:1rem;"><tr style="font-size:18px;"><td><img src="icon.png" width=60 style="padding-right: 5px;"></td><td>2015YouTube<br><span style="font-size:16px;">ytm15.github.io</span></td><td class="has-ripple" style="text-align:right;width: 100%;padding-right:3rem"><span style="border:1px solid;padding:3px;font-weight:bold;text-transform:uppercase;">Get as a Webapp</td></tr></table><ol><li>Open Safari (iOS)/Chrome (Android)</li><li>Go to ytm15.github.io/app</li><li>Press "share"/the three dots</li><li>Press "Add to Home Screen"</li></ol>`;
+      settingsPage.innerHTML=`<table style="border-top: 1px solid;border-bottom: 1px solid;margin-bottom:1rem;"><tr style="font-size:18px;"><td><img src="icon.png" width=60 style="padding-right: 5px;"></td><td>2015YouTube<br><span style="font-size:16px;">ytm15.github.io</span></td><td class="has-ripple" style="text-align:right;width: 100%;padding-right:3rem"><span style="border:1.2px solid rgba(0, 0, 0, 0.15);padding:3px;font-weight:bold;text-transform:uppercase;background:#f3f3f3;">Get as a Webapp</td></tr></table>Modern devices:<ol style="font-size: 15px;"><li>Open Safari (iOS)/Chrome (Android)</li><li>Go to <b>https://ytm15.github.io/app</b></li><li>Press "share"/the three dots</li><li>Press "Add to Home Screen"</li></ol>YTm15 is not supported on ≤iOS 9. Alternatively, there are websites online that claim to be able to insert a website into an APK.`;
       }
       if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "expflags") {
       /* innerSettingsPageCont.innerHTML = `
