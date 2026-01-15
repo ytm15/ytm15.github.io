@@ -910,6 +910,15 @@ function settingsPage() {
         "placeholder": "",
         "disabled": false,
         "lsitem": "HEADER_ACCOUNT_ICON_LINK"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_SAVE_IS_ADD_TO",
+        "subtitle": "",
+        "pressed": WATCH_SAVE_IS_ADD_TO_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_SAVE_IS_ADD_TO"
       }
       ];
       settingBlocks.forEach(function(item){

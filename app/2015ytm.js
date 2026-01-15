@@ -193,6 +193,7 @@ if (HEADER_ACCOUNT_ICON_LINK_expflag == undefined) {
   localStorage.setItem("HEADER_ACCOUNT_ICON_LINK", "");
   HEADER_ACCOUNT_ICON_LINK_expflag = localStorage.getItem("HEADER_ACCOUNT_ICON_LINK");
 }
+WATCH_SAVE_IS_ADD_TO_expflag = localStorage.getItem("WATCH_SAVE_IS_ADD_TO");
 
 
 newErrorHtml = `<button class="error-content" onClick="location.reload();">
@@ -429,7 +430,11 @@ No_Search_Results_text_string = "No results found. Try different keywords";
 Dead_End_text_string = "Looks like you've reached the end";
 Share_text_string = "Share";
 Download_text_string = "Download";
-Save_text_string = "Save";
+if (WATCH_SAVE_IS_ADD_TO_expflag == true) {
+  Save_text_string = "Add to";
+} else {
+  Save_text_string = "Save";
+}
 DescMusic_text_string = "Music in this video";
 LearnMore_text_string = "Learn more";
 Song_text_string = "Song";
@@ -472,13 +477,14 @@ Ok_text_string = "Ok";
 UpNext_text_string = "Up next";
 Replies_text_string = "Replies";
 Subs_text_string = "Subscriptions";
-Notifs_text_string = "Notifications";
 if (PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Activity") {
   Notifs_text_string = "Activity";
 } else if (PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Inbox") {
   Notifs_text_string = "Inbox";
 } else if (PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Shared") {
   Notifs_text_string = "Shared";
+} else {
+  Notifs_text_string = "Notifications";
 }
 Library_text_string = "Library";
 AddComment_text_string = "Add a public comment...";
