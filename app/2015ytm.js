@@ -1240,7 +1240,7 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         } else if (mediaType == "hashtag") {
         thumbnail.href = "#" + itemVideoId;
         }
-        if (mediaType == "video" || mediaType == "shortVideo") {
+        if (mediaType == "video" || mediaType == "shortVideo" || mediaType == "shorts") {
         thumbnail.onclick = function(){
         if (!app.querySelector("#watchpageFrame_Container")) {
         app.insertAdjacentElement("afterbegin", watchContainer);
@@ -1443,7 +1443,7 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         } else if (mediaType == "hashtag") {
         metaContent.href = "#" + itemVideoId;
         }
-        if (mediaType == "video" || mediaType == "shortVideo") {
+        if (mediaType == "video" || mediaType == "shortVideo" || mediaType == "shorts") {
         metaContent.onclick = function(){
         if (!app.querySelector("#watchpageFrame_Container")) {
         app.insertAdjacentElement("afterbegin", watchContainer);

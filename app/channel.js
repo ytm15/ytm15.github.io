@@ -1205,6 +1205,7 @@ function channelPage() {
         compMediaItemAuthor = item.channelTitle;
         compMediaItemvidId = item.videoId;
         }
+        //console.log(item.type + compMediaItemvidId)
         renderCompactMediaItem(lazyList, "channel-lazy-list", compMediaItemvidId, compMediaItemThumb, compMediaItemLength, compMediaItemTitle, compMediaItemAuthor, item.channelId, item.publishedTimeText, item.viewCount, item.type);
     });
     };
