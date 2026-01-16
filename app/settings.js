@@ -928,6 +928,15 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "PIVOT_TRENDING_IS_EXPLORE"
+      },
+      {
+        "type": "boolean",
+        "title": "PIVOT_LIBRARY_UPDATED_ICON",
+        "subtitle": "",
+        "pressed": PIVOT_LIBRARY_UPDATED_ICON_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "PIVOT_LIBRARY_UPDATED_ICON"
       }
       ];
       settingBlocks.forEach(function(item){
