@@ -2684,3 +2684,25 @@ window.addEventListener('hashchange', function (event) {
     }
     }
 });
+
+window.addEventListener('offline', () => {
+  const n = document.createElement('div');
+  n.setAttribute('id','offline-bar');
+  n.setAttribute('aria-live', 'polite');
+  n.innerHTML = "No connection";
+  pivotBar.after(n);
+  void n.offsetHeight;
+  n.classList.add('offline-bar-show');
+});
+window.addEventListener('online', () => {
+  const n = document.getElementById('offline-bar');
+  n.classList.add('offline-bar-online');
+  n.innerHTML = "Back online";
+  setTimeout(() => dismiss(n), 3500);
+  function dismiss(el) {
+    el.classList.remove('offline-bar-show');
+    el.addEventListener('transitionend', () => {
+      if (el.parentNode) el.parentNode.removeChild(el);
+    }, { once: true });
+  }
+});

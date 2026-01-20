@@ -6123,3 +6123,25 @@ html.style-2013.dark.dark-21 {
 .notification.notification-show {
     transform: translate(-50%, 0);
 }
+div#offline-bar {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0;
+    z-index: 2;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    padding: 2px;
+    transform: translateY(100%);
+    transition: transform .35s cubic-bezier(.22,.9,.35,1), opacity .25s, background .35s cubic-bezier(.22,.9,.35,1)
+}
+div#offline-bar.offline-bar-show {
+    transform: translateY(0%);
+}
+div#offline-bar.offline-bar-online {
+    background:green;
+}
