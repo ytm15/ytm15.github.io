@@ -937,6 +937,15 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "PIVOT_LIBRARY_UPDATED_ICON"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_SAVE_UPDATED_ICON",
+        "subtitle": "",
+        "pressed": WATCH_SAVE_UPDATED_ICON_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_SAVE_UPDATED_ICON"
       }
       ];
       settingBlocks.forEach(function(item){
