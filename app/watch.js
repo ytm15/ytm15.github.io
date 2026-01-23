@@ -22,6 +22,21 @@ function renderWatchPage(parent) {
 
     insertYTmPlayer(playerCont2);
 
+    async function shareVideo() {
+      if (navigator.share) {
+      try {
+        await navigator.share({url:"https://youtu.be/" + playerVideoId})
+      }
+      catch(err) {
+        if (err.name !== 'AbortError') {
+          showNotification(err);
+        }
+      }
+      } else {
+        showNotification("Web Share API not supported!");
+      }
+    }
+
     const getWatchData = new XMLHttpRequest();
     /* getWatchData.open('GET', APIbaseURL + 'api/v1/videos/' + playerVideoId, true); */
     /* getWatchData.open('GET', APIbaseURLWatch + 'api/v1/videos/' + playerVideoId, true); */
@@ -507,6 +522,7 @@ function renderWatchPage(parent) {
     metadataActions.appendChild(mtrlBtnCont);
     metadataActions.appendChild(mtrlBtnContDislike);
     metadataActions.appendChild(mtrlBtnContShare);
+    mtrlBtnContShare.querySelector("button").addEventListener("click", shareVideo);
     metadataActions.appendChild(actionsSpacer);
     if (WATCH_DOWNLOAD_BUTTON_expflag == "true") {metadataActions.appendChild(mtrlBtnContDownload);};
     if (WATCH_SAVE_BUTTON_expflag == "true" && WATCH_ENABLE_NEW_UI_expflag == "true") {metadataActions.appendChild(mtrlBtnContSave);metadataActions.style.flexWrap = "nowrap"};
