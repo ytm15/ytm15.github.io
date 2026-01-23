@@ -795,9 +795,14 @@ function settingsPage() {
         "subtitle": "",
         "options": [
           {
-            "title": "true",
-            "selected": HEADER_CAST_ALTERNATE_ICON_expflag == "true",
+            "title": "Material",
+            "selected": HEADER_CAST_ALTERNATE_ICON_expflag == "Material",
             "selected-default": true
+          }
+          {
+            "title": "Materialv2",
+            "selected": HEADER_CAST_ALTERNATE_ICON_expflag == "Materialv2",
+            "selected-default": false
           },
           {
             "title": "Camera",

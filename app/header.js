@@ -255,7 +255,7 @@ function renderHeader() {
     castBtn.setAttribute("aria-label", SearchYT_text_string);
     castBtn.setAttribute("aria-haspopup", "false");
     let alternateIcon = `<path data-glyph="cast-connected" d="M448,384 M21,235 v-43 q52,0,96.5,-26 t70,-70 t25.5,-96 h43 q0,64,-31.5,118 t-85.5,85.5 t-118,31.5 M21,149 v-42 q29,0,53.5,-14.5 t39,-39 t14.5,-53.5 h43 q0,30,-11.5,57.5 t-32.5,48.5 t-48.5,32 t-57.5,11 M21,64 v-64 h64 q0,27,-18.5,45.5 t-45.5,18.5 Z"/>`
-    if (HEADER_CAST_ALTERNATE_ICON_expflag == "true") {alternateIcon = `<path data-glyph="cast-connected" fill="#919191" d="M448,384 M21,235 v-43 q52,0,96.5,-26 t70,-70 t25.5,-96 h43 q0,64,-31.5,118 t-85.5,85.5 t-118,31.5 M405,299 h-298 v-35 q63,-21,110.5,-68 t67.5,-111 h120 v214 M21,149 v-42 q29,0,53.5,-14.5 t39,-39 t14.5,-53.5 h43 q0,30,-11.5,57.5 t-32.5,48.5 t-48.5,32 t-57.5,11 M21,64 v-64 h64 q0,27,-18.5,45.5 t-45.5,18.5 Z"/>`}
+    if (HEADER_CAST_ALTERNATE_ICON_expflag == "Materialv2") {alternateIcon = `<path data-glyph="cast-connected" fill="#919191" d="M448,384 M21,235 v-43 q52,0,96.5,-26 t70,-70 t25.5,-96 h43 q0,64,-31.5,118 t-85.5,85.5 t-118,31.5 M405,299 h-298 v-35 q63,-21,110.5,-68 t67.5,-111 h120 v214 M21,149 v-42 q29,0,53.5,-14.5 t39,-39 t14.5,-53.5 h43 q0,30,-11.5,57.5 t-32.5,48.5 t-48.5,32 t-57.5,11 M21,64 v-64 h64 q0,27,-18.5,45.5 t-45.5,18.5 Z"/>`}
     if (HEADER_CAST_ALTERNATE_ICON_expflag == "Camera") {
         castBtn.innerHTML = `<ytm15-icon class="search-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11z"/></svg></ytm15-icon>`;}
     else {
