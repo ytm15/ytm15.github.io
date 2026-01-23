@@ -951,6 +951,15 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "WATCH_SAVE_UPDATED_ICON"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_COLLAPSABLE_COMMENTS",
+        "subtitle": "",
+        "pressed": WATCH_COLLAPSABLE_COMMENTS_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_COLLAPSABLE_COMMENTS"
       }
       ];
       settingBlocks.forEach(function(item){

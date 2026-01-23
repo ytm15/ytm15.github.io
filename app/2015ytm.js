@@ -197,6 +197,7 @@ WATCH_SAVE_IS_ADD_TO_expflag = localStorage.getItem("WATCH_SAVE_IS_ADD_TO");
 PIVOT_TRENDING_IS_EXPLORE_expflag = localStorage.getItem("PIVOT_TRENDING_IS_EXPLORE");
 PIVOT_LIBRARY_UPDATED_ICON_expflag = localStorage.getItem("PIVOT_LIBRARY_UPDATED_ICON");
 WATCH_SAVE_UPDATED_ICON_expflag = localStorage.getItem("WATCH_SAVE_UPDATED_ICON");
+WATCH_COLLAPSABLE_COMMENTS_expflag = localStorage.getItem("WATCH_COLLAPSABLE_COMMENTS");
 
 
 newErrorHtml = `<button class="error-content" onClick="location.reload();">
@@ -708,7 +709,11 @@ function renderCommentSection(parent, mediaType, cmSource, isCMPage, comntId, co
     const commentsHeader = document.createElement("div");
     commentsHeader.classList.add("comment-section-header");
     commentCount = `<span style="opacity: .6; font-style: italic;">Retrieving count...</span>`;
-    commentsHeader.innerHTML = `<div class="comments-header-top"><h2 class="comments-header-text"><span class="cmh-text-title">${Comments_text_string}</span><span class="cmh-text-comment-count">${commentCount}</span></h2></div>`;
+    commentsCollapseIcon = ""
+    if (WATCH_COLLAPSABLE_COMMENTS_expflag == "true") {
+      commentsCollapseIcon = `<svg style="float:right;" xmlns="http://www.w3.org/2000/svg" width="19" viewBox="0 0 24 24"><path fill="#6f6f6f" d="M12,18.17L8.83,15L7.42,16.41L12,21L16.59,16.41L15.17,15M12,5.83L15.17,9L16.58,7.59L12,3L7.41,7.59L8.83,9L12,5.83Z" /></svg>`
+    }
+    commentsHeader.innerHTML = `<div class="comments-header-top"><h2 class="comments-header-text"><span class="cmh-text-title">${Comments_text_string}</span><span class="cmh-text-comment-count">${commentCount}</span>${commentsCollapseIcon}</h2></div>`;
 
     function renderCommentSB(CSBstring, parent){
     const commentSimplebox = document.createElement("div");
