@@ -798,7 +798,7 @@ function settingsPage() {
             "title": "Material",
             "selected": HEADER_CAST_ALTERNATE_ICON_expflag == "Material",
             "selected-default": true
-          }
+          },
           {
             "title": "Materialv2",
             "selected": HEADER_CAST_ALTERNATE_ICON_expflag == "Materialv2",
