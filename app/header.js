@@ -226,6 +226,7 @@ function renderHeader() {
             console.log(url);
         } catch (err) {
             console.log('Could not read clipboard: ' + err);
+            showNotification(err);
         };
 
         if (!app.querySelector("#watchpageFrame_Container")) {
