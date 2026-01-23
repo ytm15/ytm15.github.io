@@ -478,13 +478,15 @@ function renderWatchPage(parent) {
 "></path></svg></ytm15-icon><div class="button-text">${Download_text_string}</div>
 </button>`
 
-    saveIconSvg = "M14 10H3v2h11v-2zm0-4H3v2h11V6zm4 8v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM3 16h7v-2H3v2z"
+    saveIconSvg = "M14 10H3v2h11v-2zm0-4H3v2h11V6zm4 8v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM3 16h7v-2H3v2z";
+    saveIconScale = "3";
     if (WATCH_SAVE_UPDATED_ICON_expflag == "true") {
-      saveIconSvg = "M19,11H15V15H13V11H9V9H13V5H15V9H19M20,2H8A2,2 0 0,0 6,4V16A2,2 0 0,0 8,18H20A2,2 0 0,0 22,16V4A2,2 0 0,0 20,2M4,6H2V20A2,2 0 0,0 4,22H18V20H4V6Z"
+      saveIconSvg = "M19,11H15V15H13V11H9V9H13V5H15V9H19M20,2H8A2,2 0 0,0 6,4V16A2,2 0 0,0 8,18H20A2,2 0 0,0 22,16V4A2,2 0 0,0 20,2M4,6H2V20A2,2 0 0,0 4,22H18V20H4V6Z";
+      saveIconScale = "2";
     }
     mtrlBtnContSave.innerHTML = `<button class="material-button" aria-label="${Save_text_string}" aria-pressed="false">
 <ytm15-icon class="save-icon button-icon"><svg viewBox="0 0 24 24" fill=""><path d="${saveIconSvg}" style="
-    transform: scale(1.3);
+    transform: scale(1.${saveIconScale});
     transform-origin: center;
 "></path></svg></ytm15-icon><div class="button-text">${Save_text_string}</div>
 </button>`
