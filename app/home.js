@@ -86,7 +86,7 @@ function renderData() {
     tab2.setAttribute('aria-label', 'Subscriptions');
     tab2.setAttribute('aria-selected', 'false');
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "subscriptions") {
-    tab1.setAttribute('aria-selected', 'true');
+    tab2.setAttribute('aria-selected', 'true');
     }
     tab2.href = "#/subscriptions";
     tab2.innerHTML = `<img class="ytm15-img-icon ytm15-img home-icon" src="ic_tab_subscriptions.png"></img>`
@@ -270,6 +270,113 @@ function renderData() {
     };
     }
 
+    // library seperator
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "library") {
+        pageCont.innerHTML = "";
+        console.log("EE");
+
+        var spinner = document.querySelector(".spinner-container.full-height");
+        spinner.removeAttribute("hidden");
+
+        /*if (document.querySelector(".tab-bar")) {
+        document.querySelector(".tab-bar").setAttribute("hidden", "");
+        headerBar.classList.remove('has-tab-bar');
+        document.querySelector(".tab-bar").setAttribute("isChannel", "false");
+        document.querySelector(".tab-bar").innerHTML = "";
+        };*/
+
+        try {
+            // { videoId, videoThumbnails: [{...},{...},{...},{url}], lengthSeconds, title, author, authorId, publishedText, viewCount }
+            const libraryJson = localStorage.getItem('WEB_LIBRARY');
+            const data = libraryJson ? JSON.parse(libraryJson) : null;
+
+            var spinner = document.querySelector(".spinner-container.full-height");
+            spinner.setAttribute("hidden", "");
+
+            if (!Array.isArray(data)) {
+				showNotification('This shelf is empty');
+                return;
+            }
+
+            headerTitle.setAttribute("aria-label", Trending_text_string);
+            headerTitle.textContent = Trending_text_string;
+
+            const page = document.createElement("page");
+            page.classList.add('home');
+
+            const tabContainer = document.createElement("div");
+            tabContainer.classList.add('tabs-content-container');
+
+            const tabContent = document.createElement("div");
+            tabContent.classList.add('tab-content');
+            tabContent.setAttribute("tab-identifier", "Trending");
+
+            const tabContent2 = document.createElement("div");
+            tabContent2.classList.add('tab-content');
+            tabContent2.setAttribute("tab-identifier", "What_to_watch_placeholder");
+
+            const section = document.createElement("div");
+            section.classList.add('section-list');
+
+            const sectLazyList = document.createElement("div");
+            sectLazyList.classList.add('lazy-list');
+            section.appendChild(sectLazyList);
+
+            pageCont.innerHTML = "";
+
+            const parent = document.querySelector(".page-container");
+            parent.appendChild(page);
+            page.appendChild(tabContainer);
+            tabContainer.appendChild(tabContent2);
+            tabContainer.appendChild(tabContent);
+            tabContent.appendChild(section);
+
+            var oldTitle = document.querySelector("title");
+    
+            var title = document.createElement("title");
+            title.textContent = Trending_text_string + ' - 2015YouTube';
+
+            oldTitle.parentNode.replaceChild(title, oldTitle);
+
+            data.forEach(function(item) {
+                renderMediaItem(
+                    sectLazyList,
+                    "sect-lazy-list",
+                    item.videoId,
+                    item.videoThumbnails && item.videoThumbnails[3] ? item.videoThumbnails[3].url : (item.videoThumbnails && item.videoThumbnails[0] ? item.videoThumbnails[0].url : ""),
+                    item.lengthSeconds,
+                    item.title,
+                    item.author,
+                    item.authorId,
+                    item.publishedText,
+                    item.viewCount
+                );
+            });
+        } catch (err) {
+			showNotification(e);
+
+            var spinner = document.querySelector(".spinner-container.full-height");
+            spinner.setAttribute("hidden", "");
+
+            const error = document.createElement("div");
+            error.classList.add('error-container');
+            error.innerHTML = `<div class="error-content">
+<img class="error-icon ytm15-img" src="alert_error.png"></img>
+<span class="error-text">There was an error loading library data</span>
+</div>
+<div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry"><div class="button-text">Retry</div></button></div>`;
+            if (APP_NEW_ERROR_SCREEN_expflag == "true"){error.innerHTML=newErrorHtml};
+            pageCont.before(error);
+            error.querySelector("button").onclick = function(){
+                renderData();
+                error.remove();
+            };
+            return;
+        }
+
+        return;
+    }
+
     /* if (urlpage == "popular") */ 
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular") {
         pageCont.innerHTML = "";
@@ -408,7 +515,12 @@ function renderData() {
     };
 
     eventListenFunc();
-    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "trending") {
+	// This makes the library work offline if the invidious instance is down and also unintentionally makes switching tabs fast not start overlapping requests and page loads
+    if (
+        window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" ||
+        window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "trending" ||
+        window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "library"
+    ) {
         return;
     };
 
