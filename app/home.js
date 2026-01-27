@@ -353,7 +353,7 @@ function renderData() {
                 );
             });
         } catch (err) {
-			showNotification(e);
+			showNotification(err);
 
             var spinner = document.querySelector(".spinner-container.full-height");
             spinner.setAttribute("hidden", "");
