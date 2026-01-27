@@ -298,8 +298,8 @@ function renderData() {
                 return;
             }
 
-            headerTitle.setAttribute("aria-label", Trending_text_string);
-            headerTitle.textContent = Trending_text_string;
+            headerTitle.setAttribute("aria-label", Library_text_string);
+            headerTitle.textContent = Library_text_string;
 
             const page = document.createElement("page");
             page.classList.add('home');

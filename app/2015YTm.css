@@ -992,6 +992,17 @@ ytm15-header-bar[ischannel="true"] {
 .header-title {
     font-weight: 500;
 }
+.header-title[aria-label="Library"]::after {
+    content: "Beta";
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    margin: 0 8px;
+    padding: 1px 6px;
+    background-color: rgba(0, 0, 0, 0.15);
+    opacity: .6;
+    font-weight: 500;
+    border-radius: 2px;
+}
 
 /* Header content and other header things */
 .header-content {
