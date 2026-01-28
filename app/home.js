@@ -334,7 +334,7 @@ function renderData() {
             var oldTitle = document.querySelector("title");
     
             var title = document.createElement("title");
-            title.textContent = Trending_text_string + ' - 2015YouTube';
+            title.textContent = Library_text_string + ' - 2015YouTube';
 
             oldTitle.parentNode.replaceChild(title, oldTitle);
 
