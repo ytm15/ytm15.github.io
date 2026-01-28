@@ -40,6 +40,7 @@ function renderWatchPage(parent) {
         const library = JSON.parse(localStorage.getItem("WEB_LIBRARY")) || [];
         library.push({videoId:videoId,videoThumbnails:[{url:url}],lengthSeconds:lengthSeconds,title:title,author:author,authorId:authorId,publishedText:publishedText,viewCount:viewCount});
         localStorage.setItem("WEB_LIBRARY",JSON.stringify(library));
+        showNotification("Saved to playlist");
     }
 
     const getWatchData = new XMLHttpRequest();
