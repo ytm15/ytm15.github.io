@@ -851,7 +851,7 @@ function settingsPage() {
       {
         "type": "boolean",
         "title": "WATCH_SAVE_BUTTON",
-        "subtitle": "",
+        "subtitle": "Saved videos go to your Library on the homepage.",
         "pressed": WATCH_SAVE_BUTTON_expflag == "true",
         "pressed-default": false,
         "disabled": false,
