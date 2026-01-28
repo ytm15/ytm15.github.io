@@ -711,7 +711,9 @@ function renderCommentSection(parent, mediaType, cmSource, isCMPage, comntId, co
     commentCount = `<span style="opacity: .6; font-style: italic;">Retrieving count...</span>`;
     commentsCollapseIcon = ""
     if (WATCH_COLLAPSABLE_COMMENTS_expflag == "true") {
+      commentSection.classList.add("collapse-comments");
       commentsCollapseIcon = `<svg style="float:right;" xmlns="http://www.w3.org/2000/svg" width="19" viewBox="0 0 24 24"><path fill="#6f6f6f" d="M12,18.17L8.83,15L7.42,16.41L12,21L16.59,16.41L15.17,15M12,5.83L15.17,9L16.58,7.59L12,3L7.41,7.59L8.83,9L12,5.83Z" /></svg>`
+      commentsHeader.addEventListener("click", () => {commentSection.classList.toggle("collapse-comments");});
     }
     commentsHeader.innerHTML = `<div class="comments-header-top"><h2 class="comments-header-text"><span class="cmh-text-title">${Comments_text_string}</span><span class="cmh-text-comment-count">${commentCount}</span>${commentsCollapseIcon}</h2></div>`;
 

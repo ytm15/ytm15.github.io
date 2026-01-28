@@ -3726,6 +3726,9 @@ button.comment-icon-button {
     height: 14px;
     margin-right: 2px;
 }
+.collapse-comments .comment-simplebox,.collapse-comments .comment-separator,.collapse-comments .lazy-list,.collapse-comments .next-continuation-cont {
+    display:none;
+}
 
 /* Community posts */
 [data-is-beta="true"] .posts-header-text::after {
