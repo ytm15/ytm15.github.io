@@ -605,7 +605,7 @@ function renderWatchPage(parent) {
     autonavBar.innerHTML = `<h3 class="autonav-bar-title">${UpNext_text_string}</h3>`;
     }
     if (WATCH_AUTOPLAY_SWITCH_expflag == "true") {
-    autonavBar.insertAdjacentHTML("beforeend",`<h3 class="autonav-bar-title" style="text-align: right;">Autoplay<button class="toggle-button" aria-pressed="false" disabled="" style="margin-left: 10px;"><div class="toggle-button-track"></div><div class="toggle-button-circle has-ripple"></div></button></h3>`);
+    autonavBar.insertAdjacentHTML("beforeend",`<h3 class="autonav-bar-title" style="text-align: right;">Autoplay<button class="toggle-button" aria-pressed="false" disabled="" style="margin-left: 10px;bottom: 1px;overflow: visible;"><div class="toggle-button-track"></div><div class="toggle-button-circle has-ripple"></div></button></h3>`);
     }
     itemSectRelated.querySelector(".lazy-list").appendChild(autonavBar);
 
