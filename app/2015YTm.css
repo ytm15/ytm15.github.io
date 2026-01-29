@@ -3726,8 +3726,11 @@ button.comment-icon-button {
     height: 14px;
     margin-right: 2px;
 }
-.collapse-comments .comment-simplebox,.collapse-comments .comment-separator,.collapse-comments .lazy-list,.collapse-comments .next-continuation-cont {
+.collapse-comments .comment-simplebox,.collapse-comments .comment-separator,.comment-section.collapse-comments .lazy-list,.collapse-comments .next-continuation-cont {
     display:none;
+}
+.comment-section .lazy-list {
+    transition: transform .35s cubic-bezier(.22,.9,.35,1);
 }
 
 /* Community posts */
