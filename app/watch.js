@@ -606,7 +606,7 @@ function renderWatchPage(parent) {
     autonavBar.innerHTML = `<h3 class="autonav-bar-title">${UpNext_text_string}</h3>`;
     }
     if (WATCH_AUTOPLAY_SWITCH_expflag == "true") {
-    autonavBar.insertAdjacentHTML("beforeend",`<h3 class="autonav-bar-title" style="text-align: right;padding-bottom: 10px;">Autoplay<button class="toggle-button" aria-pressed="false" disabled="" style="margin-left: 10px;overflow: visible;"><div class="toggle-button-track"></div><div class="toggle-button-circle has-ripple"></div></button></h3>`);
+    autonavBar.insertAdjacentHTML("beforeend",`<h3 class="autonav-bar-title" style="text-align: right;padding-bottom: 10px;">Autoplay<button id="autoplay-toggle-button" class="toggle-button" aria-pressed="true" onclick="'false'==localStorage.getItem('WATCH_AUTOPLAY_SWITCH_INTERNAL')?(localStorage.setItem('WATCH_AUTOPLAY_SWITCH_INTERNAL','true'),this.setAttribute('aria-pressed','true')):(localStorage.setItem('WATCH_AUTOPLAY_SWITCH_INTERNAL','false'),this.setAttribute('aria-pressed','false'));showNotification('The Autoplay switch is still under development, autoplay will be added at a later date.');" style="margin-left: 10px;overflow: visible;"><div class="toggle-button-track"></div><div class="toggle-button-circle has-ripple"></div></button></h3>`);
     }
     itemSectRelated.querySelector(".lazy-list").appendChild(autonavBar);
 
@@ -651,6 +651,7 @@ function renderWatchPage(parent) {
     parent.innerHTML = "";
 
     parent.appendChild(scwnr);
+    document.getElementById('autoplay-toggle-button').setAttribute('aria-pressed',localStorage.getItem('WATCH_AUTOPLAY_SWITCH_INTERNAL'));
     } else {
     getWatchData.onerror();
     }
