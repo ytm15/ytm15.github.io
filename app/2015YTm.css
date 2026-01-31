@@ -6117,15 +6117,22 @@ html.style-2013.dark.dark-21 {
 .style-2013.dark.dark-21 .ytm15-video-owner .material-button-container[data-style="BRAND"] .material-button {
     background: linear-gradient(#323232, #252525);
 }
+/* Implementation by legoskid */
 .notification {
     position: fixed;
     bottom: 0;
-    left: 50%;
-    transform: translate(-50%, 120%);
-    transition: transform .35s cubic-bezier(.22,.9,.35,1), opacity .25s;
+    /* left: 50%; */
+    left: 0;
+    right: 0;
+    transform: translate(0, 100%);
+    /* transition: transform .35s cubic-bezier(.22,.9,.35,1), opacity .25s; */
+    transition: transform .3s ease-in-out, opacity .25s;
     display: inline-block;
-    max-width: calc(100% - 40px);
-    padding: 20px 32px;
+    display: block;
+    /* max-width: calc(100% - 40px); */
+    max-width: 400px;
+    /* padding: 20px 32px; */
+    padding: 14px 24px;
     background: #2e2e2e;
     color: #f1f1f1;
     border-radius: unset;
@@ -6136,9 +6143,10 @@ html.style-2013.dark.dark-21 {
     font-size: 15px;
     z-index: 9999;
     white-space: normal;
+    margin: auto;
 }
 .notification.notification-show {
-    transform: translate(-50%, 0);
+    transform: translate(0, 0);
 }
 div#offline-bar {
     display: flex;
@@ -6162,3 +6170,4 @@ div#offline-bar.offline-bar-show {
 div#offline-bar.offline-bar-online {
     background:green;
 }
+
