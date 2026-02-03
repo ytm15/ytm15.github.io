@@ -33,7 +33,7 @@ function renderWatchPage(parent) {
         }
       }
       } else {
-        showNotification("Web Share API not supported!");
+        showNotification("Web Share API not supported!\nTry on Android 6.0+!");
       }
     }
     function saveVideo(videoId,url,lengthSeconds,title,author,authorId,publishedText,viewCount) {
