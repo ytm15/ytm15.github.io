@@ -1223,7 +1223,7 @@ overflow: hidden;
     display: block;
     animation: page-expand-in .2s;
 }
-.no-animations .page-container,.no-animations .error-container,.no-animations page.home,.no-animations .lazy-list,.no-animations .error-content {
+.no-animations .page-container,.no-animations .error-container,.no-animations page.home,.no-animations .lazy-list,.no-animations .error-content, .no-animations .searching-overlay ~ .page-container > page {
     animation: none !important;
 }
 .no-animations .ytm15-img.lazy {
