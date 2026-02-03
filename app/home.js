@@ -207,7 +207,7 @@ function renderData() {
         } */
 
         headerTitle.setAttribute("aria-label", Trending_text_string);
-        headerTitle.textContent = Trending_text_string;
+        headerTitle.textContent = HEADER_ALWAYS_SHOW_YOUTUBE_TITLE_expflag ? "YouTube" : Trending_text_string;
 
         if (WEB_ENABLE_PIVOT_BAR_expflag !== "true") {
         if (!document.querySelector(".tab-bar")) {
@@ -299,7 +299,7 @@ function renderData() {
             }
 
             headerTitle.setAttribute("aria-label", Library_text_string);
-            headerTitle.textContent = Library_text_string;
+            headerTitle.textContent = HEADER_ALWAYS_SHOW_YOUTUBE_TITLE_expflag ? "YouTube" : Library_text_string;
 
             const page = document.createElement("page");
             page.classList.add('home');
@@ -444,7 +444,7 @@ function renderData() {
         } */
 
         headerTitle.setAttribute("aria-label", Popular_text_string);
-        headerTitle.textContent = Popular_text_string;
+        headerTitle.textContent = HEADER_ALWAYS_SHOW_YOUTUBE_TITLE_expflag ? "YouTube" : Popular_text_string;
 
         const page = document.createElement("page");
         page.classList.add('home');
@@ -583,7 +583,7 @@ function renderData() {
     } */
 
     headerTitle.setAttribute("aria-label", Home_text_string);
-    headerTitle.textContent = Home_text_string;
+    headerTitle.textContent = HEADER_ALWAYS_SHOW_YOUTUBE_TITLE_expflag ? "YouTube" : Home_text_string;
 
     if (WEB_ENABLE_PIVOT_BAR_expflag !== "true") {
     if (!document.querySelector(".tab-bar")) {

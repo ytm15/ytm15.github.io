@@ -960,6 +960,15 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "WATCH_COLLAPSABLE_COMMENTS"
+      },
+      {
+        "type": "boolean",
+        "title": "HEADER_ALWAYS_SHOW_YOUTUBE_TITLE",
+        "subtitle": "",
+        "pressed": HEADER_ALWAYS_SHOW_YOUTUBE_TITLE_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "HEADER_ALWAYS_SHOW_YOUTUBE_TITLE"
       }
       ];
       settingBlocks.forEach(function(item){

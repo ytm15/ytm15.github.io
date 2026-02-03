@@ -198,6 +198,7 @@ PIVOT_TRENDING_IS_EXPLORE_expflag = localStorage.getItem("PIVOT_TRENDING_IS_EXPL
 PIVOT_LIBRARY_UPDATED_ICON_expflag = localStorage.getItem("PIVOT_LIBRARY_UPDATED_ICON");
 WATCH_SAVE_UPDATED_ICON_expflag = localStorage.getItem("WATCH_SAVE_UPDATED_ICON");
 WATCH_COLLAPSABLE_COMMENTS_expflag = localStorage.getItem("WATCH_COLLAPSABLE_COMMENTS");
+HEADER_ALWAYS_SHOW_YOUTUBE_TITLE_expflag = localStorage.getItem("HEADER_ALWAYS_SHOW_YOUTUBE_TITLE");
 
 
 newErrorHtml = `<button class="error-content" onClick="location.reload();">
