@@ -38,7 +38,7 @@ function renderWatchPage(parent) {
     }
     function saveVideo(videoId,url,lengthSeconds,title,author,authorId,publishedText,viewCount) {
         const library = JSON.parse(localStorage.getItem("WEB_LIBRARY")) || [];
-        library.push({videoId:videoId,videoThumbnails:[{url:url}],lengthSeconds:lengthSeconds,title:title,author:author,authorId:authorId,publishedText:publishedText,viewCount:viewCount});
+        library.unshift({videoId:videoId,videoThumbnails:[{url:url}],lengthSeconds:lengthSeconds,title:title,author:author,authorId:authorId,publishedText:publishedText,viewCount:viewCount});
         localStorage.setItem("WEB_LIBRARY",JSON.stringify(library));
         showNotification("Saved to playlist");
     }
@@ -529,7 +529,7 @@ function renderWatchPage(parent) {
     metadataActions.appendChild(mtrlBtnContDislike);
     metadataActions.appendChild(mtrlBtnContShare);
     mtrlBtnContShare.querySelector("button").addEventListener("click", shareVideo);
-    mtrlBtnContSave.querySelector("button").addEventListener("click", ()=>{saveVideo(playerVideoId,"/app/subscribe_mark.png","0","Test Video!","YouTube Mobile 2015","idk","Now",0)});
+    mtrlBtnContSave.querySelector("button").addEventListener("click", ()=>{saveVideo(playerVideoId,"/app/subscribe_mark.png","0",metaTitle.textContent,document.querySelector(".video-owner-title").textContent,"idk","Now",0)});
     metadataActions.appendChild(actionsSpacer);
     if (WATCH_DOWNLOAD_BUTTON_expflag == "true") {metadataActions.appendChild(mtrlBtnContDownload);};
     if (WATCH_SAVE_BUTTON_expflag == "true" && WATCH_ENABLE_NEW_UI_expflag == "true") {metadataActions.appendChild(mtrlBtnContSave);metadataActions.style.flexWrap = "nowrap"};
