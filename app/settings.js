@@ -969,6 +969,15 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "HEADER_ALWAYS_SHOW_YOUTUBE_TITLE"
+      },
+      {
+        "type": "boolean",
+        "title": "HEADER_MENU_BUTTON",
+        "subtitle": "",
+        "pressed": HEADER_MENU_BUTTON_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "HEADER_MENU_BUTTON"
       }
       ];
       settingBlocks.forEach(function(item){

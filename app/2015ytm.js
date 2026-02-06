@@ -199,6 +199,7 @@ PIVOT_LIBRARY_UPDATED_ICON_expflag = localStorage.getItem("PIVOT_LIBRARY_UPDATED
 WATCH_SAVE_UPDATED_ICON_expflag = localStorage.getItem("WATCH_SAVE_UPDATED_ICON");
 WATCH_COLLAPSABLE_COMMENTS_expflag = localStorage.getItem("WATCH_COLLAPSABLE_COMMENTS");
 HEADER_ALWAYS_SHOW_YOUTUBE_TITLE_expflag = localStorage.getItem("HEADER_ALWAYS_SHOW_YOUTUBE_TITLE");
+HEADER_MENU_BUTTON_expflag = localStorage.getItem("HEADER_MENU_BUTTON");
 
 
 newErrorHtml = `<button class="error-content" onClick="location.reload();">
@@ -2715,3 +2716,23 @@ window.addEventListener('online', () => {
     }, { once: true });
   }
 });
+
+function openMenu() {
+    const n = document.createElement('div');
+    n.className = "hamburger-menu"
+    const n1 = document.createElement('div');
+    n1.className = "hamburger-submenu"
+    app.appendChild(n);
+    n.addEventListener("click", () => {dismiss(n,n1)});
+    function dismiss(el,el1) {
+      el1.classList.remove('hamburger-submenu-show');
+      el.classList.add('hamburger-menu-hide');
+      void el.offsetHeight
+      el.addEventListener('animationend', () => {
+        if (el.parentNode) el.parentNode.removeChild(el);
+      }, { once: true });
+    }
+    n.appendChild(n1);
+    void n.offsetHeight
+    n1.classList.add("hamburger-submenu-show");
+}

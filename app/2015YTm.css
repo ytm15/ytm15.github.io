@@ -1027,6 +1027,9 @@ ytm15-header-bar[ischannel="true"] {
 .header-no-shadow ytm15-header-bar {
     box-shadow: none !important;
 }
+.header-button[aria-label="Menu"] {
+    padding-left:unset;
+}
 
 /* Header logo */
 .youtube-logo-icon.ringo-logo {
@@ -6170,4 +6173,27 @@ div#offline-bar.offline-bar-show {
 div#offline-bar.offline-bar-online {
     background:green;
 }
-
+.hamburger-menu {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    background-color: rgba(0.5,0.5,0.5,0.5);
+    animation: overlay-fade .3s;
+    display:initial;
+}
+.hamburger-submenu {
+    height: 100%;
+    background: white;
+    width: 28rem;
+    transform: translateX(-100%);
+    transition: transform .35s cubic-bezier(.22,.9,.35,1);
+}
+.hamburger-submenu.hamburger-submenu-show {
+    transform:unset;
+}
+.hamburger-menu-hide {
+    animation: overlay-fade-out .2s;
+}

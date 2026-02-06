@@ -403,6 +403,29 @@ function renderHeader() {
     menuBtn.innerHTML = `<img class="ytm15-img-icon ytm15-img menu-icon" src="abc_ic_menu_moreoverflow_normal_holo_light.png">`;
     };
 
+    const hamburgerMenuButtons = document.createElement("div");
+    hamburgerMenuButtons.classList.add("header-buttons");
+
+    const hamburgerBtn = document.createElement("button");
+    hamburgerBtn.classList.add("icon-button", "header-button");
+    hamburgerBtn.onclick = function(){openMenu()};
+    hamburgerBtn.setAttribute("aria-label", "Menu");
+    hamburgerBtn.setAttribute("aria-haspopup", "false");
+    hamburgerBtn.innerHTML = `<ytm15-icon class="hamburger-icon"><svg viewBox="0 0 24 24" fill=""><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"></path></svg></ytm15-icon>`;
+    if (window.location.pathname.split("/").slice(3, 4) == "results.html") {
+        hamburgerBtn.setAttribute("hidden", "");
+    }
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.pathname.split("/").slice(3, 4) == "settings.html" || window.location.pathname.split("/").slice(3, 4) == "settings" || window.location.pathname.split("/").slice(2, 3) == "settings.html" || window.location.pathname.split("/").slice(2, 3) == "settings") {
+        hamburgerBtn.setAttribute("hidden", "");
+    }
+    window.addEventListener('hashchange', function (event) {
+        if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.pathname.split("/").slice(3, 4) == "settings.html" || window.location.pathname.split("/").slice(3, 4) == "settings" || window.location.pathname.split("/").slice(2, 3) == "settings.html" || window.location.pathname.split("/").slice(2, 3) == "settings") {
+            hamburgerBtn.setAttribute("hidden", "");
+        } else {
+            hamburgerBtn.removeAttribute("hidden", "");
+        }
+    });
+
     if (window.location.pathname.split("/").slice(3, 4) == "settings.html" || window.location.pathname.split("/").slice(3, 4) == "settings" || window.location.pathname.split("/").slice(2, 3) == "settings.html" || window.location.pathname.split("/").slice(2, 3) == "settings") {
     menuBtn.setAttribute("hidden", "");
     }
@@ -422,9 +445,11 @@ function renderHeader() {
     form.appendChild(inputWrap);
     inputWrap.appendChild(input);
     header.appendChild(headerCont);
+    if (HEADER_MENU_BUTTON_expflag == "true") {headerCont.appendChild(hamburgerMenuButtons);};
     headerCont.appendChild(headerTitle);
-    headerCont.appendChild(headerButtons);
+    if (HEADER_MENU_BUTTON_expflag == "true") {headerCont.appendChild(headerButtons);};
     if (HEADER_CAST_BUTTON_AS_URL_BOX_expflag == "true") {headerButtons.appendChild(castBtn);};
+    hamburgerMenuButtons.appendChild(hamburgerBtn);
     headerButtons.appendChild(searchBtn);
     headerButtons.appendChild(menuBtn);
 
