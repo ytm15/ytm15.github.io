@@ -2626,6 +2626,8 @@ if (window.location.hash.split("/").join(',').split("?").join(',').split(',').sl
     playlistPage();
 } else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "comments") {
     commentsPage();
+} else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "subscriptions") {
+    subscriptionsPage();
 } else {
     if (document.querySelector(".spinner-container.full-height")) {
     var spinner = document.querySelector(".spinner-container.full-height");

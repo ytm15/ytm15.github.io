@@ -843,3 +843,65 @@ function renderDataTrending(homeShelfTrendingType, shelfTitle) {
     }
     }
 }
+function subscriptionsPage() {
+    const headerTitle = document.querySelector(".header-title");
+
+    const headerBar = document.querySelector("ytm15-header-bar");
+
+    const pageCont = document.querySelector('.page-container');
+    pageCont.innerHTML = "";
+
+    var spinner = document.querySelector(".spinner-container.full-height");
+    spinner.removeAttribute("hidden");
+
+    if (document.querySelector(".tab-bar")) {
+        document.querySelector(".tab-bar").setAttribute("hidden", "");
+        document.querySelector(".tab-bar").setAttribute("isChannel", "false");
+        headerBar.classList.remove('has-tab-bar');
+        document.querySelector(".tab-bar").innerHTML = "";
+    };
+
+    var spinner = document.querySelector(".spinner-container.full-height");
+    spinner.setAttribute("hidden", "");
+
+    headerTitle.setAttribute("aria-label", "Subscriptions");
+    headerTitle.textContent = "Subscriptions";
+
+    const page = document.createElement("page");
+
+    const tabContainer = document.createElement("div");
+    tabContainer.classList.add('tabs-content-container');
+
+    const tabContent = document.createElement("div");
+    tabContent.classList.add('tab-content');
+    tabContent.setAttribute("tab-identifier", "");
+
+    const subscriptionsPage = document.createElement("div");
+
+    const section = document.createElement("div");
+    section.classList.add('section-list');
+
+    const sectLazyList = document.createElement("div");
+    sectLazyList.classList.add('lazy-list');
+    sectLazyList.innerHTML = `(Local) Subscriptions are coming to YTm15 Soon!`;
+    section.appendChild(sectLazyList);
+
+    const parent = document.querySelector(".page-container");
+    parent.appendChild(page);
+    page.appendChild(tabContainer);
+    tabContainer.appendChild(tabContent);
+    tabContent.appendChild(subscriptionsPage);
+    subscriptionsPage.appendChild(section);
+
+    var title = document.querySelector("title");
+    title.textContent = 'Subscriptions';
+
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+        Array.from(sectLazyList.querySelectorAll(".ap-shelf")).forEach(function(item){
+            item.classList.add('card');
+        });
+        Array.from(sectLazyList.querySelectorAll(".about-page-bottom-title")).forEach(function(item){
+            item.classList.add('card');
+        });
+    }
+}

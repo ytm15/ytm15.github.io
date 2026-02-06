@@ -992,7 +992,7 @@ ytm15-header-bar[ischannel="true"] {
 .header-title {
     font-weight: 500;
 }
-.header-title[aria-label="Library"]::after {
+.header-title[aria-label="Library"]::after,.header-title[aria-label="Subscriptions"]::after {
     content: "Beta";
     text-transform: uppercase;
     font-size: 1.3rem;
