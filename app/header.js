@@ -447,9 +447,9 @@ function renderHeader() {
     header.appendChild(headerCont);
     if (HEADER_MENU_BUTTON_expflag == "true") {headerCont.appendChild(hamburgerMenuButtons);};
     headerCont.appendChild(headerTitle);
-    if (HEADER_MENU_BUTTON_expflag == "true") {headerCont.appendChild(headerButtons);};
+    headerCont.appendChild(headerButtons);
     if (HEADER_CAST_BUTTON_AS_URL_BOX_expflag == "true") {headerButtons.appendChild(castBtn);};
-    hamburgerMenuButtons.appendChild(hamburgerBtn);
+    if (HEADER_MENU_BUTTON_expflag == "true") {hamburgerMenuButtons.appendChild(hamburgerBtn);};
     headerButtons.appendChild(searchBtn);
     headerButtons.appendChild(menuBtn);
 
