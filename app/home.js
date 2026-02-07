@@ -843,6 +843,7 @@ function renderDataTrending(homeShelfTrendingType, shelfTitle) {
     }
     }
 }
+
 function subscriptionsPage() {
     const headerTitle = document.querySelector(".header-title");
 
@@ -854,12 +855,32 @@ function subscriptionsPage() {
     var spinner = document.querySelector(".spinner-container.full-height");
     spinner.removeAttribute("hidden");
 
-    if (document.querySelector(".tab-bar")) {
-        document.querySelector(".tab-bar").setAttribute("hidden", "");
-        document.querySelector(".tab-bar").setAttribute("isChannel", "false");
-        headerBar.classList.remove('has-tab-bar');
-        document.querySelector(".tab-bar").innerHTML = "";
-    };
+    if (WEB_ENABLE_PIVOT_BAR_expflag !== "true") {
+        if (document.querySelector(".tab-bar")) {
+            document.querySelector(".tab-bar").removeAttribute("hidden");
+            document.querySelector(".tab-bar").setAttribute("isChannel", "false");
+            headerBar.classList.add('has-tab-bar');
+
+            const subsTab = document.querySelector('.tab-bar .subscriptions-tab .tab');
+            if (subsTab) subsTab.setAttribute('aria-selected', 'true');
+
+            const homeTab = document.querySelector('.tab-bar .home-tab .tab');
+            if (homeTab) homeTab.setAttribute('aria-selected', 'false');
+
+            const trendingTab = document.querySelector('.tab-bar .trending-tab .tab');
+            if (trendingTab) trendingTab.setAttribute('aria-selected', 'false');
+
+            const accountTab = document.querySelector('.tab-bar .account-tab .tab');
+            if (accountTab) accountTab.setAttribute('aria-selected', 'false');
+        }
+    } else {
+        if (document.querySelector(".tab-bar")) {
+            document.querySelector(".tab-bar").setAttribute("hidden", "");
+            document.querySelector(".tab-bar").setAttribute("isChannel", "false");
+            headerBar.classList.remove('has-tab-bar');
+            document.querySelector(".tab-bar").innerHTML = "";
+        }
+    }
 
     var spinner = document.querySelector(".spinner-container.full-height");
     spinner.setAttribute("hidden", "");
