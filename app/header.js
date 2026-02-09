@@ -409,7 +409,7 @@ function renderHeader() {
     const hamburgerBtn = document.createElement("button");
     hamburgerBtn.classList.add("icon-button", "header-button");
     hamburgerBtn.onclick = function(){openMenu()};
-    hamburgerBtn.setAttribute("aria-label", "Menu");
+    hamburgerBtn.setAttribute("aria-label", "Left Menu");
     hamburgerBtn.setAttribute("aria-haspopup", "false");
     hamburgerBtn.innerHTML = `<ytm15-icon class="hamburger-icon"><svg viewBox="0 0 24 24" fill=""><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"></path></svg></ytm15-icon>`;
     if (window.location.pathname.split("/").slice(3, 4) == "results.html") {

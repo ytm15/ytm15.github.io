@@ -1027,7 +1027,7 @@ ytm15-header-bar[ischannel="true"] {
 .header-no-shadow ytm15-header-bar {
     box-shadow: none !important;
 }
-.header-button[aria-label="Menu"] {
+.header-button[aria-label="Left Menu"] {
     padding-left:unset;
 }
 
