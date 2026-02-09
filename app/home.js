@@ -33,7 +33,7 @@ spinner();
 function renderData() {
     const headerTitle = document.querySelector(".header-title");
     headerTitle.setAttribute("aria-label", "");
-    headerTitle.textContent = "";
+    (HEADER_ALWAYS_SHOW_YOUTUBE_TITLE_expflag == "true") ? headerTitle.textContent = "YouTube" : headerTitle.textContent = "";
 
     const headerBar = document.querySelector("ytm15-header-bar");
    
