@@ -978,6 +978,15 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "HEADER_MENU_BUTTON"
+      },
+      {
+        "type": "boolean",
+        "title": "APP_NO_INTERNET_POPUP_NEW_STYLE",
+        "subtitle": "",
+        "pressed": APP_NO_INTERNET_POPUP_NEW_STYLE_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "APP_NO_INTERNET_POPUP_NEW_STYLE"
       }
       ];
       settingBlocks.forEach(function(item){

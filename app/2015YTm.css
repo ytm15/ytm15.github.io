@@ -6151,6 +6151,11 @@ html.style-2013.dark.dark-21 {
 .notification.notification-show {
     transform: translate(0, 0);
 }
+.notification button {
+    float: right;
+    color: #2196f3;
+    text-transform:uppercase;
+}
 div#offline-bar {
     display: flex;
     justify-content: center;

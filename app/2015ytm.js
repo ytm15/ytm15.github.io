@@ -2644,7 +2644,7 @@ if (window.location.hash.split("/").join(',').split("?").join(',').split(',').sl
 function settingsHashDetector() {
 settingsPage();
 }
-function showNotification(message) {
+function showNotification(message,buttonText=undefined,onclick=undefined) {
   const n = document.createElement('div');
   n.className = 'notification';
   n.setAttribute('role', 'status');
@@ -2653,6 +2653,18 @@ function showNotification(message) {
   const text = document.createElement('span');
   text.textContent = message;
   n.appendChild(text);
+
+  if (buttonText) {
+    const button = document.createElement('button');
+    button.textContent = buttonText;
+    if (onclick) {
+      button.onclick = function() {
+        eval(onclick);
+        dismiss(n);
+      };
+    }
+    n.appendChild(button);
+  }
 
   document.body.appendChild(n);
   void n.offsetHeight;
@@ -2698,15 +2710,21 @@ window.addEventListener('hashchange', function (event) {
 });
 
 window.addEventListener('offline', () => {
-  const n = document.createElement('div');
-  n.setAttribute('id','offline-bar');
-  n.setAttribute('aria-live', 'polite');
-  n.innerHTML = "No connection";
-  pivotBar.after(n);
-  void n.offsetHeight;
-  n.classList.add('offline-bar-show');
+  if (APP_NO_INTERNET_POPUP_NEW_STYLE_expflag == true) {
+    const n = document.createElement('div');
+    n.setAttribute('id','offline-bar');
+    n.setAttribute('aria-live', 'polite');
+    n.innerHTML = "No connection";
+    pivotBar.after(n);
+    void n.offsetHeight;
+    n.classList.add('offline-bar-show');
+  }
+  else {
+    showNotification("No connection");
+  }
 });
 window.addEventListener('online', () => {
+  if (APP_NO_INTERNET_POPUP_NEW_STYLE_expflag == true) {
   const n = document.getElementById('offline-bar');
   n.classList.add('offline-bar-online');
   n.innerHTML = "Back online";
@@ -2716,6 +2734,10 @@ window.addEventListener('online', () => {
     el.addEventListener('transitionend', () => {
       if (el.parentNode) el.parentNode.removeChild(el);
     }, { once: true });
+  }
+  }
+  else {
+    showNotification("Connection established");
   }
 });
 
