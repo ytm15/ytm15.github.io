@@ -200,6 +200,7 @@ WATCH_SAVE_UPDATED_ICON_expflag = localStorage.getItem("WATCH_SAVE_UPDATED_ICON"
 WATCH_COLLAPSABLE_COMMENTS_expflag = localStorage.getItem("WATCH_COLLAPSABLE_COMMENTS");
 HEADER_ALWAYS_SHOW_YOUTUBE_TITLE_expflag = localStorage.getItem("HEADER_ALWAYS_SHOW_YOUTUBE_TITLE");
 HEADER_MENU_BUTTON_expflag = localStorage.getItem("HEADER_MENU_BUTTON");
+APP_NO_INTERNET_POPUP_NEW_STYLE_expflag = localStorage.getItem("APP_NO_INTERNET_POPUP_NEW_STYLE");
 
 
 newErrorHtml = `<button class="error-content" onClick="location.reload();">
