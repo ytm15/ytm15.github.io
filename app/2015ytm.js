@@ -2658,11 +2658,11 @@ function showNotification(message,buttonText=undefined,onclick=undefined) {
   if (buttonText) {
     const button = document.createElement('button');
     button.textContent = buttonText;
-    if (onclick) {
-      button.onclick = function() {
-        eval(onclick);
+    if (onclick && typeof onclick === "function") {
+      button.addEventListener("click", () => {
+        onclick();
         dismiss(n);
-      };
+      });
     }
     n.appendChild(button);
   }
