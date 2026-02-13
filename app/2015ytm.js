@@ -2517,7 +2517,7 @@ setTimeout(function() {
 function callback(mutationsList, observer) {
     /* console.log('Mutations:', mutationsList) */
     /* console.log('Observer:', observer) */
-    mutationsList.forEach(mutation => {
+    mutationsList.forEach(function(mutation)){
         if (mutation.attributeName === 'class') {
             if (mutation.target.classList.contains("has-watchpage")) {
             metaColorBeforeWP = metaColorElm.content;
@@ -2645,7 +2645,7 @@ if (window.location.hash.split("/").join(',').split("?").join(',').split(',').sl
 function settingsHashDetector() {
 settingsPage();
 }
-function showNotification(message,buttonText=undefined,onclick=undefined) {
+function showNotification(message, buttonText=undefined, onclick=undefined) {
   const n = document.createElement('div');
   n.className = 'notification';
   n.setAttribute('role', 'status');
@@ -2659,7 +2659,7 @@ function showNotification(message,buttonText=undefined,onclick=undefined) {
     const button = document.createElement('button');
     button.textContent = buttonText;
     if (onclick && typeof onclick === "function") {
-      button.addEventListener("click", () => {
+      button.addEventListener("click", function(){
         onclick();
         dismiss(n);
       });
@@ -2671,11 +2671,11 @@ function showNotification(message,buttonText=undefined,onclick=undefined) {
   void n.offsetHeight;
   n.classList.add('notification-show');
 
-  setTimeout(() => dismiss(n), 3500);
+  setTimeout(function(){dismiss(n)}, 3500);
 
   function dismiss(el) {
     el.classList.remove('notification-show');
-    el.addEventListener('transitionend', () => {
+    el.addEventListener('transitionend', function() {
       if (el.parentNode) el.parentNode.removeChild(el);
     }, { once: true });
   }
@@ -2710,7 +2710,7 @@ window.addEventListener('hashchange', function (event) {
     }
 });
 
-window.addEventListener('offline', () => {
+window.addEventListener('offline', function() {
   if (APP_NO_INTERNET_POPUP_NEW_STYLE_expflag == true) {
     const n = document.createElement('div');
     n.setAttribute('id','offline-bar');
@@ -2724,15 +2724,15 @@ window.addEventListener('offline', () => {
     showNotification("No connection");
   }
 });
-window.addEventListener('online', () => {
+window.addEventListener('online', function() {
   if (APP_NO_INTERNET_POPUP_NEW_STYLE_expflag == true) {
   const n = document.getElementById('offline-bar');
   n.classList.add('offline-bar-online');
   n.innerHTML = "Back online";
-  setTimeout(() => dismiss(n), 3500);
+  setTimeout(function(){dismiss(n)}, 3500);
   function dismiss(el) {
     el.classList.remove('offline-bar-show');
-    el.addEventListener('transitionend', () => {
+    el.addEventListener('transitionend', function() {
       if (el.parentNode) el.parentNode.removeChild(el);
     }, { once: true });
   }
@@ -2748,16 +2748,17 @@ function openMenu() {
     const n1 = document.createElement('div');
     n1.className = "hamburger-submenu"
     app.appendChild(n);
-    n.addEventListener("click", () => {dismiss(n,n1)});
+    n.addEventListener("click", function() {dismiss(n,n1)});
     function dismiss(el,el1) {
       el1.classList.remove('hamburger-submenu-show');
       el.classList.add('hamburger-menu-hide');
       void el.offsetHeight
-      el.addEventListener('animationend', () => {
+      el.addEventListener('animationend', function() {
         if (el.parentNode) el.parentNode.removeChild(el);
       }, { once: true });
     }
     n.appendChild(n1);
     void n.offsetHeight
     n1.classList.add("hamburger-submenu-show");
+
 }
