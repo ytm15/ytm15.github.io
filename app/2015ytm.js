@@ -2738,7 +2738,7 @@ window.addEventListener('online', () => {
   }
   }
   else {
-    showNotification("Connection established");
+    showNotification("Connection established","Go online",function() {renderData();});
   }
 });
 
