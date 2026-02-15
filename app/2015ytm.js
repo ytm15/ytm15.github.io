@@ -2517,7 +2517,7 @@ setTimeout(function() {
 function callback(mutationsList, observer) {
     /* console.log('Mutations:', mutationsList) */
     /* console.log('Observer:', observer) */
-    mutationsList.forEach(function(mutation)){
+    mutationsList.forEach(function(mutation) {
         if (mutation.attributeName === 'class') {
             if (mutation.target.classList.contains("has-watchpage")) {
             metaColorBeforeWP = metaColorElm.content;
@@ -2762,3 +2762,4 @@ function openMenu() {
     n1.classList.add("hamburger-submenu-show");
 
 }
+
