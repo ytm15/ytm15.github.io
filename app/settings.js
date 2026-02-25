@@ -91,6 +91,8 @@ function renderSettingText(parent, stTitle, stSubtitle, stValue, stPlaceholder, 
   parent.appendChild(settingText);
 }
 
+function parseImportedText(str) {return str.replace(/^"|"$/g, '');}; // because i can't put quotes in the onclick which is already kinda a mess
+
 function settingsPage() {
     pageCont.innerHTML = "";
 
@@ -168,7 +170,7 @@ function settingsPage() {
 
     const settingsSaveAndLoad = document.createElement("div");
     settingsSaveAndLoad.style.display = "flex";
-    settingsSaveAndLoad.innerHTML = `<div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Save" onclick="navigator.clipboard.writeText(JSON.stringify(localStorage)).then(()=>{showNotification('Copied! You can share this online or keep it as a backup.')}).catch(err=>{showNotification(err);});"><div class="button-text">Save</div></button></div><div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Load" onclick="(async()=>{try{const clipboardText=await navigator.clipboard.readText();const data=JSON.parse(clipboardText);Object.keys(data).forEach(k=>{localStorage.setItem(k,JSON.stringify(data[k]))});console.log('Data imported successfully');showNotification('Imported.');}catch(err){showNotification('To import expflags, copy a saved list into your clipboard. This will overwrite your current expflags, obviously. '+err)}})();"><div class="button-text">Load</div></button></div>`;
+    settingsSaveAndLoad.innerHTML = `<div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Save" onclick="navigator.clipboard.writeText(JSON.stringify(localStorage)).then(()=>{showNotification('Copied! You can share this online or keep it as a backup.')}).catch(err=>{showNotification(err);});"><div class="button-text">Save</div></button></div><div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Load" onclick="(async()=>{try{const clipboardText=await navigator.clipboard.readText();const data=JSON.parse(clipboardText);Object.keys(data).forEach(k=>{localStorage.setItem(k,parseImportedText(JSON.stringify(data[k])))});console.log('Data imported successfully');showNotification('Imported.');}catch(err){showNotification('To import expflags, copy a saved list into your clipboard. This will overwrite your current expflags, obviously. '+err)}})();"><div class="button-text">Load</div></button></div>`;
 
     const innerSettingsPageCont = document.createElement("div");
     innerSettingsPageCont.classList.add("inner-settings-page-container");
