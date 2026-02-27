@@ -294,7 +294,7 @@ function renderData() {
             spinner.setAttribute("hidden", "");
 
             if (!Array.isArray(data)) {
-				showNotification('This shelf is empty');
+				blankLibraryPage();//showNotification('This shelf is empty');
                 return;
             }
 
@@ -905,6 +905,46 @@ function subscriptionsPage() {
     const sectLazyList = document.createElement("div");
     sectLazyList.classList.add('lazy-list');
     sectLazyList.innerHTML = `<center><svg viewBox="0 0 24 24" style="width: auto;padding: 5rem;max-height: 300px;" fill="#ddd"><path d="M20 8H4V6h16v2zm-2-6H6v2h12V2zm4 8v12H2V10h20zm-6 6-6-3.27v6.53L16 16z"></path></svg></center><p style="text-align: center;color: #333;">(Local) Subscriptions are coming to YTm15 Soon!</p>`;
+    section.appendChild(sectLazyList);
+
+    const parent = document.querySelector(".page-container");
+    parent.appendChild(page);
+    page.appendChild(tabContainer);
+    tabContainer.appendChild(tabContent);
+    tabContent.appendChild(subscriptionsPage);
+    subscriptionsPage.appendChild(section);
+
+    var title = document.querySelector("title");
+    title.textContent = 'Subscriptions';
+
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+        Array.from(sectLazyList.querySelectorAll(".ap-shelf")).forEach(function(item){
+            item.classList.add('card');
+        });
+        Array.from(sectLazyList.querySelectorAll(".about-page-bottom-title")).forEach(function(item){
+            item.classList.add('card');
+        });
+    }
+}
+
+function blankLibraryPage() {
+    const page = document.createElement("page");
+
+    const tabContainer = document.createElement("div");
+    tabContainer.classList.add('tabs-content-container');
+
+    const tabContent = document.createElement("div");
+    tabContent.classList.add('tab-content');
+    tabContent.setAttribute("tab-identifier", "");
+
+    const subscriptionsPage = document.createElement("div");
+
+    const section = document.createElement("div");
+    section.classList.add('section-list');
+
+    const sectLazyList = document.createElement("div");
+    sectLazyList.classList.add('lazy-list');
+    sectLazyList.innerHTML = `<center><svg viewBox="0 0 24 24" style="width: auto;padding: 5rem;max-height: 300px;" fill="#ddd"><path d="M10,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V8C22,6.89 21.1,6 20,6H12L10,4Z"></path></svg></center><p style="text-align: center;color: #333;">You can add videos to this Library for safe keeping. Enable WATCH_SAVE_BUTTON in YTm15 Experimental Flags. You also need WATCH_ENABLE_NEW_UI enabled, in the future a save button will be added to the player.</p>`;
     section.appendChild(sectLazyList);
 
     const parent = document.querySelector(".page-container");
