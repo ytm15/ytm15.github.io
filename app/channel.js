@@ -236,6 +236,9 @@ function channelPage() {
     if (item == "live") {
     item = "streams";
     }
+    if (item == "search") {
+      return;
+    }
     tab.setAttribute('aria-label', item);
     if (item == "streams") {
     tab.setAttribute('aria-label', 'live');
