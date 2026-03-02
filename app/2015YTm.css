@@ -3735,6 +3735,12 @@ button.comment-icon-button {
 .comment-section .lazy-list {
     transition: transform .35s cubic-bezier(.22,.9,.35,1);
 }
+.condense-comment-buttons .comment-details {
+    display:inline-flex;
+}
+.condense-comment-buttons .comment-details #cm-icon-dislike {
+    margin-left:10px;
+}
 
 /* Community posts */
 [data-is-beta="true"] .posts-header-text::after {

@@ -989,6 +989,15 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "APP_NO_INTERNET_POPUP_NEW_STYLE"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_CONDENSE_COMMENT_BUTTONS",
+        "subtitle": "",
+        "pressed": WATCH_CONDENSE_COMMENT_BUTTONS_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_CONDENSE_COMMENT_BUTTONS"
       }
       ];
       settingBlocks.forEach(function(item){

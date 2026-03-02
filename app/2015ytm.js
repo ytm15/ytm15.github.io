@@ -201,6 +201,7 @@ WATCH_COLLAPSABLE_COMMENTS_expflag = localStorage.getItem("WATCH_COLLAPSABLE_COM
 HEADER_ALWAYS_SHOW_YOUTUBE_TITLE_expflag = localStorage.getItem("HEADER_ALWAYS_SHOW_YOUTUBE_TITLE");
 HEADER_MENU_BUTTON_expflag = localStorage.getItem("HEADER_MENU_BUTTON");
 APP_NO_INTERNET_POPUP_NEW_STYLE_expflag = localStorage.getItem("APP_NO_INTERNET_POPUP_NEW_STYLE");
+WATCH_CONDENSE_COMMENT_BUTTONS_expflag = localStorage.getItem("WATCH_CONDENSE_COMMENT_BUTTONS");
 
 
 newErrorHtml = `<button class="error-content" onClick="location.reload();">
@@ -374,6 +375,12 @@ if (WATCH_HIDE_SUBSCRIBE_ICON_expflag == "true") {
   documentHTML.classList.add("no-subscribe-icon");
 } else {
   documentHTML.classList.remove("no-subscribe-icon");
+}
+
+if (WATCH_CONDENSE_COMMENT_BUTTONS_expflag == "true") {
+  documentHTML.classList.add("condense-comment-buttons");
+} else {
+  documentHTML.classList.remove("condense-comment-buttons");
 }
 };
 
