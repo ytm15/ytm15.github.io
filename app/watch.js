@@ -405,6 +405,9 @@ function renderWatchPage(parent) {
     videoMetadataLikeCount = "Like";
     videoMetadataLikeCountAL = "Like this video";
     };
+    if (WATCH_FORMAT_LIKE_COUNTS_expflag == "true") {
+    videoMetadataLikeCount = new Intl.NumberFormat('en-US', {notation: "compact",compactDisplay: "short"}).format(videoMetadataLikeCount.replace(/\D/g, ""));
+    }
     mtrlBtnCont.innerHTML = `<button class="material-button" aria-label="${videoMetadataLikeCountAL}" aria-pressed="false">
 <div class="button-text">${videoMetadataLikeCount}</div><img class="ytm15-img-icon ytm15-img button-icon like-icon" src="ic_like.png"><img class="ytm15-img-icon ytm15-img button-icon like-icon pressed" src="ic_like_focus.png"></img>
 </button>`
@@ -434,7 +437,7 @@ function renderWatchPage(parent) {
       videoMetadataDislikeCount = response.dislikes.toLocaleString();
       videoMetadataDislikeCountAL = "Dislike this video along with " + videoMetadataDislikeCount + " other people";
       mtrlBtnContDislike.querySelector("button").ariaLabel = videoMetadataDislikeCountAL;
-      mtrlBtnContDislike.querySelector(".button-text").innerHTML = videoMetadataDislikeCount;
+      mtrlBtnContDislike.querySelector(".button-text").innerHTML = (WATCH_FORMAT_LIKE_COUNTS_expflag == "true") ? new Intl.NumberFormat('en-US', {notation: "compact",compactDisplay: "short"}).format(videoMetadataDislikeCount.replace(/\D/g, "")) :  videoMetadataDislikeCount;
       } else {
       console.error("An error occurred with this operation (" + getDislikeCount.status + ")");
       }

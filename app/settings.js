@@ -998,6 +998,15 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "WATCH_CONDENSE_COMMENT_BUTTONS"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_FORMAT_LIKE_COUNTS",
+        "subtitle": "",
+        "pressed": WATCH_FORMAT_LIKE_COUNTS_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_FORMAT_LIKE_COUNTS"
       }
       ];
       settingBlocks.forEach(function(item){

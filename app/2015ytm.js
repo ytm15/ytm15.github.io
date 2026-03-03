@@ -202,6 +202,7 @@ HEADER_ALWAYS_SHOW_YOUTUBE_TITLE_expflag = localStorage.getItem("HEADER_ALWAYS_S
 HEADER_MENU_BUTTON_expflag = localStorage.getItem("HEADER_MENU_BUTTON");
 APP_NO_INTERNET_POPUP_NEW_STYLE_expflag = localStorage.getItem("APP_NO_INTERNET_POPUP_NEW_STYLE");
 WATCH_CONDENSE_COMMENT_BUTTONS_expflag = localStorage.getItem("WATCH_CONDENSE_COMMENT_BUTTONS");
+WATCH_FORMAT_LIKE_COUNTS_expflag = localStorage.getItem("WATCH_FORMAT_LIKE_COUNTS");
 
 
 newErrorHtml = `<button class="error-content" onClick="location.reload();">
@@ -797,6 +798,9 @@ function renderCommentSection(parent, mediaType, cmSource, isCMPage, comntId, co
     }
 
     commentsHeader.querySelector(".cmh-text-comment-count").innerHTML = commentCount;
+    if (WATCH_FORMAT_LIKE_COUNTS_expflag == "true") {
+      commentsHeader.querySelector(".cmh-text-comment-count").innerHTML = new Intl.NumberFormat('en-US', {notation: "compact",compactDisplay: "short"}).format(commentCount.replace(/\D/g, ""));
+    }
 
     data.comments.forEach(function(item){
     const commentThread = document.createElement("ytm15-comment-thread");
@@ -843,7 +847,7 @@ ${pinnedCMBadge}
 <div class="comment-details">
 <div class="comment-icons" id="cm-icon-like">
 <button class="icon-button comment-icon-button" aria-label="Like this comment"><ytm15-icon class="like-icon comment-action-icon"><svg viewBox="0 0 24 24" fill=""><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1.91l-.01-.01L23 10z"></path></svg></ytm15-icon></button>
-<span class="comment-count">${item.likeCount.toLocaleString()}</span>
+<span class="comment-count">${(WATCH_FORMAT_LIKE_COUNTS_expflag == "true") ? new Intl.NumberFormat('en-US', {notation: "compact",compactDisplay: "short"}).format(item.likeCount) : item.likeCount.toLocaleString()}</span>
 </div>
 <div class="comment-icons" id="cm-icon-dislike">
 <button class="icon-button comment-icon-button" aria-label="Dislike this comment"><ytm15-icon class="dislike-icon comment-action-icon"><svg viewBox="0 0 24 24" fill=""><path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v1.91l.01.01L1 14c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"></path></svg></ytm15-icon></button>
@@ -852,7 +856,7 @@ ${pinnedCMBadge}
 <div class="comment-icons" id="cm-icon-reply">
 <button class="icon-button comment-icon-button" aria-label="Reply to this comment"><ytm15-icon class="reply-icon comment-action-icon"><svg viewBox="0 0 24 24" fill=""><path d="M18,8H6V6H18V8M18,11H6V9H18V11M18,14H6V12H18V14M22,4A2,2 0 0,0 20,2H4A2,2 0 0,0 2,4V16A2,2 0 0,0 4,18H18L22,22V4Z"></path></svg></ytm15-icon>
 </button>
-<span class="comment-count">${cmReplyCount}</span>
+<span class="comment-count">${(WATCH_FORMAT_LIKE_COUNTS_expflag == "true") ? new Intl.NumberFormat('en-US', {notation: "compact",compactDisplay: "short"}).format(cmReplyCount) : cmReplyCount}</span>
 </div>
 </div>
 `;
