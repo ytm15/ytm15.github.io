@@ -861,7 +861,8 @@ playerxhttpr.onload = function() {
           playerxhttpr.onerror();
                     return;
 	  }
-          video.poster = data.thumbnail[3].url;
+          /*  video.poster = data.thumbnail[3].url; */
+          video.poster = data.thumbnail[data.thumbnail.length - 1].url;
           video.innerHTML = ``;
           video.dataset.title = data.title;
           /* storyboardURL = "https://inv.tux.pizza" + data.storyboards[2].url; */
@@ -914,4 +915,5 @@ sbxhttpr.onload = function() {
           playerxhttpr.onerror();
   }
 };
+
 };
