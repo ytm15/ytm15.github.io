@@ -1007,6 +1007,15 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "WATCH_FORMAT_LIKE_COUNTS"
+      },
+      {
+        "type": "boolean",
+        "title": "APP_IOS_SYSTEM_FONT",
+        "subtitle": "",
+        "pressed": APP_IOS_SYSTEM_FONT_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "APP_IOS_SYSTEM_FONT"
       }
       ];
       settingBlocks.forEach(function(item){

@@ -203,6 +203,7 @@ HEADER_MENU_BUTTON_expflag = localStorage.getItem("HEADER_MENU_BUTTON");
 APP_NO_INTERNET_POPUP_NEW_STYLE_expflag = localStorage.getItem("APP_NO_INTERNET_POPUP_NEW_STYLE");
 WATCH_CONDENSE_COMMENT_BUTTONS_expflag = localStorage.getItem("WATCH_CONDENSE_COMMENT_BUTTONS");
 WATCH_FORMAT_LIKE_COUNTS_expflag = localStorage.getItem("WATCH_FORMAT_LIKE_COUNTS");
+APP_IOS_SYSTEM_FONT_expflag = localStorage.getItem("APP_IOS_SYSTEM_FONT");
 
 
 newErrorHtml = `<button class="error-content" onClick="location.reload();">
@@ -382,6 +383,12 @@ if (WATCH_CONDENSE_COMMENT_BUTTONS_expflag == "true") {
   documentHTML.classList.add("condense-comment-buttons");
 } else {
   documentHTML.classList.remove("condense-comment-buttons");
+}
+
+if (APP_IOS_SYSTEM_FONT_expflag == "true") {
+  documentHTML.classList.add("system-font");
+} else {
+  documentHTML.classList.remove("system-font");
 }
 };
 

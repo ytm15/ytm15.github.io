@@ -4272,6 +4272,9 @@ label.radio-label {
 .helvetica-neue {
     font-family: 'HelveticaNeue-Light','Helvetica Neue Light','Helvetica Neue',Helvetica,Arial,sans-serif !important;
 }
+.system-font {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen-Sans, Ubuntu, Cantarell, Roboto, "Helvetica Neue", sans-serif !important;
+}
 /*New error screen*/
 .tap-to-retry .error-content {
     display:unset;
