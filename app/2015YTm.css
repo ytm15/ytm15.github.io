@@ -3933,6 +3933,12 @@ ytm15-icon.post-image-icon {
     border: 1.2px solid rgba(0,0,0,0.1);
     border-radius: 3px;
 }
+.condense-comment-buttons-2 .post-details {
+    display:ruby;
+}
+.condense-comment-buttons-2 .post-details #post-icon-reply {
+    float:right;
+}
 
 /* Pivot bar */
 [has-pivot-bar="true"] ytm15app {

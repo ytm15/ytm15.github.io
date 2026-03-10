@@ -204,6 +204,7 @@ APP_NO_INTERNET_POPUP_NEW_STYLE_expflag = localStorage.getItem("APP_NO_INTERNET_
 WATCH_CONDENSE_COMMENT_BUTTONS_expflag = localStorage.getItem("WATCH_CONDENSE_COMMENT_BUTTONS");
 WATCH_FORMAT_LIKE_COUNTS_expflag = localStorage.getItem("WATCH_FORMAT_LIKE_COUNTS");
 APP_IOS_SYSTEM_FONT_expflag = localStorage.getItem("APP_IOS_SYSTEM_FONT");
+WATCH_CONDENSE_COMMUNITY_POST_BUTTONS_expflag = localStorage.getItem("WATCH_CONDENSE_COMMUNITY_POST_BUTTONS");
 
 
 newErrorHtml = `<button class="error-content" onClick="location.reload();">
@@ -389,6 +390,18 @@ if (APP_IOS_SYSTEM_FONT_expflag == "true") {
   documentHTML.classList.add("system-font");
 } else {
   documentHTML.classList.remove("system-font");
+}
+
+if (WATCH_CONDENSE_COMMENT_BUTTONS_expflag == "true") {
+  documentHTML.classList.add("condense-comment-buttons");
+} else {
+  documentHTML.classList.remove("condense-comment-buttons");
+}
+
+if (WATCH_CONDENSE_COMMUNITY_POST_BUTTONS_expflag == "true") {
+  documentHTML.classList.add("condense-comment-buttons-2");
+} else {
+  documentHTML.classList.remove("condense-comment-buttons-2");
 }
 };
 
@@ -1547,7 +1560,7 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         menuItemBtnShare.textContent = "Sharing will be implemented soon";
         menuItemBtnShare.setAttribute("style", "opacity: .7;")
         menuItemBtnShare.onclick = function(){
-            
+
         };
         menuItemShare.appendChild(menuItemBtnShare);
 

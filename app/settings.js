@@ -1016,6 +1016,15 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "APP_IOS_SYSTEM_FONT"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_CONDENSE_COMMUNITY_POST_BUTTONS",
+        "subtitle": "",
+        "pressed": WATCH_CONDENSE_COMMUNITY_POST_BUTTONS_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_CONDENSE_COMMUNITY_POST_BUTTONS"
       }
       ];
       settingBlocks.forEach(function(item){
