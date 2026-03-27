@@ -166,9 +166,13 @@ HEADER_NO_SHADOW_expflag = localStorage.getItem("HEADER_NO_SHADOW");
 DARK_THEME_SEPERATE_BACKGROUND_COLOR_expflag = localStorage.getItem("DARK_THEME_SEPERATE_BACKGROUND_COLOR");
 APP_UNDERLINE_BUTTONS_expflag = localStorage.getItem("APP_UNDERLINE_BUTTONS");
 HEADER_CAST_BUTTON_AS_URL_BOX_expflag = localStorage.getItem("HEADER_CAST_BUTTON_AS_URL_BOX");
+if (HEADER_CAST_BUTTON_AS_URL_BOX_expflag == undefined) {
+  localStorage.setItem("HEADER_CAST_BUTTON_AS_URL_BOX", "true");
+  HEADER_CAST_BUTTON_AS_URL_BOX_expflag = localStorage.getItem("HEADER_CAST_BUTTON_AS_URL_BOX");
+}
 HEADER_CAST_ALTERNATE_ICON_expflag = localStorage.getItem("HEADER_CAST_ALTERNATE_ICON");
 if (HEADER_CAST_ALTERNATE_ICON_expflag == undefined) {
-  localStorage.setItem("HEADER_CAST_ALTERNATE_ICON", "Material");
+  localStorage.setItem("HEADER_CAST_ALTERNATE_ICON", "Holo");
   HEADER_CAST_ALTERNATE_ICON_expflag = localStorage.getItem("HEADER_CAST_ALTERNATE_ICON");
 }
 APP_STOP_TEXT_SELECTION_expflag = localStorage.getItem("APP_STOP_TEXT_SELECTION");

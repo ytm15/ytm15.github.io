@@ -787,7 +787,7 @@ function settingsPage() {
         "title": "HEADER_CAST_BUTTON_AS_URL_BOX",
         "subtitle": "Copy a youtube link and press cast to open it in YTm15",
         "pressed": HEADER_CAST_BUTTON_AS_URL_BOX_expflag == "true",
-        "pressed-default": false,
+        "pressed-default": true,
         "disabled": false,
         "lsitem": "HEADER_CAST_BUTTON_AS_URL_BOX"
       },
@@ -797,13 +797,18 @@ function settingsPage() {
         "subtitle": "",
         "options": [
           {
-            "title": "Material",
-            "selected": HEADER_CAST_ALTERNATE_ICON_expflag == "Material",
+            "title": "Holo",
+            "selected": HEADER_CAST_ALTERNATE_ICON_expflag == "Holo",
             "selected-default": true
           },
           {
-            "title": "Materialv2",
-            "selected": HEADER_CAST_ALTERNATE_ICON_expflag == "Materialv2",
+            "title": "Material",
+            "selected": HEADER_CAST_ALTERNATE_ICON_expflag == "Material",
+            "selected-default": false
+          },
+          {
+            "title": "Material_2",
+            "selected": HEADER_CAST_ALTERNATE_ICON_expflag == "Material_2",
             "selected-default": false
           },
           {
