@@ -1030,6 +1030,15 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "WATCH_CONDENSE_COMMUNITY_POST_BUTTONS"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_COMMENTS_POSTS_ADD_OPTIONS",
+        "subtitle": "",
+        "pressed": WATCH_COMMENTS_POSTS_ADD_OPTIONS_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_COMMENTS_POSTS_ADD_OPTIONS"
       }
       ];
       settingBlocks.forEach(function(item){

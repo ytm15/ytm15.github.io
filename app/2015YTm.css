@@ -3718,6 +3718,9 @@ button.comment-icon-button {
     border-radius: 0;
     margin: 0;
 }
+.comment-icons#cm-icon-options {
+margin-left:auto;
+}
 .pinned-comment-badge {
     color: #e62117;
     margin-bottom: 5px;
