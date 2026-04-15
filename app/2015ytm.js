@@ -470,7 +470,7 @@ No_Search_Results_text_string = "No results found. Try different keywords";
 Dead_End_text_string = "Looks like you've reached the end";
 Share_text_string = "Share";
 Download_text_string = "Download";
-if (WATCH_SAVE_IS_ADD_TO_expflag == true) {
+if (WATCH_SAVE_IS_ADD_TO_expflag == "true") {
   Save_text_string = "Add to";
 } else {
   Save_text_string = "Save";
