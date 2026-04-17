@@ -280,7 +280,7 @@ function settingsPage() {
       headerTitle.textContent = Feedback_text_string;
       title.textContent = Feedback_text_string + ' - 2015YouTube';
 
-      settingsPage.innerHTML="<p>Open an issue on the YTm15 GitHub:<br>https://github.com/ytm15/ytm15.github.io/issues</p><p>Check for pull requests open (If any of the features you want may be being added):<br>https://github.com/ytm15/ytm15.github.io/pulls</p><p>You can also post on r/oldyoutubelayout (the dev is active there)</p>";
+      settingsPage.innerHTML=`<p>Open an issue on the YTm15 GitHub (Reccommended), or, you can check for pull requests open and observe/ask</p><p>You can also post on r/oldyoutubelayout (the dev is active there)</p><img alt="GitHub Issues or Pull Requests" src="https://img.shields.io/github/issues/ytm15/ytm15.github.io?style=for-the-badge&link=https%3A%2F%2Fgithub.com%2Fytm15%2Fytm15.github.io">　<img alt="GitHub Issues or Pull Requests" src="https://img.shields.io/github/issues-pr/ytm15/ytm15.github.io?style=for-the-badge&link=https%3A%2F%2Fgithub.com%2Fytm15%2Fytm15.github.io">　<img alt="Static Badge" src="https://img.shields.io/badge/r%2Foldyoutubelayout-FF4500?style=for-the-badge&link=https%3A%2F%2Fwww.reddit.com%2Fr%2Foldyoutubelayout">`;
       }
       if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "install") {
       /* innerSettingsPageCont.innerHTML = `
@@ -962,7 +962,7 @@ function settingsPage() {
       {
         "type": "boolean",
         "title": "WATCH_COLLAPSABLE_COMMENTS",
-        "subtitle": "",
+        "subtitle": "This is not acccurate yet, and is provided for convienence/partial-accuracy. This will be revised later",
         "pressed": WATCH_COLLAPSABLE_COMMENTS_expflag == "true",
         "pressed-default": false,
         "disabled": false,
