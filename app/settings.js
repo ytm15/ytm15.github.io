@@ -1033,12 +1033,21 @@ function settingsPage() {
       },
       {
         "type": "boolean",
-        "title": "WATCH_COMMENTS_POSTS_ADD_OPTIONS",
+        "title": "WATCH_COMMENTS_ADD_OPTIONS",
         "subtitle": "",
-        "pressed": WATCH_COMMENTS_POSTS_ADD_OPTIONS_expflag == "true",
+        "pressed": WATCH_COMMENTS_ADD_OPTIONS_expflag == "true",
         "pressed-default": false,
         "disabled": false,
-        "lsitem": "WATCH_COMMENTS_POSTS_ADD_OPTIONS"
+        "lsitem": "WATCH_COMMENTS_ADD_OPTIONS"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_COMMUNITY_POSTS_ADD_OPTIONS",
+        "subtitle": "",
+        "pressed": WATCH_COMMUNITY_POSTS_ADD_OPTIONS_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_COMMUNITY_POSTS_ADD_OPTIONS"
       }
       ];
       settingBlocks.forEach(function(item){

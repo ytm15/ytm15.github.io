@@ -209,7 +209,8 @@ WATCH_CONDENSE_COMMENT_BUTTONS_expflag = localStorage.getItem("WATCH_CONDENSE_CO
 WATCH_FORMAT_LIKE_COUNTS_expflag = localStorage.getItem("WATCH_FORMAT_LIKE_COUNTS");
 APP_IOS_SYSTEM_FONT_expflag = localStorage.getItem("APP_IOS_SYSTEM_FONT");
 WATCH_CONDENSE_COMMUNITY_POST_BUTTONS_expflag = localStorage.getItem("WATCH_CONDENSE_COMMUNITY_POST_BUTTONS");
-WATCH_COMMENTS_POSTS_ADD_OPTIONS_expflag = localStorage.getItem("WATCH_COMMENTS_POSTS_ADD_OPTIONS");
+WATCH_COMMENTS_ADD_OPTIONS_expflag = localStorage.getItem("WATCH_COMMENTS_ADD_OPTIONS");
+WATCH_COMMUNITY_POSTS_ADD_OPTIONS_expflag = localStorage.getItem("WATCH_COMMUNITY_POSTS_ADD_OPTIONS");
 
 
 newErrorHtml = `<button class="error-content" onClick="location.reload();">
@@ -864,7 +865,7 @@ function renderCommentSection(parent, mediaType, cmSource, isCMPage, comntId, co
     }
     var optionsCommentIcon = ""
     var optionsCommentIcon2 = ""
-    if (WATCH_COMMENTS_POSTS_ADD_OPTIONS_expflag == "true") {
+    if (WATCH_COMMENTS_ADD_OPTIONS_expflag == "true") {
       optionsCommentIcon = `
       <div class="comment-icons" id="cm-icon-options">
       <button class="icon-button comment-icon-button" aria-label="Options"><ytm15-icon class="options-icon comment-action-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z"></path></svg></ytm15-icon></button>
@@ -1129,6 +1130,21 @@ function renderPosts(parent, postId, postSource){
     postAttachment = `<div class="post-unsupported-attachment-msg"><span class="subhead">${item.attachment.type} attachments are not supported on ytm15 posts yet.</span></div>`;
     };
     };
+    var optionsCommentIcon = ""
+    var optionsCommentIcon2 = ""
+    if (WATCH_COMMUNITY_POSTS_ADD_OPTIONS_expflag == "true") {
+      if (WATCH_CONDENSE_COMMUNITY_POST_BUTTONS_expflag == "true") {
+        optionsCommentIcon2 = `
+        <div class="post-icons" id="post-icon-options" style="float:right;">
+        <button class="icon-button post-icon-button"><ytm15-icon class="options-icon post-action-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z"></path></svg></ytm15-icon></button>
+        </div>`
+      } else {
+        optionsCommentIcon = `
+        <div class="post-icons" id="post-icon-options">
+        <button class="icon-button post-icon-button"><ytm15-icon class="options-icon post-action-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z"></path></svg></ytm15-icon></button>
+        </div>`
+      }
+    }
     postCont.innerHTML = `<p class="post-text user-text">${item.contentText}</p>
 <div class="post-header">
 <span class="post-title"><a href="#/channel/${item.authorChannelId}">${postAuthor}</a></span>
@@ -1143,12 +1159,12 @@ function renderPosts(parent, postId, postSource){
 <div class="post-icons" id="post-icon-dislike">
 <button class="icon-button post-icon-button" aria-label="Dislike this post"><ytm15-icon class="dislike-icon post-action-icon"><svg viewBox="0 0 24 24" fill=""><path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v1.91l.01.01L1 14c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"></path></svg></ytm15-icon></button>
 <span class="post-count"></span>
-</div>
+</div>${optionsCommentIcon2}
 <div class="post-icons" id="post-icon-reply">
 <button class="icon-button post-icon-button" aria-label="Reply to this post"><ytm15-icon class="reply-icon post-action-icon"><svg viewBox="0 0 24 24" fill=""><path d="M18,8H6V6H18V8M18,11H6V9H18V11M18,14H6V12H18V14M22,4A2,2 0 0,0 20,2H4A2,2 0 0,0 2,4V16A2,2 0 0,0 4,18H18L22,22V4Z"></path></svg></ytm15-icon>
 </button>
 <span class="post-count">${postReplyCount}</span>
-</div>
+</div>${optionsCommentIcon}
 </div>
 `;
     if (postCont.querySelector(".ytm15-img")) {
