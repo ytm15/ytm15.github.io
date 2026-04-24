@@ -522,7 +522,7 @@ if (PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Activity") {
   Notifs_text_string = "Activity";
 } else if (PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Inbox") {
   Notifs_text_string = "Inbox";
-} else if (PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Shared") {
+} else if (PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Shared (NOT ACCURATE)") {
   Notifs_text_string = "Shared";
 } else {
   Notifs_text_string = "Notifications";
@@ -1258,9 +1258,9 @@ function renderPivotBar(){
       "link": "library"
     }
     ];
-    if (PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Inbox") {pivotBarItems[3].iconPath = "M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"}
-    if (PIVOT_TRENDING_IS_EXPLORE_expflag == "true") {pivotBarItems[1].iconPath = "M14.19,14.19L6,18L9.81,9.81L18,6M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,10.9A1.1,1.1 0 0,0 10.9,12A1.1,1.1 0 0,0 12,13.1A1.1,1.1 0 0,0 13.1,12A1.1,1.1 0 0,0 12,10.9Z";pivotBarItems[1].name = "Explore"}
-    if (PIVOT_LIBRARY_UPDATED_ICON_expflag == "true") {pivotBarItems[4].iconPath = "M4,6H2V20A2,2 0 0,0 4,22H18V20H4V6M20,2H8A2,2 0 0,0 6,4V16A2,2 0 0,0 8,18H20A2,2 0 0,0 22,16V4A2,2 0 0,0 20,2M12,14.5V5.5L18,10L12,14.5Z"}
+    if (PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Inbox") {pivotBarItems[3].iconPath = "M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z";};
+    if (PIVOT_TRENDING_IS_EXPLORE_expflag == "true") {pivotBarItems[1].iconPath = "M14.19,14.19L6,18L9.81,9.81L18,6M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,10.9A1.1,1.1 0 0,0 10.9,12A1.1,1.1 0 0,0 12,13.1A1.1,1.1 0 0,0 13.1,12A1.1,1.1 0 0,0 12,10.9Z";pivotBarItems[1].name = "Explore";};
+    if (PIVOT_LIBRARY_UPDATED_ICON_expflag == "true") {pivotBarItems[4].iconPath = "M4,6H2V20A2,2 0 0,0 4,22H18V20H4V6M20,2H8A2,2 0 0,0 6,4V16A2,2 0 0,0 8,18H20A2,2 0 0,0 22,16V4A2,2 0 0,0 20,2M12,14.5V5.5L18,10L12,14.5Z";};
     pivotBar.innerHTML = "";
     pivotBarItems.forEach(function(item){
       const pivotBarItem = document.createElement("div");
@@ -1276,6 +1276,12 @@ function renderPivotBar(){
 <div class="pivot-bar-item-title">${item.name}</div>
 </div>
 </div>`;
+if (PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Shared (NOT ACCURATE)" && item.name == "Shared") {pivotBarItem.innerHTML = `<div role="tab" aria-selected="${pivotTabSelected}" class="pivot-bar-item-tab has-ripple pivot-${item.pivotName}">
+<div class="pivot-tab-items">
+<ytm15-icon class="pivot-bar-tab-icon ${item.pivotName}-icon"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="54.9129" height="48.95986" viewBox="0,0,54.9129,48.95986"><g transform="translate(-213.48,-155.27287)"><g data-paper-data="{&quot;isPaintingLayer&quot;:true}"  stroke="none" stroke-width="0" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" style="mix-blend-mode: normal"><path d="M228.95573,186.14239c0,2.41314 6.57374,-2.97282 9.23524,-3.20014c0.37979,-0.03244 0.39431,-0.81668 0.59787,-0.56067c0.24556,0.30883 0.79714,0.13886 1.44239,0.22425c1.21625,0.16095 2.76529,0.4524 3.22495,1.10713c0.68596,0.97705 0.10148,1.21026 0.66424,2.29131c0.27404,0.52643 3.11669,-1.34809 5.80605,-3.7177c2.09984,-1.85018 4.18541,-4.35851 4.36228,-3.92321c0.13207,0.32504 -0.45148,-0.77217 0.00975,-1.16402c0.48174,-0.40928 1.51314,-0.93423 2.20856,-0.99963c3.18964,-0.29998 8.66235,-0.65594 11.34053,-0.58614c2.03806,0.05312 -2.23853,13.99239 -2.98991,15.68482c-1.03396,2.32894 -3.28656,5.24116 -6.94449,7.3363c-6.07608,3.48019 -14.60236,5.59804 -17.37444,5.59804c-6.27417,0 -10.50486,-2.0177 -14.76842,-5.55616c-0.40429,-0.33553 0.00256,-0.17182 -0.97926,0.55126c-0.54421,0.40079 -2.21769,1.25449 -3.02118,1.62177c-2.01619,0.92162 -5.18301,1.23392 -5.78315,0.65649c-1.23883,-1.19194 1.07408,-6.58668 1.62403,-9.35915c0.12313,-0.62074 0.63957,-1.11003 0.46408,-1.39127c-2.21515,-3.54986 -4.59484,-6.63571 -4.59484,-11.00287c0,-13.51989 12.11462,-24.47993 27.05875,-24.47993c3.65506,0 11.01032,0.76097 16.29264,4.23103c6.77459,4.45036 11.17356,12.22866 10.99094,16.56545c-0.06211,1.47493 -13.34757,0.01802 -13.9241,1.21986c-0.17448,0.36372 -9.48043,-8.09205 -9.66069,-7.72034c-0.62935,1.29778 0.09627,1.65382 -0.6235,3.08606c-0.73444,1.46146 -7.02982,2.89831 -7.44368,4.50575c-0.27,1.04867 -7.21463,7.96721 -7.21463,8.9817z"/></g></g></svg></ytm15-icon>
+<div class="pivot-bar-item-title">${item.name}</div>
+</div>
+</div>`;};
       pivotBarItem.querySelector(".pivot-bar-item-tab").onclick = function(){
         window.location.hash = "#/" + item.link;
       }

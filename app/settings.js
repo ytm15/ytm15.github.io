@@ -694,8 +694,8 @@ function settingsPage() {
             "selected-default": false
           },
           {
-            "title": "Shared",
-            "selected": PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Shared",
+            "title": "Shared (NOT ACCURATE)",
+            "selected": PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Shared (NOT ACCURATE)",
             "selected-default": false
           }
         ],
