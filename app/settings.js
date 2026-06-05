@@ -722,7 +722,7 @@ function settingsPage() {
       {
         "type": "text",
         "title": "APP_CUSTOM_INVIDIOUS_URL",
-        "subtitle": "This loads your home page and comments. <small>which should update and not be static</small><br>If you are hosting an invidious instance put it here<br>You should change CORS policy if you own your instance, otherwise use a CORS redirector. <small>If you can use a CORS disabler extension, you can also remove the starting proxy url, it will make it faster.</small>><br>Clear the text box to reset the url<br><small>If you want to setup an invidious instance just for YTm15, it is not worth it, it is complicated to setup and will take all of your computer's resources.</small>",
+        "subtitle": "This loads your home page and comments. <small>which should update and not be static</small><br>If you are hosting an invidious instance put it here<br>You should change CORS policy if you own your instance, otherwise use a CORS redirector. <small>If you can use a CORS disabler extension, you can also remove the starting proxy url, it will make it faster.</small><br>Clear the text box to reset the url<br><small>If you want to setup an invidious instance just for YTm15, it is not worth it, it is complicated to setup and will take all of your computer's resources.</small>",
         "value": "https://api.codetabs.com/v1/proxy?quest=https://y.com.sb/",
         "placeholder": "",
         "disabled": false,

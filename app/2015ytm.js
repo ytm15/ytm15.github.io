@@ -398,12 +398,6 @@ if (APP_IOS_SYSTEM_FONT_expflag == "true") {
   documentHTML.classList.remove("system-font");
 }
 
-if (WATCH_CONDENSE_COMMENT_BUTTONS_expflag == "true") {
-  documentHTML.classList.add("condense-comment-buttons");
-} else {
-  documentHTML.classList.remove("condense-comment-buttons");
-}
-
 if (WATCH_CONDENSE_COMMUNITY_POST_BUTTONS_expflag == "true") {
   documentHTML.classList.add("condense-comment-buttons-2");
 } else {
@@ -2780,7 +2774,7 @@ window.addEventListener('hashchange', function (event) {
 });
 
 window.addEventListener('offline', function() {
-  if (APP_NO_INTERNET_POPUP_NEW_STYLE_expflag == true) {
+  if (APP_NO_INTERNET_POPUP_NEW_STYLE_expflag == "true") {
     const n = document.createElement('div');
     n.setAttribute('id','offline-bar');
     n.setAttribute('aria-live', 'polite');
@@ -2794,7 +2788,7 @@ window.addEventListener('offline', function() {
   }
 });
 window.addEventListener('online', function() {
-  if (APP_NO_INTERNET_POPUP_NEW_STYLE_expflag == true) {
+  if (APP_NO_INTERNET_POPUP_NEW_STYLE_expflag == "true") {
   const n = document.getElementById('offline-bar');
   n.classList.add('offline-bar-online');
   n.innerHTML = "Back online";
