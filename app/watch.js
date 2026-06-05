@@ -654,7 +654,9 @@ function renderWatchPage(parent) {
     parent.innerHTML = "";
 
     parent.appendChild(scwnr);
-    document.getElementById('autoplay-toggle-button').setAttribute('aria-pressed',localStorage.getItem('WATCH_AUTOPLAY_SWITCH_INTERNAL'));
+    if (WATCH_AUTOPLAY_SWITCH_expflag == "true") {
+      document.getElementById('autoplay-toggle-button').setAttribute('aria-pressed',localStorage.getItem('WATCH_AUTOPLAY_SWITCH_INTERNAL'));
+    }
     } else {
     getWatchData.onerror();
     }

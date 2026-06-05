@@ -956,7 +956,7 @@ function blankLibraryPage() {
     subscriptionsPage.appendChild(section);
 
     var title = document.querySelector("title");
-    title.textContent = 'Subscriptions';
+    title.textContent = 'Library';
 
     if (APP_DEMATERIALIZE_UI_expflag == "true") {
         Array.from(sectLazyList.querySelectorAll(".ap-shelf")).forEach(function(item){
