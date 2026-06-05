@@ -532,7 +532,15 @@ function renderWatchPage(parent) {
     metadataActions.appendChild(mtrlBtnContDislike);
     metadataActions.appendChild(mtrlBtnContShare);
     mtrlBtnContShare.querySelector("button").addEventListener("click", shareVideo);
-    mtrlBtnContSave.querySelector("button").addEventListener("click", ()=>{saveVideo(playerVideoId,document.querySelector(".player-poster").style.backgroundImage.slice(4, -1).replace(/["']/g, ""),"0"/*document.querySelector(".player-duration").textContent*/,metaTitle.textContent,document.querySelector(".video-owner-title").textContent,document.querySelector(".profile-img").src,document.querySelector(".video-published-date"),parseInt(document.querySelector(".video-metadata-view-count .secondary-text").textContent.replace(/\D/g, "")),10)});
+    
+    const videoThumbnailUrl = document.querySelector(".player-poster").style.backgroundImage.slice(4, -1).replace(/["']/g, "");
+    const videoTitle = metaTitle.textContent;
+    const videoAuthor = document.querySelector(".video-owner-title").textContent;
+    const videoAuthorId = data.channelId;
+    const videoPublishedText = document.querySelector(".video-published-date").textContent;
+    const videoViewCount = parseInt(document.querySelector(".video-metadata-view-count .secondary-text").textContent.replace(/\D/g, ""));
+    
+    mtrlBtnContSave.querySelector("button").addEventListener("click", ()=>{saveVideo(playerVideoId, videoThumbnailUrl, "0", videoTitle, videoAuthor, videoAuthorId, videoPublishedText, videoViewCount)});
     metadataActions.appendChild(actionsSpacer);
     if (WATCH_DOWNLOAD_BUTTON_expflag == "true") {metadataActions.appendChild(mtrlBtnContDownload);};
     if (WATCH_SAVE_BUTTON_expflag == "true" && WATCH_ENABLE_NEW_UI_expflag == "true") {metadataActions.appendChild(mtrlBtnContSave);metadataActions.style.flexWrap = "nowrap"};
