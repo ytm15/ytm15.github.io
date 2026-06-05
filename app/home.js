@@ -75,7 +75,7 @@ function renderData() {
     }
     tab1.href = "#/trending";
     tab1.innerHTML = `<img class="ytm15-img-icon ytm15-img home-icon" src="ic_tab_trending.png"></img>`
-    if (PIVOT_TRENDING_IS_EXPLORE_expflag == "true") {tab1.innerHTML = `<svg class="ytm15-img-icon ytm15-img home-icon" viewBox="0 0 24 24"><path d="M14.19,14.19L6,18L9.81,9.81L18,6M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,10.9A1.1,1.1 0 0,0 10.9,12A1.1,1.1 0 0,0 12,13.1A1.1,1.1 0 0,0 13.1,12A1.1,1.1 0 0,0 12,10.9Z" fill="#white"></path></svg>`;};
+    if (PIVOT_TRENDING_IS_EXPLORE_expflag == "true") {tab1.innerHTML = `<svg class="ytm15-img-icon ytm15-img home-icon" viewBox="0 0 24 24"><path d="M14.19,14.19L6,18L9.81,9.81L18,6M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,10.9A1.1,1.1 0 0,0 10.9,12A1.1,1.1 0 0,0 12,13.1A1.1,1.1 0 0,0 13.1,12A1.1,1.1 0 0,0 12,10.9Z" fill="white"></path></svg>`;};
 
     const tBTabCont2 = document.createElement("div");
     tBTabCont2.classList.add("tabbar-tab-container", "subscriptions-tab");
@@ -208,7 +208,7 @@ function renderData() {
         } */
 
         headerTitle.setAttribute("aria-label", Trending_text_string);
-        headerTitle.textContent = HEADER_ALWAYS_SHOW_YOUTUBE_TITLE_expflag ? "YouTube" : Trending_text_string;
+        headerTitle.textContent = HEADER_ALWAYS_SHOW_YOUTUBE_TITLE_expflag == "true" ? "YouTube" : Trending_text_string;
 
         if (WEB_ENABLE_PIVOT_BAR_expflag !== "true") {
         if (!document.querySelector(".tab-bar")) {
@@ -300,7 +300,7 @@ function renderData() {
             }
 
             headerTitle.setAttribute("aria-label", Library_text_string);
-            headerTitle.textContent = HEADER_ALWAYS_SHOW_YOUTUBE_TITLE_expflag ? "YouTube" : Library_text_string;
+            headerTitle.textContent = HEADER_ALWAYS_SHOW_YOUTUBE_TITLE_expflag == "true" ? "YouTube" : Library_text_string;
 
             const page = document.createElement("page");
             page.classList.add('home');
@@ -445,7 +445,7 @@ function renderData() {
         } */
 
         headerTitle.setAttribute("aria-label", Popular_text_string);
-        headerTitle.textContent = HEADER_ALWAYS_SHOW_YOUTUBE_TITLE_expflag ? "YouTube" : Popular_text_string;
+        headerTitle.textContent = HEADER_ALWAYS_SHOW_YOUTUBE_TITLE_expflag == "true" ? "YouTube" : Popular_text_string;
 
         const page = document.createElement("page");
         page.classList.add('home');
@@ -584,7 +584,7 @@ function renderData() {
     } */
 
     headerTitle.setAttribute("aria-label", Home_text_string);
-    headerTitle.textContent = HEADER_ALWAYS_SHOW_YOUTUBE_TITLE_expflag ? "YouTube" : Home_text_string;
+    headerTitle.textContent = HEADER_ALWAYS_SHOW_YOUTUBE_TITLE_expflag == "true" ? "YouTube" : Home_text_string;
 
     if (WEB_ENABLE_PIVOT_BAR_expflag !== "true") {
     if (!document.querySelector(".tab-bar")) {
