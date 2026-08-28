@@ -421,6 +421,163 @@ function renderData() {
 
     console.log(data); */
 
+    if (typeof ERACAST_MODE_option !== 'undefined' && ERACAST_MODE_option) {
+        try {
+            window.fetchEraCastFeed().then(function(data) {
+                var spinnerLocal = document.querySelector(".spinner-container.full-height");
+                if (spinnerLocal) spinnerLocal.setAttribute("hidden", "");
+
+                headerTitle.setAttribute("aria-label", Home_text_string);
+                headerTitle.textContent = Home_text_string;
+
+                if (WEB_ENABLE_PIVOT_BAR_expflag !== "true") {
+                    if (!document.querySelector(".tab-bar")) {
+                        headerBar.appendChild(tabBar);
+                        headerBar.classList.add('has-tab-bar');
+                        tabBar.removeAttribute("hidden");
+                        document.querySelector(".tab-bar").setAttribute("isChannel", "false");
+                    };
+
+                    if (document.querySelector(".tab-bar")) {
+                        document.querySelector(".tab-bar").removeAttribute("hidden");
+                        headerBar.classList.add('has-tab-bar');
+                        document.querySelector(".tab-bar").setAttribute("isChannel", "false");
+                    };
+                }
+
+                const page = document.createElement("page");
+                page.classList.add('home');
+
+                const tabContainer = document.createElement("div");
+                tabContainer.classList.add('tabs-content-container');
+
+                const tabContent = document.createElement("div");
+                tabContent.classList.add('tab-content');
+                tabContent.setAttribute("tab-identifier", "What_to_watch");
+
+                const tabContent2 = document.createElement("div");
+                tabContent2.classList.add('tab-content');
+                tabContent2.setAttribute("tab-identifier", "Trending_placeholder");
+
+                tabContent2.scrollIntoView({ behavior: "smooth", block: "end", inline: "nearest" });
+
+                const section = document.createElement("div");
+                section.classList.add('section-list');
+
+                const sectLazyList = document.createElement("div");
+                sectLazyList.classList.add('lazy-list');
+                section.appendChild(sectLazyList);
+
+                const shelf = document.createElement("div");
+                shelf.classList.add('shelf');
+                if (APP_DEMATERIALIZE_UI_expflag == "true") {
+                    shelf.classList.add('card');
+                }
+
+                pageCont.innerHTML = "";
+
+                const parent = document.querySelector(".page-container");
+                parent.appendChild(page);
+                page.appendChild(tabContainer);
+                tabContainer.appendChild(tabContent);
+                tabContainer.appendChild(tabContent2);
+                tabContent.appendChild(section);
+                sectLazyList.appendChild(shelf);
+
+                const shelfHeader = document.createElement("div");
+                shelfHeader.classList.add('shelf-header');
+                const shelfHeaderEP = document.createElement("a");
+                shelfHeaderEP.classList.add('shelf-header-endpoint');
+                shelfHeaderEP.href = "#/popular";
+                const shelfTitleBar = document.createElement("div");
+                shelfTitleBar.classList.add('shelf-title-bar');
+                shelfTitleBar.innerHTML = "<h3>Popular</h3>";
+
+                const verticalList = document.createElement("div");
+                verticalList.classList.add('vertical-list');
+
+                const ESButtonCont = document.createElement("div");
+                ESButtonCont.classList.add('expand-shelf-button-container');
+
+                const moreIcon = document.createElement("ytm15-icon");
+                moreIcon.classList.add('show-more-icon');
+                moreIcon.innerHTML = `<svg viewBox="0 0 24 24" fill=""><path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z"></path></svg>`;
+
+                const lessIcon = document.createElement("ytm15-icon");
+                lessIcon.classList.add('show-less-icon');
+                lessIcon.innerHTML = `<svg viewBox="0 0 24 24" fill=""><path d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"></path></svg>`;
+
+                const ISButton = document.createElement("button");
+                ISButton.classList.add('collapse-shelf-button', 'icon-button');
+                ISButton.setAttribute('aria-label', 'Show less');
+                ISButton.setAttribute('hidden', '');
+                ISButton.onclick = function(){verticalList.classList.remove('expanded'); ISButton.setAttribute('hidden', ''); ESButton.removeAttribute('hidden');};
+
+                const ESButton = document.createElement("button");
+                ESButton.classList.add('expand-shelf-button', 'icon-button');
+                ESButton.setAttribute('aria-label', 'Show more');
+                ESButton.onclick = function(){verticalList.classList.add('expanded'); ESButton.setAttribute('hidden', ''); ISButton.removeAttribute('hidden');};
+                ESButtonCont.appendChild(ESButton);
+                ESButtonCont.appendChild(ISButton);
+
+                ESButton.appendChild(moreIcon);
+                ISButton.appendChild(lessIcon);
+
+                shelf.appendChild(shelfHeader);
+                shelfHeader.appendChild(shelfHeaderEP);
+                shelfHeaderEP.appendChild(shelfTitleBar);
+                shelf.appendChild(verticalList);
+
+                renderDataTrending("", "Trending");
+                setTimeout(function() {
+                  renderDataTrending("music", "Music");
+                  setTimeout(function() {
+                    renderDataTrending("gaming", "Gaming");
+                    setTimeout(function() {
+                      renderDataTrending("movies", "Movies");
+                    }, 300);
+                  }, 300);
+                }, 300);
+
+                var oldTitle = document.querySelector("title");
+                
+                var title = document.createElement("title");
+                title.textContent = Home_text_string + ' - 2015YouTube';
+
+                oldTitle.parentNode.replaceChild(title, oldTitle);
+
+                data.forEach(function(item) {
+                    renderCompactMediaItem(verticalList, "shelf", item.videoId, item.videoThumbnails && item.videoThumbnails[0] ? item.videoThumbnails[0].url : '', item.lengthSeconds, item.title, item.author, item.authorId, item.publishedText, item.viewCount, item.type);
+                });
+                
+                if (data.length > 3) {
+                    verticalList.appendChild(ESButtonCont);
+                }
+            }).catch(function(err){
+                console.error('fetchEraCastFeed error:', err);
+                var spinnerLocal = document.querySelector(".spinner-container.full-height");
+                if (spinnerLocal) spinnerLocal.setAttribute("hidden", "");
+                const error = document.createElement("div");
+                error.classList.add('error-container');
+                error.innerHTML = `<div class="error-content">
+<img class="error-icon ytm15-img" src="alert_error.png"></img>
+<span class="error-text">There was an error connecting to the server</span>
+</div>
+<div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry" onClick="location.reload();"><div class="button-text">Retry</div></button></div>`;
+                if (APP_NEW_ERROR_SCREEN_expflag == "true"){error.innerHTML=newErrorHtml};
+                pageCont.before(error);
+                error.querySelector("button").onclick = function(){
+                    renderData();
+                    error.remove();
+                };
+                return;
+            });
+        } catch (e) {
+            console.error('EraCast mode failed:', e);
+        }
+        return;//EraCast mode
+    }
+
     const getHomeData3 = new XMLHttpRequest();
 
     getHomeData3.open('GET', APIbaseURL + 'api/v1/popular', true);
@@ -720,7 +877,7 @@ function renderDataTrending(homeShelfTrendingType, shelfTitle) {
     shelf.appendChild(verticalList);
 
     data.forEach(function(item) {
-        renderCompactMediaItem(verticalList, "shelf", item.videoId, item.videoThumbnails[3].url, item.lengthSeconds, item.title, item.author, item.authorId, item.publishedText, item.viewCount, item.type);
+        renderCompactMediaItem(verticalList, "shelf", item.videoId, ERACAST_MODE_option ? item.videoThumbnails[0].url : item.videoThumbnails[3].url, item.lengthSeconds, item.title, item.author, item.authorId, item.publishedText, item.viewCount, item.type);
     });
 
     if (data.length > 3) {

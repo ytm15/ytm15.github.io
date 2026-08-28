@@ -218,7 +218,16 @@ function settingsPage() {
       };
 
       settingBlocks = [
-      settingBooleanDark
+      settingBooleanDark,
+      {
+        "type": "boolean",
+        "title": EraCast_text_string,
+        "subtitle": EraCastDesc_text_string,
+        "pressed": ERACAST_MODE_option == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "ERACAST_MODE"
+      }
       ];
       settingBlocks.forEach(function(item){
       if (item.type == "boolean") {

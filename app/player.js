@@ -827,11 +827,67 @@ const playerxhttpr = new XMLHttpRequest();
 /* playerxhttpr.open('GET', 'https://inv.tux.pizza/api/v1/videos/' + YTmVideoId, true); */
 /* playerxhttpr.open('GET', 'https://invidious.nerdvpn.de/api/v1/videos/' + YTmVideoId, true);
 playerxhttpr.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs='); */
+if (ERACAST_MODE_option == "true") {
+    window.fetchEraCast1080WebmUrl(YTmVideoId).then(function(data) {
+        video.poster = data.thumbnail[3].url;
+          video.innerHTML = ``;
+          video.dataset.title = data.title;
+          /* storyboardURL = "https://inv.tux.pizza" + data.storyboards[2].url; */
+          SBVideo.src = data.formats[0].url;
+
+/* const sbxhttpr = new XMLHttpRequest();
+
+sbxhttpr.open('GET', storyboardURL, true);
+ 
+sbxhttpr.send();
+
+sbxhttpr.onerror = function(){
+      console.error('Unable to retrieve the storyboard for this video (' + sbxhttpr.status + ')');
+};
+
+sbxhttpr.onload = function() {
+  if (sbxhttpr.status === 200) {
+  SBData = sbxhttpr.response;
+  } else {
+  sbxhttpr.onerror();
+  };
+}; */
+
+          data.formats.forEach(function(item) {
+          const lastFS = data.formats.slice(-1)[0]
+          const vidSource = document.createElement("source");
+          vidSource.src = item.url;
+          vidSource.type = item.mimeType;
+          vidSource.setAttribute("label", item.qualityLabel);
+          vidSource.setAttribute("selected", false);
+          if (item == lastFS) {
+          vidSource.setAttribute("selected", true);
+          };
+          video.appendChild(vidSource);
+          if (vidSource.getAttribute("selected", "true")) {
+          video.src = item.url;
+          };
+          });
+          if (data.captions) {
+          data.captions.captionTracks.forEach(function(item) {
+          const vidTrack = document.createElement("track");
+          vidTrack.kind = "captions";
+          vidTrack.src = item.baseUrl;
+          vidTrack.srclang = item.languageCode;
+          vidTrack.label = item.name;
+          video.appendChild(vidTrack);
+          });
+          };
+	});
+} else {
 playerxhttpr.open('GET', APIbaseURLNew + 'dl?cgeo=US&id=' + YTmVideoId, true);
 playerxhttpr.setRequestHeader('x-rapidapi-key', '4b0791fe33mshce00ad033774274p196706jsn957349df7a8f');
 playerxhttpr.setRequestHeader('x-rapidapi-host', 'yt-api.p.rapidapi.com');
+
  
 playerxhttpr.send();
+}
+
 
 playerxhttpr.onerror = function(){
       videoPlayer.classList.add("player-has-error");
