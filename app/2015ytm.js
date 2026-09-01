@@ -143,12 +143,16 @@ USE_NEW_SUBSCRIBE_ICON_expflag = localStorage.getItem("USE_NEW_SUBSCRIBE_ICON");
 LIFT_PIVOT_BAR_FOR_PHONE_expflag = localStorage.getItem("LIFT_PIVOT_BAR_FOR_PHONE");
 PIVOT_SHRINK_SPACING_expflag = localStorage.getItem("PIVOT_SHRINK_SPACING");
 PIVOT_HIDE_NOTIFICATIONS_expflag = localStorage.getItem("PIVOT_HIDE_NOTIFICATIONS");
-PIVOT_NOTIFICATIONS_IS_ACTIVITY_expflag = localStorage.getItem("PIVOT_NOTIFICATIONS_IS_ACTIVITY");
+PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag = localStorage.getItem("PIVOT_NOTIFICATIONS_ICON_VARIANT");
+if (PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == undefined) {
+  localStorage.setItem("PIVOT_NOTIFICATIONS_ICON_VARIANT", "Notifications");
+  PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag = localStorage.getItem("PIVOT_NOTIFICATIONS_ICON_VARIANT");
+}
 APP_HELVETICA_NEUE_FONT_expflag = localStorage.getItem("APP_HELVETICA_NEUE_FONT");
 APP_NEW_ERROR_SCREEN_expflag = localStorage.getItem("APP_NEW_ERROR_SCREEN");
 APP_CUSTOM_INVIDIOUS_URL_expflag = localStorage.getItem("APP_CUSTOM_INVIDIOUS_URL");
-if (APP_CUSTOM_INVIDIOUS_URL_expflag == undefined) {
-  localStorage.setItem("APP_CUSTOM_INVIDIOUS_URL", "/* https://api.allorigins.win/raw?url= */https://yt.omada.cafe/");
+if (APP_CUSTOM_INVIDIOUS_URL_expflag == undefined || APP_CUSTOM_INVIDIOUS_URL_expflag == "") {
+  localStorage.setItem("APP_CUSTOM_INVIDIOUS_URL", "https://api.codetabs.com/v1/proxy?quest=https://y.com.sb/");
   APP_CUSTOM_INVIDIOUS_URL_expflag = localStorage.getItem("APP_CUSTOM_INVIDIOUS_URL");
 }
 APP_DONT_AUTH_TO_INVIDIOUS_expflag = localStorage.getItem("APP_DONT_AUTH_TO_INVIDIOUS");
@@ -162,12 +166,52 @@ HEADER_NO_SHADOW_expflag = localStorage.getItem("HEADER_NO_SHADOW");
 DARK_THEME_SEPERATE_BACKGROUND_COLOR_expflag = localStorage.getItem("DARK_THEME_SEPERATE_BACKGROUND_COLOR");
 APP_UNDERLINE_BUTTONS_expflag = localStorage.getItem("APP_UNDERLINE_BUTTONS");
 HEADER_CAST_BUTTON_AS_URL_BOX_expflag = localStorage.getItem("HEADER_CAST_BUTTON_AS_URL_BOX");
+if (HEADER_CAST_BUTTON_AS_URL_BOX_expflag == undefined) {
+  localStorage.setItem("HEADER_CAST_BUTTON_AS_URL_BOX", "true");
+  HEADER_CAST_BUTTON_AS_URL_BOX_expflag = localStorage.getItem("HEADER_CAST_BUTTON_AS_URL_BOX");
+}
 HEADER_CAST_ALTERNATE_ICON_expflag = localStorage.getItem("HEADER_CAST_ALTERNATE_ICON");
+if (HEADER_CAST_ALTERNATE_ICON_expflag == undefined) {
+  localStorage.setItem("HEADER_CAST_ALTERNATE_ICON", "Holo");
+  HEADER_CAST_ALTERNATE_ICON_expflag = localStorage.getItem("HEADER_CAST_ALTERNATE_ICON");
+}
 APP_STOP_TEXT_SELECTION_expflag = localStorage.getItem("APP_STOP_TEXT_SELECTION");
 if (APP_STOP_TEXT_SELECTION_expflag == undefined) {
   localStorage.setItem("APP_STOP_TEXT_SELECTION", "true");
   APP_STOP_TEXT_SELECTION_expflag = localStorage.getItem("APP_STOP_TEXT_SELECTION");
 }
+WATCH_UI_NO_LINES_expflag = localStorage.getItem("WATCH_UI_NO_LINES");
+WATCH_COMMENT_SECTION_LEFT_expflag = localStorage.getItem("WATCH_COMMENT_SECTION_LEFT");
+WATCH_DOWNLOAD_BUTTON_expflag = localStorage.getItem("WATCH_DOWNLOAD_BUTTON");
+WATCH_SAVE_BUTTON_expflag = localStorage.getItem("WATCH_SAVE_BUTTON");
+WATCH_HIDE_SUBSCRIBE_ICON_expflag = localStorage.getItem("WATCH_HIDE_SUBSCRIBE_ICON");
+HEADER_YOUTUBE_BRANDING_expflag = localStorage.getItem("HEADER_YOUTUBE_BRANDING");
+if (HEADER_YOUTUBE_BRANDING_expflag == undefined) {
+  localStorage.setItem("HEADER_YOUTUBE_BRANDING", "YouTube");
+  HEADER_YOUTUBE_BRANDING_expflag = localStorage.getItem("HEADER_YOUTUBE_BRANDING");
+}
+WATCH_AUTOPLAY_SWITCH_expflag = localStorage.getItem("WATCH_AUTOPLAY_SWITCH");
+HEADER_USE_ACCOUNT_ICON_expflag = localStorage.getItem("HEADER_USE_ACCOUNT_ICON");
+HEADER_ACCOUNT_ICON_LINK_expflag = localStorage.getItem("HEADER_ACCOUNT_ICON_LINK");
+if (HEADER_ACCOUNT_ICON_LINK_expflag == undefined) {
+  localStorage.setItem("HEADER_ACCOUNT_ICON_LINK", "");
+  HEADER_ACCOUNT_ICON_LINK_expflag = localStorage.getItem("HEADER_ACCOUNT_ICON_LINK");
+}
+WATCH_SAVE_IS_ADD_TO_expflag = localStorage.getItem("WATCH_SAVE_IS_ADD_TO");
+PIVOT_TRENDING_IS_EXPLORE_expflag = localStorage.getItem("PIVOT_TRENDING_IS_EXPLORE");
+PIVOT_LIBRARY_UPDATED_ICON_expflag = localStorage.getItem("PIVOT_LIBRARY_UPDATED_ICON");
+WATCH_SAVE_UPDATED_ICON_expflag = localStorage.getItem("WATCH_SAVE_UPDATED_ICON");
+WATCH_COLLAPSABLE_COMMENTS_expflag = localStorage.getItem("WATCH_COLLAPSABLE_COMMENTS");
+HEADER_ALWAYS_SHOW_YOUTUBE_TITLE_expflag = localStorage.getItem("HEADER_ALWAYS_SHOW_YOUTUBE_TITLE");
+HEADER_MENU_BUTTON_expflag = localStorage.getItem("HEADER_MENU_BUTTON");
+APP_NO_INTERNET_POPUP_NEW_STYLE_expflag = localStorage.getItem("APP_NO_INTERNET_POPUP_NEW_STYLE");
+WATCH_CONDENSE_COMMENT_BUTTONS_expflag = localStorage.getItem("WATCH_CONDENSE_COMMENT_BUTTONS");
+WATCH_FORMAT_LIKE_COUNTS_expflag = localStorage.getItem("WATCH_FORMAT_LIKE_COUNTS");
+APP_IOS_SYSTEM_FONT_expflag = localStorage.getItem("APP_IOS_SYSTEM_FONT");
+WATCH_CONDENSE_COMMUNITY_POST_BUTTONS_expflag = localStorage.getItem("WATCH_CONDENSE_COMMUNITY_POST_BUTTONS");
+WATCH_COMMENTS_ADD_OPTIONS_expflag = localStorage.getItem("WATCH_COMMENTS_ADD_OPTIONS");
+WATCH_COMMUNITY_POSTS_ADD_OPTIONS_expflag = localStorage.getItem("WATCH_COMMUNITY_POSTS_ADD_OPTIONS");
+
 
 newErrorHtml = `<button class="error-content" onClick="location.reload();">
 <!-- <img class="error-icon ytm15-img" src="alert_error.png"></img><br> -->
@@ -329,6 +373,36 @@ if (APP_STOP_TEXT_SELECTION_expflag == "true") {
 } else {
   documentHTML.classList.remove("text-selection");
 }
+
+if (WATCH_UI_NO_LINES_expflag == "true") {
+  documentHTML.classList.add("no-lines");
+} else {
+  documentHTML.classList.remove("no-lines");
+}
+
+if (WATCH_HIDE_SUBSCRIBE_ICON_expflag == "true") {
+  documentHTML.classList.add("no-subscribe-icon");
+} else {
+  documentHTML.classList.remove("no-subscribe-icon");
+}
+
+if (WATCH_CONDENSE_COMMENT_BUTTONS_expflag == "true") {
+  documentHTML.classList.add("condense-comment-buttons");
+} else {
+  documentHTML.classList.remove("condense-comment-buttons");
+}
+
+if (APP_IOS_SYSTEM_FONT_expflag == "true") {
+  documentHTML.classList.add("system-font");
+} else {
+  documentHTML.classList.remove("system-font");
+}
+
+if (WATCH_CONDENSE_COMMUNITY_POST_BUTTONS_expflag == "true") {
+  documentHTML.classList.add("condense-comment-buttons-2");
+} else {
+  documentHTML.classList.remove("condense-comment-buttons-2");
+}
 };
 
 localStorageChange();
@@ -390,6 +464,12 @@ Channel_Home_WIP_text_string = "Channel pages' home pages haven't been built yet
 No_Search_Results_text_string = "No results found. Try different keywords";
 Dead_End_text_string = "Looks like you've reached the end";
 Share_text_string = "Share";
+Download_text_string = "Download";
+if (WATCH_SAVE_IS_ADD_TO_expflag == "true") {
+  Save_text_string = "Add to";
+} else {
+  Save_text_string = "Save";
+}
 DescMusic_text_string = "Music in this video";
 LearnMore_text_string = "Learn more";
 Song_text_string = "Song";
@@ -401,6 +481,8 @@ Settings_text_string = "Settings";
 General_text_string = "General";
 SettingsMSG_text_string = "There is no page open at the current moment";
 ExpFlags_text_string = "YTm15 Experimental Flags";
+Feedback_text_string = "Send feedback";
+InstallYtm15_text_string = "Install YTm15";
 SettingsMSG2_text_string = "To be added in the near future";
 AboutYTm15_text_string = "About YTm15";
 DarkTheme_text_string = "Dark theme";
@@ -430,9 +512,14 @@ Ok_text_string = "Ok";
 UpNext_text_string = "Up next";
 Replies_text_string = "Replies";
 Subs_text_string = "Subscriptions";
-Notifs_text_string = "Notifications";
-if (PIVOT_NOTIFICATIONS_IS_ACTIVITY_expflag == "true") {
+if (PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Activity") {
   Notifs_text_string = "Activity";
+} else if (PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Inbox") {
+  Notifs_text_string = "Inbox";
+} else if (PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Shared (NOT ACCURATE)") {
+  Notifs_text_string = "Shared";
+} else {
+  Notifs_text_string = "Notifications";
 }
 Library_text_string = "Library";
 AddComment_text_string = "Add a public comment...";
@@ -641,6 +728,9 @@ function renderCommentSection(parent, mediaType, cmSource, isCMPage, comntId, co
     if (APP_DEMATERIALIZE_UI_expflag == "true") {
       commentSection.classList.add('card');
     }
+    if (WATCH_COMMENT_SECTION_LEFT_expflag == "true" && WATCH_UI_NO_LINES_expflag == "false") {
+      commentSection.style.borderTop = "1.2px solid rgba(0,0,0,0.2)"
+    };
     if (mediaType == "video" && !isCMPage) {
      commentSection.classList.add("watch-next-results-content");
      commentSection.dataset.contentType = "result";
@@ -650,14 +740,20 @@ function renderCommentSection(parent, mediaType, cmSource, isCMPage, comntId, co
     const commentsHeader = document.createElement("div");
     commentsHeader.classList.add("comment-section-header");
     commentCount = `<span style="opacity: .6; font-style: italic;">Retrieving count...</span>`;
-    commentsHeader.innerHTML = `<div class="comments-header-top"><h2 class="comments-header-text"><span class="cmh-text-title">${Comments_text_string}</span><span class="cmh-text-comment-count">${commentCount}</span></h2></div>`;
+    commentsCollapseIcon = ""
+    if (WATCH_COLLAPSABLE_COMMENTS_expflag == "true") {
+      commentSection.classList.add("collapse-comments");
+      commentsCollapseIcon = `<svg style="float:right;" xmlns="http://www.w3.org/2000/svg" width="19" viewBox="0 0 24 24"><path fill="#6f6f6f" d="M12,18.17L8.83,15L7.42,16.41L12,21L16.59,16.41L15.17,15M12,5.83L15.17,9L16.58,7.59L12,3L7.41,7.59L8.83,9L12,5.83Z" /></svg>`
+      commentsHeader.addEventListener("click", () => {commentSection.classList.toggle("collapse-comments");});
+    }
+    commentsHeader.innerHTML = `<div class="comments-header-top"><h2 class="comments-header-text"><span class="cmh-text-title">${Comments_text_string}</span><span class="cmh-text-comment-count">${commentCount}</span>${commentsCollapseIcon}</h2></div>`;
 
     function renderCommentSB(CSBstring, parent){
     const commentSimplebox = document.createElement("div");
     commentSimplebox.classList.add("comment-simplebox");
     commentSimplebox.innerHTML = `
 <div class="profile-icon comment-simplebox-icon">
-<img class="profile-img ytm15-img lazy" loading="lazy" src="https://yt3.ggpht.com/a/default-user=s100-c-k-c0x00ffffff-no-rj"></img>
+<img class="profile-img ytm15-img lazy" loading="lazy" src="${HEADER_ACCOUNT_ICON_LINK_expflag == "" ? "https://yt3.ggpht.com/a/default-user=s100-c-k-c0x00ffffff-no-rj" : HEADER_ACCOUNT_ICON_LINK_expflag}"></img>
 </div>
 <div class="comment-simplebox-input">
 <div class="comment-simplebox-placeholder">
@@ -722,6 +818,9 @@ function renderCommentSection(parent, mediaType, cmSource, isCMPage, comntId, co
     }
 
     commentsHeader.querySelector(".cmh-text-comment-count").innerHTML = commentCount;
+    if (WATCH_FORMAT_LIKE_COUNTS_expflag == "true") {
+      commentsHeader.querySelector(".cmh-text-comment-count").innerHTML = new Intl.NumberFormat('en-US', {notation: "compact",compactDisplay: "short"}).format(commentCount.replace(/\D/g, ""));
+    }
 
     data.comments.forEach(function(item){
     const commentThread = document.createElement("ytm15-comment-thread");
@@ -758,6 +857,17 @@ function renderCommentSection(parent, mediaType, cmSource, isCMPage, comntId, co
     if (item.isPinned) {
     pinnedCMBadge = `<div class="pinned-comment-badge"><ytm15-icon class="comment-pin-icon"><svg viewBox="0 0 24 24" fill=""><path d="M16,12V4H17V2H7V4H8V12L6,14V16H11.2V22H12.8V16H18V14L16,12Z"></path></svg></ytm15-icon><span>${PinnedBy_text_string}Uploader</span></div>`;
     }
+    var optionsCommentIcon = ""
+    var optionsCommentIcon2 = ""
+    if (WATCH_COMMENTS_ADD_OPTIONS_expflag == "true") {
+      optionsCommentIcon = `
+      <div class="comment-icons" id="cm-icon-options">
+      <button class="icon-button comment-icon-button" aria-label="Options"><ytm15-icon class="options-icon comment-action-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z"></path></svg></ytm15-icon></button>
+      </div>`
+      if (WATCH_CONDENSE_COMMENT_BUTTONS_expflag == "true") {
+        optionsCommentIcon2 = ' style="width:100%"'
+      }
+    }
     commentCont.innerHTML = `
 ${pinnedCMBadge}
 <p class="comment-text user-text">${item.contentHtml}</p>
@@ -765,10 +875,10 @@ ${pinnedCMBadge}
 <span class="comment-title" is-owner="${cmIsOwner}"><a href="#${item.authorUrl}" onclick="exitWatch.onclick()">${commentAuthor}</a></span>
 <span class="comment-published-time">${item.publishedText}</span>
 </div>
-<div class="comment-details">
+<div class="comment-details"${optionsCommentIcon2}>
 <div class="comment-icons" id="cm-icon-like">
 <button class="icon-button comment-icon-button" aria-label="Like this comment"><ytm15-icon class="like-icon comment-action-icon"><svg viewBox="0 0 24 24" fill=""><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1.91l-.01-.01L23 10z"></path></svg></ytm15-icon></button>
-<span class="comment-count">${item.likeCount.toLocaleString()}</span>
+<span class="comment-count">${(WATCH_FORMAT_LIKE_COUNTS_expflag == "true") ? new Intl.NumberFormat('en-US', {notation: "compact",compactDisplay: "short"}).format(item.likeCount) : item.likeCount.toLocaleString()}</span>
 </div>
 <div class="comment-icons" id="cm-icon-dislike">
 <button class="icon-button comment-icon-button" aria-label="Dislike this comment"><ytm15-icon class="dislike-icon comment-action-icon"><svg viewBox="0 0 24 24" fill=""><path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v1.91l.01.01L1 14c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"></path></svg></ytm15-icon></button>
@@ -777,8 +887,8 @@ ${pinnedCMBadge}
 <div class="comment-icons" id="cm-icon-reply">
 <button class="icon-button comment-icon-button" aria-label="Reply to this comment"><ytm15-icon class="reply-icon comment-action-icon"><svg viewBox="0 0 24 24" fill=""><path d="M18,8H6V6H18V8M18,11H6V9H18V11M18,14H6V12H18V14M22,4A2,2 0 0,0 20,2H4A2,2 0 0,0 2,4V16A2,2 0 0,0 4,18H18L22,22V4Z"></path></svg></ytm15-icon>
 </button>
-<span class="comment-count">${cmReplyCount}</span>
-</div>
+<span class="comment-count">${(WATCH_FORMAT_LIKE_COUNTS_expflag == "true") ? new Intl.NumberFormat('en-US', {notation: "compact",compactDisplay: "short"}).format(cmReplyCount) : cmReplyCount}</span>
+</div>${optionsCommentIcon}
 </div>
 `;
     commentCont.querySelector("#cm-icon-reply").querySelector("button").onclick = function(){
@@ -822,7 +932,7 @@ ${pinnedCMBadge}
 
     const getCommentsTitle = new XMLHttpRequest();
     getCommentsTitle.open('GET', APIbaseURL + 'api/v1/channels/' + item.authorId, true);
-    getCommentsTitle.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs=');
+    if (APP_DONT_AUTH_TO_INVIDIOUS_expflag == "false"){getCommentsTitle.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs=');};
 
     getCommentsTitle.onerror = function(event) {
     console.error("An error occurred with this operation (" + getCommentsTitle.status + ")");
@@ -1014,6 +1124,21 @@ function renderPosts(parent, postId, postSource){
     postAttachment = `<div class="post-unsupported-attachment-msg"><span class="subhead">${item.attachment.type} attachments are not supported on ytm15 posts yet.</span></div>`;
     };
     };
+    var optionsCommentIcon = ""
+    var optionsCommentIcon2 = ""
+    if (WATCH_COMMUNITY_POSTS_ADD_OPTIONS_expflag == "true") {
+      if (WATCH_CONDENSE_COMMUNITY_POST_BUTTONS_expflag == "true") {
+        optionsCommentIcon2 = `
+        <div class="post-icons" id="post-icon-options" style="float:right;">
+        <button class="icon-button post-icon-button"><ytm15-icon class="options-icon post-action-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z"></path></svg></ytm15-icon></button>
+        </div>`
+      } else {
+        optionsCommentIcon = `
+        <div class="post-icons" id="post-icon-options">
+        <button class="icon-button post-icon-button"><ytm15-icon class="options-icon post-action-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z"></path></svg></ytm15-icon></button>
+        </div>`
+      }
+    }
     postCont.innerHTML = `<p class="post-text user-text">${item.contentText}</p>
 <div class="post-header">
 <span class="post-title"><a href="#/channel/${item.authorChannelId}">${postAuthor}</a></span>
@@ -1028,12 +1153,12 @@ function renderPosts(parent, postId, postSource){
 <div class="post-icons" id="post-icon-dislike">
 <button class="icon-button post-icon-button" aria-label="Dislike this post"><ytm15-icon class="dislike-icon post-action-icon"><svg viewBox="0 0 24 24" fill=""><path d="M15 3H6c-.83 0-1.54.5-1.84 1.22l-3.02 7.05c-.09.23-.14.47-.14.73v1.91l.01.01L1 14c0 1.1.9 2 2 2h6.31l-.95 4.57-.03.32c0 .41.17.79.44 1.06L9.83 23l6.59-6.59c.36-.36.58-.86.58-1.41V5c0-1.1-.9-2-2-2zm4 0v12h4V3h-4z"></path></svg></ytm15-icon></button>
 <span class="post-count"></span>
-</div>
+</div>${optionsCommentIcon2}
 <div class="post-icons" id="post-icon-reply">
 <button class="icon-button post-icon-button" aria-label="Reply to this post"><ytm15-icon class="reply-icon post-action-icon"><svg viewBox="0 0 24 24" fill=""><path d="M18,8H6V6H18V8M18,11H6V9H18V11M18,14H6V12H18V14M22,4A2,2 0 0,0 20,2H4A2,2 0 0,0 2,4V16A2,2 0 0,0 4,18H18L22,22V4Z"></path></svg></ytm15-icon>
 </button>
 <span class="post-count">${postReplyCount}</span>
-</div>
+</div>${optionsCommentIcon}
 </div>
 `;
     if (postCont.querySelector(".ytm15-img")) {
@@ -1111,7 +1236,7 @@ function renderPivotBar(){
     {
       "name": Subs_text_string,
       "pivotName": "subscriptions",
-      "iconPath": "M20,8H4V6H20V8M18,2H6V4H18V2M22,12V20A2,2 0 0,1 20,22H4A2,2 0 0,1 2,20V12A2,2 0 0,1 4,10H20A2,2 0 0,1 22,12M16,16L10,12.73V19.26L16,16Z",
+      "iconPath": "M20 8H4V6h16v2zm-2-6H6v2h12V2zm4 8v12H2V10h20zm-6 6-6-3.27v6.53L16 16z",
       "link": "subscriptions"
     },
     {
@@ -1127,6 +1252,9 @@ function renderPivotBar(){
       "link": "library"
     }
     ];
+    if (PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Inbox") {pivotBarItems[3].iconPath = "M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z";};
+    if (PIVOT_TRENDING_IS_EXPLORE_expflag == "true") {pivotBarItems[1].iconPath = "M14.19,14.19L6,18L9.81,9.81L18,6M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,10.9A1.1,1.1 0 0,0 10.9,12A1.1,1.1 0 0,0 12,13.1A1.1,1.1 0 0,0 13.1,12A1.1,1.1 0 0,0 12,10.9Z";pivotBarItems[1].name = "Explore";};
+    if (PIVOT_LIBRARY_UPDATED_ICON_expflag == "true") {pivotBarItems[4].iconPath = "M4,6H2V20A2,2 0 0,0 4,22H18V20H4V6M20,2H8A2,2 0 0,0 6,4V16A2,2 0 0,0 8,18H20A2,2 0 0,0 22,16V4A2,2 0 0,0 20,2M12,14.5V5.5L18,10L12,14.5Z";};
     pivotBar.innerHTML = "";
     pivotBarItems.forEach(function(item){
       const pivotBarItem = document.createElement("div");
@@ -1142,6 +1270,12 @@ function renderPivotBar(){
 <div class="pivot-bar-item-title">${item.name}</div>
 </div>
 </div>`;
+if (PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Shared (NOT ACCURATE)" && item.name == "Shared") {pivotBarItem.innerHTML = `<div role="tab" aria-selected="${pivotTabSelected}" class="pivot-bar-item-tab has-ripple pivot-${item.pivotName}">
+<div class="pivot-tab-items">
+<ytm15-icon class="pivot-bar-tab-icon ${item.pivotName}-icon"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="54.9129" height="48.95986" viewBox="0,0,54.9129,48.95986"><g transform="translate(-213.48,-155.27287)"><g data-paper-data="{&quot;isPaintingLayer&quot;:true}"  stroke="none" stroke-width="0" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" style="mix-blend-mode: normal"><path d="M228.95573,186.14239c0,2.41314 6.57374,-2.97282 9.23524,-3.20014c0.37979,-0.03244 0.39431,-0.81668 0.59787,-0.56067c0.24556,0.30883 0.79714,0.13886 1.44239,0.22425c1.21625,0.16095 2.76529,0.4524 3.22495,1.10713c0.68596,0.97705 0.10148,1.21026 0.66424,2.29131c0.27404,0.52643 3.11669,-1.34809 5.80605,-3.7177c2.09984,-1.85018 4.18541,-4.35851 4.36228,-3.92321c0.13207,0.32504 -0.45148,-0.77217 0.00975,-1.16402c0.48174,-0.40928 1.51314,-0.93423 2.20856,-0.99963c3.18964,-0.29998 8.66235,-0.65594 11.34053,-0.58614c2.03806,0.05312 -2.23853,13.99239 -2.98991,15.68482c-1.03396,2.32894 -3.28656,5.24116 -6.94449,7.3363c-6.07608,3.48019 -14.60236,5.59804 -17.37444,5.59804c-6.27417,0 -10.50486,-2.0177 -14.76842,-5.55616c-0.40429,-0.33553 0.00256,-0.17182 -0.97926,0.55126c-0.54421,0.40079 -2.21769,1.25449 -3.02118,1.62177c-2.01619,0.92162 -5.18301,1.23392 -5.78315,0.65649c-1.23883,-1.19194 1.07408,-6.58668 1.62403,-9.35915c0.12313,-0.62074 0.63957,-1.11003 0.46408,-1.39127c-2.21515,-3.54986 -4.59484,-6.63571 -4.59484,-11.00287c0,-13.51989 12.11462,-24.47993 27.05875,-24.47993c3.65506,0 11.01032,0.76097 16.29264,4.23103c6.77459,4.45036 11.17356,12.22866 10.99094,16.56545c-0.06211,1.47493 -13.34757,0.01802 -13.9241,1.21986c-0.17448,0.36372 -9.48043,-8.09205 -9.66069,-7.72034c-0.62935,1.29778 0.09627,1.65382 -0.6235,3.08606c-0.73444,1.46146 -7.02982,2.89831 -7.44368,4.50575c-0.27,1.04867 -7.21463,7.96721 -7.21463,8.9817z"/></g></g></svg></ytm15-icon>
+<div class="pivot-bar-item-title">${item.name}</div>
+</div>
+</div>`;};
       pivotBarItem.querySelector(".pivot-bar-item-tab").onclick = function(){
         window.location.hash = "#/" + item.link;
       }
@@ -1190,7 +1324,7 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         } else if (mediaType == "hashtag") {
         thumbnail.href = "#" + itemVideoId;
         }
-        if (mediaType == "video" || mediaType == "shortVideo") {
+        if (mediaType == "video" || mediaType == "shortVideo" || mediaType == "shorts") {
         thumbnail.onclick = function(){
         if (!app.querySelector("#watchpageFrame_Container")) {
         app.insertAdjacentElement("afterbegin", watchContainer);
@@ -1393,7 +1527,7 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         } else if (mediaType == "hashtag") {
         metaContent.href = "#" + itemVideoId;
         }
-        if (mediaType == "video" || mediaType == "shortVideo") {
+        if (mediaType == "video" || mediaType == "shortVideo" || mediaType == "shorts") {
         metaContent.onclick = function(){
         if (!app.querySelector("#watchpageFrame_Container")) {
         app.insertAdjacentElement("afterbegin", watchContainer);
@@ -1458,7 +1592,7 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         menuItemBtnShare.textContent = "Sharing will be implemented soon";
         menuItemBtnShare.setAttribute("style", "opacity: .7;")
         menuItemBtnShare.onclick = function(){
-            
+
         };
         menuItemShare.appendChild(menuItemBtnShare);
 
@@ -2446,7 +2580,7 @@ setTimeout(function() {
 function callback(mutationsList, observer) {
     /* console.log('Mutations:', mutationsList) */
     /* console.log('Observer:', observer) */
-    mutationsList.forEach(mutation => {
+    mutationsList.forEach(function(mutation) {
         if (mutation.attributeName === 'class') {
             if (mutation.target.classList.contains("has-watchpage")) {
             metaColorBeforeWP = metaColorElm.content;
@@ -2544,7 +2678,7 @@ if (!wasPrevChannelPage) {
     headerTitle.setAttribute("aria-label", _2015YT_text_string);
     headerTitle.textContent = _2015YT_text_string;
 }
-if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == undefined || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "trending" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "") {
+if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == undefined || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "trending" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "library") {
     renderData();
 } else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "about") {
     aboutYTm15();
@@ -2556,6 +2690,8 @@ if (window.location.hash.split("/").join(',').split("?").join(',').split(',').sl
     playlistPage();
 } else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "comments") {
     commentsPage();
+} else if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "subscriptions") {
+    subscriptionsPage();
 } else {
     if (document.querySelector(".spinner-container.full-height")) {
     var spinner = document.querySelector(".spinner-container.full-height");
@@ -2571,6 +2707,43 @@ if (window.location.hash.split("/").join(',').split("?").join(',').split(',').sl
 }
 function settingsHashDetector() {
 settingsPage();
+}
+function showNotification(message, buttonText=undefined, onclick=undefined) {
+  const n = document.createElement('div');
+  n.className = 'notification';
+  n.setAttribute('role', 'status');
+  n.setAttribute('aria-live', 'polite');
+
+  const text = document.createElement('span');
+  text.textContent = message;
+  n.appendChild(text);
+
+  if (buttonText) {
+    const button = document.createElement('button');
+    button.textContent = buttonText;
+    if (onclick && typeof onclick === "function") {
+      button.addEventListener("click", function(){
+        onclick();
+        dismiss(n);
+      });
+    }
+    n.appendChild(button);
+  }
+
+  document.body.appendChild(n);
+  void n.offsetHeight;
+  n.classList.add('notification-show');
+
+  setTimeout(function(){dismiss(n)}, 3500);
+
+  function dismiss(el) {
+    el.classList.remove('notification-show');
+    el.addEventListener('transitionend', function() {
+      if (el.parentNode) el.parentNode.removeChild(el);
+    }, { once: true });
+  }
+
+  return n;
 }
 
 if (window.location.pathname.split("/").slice(2, 3) == "2015YouTube%20(Mobile)") {
@@ -2599,3 +2772,57 @@ window.addEventListener('hashchange', function (event) {
     }
     }
 });
+
+window.addEventListener('offline', function() {
+  if (APP_NO_INTERNET_POPUP_NEW_STYLE_expflag == "true") {
+    const n = document.createElement('div');
+    n.setAttribute('id','offline-bar');
+    n.setAttribute('aria-live', 'polite');
+    n.innerHTML = "No connection";
+    pivotBar.after(n);
+    void n.offsetHeight;
+    n.classList.add('offline-bar-show');
+  }
+  else {
+    showNotification("No connection");
+  }
+});
+window.addEventListener('online', function() {
+  if (APP_NO_INTERNET_POPUP_NEW_STYLE_expflag == "true") {
+  const n = document.getElementById('offline-bar');
+  n.classList.add('offline-bar-online');
+  n.innerHTML = "Back online";
+  setTimeout(function(){dismiss(n)}, 3500);
+  function dismiss(el) {
+    el.classList.remove('offline-bar-show');
+    el.addEventListener('transitionend', function() {
+      if (el.parentNode) el.parentNode.removeChild(el);
+    }, { once: true });
+  }
+  }
+  else {
+    showNotification("Connection established","Go online",function() {renderData();});
+  }
+});
+
+function openMenu() {
+    const n = document.createElement('div');
+    n.className = "hamburger-menu"
+    const n1 = document.createElement('div');
+    n1.className = "hamburger-submenu"
+    app.appendChild(n);
+    n.addEventListener("click", function() {dismiss(n,n1)});
+    function dismiss(el,el1) {
+      el1.classList.remove('hamburger-submenu-show');
+      el.classList.add('hamburger-menu-hide');
+      void el.offsetHeight
+      el.addEventListener('animationend', function() {
+        if (el.parentNode) el.parentNode.removeChild(el);
+      }, { once: true });
+    }
+    n.appendChild(n1);
+    void n.offsetHeight
+    n1.classList.add("hamburger-submenu-show");
+
+}
+

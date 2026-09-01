@@ -22,6 +22,27 @@ function renderWatchPage(parent) {
 
     insertYTmPlayer(playerCont2);
 
+    async function shareVideo() {
+      if (navigator.share) {
+      try {
+        await navigator.share({url:"https://youtu.be/" + playerVideoId})
+      }
+      catch(err) {
+        if (err.name !== 'AbortError') {
+          showNotification(err);
+        }
+      }
+      } else {
+        showNotification("Web Share API not supported!\nTry on Android 6.0+!");
+      }
+    }
+    function saveVideo(videoId,url,lengthSeconds,title,author,authorId,publishedText,viewCount) {
+        const library = JSON.parse(localStorage.getItem("WEB_LIBRARY")) || [];
+        library.unshift({videoId:videoId,videoThumbnails:[{url:url}],lengthSeconds:lengthSeconds,title:title,author:author,authorId:authorId,publishedText:publishedText,viewCount:viewCount});
+        localStorage.setItem("WEB_LIBRARY",JSON.stringify(library));
+        showNotification("Saved to playlist");
+    }
+
     const getWatchData = new XMLHttpRequest();
     /* getWatchData.open('GET', APIbaseURL + 'api/v1/videos/' + playerVideoId, true); */
     /* getWatchData.open('GET', APIbaseURLWatch + 'api/v1/videos/' + playerVideoId, true); */
@@ -384,6 +405,9 @@ function renderWatchPage(parent) {
     videoMetadataLikeCount = "Like";
     videoMetadataLikeCountAL = "Like this video";
     };
+    if (WATCH_FORMAT_LIKE_COUNTS_expflag == "true") {
+    videoMetadataLikeCount = new Intl.NumberFormat('en-US', {notation: "compact",compactDisplay: "short"}).format(videoMetadataLikeCount.replace(/\D/g, ""));
+    }
     mtrlBtnCont.innerHTML = `<button class="material-button" aria-label="${videoMetadataLikeCountAL}" aria-pressed="false">
 <div class="button-text">${videoMetadataLikeCount}</div><img class="ytm15-img-icon ytm15-img button-icon like-icon" src="ic_like.png"><img class="ytm15-img-icon ytm15-img button-icon like-icon pressed" src="ic_like_focus.png"></img>
 </button>`
@@ -413,7 +437,7 @@ function renderWatchPage(parent) {
       videoMetadataDislikeCount = response.dislikes.toLocaleString();
       videoMetadataDislikeCountAL = "Dislike this video along with " + videoMetadataDislikeCount + " other people";
       mtrlBtnContDislike.querySelector("button").ariaLabel = videoMetadataDislikeCountAL;
-      mtrlBtnContDislike.querySelector(".button-text").innerHTML = videoMetadataDislikeCount;
+      mtrlBtnContDislike.querySelector(".button-text").innerHTML = (WATCH_FORMAT_LIKE_COUNTS_expflag == "true") ? new Intl.NumberFormat('en-US', {notation: "compact",compactDisplay: "short"}).format(videoMetadataDislikeCount.replace(/\D/g, "")) :  videoMetadataDislikeCount;
       } else {
       console.error("An error occurred with this operation (" + getDislikeCount.status + ")");
       }
@@ -434,6 +458,28 @@ function renderWatchPage(parent) {
 <div class="button-text">${Share_text_string}</div><img class="ytm15-img-icon ytm15-img button-icon share-icon" src="ic_share.png"></img>
 </button>`
 
+    const mtrlBtnContDownload = document.createElement("div");
+    mtrlBtnContDownload.classList.add("material-button-container", "compact", "download-button");
+    mtrlBtnContDownload.dataset.style = "DEFAULT";
+    mtrlBtnContDownload.dataset.iconOnly = "true";
+    mtrlBtnContDownload.setAttribute("is-busy", "false");
+    mtrlBtnContDownload.ariaBusy = "false";
+    mtrlBtnContDownload.setAttribute("disabled", "false");
+    mtrlBtnContDownload.innerHTML = `<button class="material-button" aria-label="${Download_text_string}" aria-pressed="false">
+<div class="button-text">${Download_text_string}</div><img class="ytm15-img-icon ytm15-img button-icon download-icon" src="ic_download.png"></img>
+</button>`
+
+    const mtrlBtnContSave = document.createElement("div");
+    mtrlBtnContSave.classList.add("material-button-container", "compact", "save-button");
+    mtrlBtnContSave.dataset.style = "DEFAULT";
+    mtrlBtnContSave.dataset.iconOnly = "true";
+    mtrlBtnContSave.setAttribute("is-busy", "false");
+    mtrlBtnContSave.ariaBusy = "false";
+    mtrlBtnContSave.setAttribute("disabled", "false");
+    mtrlBtnContSave.innerHTML = `<button class="material-button" aria-label="${Save_text_string}" aria-pressed="false">
+<div class="button-text">${Save_text_string}</div><img class="ytm15-img-icon ytm15-img button-icon save-icon" src="ic_save.png"></img>
+</button>`
+
     if (WATCH_USE_MTRL_ICONS_expflag == "true") {
     mtrlBtnCont.innerHTML = `<button class="material-button" aria-label="${videoMetadataLikeCountAL}" aria-pressed="false">
 <ytm15-icon class="like-icon button-icon"><svg viewBox="0 0 24 24" fill=""><path d="M1 21h4V9H1v12zm22-11c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.59 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-1.91l-.01-.01L23 10z"></path></svg></ytm15-icon><div class="button-text">${videoMetadataLikeCount}</div>
@@ -450,12 +496,33 @@ function renderWatchPage(parent) {
 "></path></svg></ytm15-icon><div class="button-text">${Share_text_string}</div>
 </button>`
 
+    mtrlBtnContDownload.innerHTML = `<button class="material-button" aria-label="${Download_text_string}" aria-pressed="false"><ytm15-icon class="save-icon button-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12,2 C6.49,2,2,6.49,2,12 s4.49,10,10,10 s10,-4.49,10,-10 S17.51,2,12,2 m-1.7,8 V6 h3.5 v4 h2.8 l-4.5,4 l-4.5,-4 h3.5 m6,7 H7 v-1.25 h10 v1.25 Z" style="
+    transform: scale(1.2);
+    transform-origin: center;
+"></path></svg></ytm15-icon><div class="button-text">${Download_text_string}</div>
+</button>`
+
+    saveIconSvg = "M14 10H3v2h11v-2zm0-4H3v2h11V6zm4 8v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zM3 16h7v-2H3v2z";
+    saveIconScale = "3";
+    if (WATCH_SAVE_UPDATED_ICON_expflag == "true") {
+      saveIconSvg = "M19,11H15V15H13V11H9V9H13V5H15V9H19M20,2H8A2,2 0 0,0 6,4V16A2,2 0 0,0 8,18H20A2,2 0 0,0 22,16V4A2,2 0 0,0 20,2M4,6H2V20A2,2 0 0,0 4,22H18V20H4V6Z";
+      saveIconScale = "2";
+    }
+    mtrlBtnContSave.innerHTML = `<button class="material-button" aria-label="${Save_text_string}" aria-pressed="false">
+<ytm15-icon class="save-icon button-icon"><svg viewBox="0 0 24 24" fill=""><path d="${saveIconSvg}" style="
+    transform: scale(1.${saveIconScale});
+    transform-origin: center;
+"></path></svg></ytm15-icon><div class="button-text">${Save_text_string}</div>
+</button>`
+
     metadataActions.classList.add("use-mtrl-icons");
     };
     if (APP_DEMATERIALIZE_UI_expflag == "true") {
     mtrlBtnCont.querySelector("button").appendChild(mtrlBtnCont.querySelector(".button-text"));
     mtrlBtnContDislike.querySelector("button").appendChild(mtrlBtnContDislike.querySelector(".button-text"));
     mtrlBtnContShare.querySelector("button").appendChild(mtrlBtnContShare.querySelector(".button-text"));
+    mtrlBtnContDownload.querySelector("button").appendChild(mtrlBtnContDownload.querySelector(".button-text"));
+    mtrlBtnContSave.querySelector("button").appendChild(mtrlBtnContSave.querySelector(".button-text"));
     };
 
     const actionsSpacer = document.createElement("div");
@@ -464,7 +531,12 @@ function renderWatchPage(parent) {
     metadataActions.appendChild(mtrlBtnCont);
     metadataActions.appendChild(mtrlBtnContDislike);
     metadataActions.appendChild(mtrlBtnContShare);
+    mtrlBtnContShare.querySelector("button").addEventListener("click", shareVideo);
+    
+    mtrlBtnContSave.querySelector("button").addEventListener("click", ()=>{saveVideo(playerVideoId, document.querySelector(".player-poster").style.backgroundImage.slice(4, -1).replace(/["']/g, ""), "0", metaTitle.textContent, document.querySelector(".video-owner-title").textContent, data.channelId, document.querySelector(".video-published-date").textContent, parseInt(document.querySelector(".video-metadata-view-count .secondary-text").textContent.replace(/\D/g, "")))});
     metadataActions.appendChild(actionsSpacer);
+    if (WATCH_DOWNLOAD_BUTTON_expflag == "true") {metadataActions.appendChild(mtrlBtnContDownload);};
+    if (WATCH_SAVE_BUTTON_expflag == "true" && WATCH_ENABLE_NEW_UI_expflag == "true") {metadataActions.appendChild(mtrlBtnContSave);metadataActions.style.flexWrap = "nowrap"};
 
     const W2ndHalf = document.createElement("div");
     W2ndHalf.classList.add("wnr-2nd-half", "watch-next-results-content");
@@ -537,6 +609,9 @@ function renderWatchPage(parent) {
     if (WATCH_AUTONAV_TITLE_USE_UPNEXT_expflag == "true") {
     autonavBar.innerHTML = `<h3 class="autonav-bar-title">${UpNext_text_string}</h3>`;
     }
+    if (WATCH_AUTOPLAY_SWITCH_expflag == "true") {
+    autonavBar.insertAdjacentHTML("beforeend",`<h3 class="autonav-bar-title" style="text-align: right;padding-bottom: 10px;">Autoplay<button id="autoplay-toggle-button" class="toggle-button" aria-pressed="true" onclick="'false'==localStorage.getItem('WATCH_AUTOPLAY_SWITCH_INTERNAL')?(localStorage.setItem('WATCH_AUTOPLAY_SWITCH_INTERNAL','true'),this.setAttribute('aria-pressed','true')):(localStorage.setItem('WATCH_AUTOPLAY_SWITCH_INTERNAL','false'),this.setAttribute('aria-pressed','false'));showNotification('The Autoplay switch is still under development, autoplay will be added at a later date.');" style="margin-left: 10px;overflow: visible;"><div class="toggle-button-track"></div><div class="toggle-button-circle has-ripple"></div></button></h3>`);
+    }
     itemSectRelated.querySelector(".lazy-list").appendChild(autonavBar);
 
     data.relatedVideos.data.forEach(function(item) {
@@ -571,11 +646,18 @@ function renderWatchPage(parent) {
         renderCompactMediaItem(itemSectRelated.querySelector(".lazy-list"), "related-media-lazy-list", compMediaItemvidId, compMediaItemThumb, compMediaItemLength, compMediaItemTitle, compMediaItemAuthor, item.channelId, "", item.viewCount, item.type);
     });
 
-    renderCommentSection(W2ndHalf, "video", playerVideoId, false);
+    if (WATCH_COMMENT_SECTION_LEFT_expflag == "true") {
+      renderCommentSection(scwnr, "video", playerVideoId, false);
+    } else {
+      renderCommentSection(W2ndHalf, "video", playerVideoId, false);
+    }
 
     parent.innerHTML = "";
 
     parent.appendChild(scwnr);
+    if (WATCH_AUTOPLAY_SWITCH_expflag == "true") {
+      document.getElementById('autoplay-toggle-button').setAttribute('aria-pressed',localStorage.getItem('WATCH_AUTOPLAY_SWITCH_INTERNAL'));
+    }
     } else {
     getWatchData.onerror();
     }

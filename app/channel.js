@@ -236,6 +236,9 @@ function channelPage() {
     if (item == "live") {
     item = "streams";
     }
+    if (item == "search") {
+      return;
+    }
     tab.setAttribute('aria-label', item);
     if (item == "streams") {
     tab.setAttribute('aria-label', 'live');
@@ -1042,12 +1045,13 @@ function channelPage() {
     /* getChannelVideos.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '/videos?sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString(), true); */
     /* getChannelVideos.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] + '?sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString(), true); */
     /* getChannelVideos.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs='); */
-    getChannelVideos.open('GET', APIbaseURLNew + 'channel/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] + '?id=' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '&sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString(), true);
+    getChannelVideos.open('POST', APIbaseURLNew + 'channel/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0], true);
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "streams") {
     getChannelVideos.open('GET', APIbaseURLNew + 'channel/liveStreams?id=' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '&sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString(), true);
     }
     getChannelVideos.setRequestHeader('x-rapidapi-key', '4b0791fe33mshce00ad033774274p196706jsn957349df7a8f');
     getChannelVideos.setRequestHeader('x-rapidapi-host', 'yt-api.p.rapidapi.com');
+    getChannelVideos.setRequestHeader("content-type", "application/x-www-form-urlencoded");
  
     getChannelVideos.onerror = function(event) {
     console.error("An error occurred with this operation (" + getChannelVideos.status + ")");
@@ -1070,8 +1074,11 @@ function channelPage() {
     };
     return;
     };
-
-    getChannelVideos.send();
+    
+    const getChannelVideosParams = new URLSearchParams();
+    getChannelVideosParams.set("id", window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0]);
+    getChannelVideosParams.set("sort_by", window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString());
+    getChannelVideos.send(getChannelVideosParams);
 
     getChannelVideos.onload = function() {
     if (getChannelVideos.status === 200) {
@@ -1205,6 +1212,7 @@ function channelPage() {
         compMediaItemAuthor = item.channelTitle;
         compMediaItemvidId = item.videoId;
         }
+        //console.log(item.type + compMediaItemvidId)
         renderCompactMediaItem(lazyList, "channel-lazy-list", compMediaItemvidId, compMediaItemThumb, compMediaItemLength, compMediaItemTitle, compMediaItemAuthor, item.channelId, item.publishedTimeText, item.viewCount, item.type);
     });
     };
@@ -1238,12 +1246,13 @@ function channelVideosContin(continuation, contItemParent) {
     /* getChannelVideos1.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '/videos?continuation=' + continuation + '&sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString(), true); */
        /* getChannelVideos1.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + `/${window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0]}?continuation=` + continuation + '&sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString(), true); */
     /* getChannelVideos1.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs='); */
-    getChannelVideos1.open('GET', APIbaseURLNew + 'channel/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] + '?id=' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '&sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString() + '&token=' + continuation, true);
+    getChannelVideos1.open('POST', APIbaseURLNew + 'channel/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0], true);
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(3, 4)[0] == "streams") {
     getChannelVideos1.open('GET', APIbaseURLNew + 'channel/liveStreams?id=' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '&sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString() + '&token=' + continuation, true);
     }
     getChannelVideos1.setRequestHeader('x-rapidapi-key', '4b0791fe33mshce00ad033774274p196706jsn957349df7a8f');
     getChannelVideos1.setRequestHeader('x-rapidapi-host', 'yt-api.p.rapidapi.com');
+    getChannelVideos1.setRequestHeader("content-type", "application/x-www-form-urlencoded");
  
     getChannelVideos1.onerror = function(event) {
     console.error("An error occurred with this operation (" + getChannelVideos1.status + ")");
@@ -1267,7 +1276,11 @@ function channelVideosContin(continuation, contItemParent) {
     return;
     };
 
-    getChannelVideos1.send();
+    const getChannelVideosParams1 = new URLSearchParams();
+    getChannelVideosParams1.set("id", window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0]);
+    getChannelVideosParams1.set("sort_by", window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString());
+	getChannelVideosParams1.set("token", continuation);
+    getChannelVideos1.send(getChannelVideosParams1);
 
     getChannelVideos1.onload = function() {
     if (getChannelVideos1.status === 200) {
@@ -1413,7 +1426,7 @@ function channelVideosContin(continuation, contItemParent) {
     if (window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString() == "") {
     getChannelPlaylists.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + '/playlists', true);
     }
-    getChannelPlaylists.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs=');
+    if (APP_DONT_AUTH_TO_INVIDIOUS_expflag == "false"){getChannelPlaylists.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs=');};
 
     getChannelPlaylists.onerror = function(event) {
     console.error("An error occurred with this operation (" + getChannelPlaylists.status + ")");
@@ -1523,7 +1536,7 @@ function channelVideosContin(continuation, contItemParent) {
 
     const getChannelPlaylists1 = new XMLHttpRequest();
     getChannelPlaylists1.open('GET', APIbaseURL + 'api/v1/channels/' + window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(2, 3)[0] + `/playlists?continuation=` + continuation + '&sort_by=' + window.location.hash.split("?").slice(1, 2).toString().split("&").slice(0, 1).toString().split("sort").slice(1, 2).toString().split("=").slice(1, 2).toString(), true);
-    getChannelPlaylists.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs=');
+    if (APP_DONT_AUTH_TO_INVIDIOUS_expflag == "false"){getChannelPlaylists1.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs=');};
  
     getChannelPlaylists1.onerror = function(event) {
     console.error("An error occurred with this operation (" + getChannelVideos1.status + ")");

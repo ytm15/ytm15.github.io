@@ -915,7 +915,7 @@ ytm15-icon>svg {
     box-shadow: none;
 }
 
-.underline button:not(h2):not(.secondary-text):not(.menu-item-button):not(.error-content),.pivot-bar-item-title {
+.underline button:not(h2):not(.secondary-text):not(.menu-item-button):not(.error-content),.underline .pivot-bar-item-title {
     text-decoration: underline;
 }
 
@@ -992,6 +992,17 @@ ytm15-header-bar[ischannel="true"] {
 .header-title {
     font-weight: 500;
 }
+.header-title[aria-label="Library"]::after,.header-title[aria-label="Subscriptions"]::after {
+    content: "Beta";
+    text-transform: uppercase;
+    font-size: 1.3rem;
+    margin: 0 8px;
+    padding: 1px 6px;
+    background-color: rgba(0, 0, 0, 0.15);
+    opacity: .6;
+    font-weight: 500;
+    border-radius: 2px;
+}
 
 /* Header content and other header things */
 .header-content {
@@ -1015,6 +1026,9 @@ ytm15-header-bar[ischannel="true"] {
 }
 .header-no-shadow ytm15-header-bar {
     box-shadow: none !important;
+}
+.header-button[aria-label="Left Menu"] {
+    padding-left:unset;
 }
 
 /* Header logo */
@@ -1212,7 +1226,7 @@ overflow: hidden;
     display: block;
     animation: page-expand-in .2s;
 }
-.no-animations .page-container,.no-animations .error-container,.no-animations page.home,.no-animations .lazy-list,.no-animations .error-content {
+.no-animations .page-container,.no-animations .error-container,.no-animations page.home,.no-animations .lazy-list,.no-animations .error-content, .no-animations .searching-overlay ~ .page-container > page {
     animation: none !important;
 }
 .no-animations .ytm15-img.lazy {
@@ -2591,6 +2605,9 @@ ytm15-menu-button {
 .compact-channel.shelf-item .media-item-menu {
     display: none;
 }
+.no-lines .ytm15-video-owner,.no-lines .watch-next-results-content {
+    border:unset !important;
+}
 
 /* About 2015YouTube */
 .about-page-heading, .about-page-subheading {
@@ -3074,6 +3091,9 @@ ytm15-channels-header {
 .ytm15-img-icon.subscribe-icon.style-2018 {
     width: 18px;
     height: 13px;
+}
+.no-subscribe-icon .ytm15-img-icon.subscribe-icon {
+    display:none;
 }
 
 .continuation-item ~ .continuation-item {
@@ -3698,6 +3718,9 @@ button.comment-icon-button {
     border-radius: 0;
     margin: 0;
 }
+.comment-icons#cm-icon-options {
+margin-left:auto;
+}
 .pinned-comment-badge {
     color: #e62117;
     margin-bottom: 5px;
@@ -3708,6 +3731,18 @@ button.comment-icon-button {
     width: 14px;
     height: 14px;
     margin-right: 2px;
+}
+.collapse-comments .comment-simplebox,.collapse-comments .comment-separator,.comment-section.collapse-comments .lazy-list,.collapse-comments .next-continuation-cont {
+    display:none;
+}
+.comment-section .lazy-list {
+    transition: transform .35s cubic-bezier(.22,.9,.35,1);
+}
+.condense-comment-buttons .comment-details {
+    display:inline-flex;
+}
+.condense-comment-buttons .comment-details #cm-icon-dislike {
+    margin-left:10px;
 }
 
 /* Community posts */
@@ -3901,6 +3936,12 @@ ytm15-icon.post-image-icon {
     border: 1.2px solid rgba(0,0,0,0.1);
     border-radius: 3px;
 }
+.condense-comment-buttons-2 .post-details {
+    display:ruby;
+}
+.condense-comment-buttons-2 .post-details #post-icon-reply {
+    float:right;
+}
 
 /* Pivot bar */
 [has-pivot-bar="true"] ytm15app {
@@ -3929,7 +3970,7 @@ ytm15-pivot-bar {
     z-index: 2;
     height: 52px;
     background-color: #fff;
-    color: rgba(0, 0, 0, 0.5);
+    color: #5f5f5f;
     box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.25);
     font-size: 1.1rem;
 }
@@ -4239,6 +4280,9 @@ label.radio-label {
 /*New font*/
 .helvetica-neue {
     font-family: 'HelveticaNeue-Light','Helvetica Neue Light','Helvetica Neue',Helvetica,Arial,sans-serif !important;
+}
+.system-font {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Oxygen-Sans, Ubuntu, Cantarell, Roboto, "Helvetica Neue", sans-serif !important;
 }
 /*New error screen*/
 .tap-to-retry .error-content {
@@ -5657,7 +5701,7 @@ html.dark {
 }
 .dark ytm15-pivot-bar {
     background-color: #303030;
-    color: rgba(255, 255, 255, 0.6);
+    color: #8f8f8f;
 }
 .dark ytm15-pivot-bar.no-shadow {
     border-top: 1.2px solid rgba(255,255,255,0.1);
@@ -6093,4 +6137,86 @@ html.style-2013.dark.dark-21 {
 }
 .style-2013.dark.dark-21 .ytm15-video-owner .material-button-container[data-style="BRAND"] .material-button {
     background: linear-gradient(#323232, #252525);
+}
+/* Implementation by legoskid */
+.notification {
+    position: fixed;
+    bottom: 0;
+    /* left: 50%; */
+    left: 0;
+    right: 0;
+    transform: translate(0, 100%);
+    /* transition: transform .35s cubic-bezier(.22,.9,.35,1), opacity .25s; */
+    transition: transform .3s ease-in-out, opacity .25s;
+    display: inline-block;
+    display: block;
+    /* max-width: calc(100% - 40px); */
+    max-width: 400px;
+    /* padding: 20px 32px; */
+    padding: 14px 24px;
+    background: #2e2e2e;
+    color: #f1f1f1;
+    border-radius: unset;
+    border: unset;
+    box-shadow: unset;
+    box-sizing: border-box;
+    line-height: 1.25;
+    font-size: 15px;
+    z-index: 9999;
+    white-space: normal;
+    margin: auto;
+}
+.notification.notification-show {
+    transform: translate(0, 0);
+}
+.notification button {
+    float: right;
+    color: #2196f3;
+    text-transform:uppercase;
+}
+div#offline-bar {
+    display: flex;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 0;
+    z-index: 2;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    padding: 2px;
+    transform: translateY(100%);
+    transition: transform .35s cubic-bezier(.22,.9,.35,1), opacity .25s, background .35s cubic-bezier(.22,.9,.35,1)
+}
+div#offline-bar.offline-bar-show {
+    transform: translateY(0%);
+}
+div#offline-bar.offline-bar-online {
+    background:green;
+}
+.hamburger-menu {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    background-color: rgba(0, 0, 0, 0.5);
+    animation: overlay-fade .3s;
+    display:initial;
+}
+.hamburger-submenu {
+    height: 100%;
+    background: white;
+    width: 28rem;
+    transform: translateX(-100%);
+    transition: transform .35s cubic-bezier(.22,.9,.35,1);
+}
+.hamburger-submenu.hamburger-submenu-show {
+    transform:unset;
+}
+.hamburger-menu-hide {
+    animation: overlay-fade-out .2s;
 }

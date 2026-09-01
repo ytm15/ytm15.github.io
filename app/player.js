@@ -193,6 +193,14 @@ playerShareBtn.innerHTML = `<img class="player-img-icon button-icon share-icon i
 <img class="player-img-icon button-icon share-icon active" src="ic_vidcontrol_share_pressed.png"></img>`;
 playerShareBtn.ariaPressed = "false";
 controlsTop.appendChild(playerShareBtn);
+/*const playerSaveBtn = document.createElement("button");
+playerSaveBtn.classList.add("controls-button", "share-button", "has-ripple");
+playerSaveBtn.title = "Share video";
+playerSaveBtn.ariaLabel = "Share video";
+playerSaveBtn.innerHTML = `<img class="player-img-icon button-icon share-icon inactive" src="ic_vidcontrol_share.png"></img>
+<img class="player-img-icon button-icon share-icon active" src="ic_vidcontrol_share_pressed.png"></img>`;
+playerSaveBtn.ariaPressed = "false";
+controlsTop.appendChild(playerSaveBtn);*/
 const overflowBtn = document.createElement("button");
 overflowBtn.classList.add("controls-button", "overflow-button", "has-ripple");
 overflowBtn.title = "More options";
@@ -849,7 +857,12 @@ Sorry about that...`;
 playerxhttpr.onload = function() {
   if (playerxhttpr.status === 200) {
       const data = JSON.parse(playerxhttpr.response);
-          video.poster = data.thumbnail[3].url;
+      if (data.code === 403) {
+          playerxhttpr.onerror();
+                    return;
+	  }
+          /*  video.poster = data.thumbnail[3].url; */
+          video.poster = data.thumbnail[data.thumbnail.length - 1].url;
           video.innerHTML = ``;
           video.dataset.title = data.title;
           /* storyboardURL = "https://inv.tux.pizza" + data.storyboards[2].url; */
@@ -902,4 +915,5 @@ sbxhttpr.onload = function() {
           playerxhttpr.onerror();
   }
 };
+
 };

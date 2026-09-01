@@ -33,7 +33,7 @@ spinner();
 function renderData() {
     const headerTitle = document.querySelector(".header-title");
     headerTitle.setAttribute("aria-label", "");
-    headerTitle.textContent = "";
+    (HEADER_ALWAYS_SHOW_YOUTUBE_TITLE_expflag == "true") ? headerTitle.textContent = "YouTube" : headerTitle.textContent = "";
 
     const headerBar = document.querySelector("ytm15-header-bar");
    
@@ -75,6 +75,7 @@ function renderData() {
     }
     tab1.href = "#/trending";
     tab1.innerHTML = `<img class="ytm15-img-icon ytm15-img home-icon" src="ic_tab_trending.png"></img>`
+    if (PIVOT_TRENDING_IS_EXPLORE_expflag == "true") {tab1.innerHTML = `<svg class="ytm15-img-icon ytm15-img home-icon" viewBox="0 0 24 24"><path d="M14.19,14.19L6,18L9.81,9.81L18,6M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2M12,10.9A1.1,1.1 0 0,0 10.9,12A1.1,1.1 0 0,0 12,13.1A1.1,1.1 0 0,0 13.1,12A1.1,1.1 0 0,0 12,10.9Z" fill="white"></path></svg>`;};
 
     const tBTabCont2 = document.createElement("div");
     tBTabCont2.classList.add("tabbar-tab-container", "subscriptions-tab");
@@ -86,7 +87,7 @@ function renderData() {
     tab2.setAttribute('aria-label', 'Subscriptions');
     tab2.setAttribute('aria-selected', 'false');
     if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "subscriptions") {
-    tab1.setAttribute('aria-selected', 'true');
+    tab2.setAttribute('aria-selected', 'true');
     }
     tab2.href = "#/subscriptions";
     tab2.innerHTML = `<img class="ytm15-img-icon ytm15-img home-icon" src="ic_tab_subscriptions.png"></img>`
@@ -207,7 +208,7 @@ function renderData() {
         } */
 
         headerTitle.setAttribute("aria-label", Trending_text_string);
-        headerTitle.textContent = Trending_text_string;
+        headerTitle.textContent = HEADER_ALWAYS_SHOW_YOUTUBE_TITLE_expflag == "true" ? "YouTube" : Trending_text_string;
 
         if (WEB_ENABLE_PIVOT_BAR_expflag !== "true") {
         if (!document.querySelector(".tab-bar")) {
@@ -268,6 +269,113 @@ function renderData() {
     getHomeData.onerror();
     }
     };
+    }
+
+    // library seperator
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "library") {
+        pageCont.innerHTML = "";
+        console.log("EE");
+
+        var spinner = document.querySelector(".spinner-container.full-height");
+        spinner.removeAttribute("hidden");
+
+        /*if (document.querySelector(".tab-bar")) {
+        document.querySelector(".tab-bar").setAttribute("hidden", "");
+        headerBar.classList.remove('has-tab-bar');
+        document.querySelector(".tab-bar").setAttribute("isChannel", "false");
+        document.querySelector(".tab-bar").innerHTML = "";
+        };*/
+
+        try {
+            // { videoId, videoThumbnails: [{...},{...},{...},{url}], lengthSeconds, title, author, authorId, publishedText, viewCount }
+            const libraryJson = localStorage.getItem('WEB_LIBRARY');
+            const data = libraryJson ? JSON.parse(libraryJson) : null;
+
+            var spinner = document.querySelector(".spinner-container.full-height");
+            spinner.setAttribute("hidden", "");
+
+            if (!Array.isArray(data)) {
+				blankLibraryPage();//showNotification('This shelf is empty');
+                return;
+            }
+
+            headerTitle.setAttribute("aria-label", Library_text_string);
+            headerTitle.textContent = HEADER_ALWAYS_SHOW_YOUTUBE_TITLE_expflag == "true" ? "YouTube" : Library_text_string;
+
+            const page = document.createElement("page");
+            page.classList.add('home');
+
+            const tabContainer = document.createElement("div");
+            tabContainer.classList.add('tabs-content-container');
+
+            const tabContent = document.createElement("div");
+            tabContent.classList.add('tab-content');
+            tabContent.setAttribute("tab-identifier", "Trending");
+
+            const tabContent2 = document.createElement("div");
+            tabContent2.classList.add('tab-content');
+            tabContent2.setAttribute("tab-identifier", "What_to_watch_placeholder");
+
+            const section = document.createElement("div");
+            section.classList.add('section-list');
+
+            const sectLazyList = document.createElement("div");
+            sectLazyList.classList.add('lazy-list');
+            section.appendChild(sectLazyList);
+
+            pageCont.innerHTML = "";
+
+            const parent = document.querySelector(".page-container");
+            parent.appendChild(page);
+            page.appendChild(tabContainer);
+            tabContainer.appendChild(tabContent2);
+            tabContainer.appendChild(tabContent);
+            tabContent.appendChild(section);
+
+            var oldTitle = document.querySelector("title");
+    
+            var title = document.createElement("title");
+            title.textContent = Library_text_string + ' - 2015YouTube';
+
+            oldTitle.parentNode.replaceChild(title, oldTitle);
+
+            data.forEach(function(item) {
+                renderMediaItem(
+                    sectLazyList,
+                    "sect-lazy-list",
+                    item.videoId,
+                    item.videoThumbnails && item.videoThumbnails[3] ? item.videoThumbnails[3].url : (item.videoThumbnails && item.videoThumbnails[0] ? item.videoThumbnails[0].url : ""),
+                    item.lengthSeconds,
+                    item.title,
+                    item.author,
+                    item.authorId,
+                    item.publishedText,
+                    item.viewCount
+                );
+            });
+        } catch (err) {
+			showNotification(err);
+
+            var spinner = document.querySelector(".spinner-container.full-height");
+            spinner.setAttribute("hidden", "");
+
+            const error = document.createElement("div");
+            error.classList.add('error-container');
+            error.innerHTML = `<div class="error-content">
+<img class="error-icon ytm15-img" src="alert_error.png"></img>
+<span class="error-text">There was an error loading library data</span>
+</div>
+<div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry"><div class="button-text">Retry</div></button></div>`;
+            if (APP_NEW_ERROR_SCREEN_expflag == "true"){error.innerHTML=newErrorHtml};
+            pageCont.before(error);
+            error.querySelector("button").onclick = function(){
+                renderData();
+                error.remove();
+            };
+            return;
+        }
+
+        return;
     }
 
     /* if (urlpage == "popular") */ 
@@ -337,7 +445,7 @@ function renderData() {
         } */
 
         headerTitle.setAttribute("aria-label", Popular_text_string);
-        headerTitle.textContent = Popular_text_string;
+        headerTitle.textContent = HEADER_ALWAYS_SHOW_YOUTUBE_TITLE_expflag == "true" ? "YouTube" : Popular_text_string;
 
         const page = document.createElement("page");
         page.classList.add('home');
@@ -408,7 +516,12 @@ function renderData() {
     };
 
     eventListenFunc();
-    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" || window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "trending") {
+	// This makes the library work offline if the invidious instance is down and also unintentionally makes switching tabs fast not start overlapping requests and page loads
+    if (
+        window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "popular" ||
+        window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "trending" ||
+        window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "library"
+    ) {
         return;
     };
 
@@ -471,7 +584,7 @@ function renderData() {
     } */
 
     headerTitle.setAttribute("aria-label", Home_text_string);
-    headerTitle.textContent = Home_text_string;
+    headerTitle.textContent = HEADER_ALWAYS_SHOW_YOUTUBE_TITLE_expflag == "true" ? "YouTube" : Home_text_string;
 
     if (WEB_ENABLE_PIVOT_BAR_expflag !== "true") {
     if (!document.querySelector(".tab-bar")) {
@@ -729,5 +842,128 @@ function renderDataTrending(homeShelfTrendingType, shelfTitle) {
     } else {
     getHomeData2.onerror();
     }
+    }
+}
+
+function subscriptionsPage() {
+    const headerTitle = document.querySelector(".header-title");
+
+    const headerBar = document.querySelector("ytm15-header-bar");
+
+    const pageCont = document.querySelector('.page-container');
+    pageCont.innerHTML = "";
+
+    var spinner = document.querySelector(".spinner-container.full-height");
+    spinner.removeAttribute("hidden");
+
+    if (WEB_ENABLE_PIVOT_BAR_expflag !== "true") {
+        if (document.querySelector(".tab-bar")) {
+            document.querySelector(".tab-bar").removeAttribute("hidden");
+            document.querySelector(".tab-bar").setAttribute("isChannel", "false");
+            headerBar.classList.add('has-tab-bar');
+
+            const subsTab = document.querySelector('.tab-bar .subscriptions-tab .tab');
+            if (subsTab) subsTab.setAttribute('aria-selected', 'true');
+
+            const homeTab = document.querySelector('.tab-bar .home-tab .tab');
+            if (homeTab) homeTab.setAttribute('aria-selected', 'false');
+
+            const trendingTab = document.querySelector('.tab-bar .trending-tab .tab');
+            if (trendingTab) trendingTab.setAttribute('aria-selected', 'false');
+
+            const accountTab = document.querySelector('.tab-bar .account-tab .tab');
+            if (accountTab) accountTab.setAttribute('aria-selected', 'false');
+        }
+    } else {
+        if (document.querySelector(".tab-bar")) {
+            document.querySelector(".tab-bar").setAttribute("hidden", "");
+            document.querySelector(".tab-bar").setAttribute("isChannel", "false");
+            headerBar.classList.remove('has-tab-bar');
+            document.querySelector(".tab-bar").innerHTML = "";
+        }
+    }
+
+    var spinner = document.querySelector(".spinner-container.full-height");
+    spinner.setAttribute("hidden", "");
+
+    headerTitle.setAttribute("aria-label", "Subscriptions");
+    headerTitle.textContent = "Subscriptions";
+
+    const page = document.createElement("page");
+
+    const tabContainer = document.createElement("div");
+    tabContainer.classList.add('tabs-content-container');
+
+    const tabContent = document.createElement("div");
+    tabContent.classList.add('tab-content');
+    tabContent.setAttribute("tab-identifier", "");
+
+    const subscriptionsPage = document.createElement("div");
+
+    const section = document.createElement("div");
+    section.classList.add('section-list');
+
+    const sectLazyList = document.createElement("div");
+    sectLazyList.classList.add('lazy-list');
+    sectLazyList.innerHTML = `<center><svg viewBox="0 0 24 24" style="width: auto;padding: 5rem;max-height: 300px;" fill="#ddd"><path d="M20 8H4V6h16v2zm-2-6H6v2h12V2zm4 8v12H2V10h20zm-6 6-6-3.27v6.53L16 16z"></path></svg></center><p style="text-align: center;color: #333;">(Local) Subscriptions are coming to YTm15 Soon!</p>`;
+    section.appendChild(sectLazyList);
+
+    const parent = document.querySelector(".page-container");
+    parent.appendChild(page);
+    page.appendChild(tabContainer);
+    tabContainer.appendChild(tabContent);
+    tabContent.appendChild(subscriptionsPage);
+    subscriptionsPage.appendChild(section);
+
+    var title = document.querySelector("title");
+    title.textContent = 'Subscriptions';
+
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+        Array.from(sectLazyList.querySelectorAll(".ap-shelf")).forEach(function(item){
+            item.classList.add('card');
+        });
+        Array.from(sectLazyList.querySelectorAll(".about-page-bottom-title")).forEach(function(item){
+            item.classList.add('card');
+        });
+    }
+}
+
+function blankLibraryPage() {
+    const page = document.createElement("page");
+
+    const tabContainer = document.createElement("div");
+    tabContainer.classList.add('tabs-content-container');
+
+    const tabContent = document.createElement("div");
+    tabContent.classList.add('tab-content');
+    tabContent.setAttribute("tab-identifier", "");
+
+    const subscriptionsPage = document.createElement("div");
+
+    const section = document.createElement("div");
+    section.classList.add('section-list');
+
+    const sectLazyList = document.createElement("div");
+    sectLazyList.classList.add('lazy-list');
+    sectLazyList.innerHTML = `<center><svg viewBox="0 0 24 24" style="width: auto;padding: 5rem;max-height: 300px;" fill="#ddd"><path d="M10,4H4C2.89,4 2,4.89 2,6V18A2,2 0 0,0 4,20H20A2,2 0 0,0 22,18V8C22,6.89 21.1,6 20,6H12L10,4Z"></path></svg></center><p style="text-align: center;color: #333;">You can add videos to this Library for safe keeping. Enable WATCH_SAVE_BUTTON in YTm15 Experimental Flags. You also need WATCH_ENABLE_NEW_UI enabled, in the future a save button will be added to the player.</p>`;
+    section.appendChild(sectLazyList);
+
+    const parent = document.querySelector(".page-container");
+    parent.appendChild(page);
+    page.appendChild(tabContainer);
+    tabContainer.appendChild(tabContent);
+    tabContent.appendChild(subscriptionsPage);
+    subscriptionsPage.appendChild(section);
+
+    var title = document.querySelector("title");
+    title.textContent = 'Library';
+
+    if (APP_DEMATERIALIZE_UI_expflag == "true") {
+        Array.from(sectLazyList.querySelectorAll(".ap-shelf")).forEach(function(item){
+            item.classList.add('card');
+        });
+        Array.from(sectLazyList.querySelectorAll(".about-page-bottom-title")).forEach(function(item){
+            item.classList.add('card');
+        });
     }
 }

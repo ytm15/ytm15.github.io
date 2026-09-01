@@ -49,6 +49,18 @@ function renderHeader() {
     if (DARK_THEME_option == "true") {
     headerEPSrc = "yt_wordmark_header_dark.png"
     }
+    if (HEADER_YOUTUBE_BRANDING_expflag == "Red") {
+    headerEPSrc = "yt_red_wordmark_header_light.png"
+    }
+    if (HEADER_YOUTUBE_BRANDING_expflag == "Red" && DARK_THEME_option == "true") {
+    headerEPSrc = "yt_red_wordmark_header_dark.png"
+    }
+    if (HEADER_YOUTUBE_BRANDING_expflag == "Premium") {
+    headerEPSrc = "yt_premium_wordmark_header_light.png"
+    }
+    if (HEADER_YOUTUBE_BRANDING_expflag == "Premium" && DARK_THEME_option == "true") {
+    headerEPSrc = "yt_premium_wordmark_header_dark.png"
+    }
     headerEP.innerHTML = `<img class="ytm15-img-icon ytm15-img youtube-logo-icon ringo-logo" src="${headerEPSrc}">`;
 
     const backBtn = document.createElement("button");
@@ -214,6 +226,7 @@ function renderHeader() {
             console.log(url);
         } catch (err) {
             console.log('Could not read clipboard: ' + err);
+            showNotification(err);
         };
 
         if (!app.querySelector("#watchpageFrame_Container")) {
@@ -242,8 +255,13 @@ function renderHeader() {
     castBtn.setAttribute("aria-label", SearchYT_text_string);
     castBtn.setAttribute("aria-haspopup", "false");
     let alternateIcon = `<path data-glyph="cast-connected" d="M448,384 M21,235 v-43 q52,0,96.5,-26 t70,-70 t25.5,-96 h43 q0,64,-31.5,118 t-85.5,85.5 t-118,31.5 M21,149 v-42 q29,0,53.5,-14.5 t39,-39 t14.5,-53.5 h43 q0,30,-11.5,57.5 t-32.5,48.5 t-48.5,32 t-57.5,11 M21,64 v-64 h64 q0,27,-18.5,45.5 t-45.5,18.5 Z"/>`
-    if (HEADER_CAST_ALTERNATE_ICON_expflag == "true") {alternateIcon = `<path data-glyph="cast-connected" fill="#919191" d="M448,384 M21,235 v-43 q52,0,96.5,-26 t70,-70 t25.5,-96 h43 q0,64,-31.5,118 t-85.5,85.5 t-118,31.5 M405,299 h-298 v-35 q63,-21,110.5,-68 t67.5,-111 h120 v214 M21,149 v-42 q29,0,53.5,-14.5 t39,-39 t14.5,-53.5 h43 q0,30,-11.5,57.5 t-32.5,48.5 t-48.5,32 t-57.5,11 M21,64 v-64 h64 q0,27,-18.5,45.5 t-45.5,18.5 Z"/>`}
-    castBtn.innerHTML = `<ytm15-icon class="search-icon"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 64.7273 512 448.462"><g transform="scale(1,-1) translate(0, -480.36365)"><path data-glyph="cast-connected" d="M448,384 h-384 q-18,0,-30.5,-12.5 t-12.5,-30.5 v-64 h43 v64 h384 v-298 h-149 v-43 h149 q18,0,30.5,12.5 t12.5,30.5 v298 q0,18,-12.5,30.5 t-30.5,12.5"/>` + alternateIcon + `</g></svg></ytm15-icon>`;
+    if (HEADER_CAST_ALTERNATE_ICON_expflag == "Material_2") {alternateIcon = `<path data-glyph="cast-connected" fill="#919191" d="M448,384 M21,235 v-43 q52,0,96.5,-26 t70,-70 t25.5,-96 h43 q0,64,-31.5,118 t-85.5,85.5 t-118,31.5 M405,299 h-298 v-35 q63,-21,110.5,-68 t67.5,-111 h120 v214 M21,149 v-42 q29,0,53.5,-14.5 t39,-39 t14.5,-53.5 h43 q0,30,-11.5,57.5 t-32.5,48.5 t-48.5,32 t-57.5,11 M21,64 v-64 h64 q0,27,-18.5,45.5 t-45.5,18.5 Z"/>`}
+    if (HEADER_CAST_ALTERNATE_ICON_expflag == "Holo") {
+        castBtn.innerHTML = `<ytm15-icon class="search-icon"><svg viewBox="0 0 38 30" xmlns="http://www.w3.org/2000/svg"><path d="m1.93 0h34.08v2.93h-34.08zm33.08 0h3.01v26.92h-3.01zm-17.98 23.99h20.98v2.93h-20.98zm-15.1-23.99h3.01v11.88h-3.01z"/><path d="m0 14.25v2.7c2.18 0 4.2 0.54 6.08 1.63 1.87 1.09 3.34 2.55 4.41 4.39s1.61 3.85 1.61 6.03h2.71c0-2.68-0.66-5.15-1.98-7.41s-3.12-4.05-5.38-5.37c-2.27-1.32-4.74-1.98-7.43-1.98z"/><path d="m0 19.63v2.64c1.22 0 2.34 0.3 3.37 0.91s1.85 1.42 2.46 2.45 0.91 2.14 0.91 3.36h2.71c0-1.26-0.24-2.46-0.72-3.61s-1.17-2.17-2.05-3.04c-0.88-0.88-1.9-1.55-3.05-2.01s-2.36-0.69-3.62-0.69z"/><path d="m0 26.08c1.13 0 2.09 0.39 2.87 1.16 0.77 0.77 1.16 1.72 1.16 2.76h-4.03v-3.92z"/></svg></ytm15-icon>`;}
+    else if (HEADER_CAST_ALTERNATE_ICON_expflag == "Camera") {
+        castBtn.innerHTML = `<ytm15-icon class="search-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11z"/></svg></ytm15-icon>`;}
+    else {
+    castBtn.innerHTML = `<ytm15-icon class="search-icon"><svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 64.7273 512 448.462"><g transform="scale(1,-1) translate(0, -480.36365)"><path data-glyph="cast-connected" d="M448,384 h-384 q-18,0,-30.5,-12.5 t-12.5,-30.5 v-64 h43 v64 h384 v-298 h-149 v-43 h149 q18,0,30.5,12.5 t12.5,30.5 v298 q0,18,-12.5,30.5 t-30.5,12.5"/>` + alternateIcon + `</g></svg></ytm15-icon>`;}
     if (window.location.pathname.split("/").slice(3, 4) == "results.html") {
         castBtn.setAttribute("hidden", "");
     }
@@ -280,6 +298,9 @@ function renderHeader() {
 
     const menuBtn = document.createElement("button");
     menuBtn.classList.add("icon-button", "header-button", "menu-button");
+    if (HEADER_USE_ACCOUNT_ICON_expflag == "true") {
+        menuBtn.style.marginRight = "5px";
+    }
     menuBtn.onclick = function(){
     menuRenderer();
     menuCont.setAttribute("style", "top: 0; right: 0; position: fixed;");
@@ -367,13 +388,45 @@ function renderHeader() {
     };
     menuBtn.setAttribute("aria-label", "Menu");
     menuBtn.setAttribute("aria-haspopup", "true");
+    if (HEADER_USE_ACCOUNT_ICON_expflag == "true" && HEADER_ACCOUNT_ICON_LINK_expflag !== "") {
+        menuBtn.innerHTML = `<ytm15-icon class="menu-icon"><svg height="24" width="24" xmlns="http://www.w3.org/2000/svg">
+        <image height="24" width="24" href="` + HEADER_ACCOUNT_ICON_LINK_expflag + `" clip-path="circle(50% at 50% 50%)" />
+        </svg>
+        </ytm15-icon>`;
+    } else if (HEADER_USE_ACCOUNT_ICON_expflag == "true") {
+        menuBtn.innerHTML = `<ytm15-icon class="menu-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12,19.2C9.5,19.2 7.29,17.92 6,16C6.03,14 10,12.9 12,12.9C14,12.9 17.97,14 18,16C16.71,17.92 14.5,19.2 12,19.2M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"></path></svg></ytm15-icon>`;
+    } else {
     menuBtn.innerHTML = `<ytm15-icon class="menu-icon"><svg viewBox="0 0 24 24" fill=""><path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path></svg></ytm15-icon>`;
+    }
 
     if (APP_DEMATERIALIZE_UI_expflag == "true") {
     backBtn.innerHTML = `<img class="ytm15-img-icon ytm15-img back-icon" src="abc_ic_ab_back_holo_light.png"><img class="ytm15-img-icon ytm15-img youtube-logo-icon action-bar-logo" src="action_bar_logo_release.png">`;
     searchBtn.innerHTML = `<img class="ytm15-img-icon ytm15-img search-icon" src="ic_menu_search.png">`;
     menuBtn.innerHTML = `<img class="ytm15-img-icon ytm15-img menu-icon" src="abc_ic_menu_moreoverflow_normal_holo_light.png">`;
     };
+
+    const hamburgerMenuButtons = document.createElement("div");
+    hamburgerMenuButtons.classList.add("header-buttons");
+
+    const hamburgerBtn = document.createElement("button");
+    hamburgerBtn.classList.add("icon-button", "header-button");
+    hamburgerBtn.onclick = function(){openMenu()};
+    hamburgerBtn.setAttribute("aria-label", "Left Menu");
+    hamburgerBtn.setAttribute("aria-haspopup", "false");
+    hamburgerBtn.innerHTML = `<ytm15-icon class="hamburger-icon"><svg viewBox="0 0 24 24" fill=""><path d="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z"></path></svg></ytm15-icon>`;
+    if (window.location.pathname.split("/").slice(3, 4) == "results.html") {
+        hamburgerBtn.setAttribute("hidden", "");
+    }
+    if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.pathname.split("/").slice(3, 4) == "settings.html" || window.location.pathname.split("/").slice(3, 4) == "settings" || window.location.pathname.split("/").slice(2, 3) == "settings.html" || window.location.pathname.split("/").slice(2, 3) == "settings") {
+        hamburgerBtn.setAttribute("hidden", "");
+    }
+    window.addEventListener('hashchange', function (event) {
+        if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "results" || window.location.pathname.split("/").slice(3, 4) == "settings.html" || window.location.pathname.split("/").slice(3, 4) == "settings" || window.location.pathname.split("/").slice(2, 3) == "settings.html" || window.location.pathname.split("/").slice(2, 3) == "settings") {
+            hamburgerBtn.setAttribute("hidden", "");
+        } else {
+            hamburgerBtn.removeAttribute("hidden", "");
+        }
+    });
 
     if (window.location.pathname.split("/").slice(3, 4) == "settings.html" || window.location.pathname.split("/").slice(3, 4) == "settings" || window.location.pathname.split("/").slice(2, 3) == "settings.html" || window.location.pathname.split("/").slice(2, 3) == "settings") {
     menuBtn.setAttribute("hidden", "");
@@ -394,9 +447,11 @@ function renderHeader() {
     form.appendChild(inputWrap);
     inputWrap.appendChild(input);
     header.appendChild(headerCont);
+    if (HEADER_MENU_BUTTON_expflag == "true") {headerCont.appendChild(hamburgerMenuButtons);};
     headerCont.appendChild(headerTitle);
     headerCont.appendChild(headerButtons);
     if (HEADER_CAST_BUTTON_AS_URL_BOX_expflag == "true") {headerButtons.appendChild(castBtn);};
+    if (HEADER_MENU_BUTTON_expflag == "true") {hamburgerMenuButtons.appendChild(hamburgerBtn);};
     headerButtons.appendChild(searchBtn);
     headerButtons.appendChild(menuBtn);
 
