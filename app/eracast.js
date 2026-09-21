@@ -262,7 +262,7 @@
         channelThumbnail: [{url:channelThumbnail}],
         subscriberCountText,
         extraMeta: [],
-        relatedVideos: { continuation: '', data: [{videoId: videoId,title:"placeholder video btw",channelTitle:"YouTube Mobile 2015/legoskid",thumbnail:[{url:""},{url:""}],lengthText:"0:00"}] }
+        relatedVideos: { continuation: '', data: [{videoId: videoId,title:"placeholder video btw",channelTitle:"",thumbnail:[{url:""},{url:""}],lengthText:"0:00"}] }
       };
     } catch (err) {
       console.error('fetchEraCastVideoInfo error:', err);

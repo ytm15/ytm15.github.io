@@ -500,7 +500,7 @@ AboutYTm15_text_string = "About YTm15";
 DarkTheme_text_string = "Dark theme";
 DarkThemeDesc_text_string = "Enable dark theme throughout the app";
 EraCast_text_string = "EraCast mode";
-EraCastDesc_text_string = "Connect to EraCast servers";
+EraCastDesc_text_string = navigator.userAgent.includes("Mozilla") ? "<a style=\"color:red;\">Hey, I noticed that you don't have a custom user-agent, You need a user-agent without \"Mozilla\" for this option to work. If you're doing that but I can't see it, ignore me</a>" : "Connect to EraCast servers";
 About_text_string = "About";
 ReturnHomepage_text_string = "Return home";
 Reload_text_string = "Refresh";
