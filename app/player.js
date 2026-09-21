@@ -836,7 +836,7 @@ const playerxhttpr = new XMLHttpRequest();
 /* playerxhttpr.open('GET', 'https://invidious.nerdvpn.de/api/v1/videos/' + YTmVideoId, true);
 playerxhttpr.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs='); */
 if (ERACAST_MODE_option == "true") {
-    window.fetchEraCast1080WebmUrl(YTmVideoId).then(function(data) {
+    window.fetchEraCastVideoFormats(YTmVideoId).then(function(data) {
         video.poster = data.thumbnail[3].url;
           video.innerHTML = ``;
           video.dataset.title = data.title;

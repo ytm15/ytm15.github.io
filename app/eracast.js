@@ -115,8 +115,8 @@
   };
 
   // @param {string} videoId
-  // @returns {Promise<{thumbnail:string,title:string,formats:{url:string}[]}|{}>}
-  window.fetchEraCast1080WebmUrl = async function fetchEraCast1080WebmUrl(videoId) {
+  // @returns {Promise<{thumbnail:{url:string}[],title:string,formats:{url:string,mimeType:string,qualityLabel:string}[]}|{}>}
+  window.fetchEraCastVideoFormats = async function fetchEraCastVideoFormats(videoId) {
     try {
       if (!videoId || typeof videoId !== 'string') return {};
 
@@ -130,26 +130,56 @@
       const ogImage = dom.querySelector('meta[property="og:image"]')?.getAttribute('content') || '';
       const ogTitle = dom.querySelector('meta[property="og:title"]')?.getAttribute('content') || '';
 
-      // This regex gets 1080p video
-      const re = /targetDiv\.setAttribute\(\s*['"]src['"]\s*,\s*['"]([^'"]*?_1080\.)['"]\s*\+\s*ext\s*\)\s*;/;
-      const m = html.match(re);
-      if (!m || !m[1]) return {};
+      const prefixRe = /targetDiv\.setAttribute\(\s*['"]src['"]\s*,\s*['"]([^'"]*?)_(?:1080|720|480)\.['"]\s*\+\s*ext\s*\)/;
+      const prefixMatch = html.match(prefixRe);
+      if (!prefixMatch) return {};
+      const prefix = prefixMatch[1];
 
-      const prefix = m[1];
-      const videoUrl = new URL(prefix + 'mp4', watchUrl).href; // this is not the math function
+      const sourcesBlockMatch = html.match(/var\s+sources\s*=\s*\{([\s\S]*?)\}\s*;/);
+      const sourcesBlock = sourcesBlockMatch ? sourcesBlockMatch[1] : '';
+      const flag = (key) => {
+        const m = sourcesBlock.match(new RegExp(`${key}\\s*:\\s*(true|false)`));
+        return m ? m[1] === 'true' : false;
+      };
+      const sources = {
+        1080: flag(1080),
+        720: flag(720),
+        480: flag(480),
+        360: flag(360),
+        webm: flag('webm'),
+        av1: flag('av1')
+      };
 
-      console.log({
-        thumbnail: ogImage,
-        title: ogTitle,
-        formats: [{ url: videoUrl }]
+      const getExt = (resolution) => {
+        if (!sources[resolution]) return null;
+        if (sources.av1 && resolution === 480) return 'webm';
+        if (sources.av1 && (resolution === 1080 || resolution === 720)) return 'mp4';
+        if (sources.webm && (resolution === 1080 || resolution === 720)) return 'webm';
+        return 'mp4';
+      };
+
+      const formats = [];
+      [360, 480, 720, 1080].forEach((quality) => {
+        const ext = getExt(quality);
+        if (!ext) return;
+        formats.push({
+          url: new URL(`${prefix}_${quality}.${ext}`, watchUrl).href,
+          mimeType: `video/${ext}`,
+          qualityLabel: `${quality}p`
+        });
       });
+
+      if (!formats.length) return {};
+
+      const thumbnail = ogImage ? [{ url: ogImage }, { url: ogImage }, { url: ogImage }, { url: ogImage }] : [];
+
       return {
-        thumbnail: ogImage,
+        thumbnail,
         title: ogTitle,
-        formats: [{ url: videoUrl }]
+        formats
       };
     } catch (err) {
-      console.error('fetchEraCast1080WebmUrl error:', err);
+      console.error('fetchEraCastVideoFormats error:', err);
       return {};
     }
   };
