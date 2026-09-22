@@ -837,7 +837,7 @@ const playerxhttpr = new XMLHttpRequest();
 playerxhttpr.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs='); */
 if (ERACAST_MODE_option == "true") {
     window.fetchEraCastVideoFormats(YTmVideoId).then(function(data) {
-        video.poster = data.thumbnail[3].url;
+        video.poster = data.thumbnail[0].url;
           video.innerHTML = ``;
           video.dataset.title = data.title;
           /* storyboardURL = "https://inv.tux.pizza" + data.storyboards[2].url; */

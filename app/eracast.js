@@ -127,13 +127,16 @@
       const html = await res.text();
 
       const dom = new DOMParser().parseFromString(html, 'text/html');
-      const ogImage = dom.querySelector('meta[property="og:image"]')?.getAttribute('content') || '';
-      const ogTitle = dom.querySelector('meta[property="og:title"]')?.getAttribute('content') || '';
+      var ogImage = dom.querySelector('meta[property="og:image"]')?.getAttribute('content') || '';
+      const prefixFindImage = /[^\/]+(?=\/?$)/;
+      ogImage = ogImage + ogImage.match(prefixFindImage) + "_1.jpg";
+      const ogTitle = dom.querySelector('meta[property="og:title"]')?.getAttribute('content') || '';console.log(ogImage);
 
       const prefixRe = /targetDiv\.setAttribute\(\s*['"]src['"]\s*,\s*['"]([^'"]*?)_(?:1080|720|480)\.['"]\s*\+\s*ext\s*\)/;
       const prefixMatch = html.match(prefixRe);
       if (!prefixMatch) return {};
       const prefix = prefixMatch[1];
+      console.log("Prefix found:", prefix);
 
       const sourcesBlockMatch = html.match(/var\s+sources\s*=\s*\{([\s\S]*?)\}\s*;/);
       const sourcesBlock = sourcesBlockMatch ? sourcesBlockMatch[1] : '';
@@ -141,6 +144,7 @@
         const m = sourcesBlock.match(new RegExp(`${key}\\s*:\\s*(true|false)`));
         return m ? m[1] === 'true' : false;
       };
+      console.log("Sources block:", sourcesBlock);
       const sources = {
         1080: flag(1080),
         720: flag(720),
@@ -149,6 +153,7 @@
         webm: flag('webm'),
         av1: flag('av1')
       };
+      console.log("Sources parsed:", sources);
 
       const getExt = (resolution) => {
         if (!sources[resolution]) return null;
@@ -255,10 +260,47 @@
       const channelThumbnail = dom.querySelector('.yt-thumb-clip img')?.getAttribute('src') || '';
 
       const thumbnailList = (() => {
-        const ogImage = dom.querySelector('meta[property="og:image"]')?.getAttribute('content') || '';
+        var ogImage = dom.querySelector('meta[property="og:image"]')?.getAttribute('content') || '';
+        const prefixFindImage = /[^\/]+(?=\/?$)/;
+        ogImage = ogImage + ogImage.match(prefixFindImage) + "_1.jpg";
         if (!ogImage) return [];
         return [{ url: ogImage, width: 0, height: 0 }];
       })();
+
+      console.log({
+        id: videoId,
+        title,
+        lengthSeconds: String(lengthSeconds),
+        keywords: [],
+        channelTitle,
+        channelId,
+        description,
+        thumbnail: thumbnailList,
+        allowRatings: true,
+        viewCount: String(viewCountNumber),
+        isPrivate: false,
+        isUnpluggedCorpus: false,
+        isLiveContent: false,
+        isLive: false,
+        isCrawlable: true,
+        isFamilySafe: true,
+        availableCountries: [],
+        isUnlisted: false,
+        category: '',
+        publishDate: publishDateIso,
+        publishedAt: publishDateIso,
+        uploadDate: publishDateIso,
+        isShortsEligible: false,
+        likeCount: likeCountText.replace(/[^0-9]/g, '') || likeCountText,
+        dislikeCount: dislikeCountText.replace(/[^0-9]/g, '') || dislikeCountText,
+        hasCaption: false,
+        storyboards: [],
+        playableInEmbed: true,
+        channelThumbnail: [{url:channelThumbnail}],
+        subscriberCountText,
+        extraMeta: [],
+        relatedVideos: { continuation: '', data: [{videoId: videoId,title:"placeholder video btw",channelTitle:"",thumbnail:[{url:""},{url:""}],lengthText:"0:00"}] }
+      });
 
       return {
         id: videoId,
