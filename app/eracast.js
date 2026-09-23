@@ -1,6 +1,6 @@
 (async function initEraCastParser() {
   console.log("Start");
-  window.fetchEraCastFeed = async function fetchEraCastFeed(url = 'https://www.eracast.cc/') {
+  window.fetchEraCastFeed = async function fetchEraCastFeed(url = ERACAST_PROXY_MODE_option + 'https://www.eracast.cc/') {
     try {
       const res = await fetch(url, { method: 'GET', mode: 'cors' });
       console.log("Start");
@@ -120,7 +120,7 @@
     try {
       if (!videoId || typeof videoId !== 'string') return {};
 
-      const watchUrl = `https://www.eracast.cc/watch?v=${encodeURIComponent(videoId)}`;
+      const watchUrl = ERACAST_PROXY_MODE_option + `https://www.eracast.cc/watch?v=${encodeURIComponent(videoId)}`;
       const res = await fetch(watchUrl, { method: 'GET', mode: 'cors' });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
 
@@ -195,7 +195,7 @@
     try {
       if (!videoId || typeof videoId !== 'string') return {};
 
-      const watchUrl = `https://www.eracast.cc/watch?v=${encodeURIComponent(videoId)}`;
+      const watchUrl = ERACAST_PROXY_MODE_option + `https://www.eracast.cc/watch?v=${encodeURIComponent(videoId)}`;
       const res = await fetch(watchUrl, { method: 'GET', mode: 'cors' });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
 

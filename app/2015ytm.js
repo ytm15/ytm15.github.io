@@ -214,6 +214,11 @@ WATCH_CONDENSE_COMMUNITY_POST_BUTTONS_expflag = localStorage.getItem("WATCH_COND
 WATCH_COMMENTS_ADD_OPTIONS_expflag = localStorage.getItem("WATCH_COMMENTS_ADD_OPTIONS");
 WATCH_COMMUNITY_POSTS_ADD_OPTIONS_expflag = localStorage.getItem("WATCH_COMMUNITY_POSTS_ADD_OPTIONS");
 
+ERACAST_PROXY_MODE_option = localStorage.getItem("ERACAST_PROXY_MODE");
+if (ERACAST_PROXY_MODE_option == undefined) {
+  localStorage.setItem("ERACAST_PROXY_MODE", "http://whale.x10.mx/tv/proxy/proxy2.php?csurl=");
+  ERACAST_PROXY_MODE_option = localStorage.getItem("ERACAST_PROXY_MODE");
+}
 
 newErrorHtml = `<button class="error-content" onClick="location.reload();">
 <!-- <img class="error-icon ytm15-img" src="alert_error.png"></img><br> -->
@@ -500,7 +505,9 @@ AboutYTm15_text_string = "About YTm15";
 DarkTheme_text_string = "Dark theme";
 DarkThemeDesc_text_string = "Enable dark theme throughout the app";
 EraCast_text_string = "EraCast mode";
-EraCastDesc_text_string = navigator.userAgent.includes("Mozilla") ? "<a style=\"color:red;\">Hey, I noticed that you don't have a custom user-agent, You need a user-agent without \"Mozilla\" for this option to work. If you're doing that but I can't see it, ignore me</a>" : "Connect to EraCast servers";
+EraCastDesc_text_string = "Connect to EraCast servers";
+EraCastProxy_text_string = "EraCast proxy"
+EraCastProxyDesc_text_string = "The proxy must bypass CORS and have a non-standard useragent";
 About_text_string = "About";
 ReturnHomepage_text_string = "Return home";
 Reload_text_string = "Refresh";

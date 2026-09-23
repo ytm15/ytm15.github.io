@@ -245,6 +245,15 @@ function settingsPage() {
         "pressed-default": false,
         "disabled": false,
         "lsitem": "ERACAST_MODE"
+      },
+      {
+        "type": "text",
+        "title": EraCastProxy_text_string,
+        "subtitle": EraCastProxyDesc_text_string,
+        "value": "http://whale.x10.mx/tv/proxy/proxy2.php?csurl=",
+        "placeholder": "",
+        "disabled": false,
+        "lsitem": "ERACAST_PROXY_MODE"
       }
       ];
       settingBlocks.forEach(function(item){
