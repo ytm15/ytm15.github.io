@@ -4024,6 +4024,9 @@ ytm15-pivot-bar {
     width: 30px;
     height: 30px;
 }
+.pivot-bar-tab-icon.subscriptions-icon svg {
+    transform: scale(1.25);
+}
 .pivot-bar-item-tab[aria-selected="true"] {
     color: #e00;
 }
