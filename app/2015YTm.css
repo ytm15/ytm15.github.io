@@ -5829,6 +5829,12 @@ html.dark.seperate-dark-color {
 .dark .transparent-text {
     color: #303030;
 }
+.dark .post-header {
+    color: rgba(255,255,255,0.5);
+}
+.dark .post-details {
+    color: rgba(255,255,255,0.5);
+}
 
 /* Dark 28 */
 html.dark.dark-28 {
