@@ -5705,6 +5705,7 @@ html.dark {
 }
 .dark ytm15-pivot-bar {
     background-color: #303030;
+	/*color: rgba(255, 255, 255, 0.6);*/
     color: #8f8f8f;
 }
 .dark ytm15-pivot-bar.no-shadow {
