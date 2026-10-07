@@ -1247,6 +1247,7 @@ function renderPivotBar(){
     {
       "name": Subs_text_string,
       "pivotName": "subscriptions",
+      /* "iconPath": "M20,8H4V6H20V8M18,2H6V4H18V2M22,12V20A2,2 0 0,1 20,22H4A2,2 0 0,1 2,20V12A2,2 0 0,1 4,10H20A2,2 0 0,1 22,12M16,16L10,12.73V19.26L16,16Z", */
       "iconPath": "M7.5 4.5h9V6h-9zm-1.5 3h12V9H6zM4.5 10.5h15v9h-15zm5.75 2.75v3.5l3.5-1.75z",
       "link": "subscriptions"
     },
