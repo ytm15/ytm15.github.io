@@ -91,6 +91,8 @@ function renderSettingText(parent, stTitle, stSubtitle, stValue, stPlaceholder, 
   parent.appendChild(settingText);
 }
 
+function parseImportedText(str) {return str.replace(/^"|"$/g, '');}; // because i can't put quotes in the onclick which is already kinda a mess
+
 function settingsPage() {
     pageCont.innerHTML = "";
 
@@ -127,9 +129,21 @@ function settingsPage() {
     },
     {
       "type": "option",
+      "title": InstallYtm15_text_string,
+      "link": "#/install",
+      "id": "install"
+    },
+    {
+      "type": "option",
       "title": AboutYTm15_text_string,
       "link": "index.html#/about",
       "id": "about"
+    },
+    {
+      "type": "option",
+      "title": Feedback_text_string,
+      "link": "#/feedback",
+      "id": "feedback"
     }
     ];
 
@@ -153,6 +167,10 @@ function settingsPage() {
     settingsPageHeader.id = "settings";
     settingsPageHeader.innerHTML = Settings_text_string;
     settingsPageHeader.ariaLabel = settingsPageHeader.innerHTML;
+
+    const settingsSaveAndLoad = document.createElement("div");
+    settingsSaveAndLoad.style.display = "flex";
+    settingsSaveAndLoad.innerHTML = `<div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Save" onclick="const{WEB_LIBRARY,...rest}=JSON.parse(JSON.stringify(localStorage));navigator.clipboard.writeText(JSON.stringify(rest)).then(()=>{showNotification('Copied! You can share this online or keep it as a backup.')}).catch(err=>{showNotification(err)});"><div class="button-text">Save</div></button></div><div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Load" onclick="(async()=>{try{const clipboardText=await navigator.clipboard.readText();const data=JSON.parse(clipboardText);Object.keys(data).forEach(k=>{localStorage.setItem(k,parseImportedText(JSON.stringify(data[k])))});console.log('Data imported successfully');showNotification('Imported, Reload YTm15!');}catch(err){showNotification('To import expflags, copy a saved list into your clipboard. This will overwrite your current expflags, obviously. '+err)}})();"><div class="button-text">Load</div></button></div>`;
 
     const innerSettingsPageCont = document.createElement("div");
     innerSettingsPageCont.classList.add("inner-settings-page-container");
@@ -240,6 +258,54 @@ function settingsPage() {
       }
       });
       }
+      if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "feedback") {
+      /* innerSettingsPageCont.innerHTML = `
+<div class="ytm15-settings-msg">${SettingsMSG2_text_string}</div>
+`; */
+      innerSettingsPageCont.innerHTML = "";
+      var settingsPage = document.createElement("settings-page");
+      settingsPageHeader.id = "expflags";
+      settingsPage.classList.add(settingsPageHeader.id);
+      settingsPage.style.userSelect = "unset";
+      settingsPage.style.msUserSelect = "unset";
+      settingsPage.style.mozUserSelect = "unset";
+      settingsPage.style.khtmlUserSelect = "unset";
+      settingsPage.style.webkitUserSelect = "unset";
+      settingsPage.style.webkitTouchCallout = "unset";
+      settingsPage.style.fontSize = "1.6rem";
+      innerSettingsPageCont.appendChild(settingsPage);
+      settingsPageHeader.innerHTML = Feedback_text_string;
+      settingsPageHeader.id = "feedback";
+      headerTitle.setAttribute("aria-label", Feedback_text_string);
+      headerTitle.textContent = Feedback_text_string;
+      title.textContent = Feedback_text_string + ' - 2015YouTube';
+
+      settingsPage.innerHTML=`<p>Open an issue on the YTm15 GitHub (Recommended), or, you can check for pull requests open and observe/ask</p><p>r/oldyoutubelayout also exists, but prepare yourself because there's NO MODERATION AT ALL</p><a style="padding-right:1rem;" href="https://github.com/ytm15/ytm15.github.io/issues"><img alt="GitHub Issues or Pull Requests" src="https://img.shields.io/github/issues/ytm15/ytm15.github.io?style=for-the-badge&link=https%3A%2F%2Fgithub.com%2Fytm15%2Fytm15.github.io%2Fissues"></a><a style="padding-right:1rem;" href="https://github.com/ytm15/ytm15.github.io/issues"></a>`;
+      }
+      if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "install") {
+      /* innerSettingsPageCont.innerHTML = `
+<div class="ytm15-settings-msg">${SettingsMSG2_text_string}</div>
+`; */
+      innerSettingsPageCont.innerHTML = "";
+      var settingsPage = document.createElement("settings-page");
+      settingsPageHeader.id = "expflags";
+      settingsPage.classList.add(settingsPageHeader.id);
+      settingsPage.style.userSelect = "unset";
+      settingsPage.style.msUserSelect = "unset";
+      settingsPage.style.mozUserSelect = "unset";
+      settingsPage.style.khtmlUserSelect = "unset";
+      settingsPage.style.webkitUserSelect = "unset";
+      settingsPage.style.webkitTouchCallout = "unset";
+      settingsPage.style.fontSize = "1.6rem";
+      innerSettingsPageCont.appendChild(settingsPage);
+      settingsPageHeader.innerHTML = InstallYtm15_text_string;
+      settingsPageHeader.id = "install"; // the point of this is just to show people btw not add any functionality
+      headerTitle.setAttribute("aria-label", InstallYtm15_text_string);
+      headerTitle.textContent = InstallYtm15_text_string;
+      title.textContent = InstallYtm15_text_string + ' - 2015YouTube';
+
+      settingsPage.innerHTML=`<p>Did you know you can add websites to your homescreen? You can do this with YTm15 so it is an "app"<table style="border-top: 1px solid transparent;border-bottom: 1px solid transparent;margin-bottom:1rem;"><tr style="font-size:18px;"><td><img src="icon.png" width=60 style="padding-right: 5px;"></td><td>2015YouTube<br><span style="font-size:11px;">★★★★★(126)　ytm15.github.io</span></td><td class="has-ripple" style="text-align:right;width: 100%;padding-right:3rem"><span style="border:1px solid #26A92B;border-radius:5px;color:#26A92B;padding:3px;text-transform:uppercase;">Install Webapp</td></tr></table>Modern devices:<ol style="font-size: 15px;"><li>Open Safari (iOS)/Chrome (Android)</li><li>Go to <b>https://ytm15.github.io/app</b></li><li>Press "share"/the three dots</li><li>Press "Add to Home Screen"</li></ol><p>YTm15 does not support iOS 9 or earlier (for now)!</p><p>Android 7 or earlier, update your browser</p><p>You can also use an online service to convert the website into an APK, but make sure it uses an up-to-date browser engine if your browser does not support the site.</p>`;
+      }
       if (window.location.hash.split("/").join(',').split("?").join(',').split(',').slice(1, 2)[0] == "expflags") {
       /* innerSettingsPageCont.innerHTML = `
 <div class="ytm15-settings-msg">${SettingsMSG2_text_string}</div>
@@ -253,6 +319,8 @@ function settingsPage() {
       headerTitle.setAttribute("aria-label", ExpFlags_text_string);
       headerTitle.textContent = ExpFlags_text_string;
       title.textContent = ExpFlags_text_string + ' - 2015YouTube';
+      settingsPage.appendChild(settingsSaveAndLoad);
+
       
       settingBlocks = [
       {
@@ -606,13 +674,32 @@ function settingsPage() {
         "lsitem": "PIVOT_HIDE_NOTIFICATIONS"
       },
       {
-        "type": "boolean",
-        "title": "PIVOT_NOTIFICATIONS_IS_ACTIVITY",
+        "type": "option-menu",
+        "title": "PIVOT_NOTIFICATIONS_ICON_VARIANT",
         "subtitle": "",
-        "pressed": PIVOT_NOTIFICATIONS_IS_ACTIVITY_expflag == "true",
-        "pressed-default": false,
-        "disabled": false,
-        "lsitem": "PIVOT_NOTIFICATIONS_IS_ACTIVITY"
+        "options": [
+          {
+            "title": "Notifications",
+            "selected": PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Notifications",
+            "selected-default": true
+          },
+          {
+            "title": "Activity",
+            "selected": PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Activity",
+            "selected-default": false
+          },
+          {
+            "title": "Inbox",
+            "selected": PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Inbox",
+            "selected-default": false
+          },
+          {
+            "title": "Shared (NOT ACCURATE)",
+            "selected": PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Shared (NOT ACCURATE)",
+            "selected-default": false
+          }
+        ],
+        "lsitem": "PIVOT_NOTIFICATIONS_ICON_VARIANT"
       },
       {
         "type": "boolean",
@@ -635,9 +722,9 @@ function settingsPage() {
       {
         "type": "text",
         "title": "APP_CUSTOM_INVIDIOUS_URL",
-        "subtitle": "This loads your home page and comments. <small>which should update and not be static</small><br>If you have your own invidious instance put it here<br>You should change CORS policy if you own your instance, otherwise use a CORS redirector",
-        "value": "/* https://api.allorigins.win/raw?url= */https://yt.omada.cafe/",
-        "placeholder": "",
+        "subtitle": "This loads your home page and comments, which should update and not be static<br>If you are hosting (or know a better) an invidious instance put it here<br>You should change CORS policy if you own your instance, otherwise use a CORS redirector or disabler extension (faster, no need for proxy)</small><br><small>If you want to setup an invidious instance just for YTm15, it is not worth it, it is complicated to setup and will take all of your computer's resources.</small>",
+        "value": "https://api.codetabs.com/v1/proxy?quest=https://invidious.i234.cyou/",
+        "placeholder": "Leave this cleared to reset the url",
         "disabled": false,
         "lsitem": "APP_CUSTOM_INVIDIOUS_URL"
       },
@@ -671,7 +758,7 @@ function settingsPage() {
       {
         "type": "boolean",
         "title": "HEADER_NO_SHADOW",
-        "subtitle": "",
+        "subtitle": "Fun fact: there was usually no shadow on non Retina (low-res) devices",
         "pressed": HEADER_NO_SHADOW_expflag == "true",
         "pressed-default": false,
         "disabled": false,
@@ -700,17 +787,36 @@ function settingsPage() {
         "title": "HEADER_CAST_BUTTON_AS_URL_BOX",
         "subtitle": "Copy a youtube link and press cast to open it in YTm15",
         "pressed": HEADER_CAST_BUTTON_AS_URL_BOX_expflag == "true",
-        "pressed-default": false,
+        "pressed-default": true,
         "disabled": false,
         "lsitem": "HEADER_CAST_BUTTON_AS_URL_BOX"
       },
       {
-        "type": "boolean",
+        "type": "option-menu",
         "title": "HEADER_CAST_ALTERNATE_ICON",
         "subtitle": "",
-        "pressed": HEADER_CAST_ALTERNATE_ICON_expflag == "true",
-        "pressed-default": false,
-        "disabled": false,
+        "options": [
+          {
+            "title": "Holo",
+            "selected": HEADER_CAST_ALTERNATE_ICON_expflag == "Holo",
+            "selected-default": true
+          },
+          {
+            "title": "Material",
+            "selected": HEADER_CAST_ALTERNATE_ICON_expflag == "Material",
+            "selected-default": false
+          },
+          {
+            "title": "Material_2",
+            "selected": HEADER_CAST_ALTERNATE_ICON_expflag == "Material_2",
+            "selected-default": false
+          },
+          {
+            "title": "Camera",
+            "selected": HEADER_CAST_ALTERNATE_ICON_expflag == "Camera",
+            "selected-default": false
+          }
+        ],
         "lsitem": "HEADER_CAST_ALTERNATE_ICON"
       },
       {
@@ -721,6 +827,227 @@ function settingsPage() {
         "pressed-default": true,
         "disabled": false,
         "lsitem": "APP_STOP_TEXT_SELECTION"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_UI_NO_LINES",
+        "subtitle": "",
+        "pressed": WATCH_UI_NO_LINES_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_UI_NO_LINES"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_COMMENT_SECTION_LEFT",
+        "subtitle": "",
+        "pressed": WATCH_COMMENT_SECTION_LEFT_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_COMMENT_SECTION_LEFT"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_DOWNLOAD_BUTTON",
+        "subtitle": "",
+        "pressed": WATCH_DOWNLOAD_BUTTON_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_DOWNLOAD_BUTTON"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_SAVE_BUTTON",
+        "subtitle": "Saved videos go to your Library on the homepage.",
+        "pressed": WATCH_SAVE_BUTTON_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_SAVE_BUTTON"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_HIDE_SUBSCRIBE_ICON",
+        "subtitle": "",
+        "pressed": WATCH_HIDE_SUBSCRIBE_ICON_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_HIDE_SUBSCRIBE_ICON"
+      },
+      {
+        "type": "option-menu",
+        "title": "HEADER_YOUTUBE_BRANDING",
+        "subtitle": "",
+        "options": [
+          {
+            "title": "YouTube",
+            "selected": HEADER_YOUTUBE_BRANDING_expflag == "YouTube",
+            "selected-default": true
+          },
+          {
+            "title": "Red",
+            "selected": HEADER_YOUTUBE_BRANDING_expflag == "Red",
+            "selected-default": false
+          },
+          {
+            "title": "Premium",
+            "selected": HEADER_YOUTUBE_BRANDING_expflag == "Premium",
+            "selected-default": false
+          }
+        ],
+        "lsitem": "HEADER_YOUTUBE_BRANDING"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_AUTOPLAY_SWITCH",
+        "subtitle": "",
+        "pressed": WATCH_AUTOPLAY_SWITCH_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_AUTOPLAY_SWITCH"
+      },
+      {
+        "type": "boolean",
+        "title": "HEADER_USE_ACCOUNT_ICON",
+        "subtitle": "",
+        "pressed": HEADER_USE_ACCOUNT_ICON_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "HEADER_USE_ACCOUNT_ICON"
+      },
+      {
+        "type": "text",
+        "title": "HEADER_ACCOUNT_ICON_LINK",
+        "subtitle": "",
+        "value": "",
+        "placeholder": "",
+        "disabled": false,
+        "lsitem": "HEADER_ACCOUNT_ICON_LINK"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_SAVE_IS_ADD_TO",
+        "subtitle": "",
+        "pressed": WATCH_SAVE_IS_ADD_TO_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_SAVE_IS_ADD_TO"
+      },
+      {
+        "type": "boolean",
+        "title": "PIVOT_TRENDING_IS_EXPLORE",
+        "subtitle": "",
+        "pressed": PIVOT_TRENDING_IS_EXPLORE_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "PIVOT_TRENDING_IS_EXPLORE"
+      },
+      {
+        "type": "boolean",
+        "title": "PIVOT_LIBRARY_UPDATED_ICON",
+        "subtitle": "",
+        "pressed": PIVOT_LIBRARY_UPDATED_ICON_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "PIVOT_LIBRARY_UPDATED_ICON"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_SAVE_UPDATED_ICON",
+        "subtitle": "",
+        "pressed": WATCH_SAVE_UPDATED_ICON_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_SAVE_UPDATED_ICON"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_COLLAPSABLE_COMMENTS",
+        "subtitle": "This is not acccurate yet, and is provided for convienence/partial-accuracy. This will be revised later",
+        "pressed": WATCH_COLLAPSABLE_COMMENTS_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_COLLAPSABLE_COMMENTS"
+      },
+      {
+        "type": "boolean",
+        "title": "HEADER_ALWAYS_SHOW_YOUTUBE_TITLE",
+        "subtitle": "",
+        "pressed": HEADER_ALWAYS_SHOW_YOUTUBE_TITLE_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "HEADER_ALWAYS_SHOW_YOUTUBE_TITLE"
+      },
+      {
+        "type": "boolean",
+        "title": "HEADER_MENU_BUTTON",
+        "subtitle": "",
+        "pressed": HEADER_MENU_BUTTON_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "HEADER_MENU_BUTTON"
+      },
+      {
+        "type": "boolean",
+        "title": "APP_NO_INTERNET_POPUP_NEW_STYLE",
+        "subtitle": "",
+        "pressed": APP_NO_INTERNET_POPUP_NEW_STYLE_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "APP_NO_INTERNET_POPUP_NEW_STYLE"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_CONDENSE_COMMENT_BUTTONS",
+        "subtitle": "",
+        "pressed": WATCH_CONDENSE_COMMENT_BUTTONS_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_CONDENSE_COMMENT_BUTTONS"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_FORMAT_LIKE_COUNTS",
+        "subtitle": "",
+        "pressed": WATCH_FORMAT_LIKE_COUNTS_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_FORMAT_LIKE_COUNTS"
+      },
+      {
+        "type": "boolean",
+        "title": "APP_IOS_SYSTEM_FONT",
+        "subtitle": "",
+        "pressed": APP_IOS_SYSTEM_FONT_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "APP_IOS_SYSTEM_FONT"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_CONDENSE_COMMUNITY_POST_BUTTONS",
+        "subtitle": "",
+        "pressed": WATCH_CONDENSE_COMMUNITY_POST_BUTTONS_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_CONDENSE_COMMUNITY_POST_BUTTONS"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_COMMENTS_ADD_OPTIONS",
+        "subtitle": "",
+        "pressed": WATCH_COMMENTS_ADD_OPTIONS_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_COMMENTS_ADD_OPTIONS"
+      },
+      {
+        "type": "boolean",
+        "title": "WATCH_COMMUNITY_POSTS_ADD_OPTIONS",
+        "subtitle": "",
+        "pressed": WATCH_COMMUNITY_POSTS_ADD_OPTIONS_expflag == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "WATCH_COMMUNITY_POSTS_ADD_OPTIONS"
       }
       ];
       settingBlocks.forEach(function(item){
