@@ -236,7 +236,25 @@ function settingsPage() {
       };
 
       settingBlocks = [
-      settingBooleanDark
+      settingBooleanDark,
+      {
+        "type": "boolean",
+        "title": EraCast_text_string,
+        "subtitle": EraCastDesc_text_string,
+        "pressed": ERACAST_MODE_option == "true",
+        "pressed-default": false,
+        "disabled": false,
+        "lsitem": "ERACAST_MODE"
+      },
+      {
+        "type": "text",
+        "title": EraCastProxy_text_string,
+        "subtitle": EraCastProxyDesc_text_string,
+        "value": "http://whale.x10.mx/tv/proxy/proxy2.php?csurl=",
+        "placeholder": "",
+        "disabled": false,
+        "lsitem": "ERACAST_PROXY_MODE"
+      }
       ];
       settingBlocks.forEach(function(item){
       if (item.type == "boolean") {
