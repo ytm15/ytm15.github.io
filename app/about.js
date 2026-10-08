@@ -554,6 +554,330 @@ a few hours later:
 
 05 Jun 2026 (1st update of 2026!):
 -Removed use of the "polyfill.js" plugin
+
+From legoskid's "Big update add alot of expflags" pull request (taken from ytm15-beta-org.github.io/app/#/about):
+
+legoskid, 04 - 05 Dec 2025:
+-Changed Invidious instance to inv.perditum.com
+-Changed description for Invidious instances (kudos to Reddit user u/MalsOffical2011)
+
+legoskid, 08 Dec 2025:
+-Added expflag WATCH_UI_NO_LINES
+-Changed Subscriptions icon to more accurate unrounded SVG
+
+legoskid, 09 Dec 2025:
+-Added resetting the Invidious instance via leaving the field blank
+
+legoskid, 10 Dec 2025:
+-Added expflag WATCH_COMMENT_SECTION_LEFT
+-Fixed expflag WATCH_UI_NO_LINES
+
+legoskid, 12 Dec 2025:
+-Made colored icons more accurate (kudos to CIIOIIIILLLLLLLLLLLLLLLL)
+-Added Download and Save icons (SVG)
+
+legoskid, 15 Dec 2025:
+-Added PNG variants of Download and Save icons
+-Added expflag WATCH_DOWNLOAD_BUTTON and WATCH_SAVE_BUTTON to enable Download and Save buttons
+-Changed Polyfill to Cloudflare
+-Changed PNG variants of Download and Save icons to be more accurate
+
+legoskid, 16 Dec 2025:
+-Added expflag WATCH_HIDE_SUBSCRIBE_ICON
+
+legoskid, 17 Dec 2025:
+-Changed expflag PIVOT_NOTIFICATIONS_IS_ACTIVITY to PIVOT_NOTIFICATIONS_ICON_VARIANT
+-Added Inbox and Shared options to expflag PIVOT_NOTIFICATIONS_ICON_VARIANT
+-Added "Send feedback" tab to YTm15 settings
+
+legoskid, 18 Dec 2025:
+-Added Install YTm15 tab to YTm15 settings
+-Added temporary placeholder code for Camera option to expflag HEADER_CAST_BUTTON_AS_URL_BOX
+
+Entinty1999, 18 Dec 2025:
+-Forked legoskid/ytm15.github.io to create YTm15 BETA Restored at github.com/Entinty1999/YTm15-BETA
+-Temporarily hosted GitHub Pages at ytm15-beta.neocities.org
+
+Entinty1999, 19 Dec 2025:
+-Added temporary ytm15-beta.neocities.org/app URL to index.html
+-Created the YTm15 BETA Organization
+-Moved YTm15 BETA Restored to the YTm15 BETA Organization at github.com/YTm15-BETA-org/YTm15-BETA-org.github.io
+-Changed GitHub Pages site to ytm15-beta-org.github.io to fix Neocities iFrame issues as a more permanent URL
+-Changed index.html link to new URL ytm15-beta-org.github.io/app
+
+Entinty1999, 20 Dec 2025:
+-Added YTm15 BETA Restored disclaimer to readme, including site link
+
+legoskid, 20 Dec 2025:
+-Fixed underlined links even when APP_UNDERLINE_BUTTONS is disabled (YTm15 issue #57)
+
+legoskid, 21 Dec 2025:
+-Added YouTube Red logo PNGs (2017 style, recolored for dark and light theme using Paint.NET 5.1.7)
+-Added Camera SVG
+
+legoskid, 23 Dec 2025:
+-Added YouTube Premium logo PNGs (pre-2024 style)
+
+Entinty1999, 25 Dec 2025:
+-Changed YTm15 branding to YTm15 BETA in A LOT of places
+-Added the BETA (or something) changelog
+
+Entinty1999, 27 Dec 2025:
+-Changed more YTm15 branding to YTm15 BETA
+-Fixed "Install YTm15 BETA" tab to actually give correct information on YTm15 BETA instead of regular YTm15 (e.g. correct URL etc)
+
+legoskid, 31 Dec 2025:
+-Made the YTm15 player's progress bar hitbox bigger
+-Fixed playlists breaking due to expflag APP_DONT_AUTH_TO_INVIDIOUS
+-Added player errors so that the player will not appear as a black square when it fails to load the video
+
+legoskid, 1 Jan 2026:
+-Added new expflag HEADER_YOUTUBE_BRANDING
+-Fixed the width of the YouTube Red logo asset
+-Partially fixed expflag HEADER_CAST_ALTERNATE_ICON
+-Fixed playlists and comments being broken in the last update
+
+legoskid, 6 Jan 2026:
+-Changed the Download SVG to be more accurate
+-Added new expflag WATCH_AUTOPLAY_SWITCH (Autoplay toggle currently does not function)
+-Fixed overflow of icons on smaller devices
+
+legoskid, 7 Jan 2026:
+-Fully fixed expflag HEADER_CAST_ALTERNATE_ICON to have working Camera icon
+-Added "fun fact" to expflag HEADER_NO_SHADOW
+
+legoskid, 9 Jan 2026:
+-Fixed comments section being under ytm15-video-metadata when it was intended to be under wnr-2nd-half
+-Changed the description of expflag APP_CUSTOM_INVIDIOUS_URL to add additional details on CORS disablers
+-Added expflags HEADER_USE_ACCOUNT_ICON and HEADER_ACCOUNT_ICON_LINK to change menu button
+
+legoskid, 12 Jan 2026:
+-Fixed a minor typo in the last update
+-Reverted default Invidious URL to the original one before this Pull Request due to issues (although kept newer cors proxy)
+
+legoskid, 13 Jan 2026:
+-Made expflag HEADER_ACCOUNT_ICON_LINK affect comments section PFP too
+-Added options to "SAVE" and "LOAD" YTm15 Experimental Flags config (currently a bit broken)
+-Added black banner notifications (e.g. "No connection," "Back online" popup banner), currently only used for config saving/loading
+
+legoskid, 14 Jan 2026:
+-Fixed positioning of the "SAVE" and "LOAD" buttons
+-"Cleaned" the settings page
+-Partially added proper functionality to "SAVE" and "LOAD" buttons
+
+legoskid, 15 Jan 2026:
+-Fixed Shorts not being clickable on channel sort menu
+-Changed default Invidious instance to "y.com.sb"
+-Added expflag WATCH_SAVE_IS_ADD_TO
+
+legoskid, 16 Jan 2026:
+-Added expflag PIVOT_TRENDING_IS_EXPLORE (purely cosmetic, does not change "Trending" interface beyond name and icon)
+-Added expflag PIVOT_LIBRARY_UPDATED_ICON
+
+legoskid, 20 Jan 2026:
+-Added black banner notifications for "No connection" and "Back online"
+
+legoskid, 21 Jan 2026:
+-Changed iOS Spinner code to be more authentic to real iOS YouTube
+
+Entinty1999, 21 Jan 2026:
+-Fixed mentions of YTm15 BETA reset to YTm15 vanilla after latest merge conflict
+-Changed "Check pull request #60" to "Check YTm15 pull requests" due to legoskid's new pull request #65
+-Reverted mention of YTm15 BETA in Expermental Flags tab (I plan to label BETA expflags in a future update instead)
+-Changed EVEN MORE branding to YTm15 BETA
+-Added experimental "eracast" branch from YTm15 Pull Request #65, currently accessible at ytm15-beta-org.github.io/eracast (PR source selector will be added later if this experiment works, currently it is unmodified and uses vanilla YTm15 branding)
+-Made numerous changes to the about page, including:
+--Fixed broken "What is YTm15/YouTube Mobile 2015?" header
+--Fixed "copyright" years to include ALL years
+--Added credit for legoskid and I to the "copyright"s
+--Fixed footer links to actually go to YTm15 BETA pages
+--Added credit for experimental "eracast" branch from YTm15 Pull Request #65
+
+legoskid, 22 Jan 2026:
+-Added expflag WATCH_SAVE_UPDATED_ICON (newer Material Save icon)
+
+legoskid, 23 Jan 2026:
+-Added a black banner notification for using Cast button with an empty clipboard
+-Fixed newer Material Save icon to make it fit properly
+-Fixed not being able to switch Cast button to older Material variant ever since the Camera icon was added
+-Added functionality to the Share button
+-Added assets for alternate icons in the player, including
+--Newer Share icon
+--Newer Add to icon
+--Cast icon
+-Added expflag WATCH_COLLAPSABLE_COMMENTS (currently only adds the icon, does not actually collapse the comments section)
+-Made the Profile/Library tab partially load (currently only gives error about "This shelf is empty" when loaded, but no longer crashes YTm15 when loaded without Pivot Bar enabled)
+
+Entinty1999, 26 Jan 2026:
+-Refined the about page again, including the following changes:
+--Moved Pull Request credits down to a special YTm15 BETA category (instead of erroneously including them in the API category)
+--Fixed broken link to "eracast" Pull Request (Pull Request #65)
+--Fixed broken link to Pull Request #60 for reporting bugs
+-Added YTm15 BETA's about.js to ytm15-beta-org.github.io/eracast, including relevant changes
+-Changed landing page (index.html) link to go to temporary "BETA Selector" page
+
+legoskid, 27 Jan 2026:
+-Added "Save" button functionality (adds video to Library page, currently very WIP, video data is "Test Video!")
+-Actually labeled the Account/Library page tab title as "Library" (on RED_HEADER_STYLE)
+
+legoskid, 28 Jan 2026:
+-Fixed code typos
+-Fixed cut-off Autoplay switch
+-Actually implemented Collapsible Comments (2020+ comments)
+-Added notification when using Save button
+-Added description to expflag WATCH_SAVE_BUTTON, describing new Library functionality
+
+legoskid, 29 Jan 2026:
+-Made the Autoplay switch cut-off even less noticeable than before
+-Added animation to collapsible comments
+
+legoskid, 30 Jan 2026:
+-Made Autoplay toggle actually toggle and save (Autoplay is not implemented yet though)
+
+Yacine-Book, 30 Jan 2026:
+-Made black bar toast notifications appear more accurate (CSS)
+
+legoskid, 3 Feb 2026:
+-Added more information to "share not available" notification
+-Added expflag HEADER_ALWAYS_SHOW_YOUTUBE_TITLE (makes the Red Header Style always say "YouTube" rather than the tab title)
+-Added further clarification to expflag APP_CUSTOM_INVIDIOUS_URL
+-Added more tweaks under expflag NO_ANDROID_ANIMATIONS
+
+legoskid, 4 Feb 2026:
+-Fixed various issues with Library item positioning
+-Made Library tab actually display proper details of saved videos (minus the timestamp)
+-Fixed getChannelVideos continuation bug
+
+legoskid, 6 Feb 2026:
+-Added hamburger menu button (expflag HEADER_MENU_BUTTON)
+-Made Subscriptions tab no longer crash YTm15 when the pivot bar is disabled
+-Added Subscriptions placeholder
+
+legoskid, 7 Feb 2026:
+-Fixed critical bug where the header would not have any buttons unless HEADER_MENU_BUTTON was enabled
+-Added the Subscriptions tab bar
+
+Entinty1999, 8 Feb 2026:
+-Added mirror of vanilla YTm15 (hosted at ytm15-beta-org.github.io/vanilla-mirror)
+--Added YTm15 BETA changelog to the mirror, but renamed it to "Mirror changelog"
+-Added colons after dates in changelog for consistency with Yacine's changelog
+
+legoskid, 9 Feb 2026:
+-Fixed "three dot" menu button being offset after HEADER_MENU_BUTTON was added
+-Improved expflag HEADER_ALWAYS_SHOW_YOUTUBE_TITLE to now also use "YouTube" on the header while loading
+
+legoskid, 10 Feb 2026:
+-Added toast notification buttons for 2015 offline notification style
+-Defined new expflag APP_NO_INTERNET_POPUP_NEW_STYLE (not actually functional yet)
+
+legoskid, 11 Feb 2026:
+-Added advice on self-hosting YTm15 to the README
+
+legoskid, 12 Feb 2026:
+-Replaced eval for security and compatibility reasons
+
+Yacine-Book, 13 Feb 2026:
+-Replaced all arrow call-tos with function()s for old browser support (pre-ES6 JS)
+
+legoskid, 13 Feb 2026:
+-Added "Go online" button to 2015 offline notification style
+-Added "compatibility for older browsers" to README under "to-do"
+
+Entinty1999, 14 Feb 2026:
+-Updated README info (specifically to reference YTm15 BETA eracast and vanilla-mirror)
+
+Entinty1999 (upstream), 15 Feb 2026:
+-Fixed critical bug that caused an infinite loading screen
+
+legoskid, 25 Feb 2026:
+-Fixed importing/exporting expflag configs
+
+legoskid, 27 Feb 2026:
+-Removed the "This shelf is empty" notification from the Library tab
+--Added a proper empty Library tab
+-Expanded upon the "Install YTm15" description
+-Removed the non-functional "Search" tab from the Channels layout
+
+legoskid, 2 Mar 2026:
+-Added expflag WATCH_CONDENSE_COMMENT_BUTTONS, which reduces the size of the gaps in the comments section in Landscape mode.
+
+legoskid, 3 Mar 2026:
+-Added expflag WATCH_FORMAT_LIKE_COUNTS (abbreviated like/dislike counts + comments + subscribers, like 1,000 to 1K, 1,000,000 to 1M etc)
+
+Yacine-Book, 3 Mar 2026:
+-Made the video player return the last array it detects for the thumbnail (this fixed Me at the zoo not loading)
+
+legoskid, 5 Mar 2026:
+-Added expflag APP_IOS_SYSTEM_FONT
+
+legoskid, 10 Mar 2026:
+-Added expflag WATCH_CONDENSE_COMMUNITY_POST_BUTTONS (Put likes and dislikes to left and comment button to the right, kudos to @ErikaXGH for the suggestion)
+
+legoskid, 27 Mar 2026:
+-Added "Holo" to HEADER_CAST_ALTERNATE_ICON
+-Updated config saving/loading to exclude Library entries
+
+legoskid, 10 Apr 2026:
+-Begun adding comment options/report menu
+
+legoskid, 15 Apr 2026:
+-Fixed expflag WATCH_SAVE_IS_ADD_TO not working due to coding error
+-Updated the "Install YTm15" tab to use less complex wording
+
+legoskid, 17 Apr 2026:
+-Continued work on comment options/report menu
+-Added note to expflag WATCH_COLLAPSABLE_COMMENTS that it is currently inaccurate and will be revised later
+-Added clickable badges to the "Send feedback" tab
+
+legoskid, 24 Apr 2026:
+-Added Shared icon by @CIIOIIIILLLLLLLLLLLLLLLL (not accurate yet)
+-Expflag PIVOT_TRENDING_IS_EXPLORE now also changes the Trending icon on the 2015 header with the Explore one
+
+legoskid, 5 Jun 2026:
+-Fixed various typos
+-Fixed colors
+-Reviewed code, fixed some issues
+-Fixed profile images on saved videos
+-Fixed variable typos
+
+legoskid, 7 Jun 2026:
+-Made the save button no longer set variables to fix player error
+
+legoskid, 17 Sep 2026:
+-Made the Cast button slightly more accurate
+
+legoskid, 19 Sep 2026:
+-Changed the wording of the "Send feedback" page to discourage use of r/oldyoutubelayout
+
+legoskid, 22 Sep 2026:
+-Made the lifted pivot bar position more accurate
+
+legoskid, 24 Sep 2026:
+-Added a temporary fix for channels pages
+
+legoskid, 25 Sep 2026:
+-Attempted a better fix of channels pages from Yacine's code
+-Made the logo-less YouTube header (with HEADER_ALWAYS_SHOW_YOUTUBE_TITLE enabled so that it shows the title) adjust to Red/Premium if toggled in expflags
+-Re-worded the "Send feedback" tab once again
+-Re-ordered the order of the settings tabs
+
+legoskid, 28 Sep 2026:
+-Fixed channels pages (for real this time)
+
+legoskid, 30 Sep 2026:
+-Made the Subscriptions icon more accurate
+
+Yacine-Book, 1 Oct 2026:
+-Updated community posts for dark mode
+
+legoskid, 5 Oct 2026:
+-Changed the default Invidious instance from y.com.sb to invidious.i234.cyou.
+
+Yacine-Book, 7 Oct 2026:
+-Made minor code adjustments
+-Merged cors2 into main YTm15
+
+- END OF PR CHANGELOG -
     </div>
     </div>
     </div>
