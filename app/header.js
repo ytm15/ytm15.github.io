@@ -218,7 +218,7 @@ function renderHeader() {
     var openUrl = async function() {
         let url = null;
         try {
-            const regex = /(?:youtube\.com\/(?:.*[?&]v=|v\/|embed\/|.*\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/;
+            const regex = /(?:(youtube\.com\/|eracast\.cc\/)(?:.*[?&]v=|v\/|embed\/|.*\/)|youtu\.be\/)([A-Za-z0-9_-]{11})/;
             const text = await navigator.clipboard.readText();
             console.log(text);
             const match = text.match(regex);

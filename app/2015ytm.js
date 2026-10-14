@@ -181,6 +181,7 @@ if (APP_STOP_TEXT_SELECTION_expflag == undefined) {
   localStorage.setItem("APP_STOP_TEXT_SELECTION", "true");
   APP_STOP_TEXT_SELECTION_expflag = localStorage.getItem("APP_STOP_TEXT_SELECTION");
 }
+ERACAST_MODE_option = localStorage.getItem("ERACAST_MODE");
 WATCH_UI_NO_LINES_expflag = localStorage.getItem("WATCH_UI_NO_LINES");
 WATCH_COMMENT_SECTION_LEFT_expflag = localStorage.getItem("WATCH_COMMENT_SECTION_LEFT");
 WATCH_DOWNLOAD_BUTTON_expflag = localStorage.getItem("WATCH_DOWNLOAD_BUTTON");
@@ -213,6 +214,11 @@ WATCH_CONDENSE_COMMUNITY_POST_BUTTONS_expflag = localStorage.getItem("WATCH_COND
 WATCH_COMMENTS_ADD_OPTIONS_expflag = localStorage.getItem("WATCH_COMMENTS_ADD_OPTIONS");
 WATCH_COMMUNITY_POSTS_ADD_OPTIONS_expflag = localStorage.getItem("WATCH_COMMUNITY_POSTS_ADD_OPTIONS");
 
+ERACAST_PROXY_MODE_option = localStorage.getItem("ERACAST_PROXY_MODE");
+if (ERACAST_PROXY_MODE_option == undefined) {
+  localStorage.setItem("ERACAST_PROXY_MODE", "http://whale.x10.mx/tv/proxy/proxy2.php?csurl=");
+  ERACAST_PROXY_MODE_option = localStorage.getItem("ERACAST_PROXY_MODE");
+}
 
 newErrorHtml = `<button class="error-content" onClick="location.reload();">
 <!-- <img class="error-icon ytm15-img" src="alert_error.png"></img><br> -->
@@ -498,6 +504,10 @@ SettingsMSG2_text_string = "To be added in the near future";
 AboutYTm15_text_string = "About YTm15";
 DarkTheme_text_string = "Dark theme";
 DarkThemeDesc_text_string = "Enable dark theme throughout the app";
+EraCast_text_string = "EraCast mode";
+EraCastDesc_text_string = "Connect to EraCast servers";
+EraCastProxy_text_string = "EraCast proxy"
+EraCastProxyDesc_text_string = "If the current one doesn't work, check if mixed blocking is on\n<small>Proxy must use custom user-agent</small>";
 About_text_string = "About";
 ReturnHomepage_text_string = "Return home";
 Reload_text_string = "Refresh";
@@ -1300,7 +1310,7 @@ if (PIVOT_NOTIFICATIONS_ICON_VARIANT_expflag == "Shared (NOT ACCURATE)" && item.
     });
 }
 
-function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLength, itemTitle, itemAuthor, itemAuthorId, itemPublishedText, itemViewCount, mediaType) {
+function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, itemLength, itemTitle, itemAuthor, itemAuthorId, itemPublishedText, itemViewCount, mediaType, itemOptions) {
         const video = document.createElement('div');
         compMediaTypeName = 'compact-video';
         if (mediaType == "channel") {
@@ -1483,6 +1493,9 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
         hashChannelCount.classList.add('compact-media-stats', 'small-text');
 
         if (mediaType == "channel") {
+        if (itemOptions && itemOptions.channelVideoCount != null) {
+        vidCountByline.textContent = Number(itemOptions.channelVideoCount).toLocaleString() + " videos";
+        } else {
         vidCountByline.innerHTML = `<span style="font-style: italic;opacity: .8;">Retrieving video count...</span>`;
         const channelData = new XMLHttpRequest();
         /* channelData.open('GET', 'https://yt.lemnoslife.com/channels?part=snippet,status,about&id=' + itemAuthorId, true); */
@@ -1504,6 +1517,7 @@ function renderCompactMediaItem(parent, parentName, itemVideoId, itemThumbnail, 
           console.error("An error occurred with this operation (" + channelData.status + ")");
           }
         };
+        }
         }
 
         const published = document.createElement('div');

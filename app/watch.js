@@ -24,71 +24,37 @@ function renderWatchPage(parent) {
 
     async function shareVideo() {
       if (navigator.share) {
-      try {
-        await navigator.share({url:"https://youtu.be/" + playerVideoId})
-      }
-      catch(err) {
-        if (err.name !== 'AbortError') {
-          showNotification(err);
+        try {
+          await navigator.share({url: "https://youtu.be/" + playerVideoId});
+        } catch (err) {
+          if (err.name !== "AbortError") {
+            showNotification(err);
+          }
         }
-      }
       } else {
         showNotification("Web Share API not supported!\nTry on Android 6.0+!");
       }
     }
-    function saveVideo(videoId,url,lengthSeconds,title,author,authorId,publishedText,viewCount) {
-        const library = JSON.parse(localStorage.getItem("WEB_LIBRARY")) || [];
-        library.unshift({videoId:videoId,videoThumbnails:[{url:url}],lengthSeconds:lengthSeconds,title:title,author:author,authorId:authorId,publishedText:publishedText,viewCount:viewCount});
-        localStorage.setItem("WEB_LIBRARY",JSON.stringify(library));
-        showNotification("Saved to playlist");
+
+    function saveVideo(videoId, url, lengthSeconds, title, author, authorId, publishedText, viewCount) {
+      const library = JSON.parse(localStorage.getItem("WEB_LIBRARY")) || [];
+      library.unshift({
+        videoId: videoId,
+        videoThumbnails: [{url: url}],
+        lengthSeconds: lengthSeconds,
+        title: title,
+        author: author,
+        authorId: authorId,
+        publishedText: publishedText,
+        viewCount: viewCount,
+      });
+      localStorage.setItem("WEB_LIBRARY", JSON.stringify(library));
+      showNotification("Saved to playlist");
     }
 
-    const getWatchData = new XMLHttpRequest();
-    /* getWatchData.open('GET', APIbaseURL + 'api/v1/videos/' + playerVideoId, true); */
-    /* getWatchData.open('GET', APIbaseURLWatch + 'api/v1/videos/' + playerVideoId, true); */
-    /* getWatchData.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs='); */
-    getWatchData.open('GET', APIbaseURLNew + 'video/info?extend=1&geo=US&id=' + playerVideoId, true);
-    getWatchData.setRequestHeader('x-rapidapi-key', '4b0791fe33mshce00ad033774274p196706jsn957349df7a8f');
-    getWatchData.setRequestHeader('x-rapidapi-host', 'yt-api.p.rapidapi.com');
-
-    getWatchData.onerror = function(event) {
-    console.error("An error occurred with this operation (" + getWatchData.status + ")");
-
-    contItem.remove();
-
-    const error = document.createElement("div");
-    error.classList.add('error-container');
-    error.innerHTML = `<div class="error-content">
-<img class="error-icon ytm15-img" src="alert_error.png"></img>
-<span class="error-text">There was an error connecting to the server</span>
-</div>
-<div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry"><div class="button-text">Retry</div></button></div>`;
-    if (APP_NEW_ERROR_SCREEN_expflag == "true"){error.innerHTML=newErrorHtml};
-    /* if (JSON.parse(getWatchData.response)) {
-    const data = JSON.parse(getWatchData.response);
-    if (data.error) {
-    error.querySelector(".error-text").textContent = data.error;
-    }
-    } */
-    const errorBtn = error.querySelector("button");
-    errorBtn.onclick = function(){renderWatchPage(parent)};
-    parent.appendChild(error);
-    if (JSON.parse(getWatchData.response)) {
-    const data = JSON.parse(getWatchData.response);
-    if (data.error) {
-    error.querySelector(".error-text").textContent = data.error;
-    }
-    }
-    return;
-    };
-
-    getWatchData.send();
-
-    getWatchData.onload = function() {
-    if (getWatchData.status === 200) {
-    const data = JSON.parse(getWatchData.response);
-
-    playerNextVideoId = data.relatedVideos.data[0].videoId;
+    const fetchAndRenderWatchData = function(data) {
+      console.log(data);
+      playerNextVideoId = data.relatedVideos.data[0].videoId;
 
     if (playerPrevVideoId[0] !== playerVideoId && playerPrevVideoId[0] !== "") {
     prevVidBtn.ariaDisabled = "false";
@@ -558,7 +524,7 @@ function renderWatchPage(parent) {
     videoOwner.innerHTML = `
 <a class="video-owner-icon-and-title has-ripple" aria-label="Go to ${data.channelTitle}'s channel" href="#/channel/${data.channelId}">
 <div class="profile-icon video-owner-prof-icon">
-<img class="profile-img ytm15-img lazy" loading="lazy" src="${data.channelThumbnail[2].url}"></img>
+<img class="profile-img ytm15-img lazy" loading="lazy" src="${(ERACAST_MODE_option == "true") ? data.channelThumbnail[0].url : data.channelThumbnail[2].url}"></img>
 </div>
 <div class="video-owner-bylines">
 <h3 class="video-owner-title">${data.channelTitle}</h3>
@@ -656,10 +622,79 @@ function renderWatchPage(parent) {
 
     parent.appendChild(scwnr);
     if (WATCH_AUTOPLAY_SWITCH_expflag == "true") {
-      document.getElementById('autoplay-toggle-button').setAttribute('aria-pressed',localStorage.getItem('WATCH_AUTOPLAY_SWITCH_INTERNAL'));
+      document.getElementById("autoplay-toggle-button").setAttribute("aria-pressed", localStorage.getItem("WATCH_AUTOPLAY_SWITCH_INTERNAL"));
     }
+  };
+
+  const showWatchError = function(status) {
+    console.error("An error occurred with this operation (" + status + ")");
+
+    contItem.remove();
+
+    const error = document.createElement("div");
+    error.classList.add("error-container");
+    error.innerHTML = `<div class="error-content">
+<img class="error-icon ytm15-img" src="alert_error.png"></img>
+<span class="error-text">There was an error connecting to the server</span>
+</div>
+<div class="material-button-container" data-style="grey_filled" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button has-shadow" aria-label="Retry"><div class="button-text">Retry</div></button></div>`;
+    if (APP_NEW_ERROR_SCREEN_expflag == "true") { error.innerHTML = newErrorHtml; }
+    const errorBtn = error.querySelector("button");
+    errorBtn.onclick = function() { renderWatchPage(parent); };
+    parent.appendChild(error);
+    return error;
+  };
+
+  console.log("Go!");
+  if (ERACAST_MODE_option == "true") {
+    console.log("Using EraCast for watch data");
+    (async function() {
+      try {
+        if (typeof window.fetchEraCastVideoInfo !== "function") throw new Error("fetchEraCastVideoInfo missing");
+        console.log("Fetching EraCast watch data for video ID:", playerVideoId);
+        const data = await window.fetchEraCastVideoInfo(playerVideoId);
+        console.log("EraCast watch data received:", data);
+        if (!data || Object.keys(data).length === 0) throw new Error("Empty EraCast response");
+        fetchAndRenderWatchData(data);
+      } catch (e) {
+        console.error("EraCast watch data error:", e);
+        showWatchError(0);
+      }
+    })();
+    return;
+  }
+
+  const getWatchData = new XMLHttpRequest();
+  /* getWatchData.open('GET', APIbaseURL + 'api/v1/videos/' + playerVideoId, true); */
+  /* getWatchData.open('GET', APIbaseURLWatch + 'api/v1/videos/' + playerVideoId, true); */
+  /* getWatchData.setRequestHeader('Authorization','Basic eXRtMTU6SlFKNTNLckxBRVk2RTVxaGdjbTM4UGtTenczYlpYbWs='); */
+  getWatchData.open("GET", APIbaseURLNew + "video/info?extend=1&geo=US&id=" + playerVideoId, true);
+  getWatchData.setRequestHeader("x-rapidapi-key", "4b0791fe33mshce00ad033774274p196706jsn957349df7a8f");
+  getWatchData.setRequestHeader("x-rapidapi-host", "yt-api.p.rapidapi.com");
+
+  getWatchData.onerror = function(event) {
+    const error = showWatchError(getWatchData.status);
+    if (getWatchData.response) {
+      try {
+        const data = JSON.parse(getWatchData.response);
+        if (data.error) {
+          error.querySelector(".error-text").textContent = data.error;
+        }
+      } catch (err) {
+        console.warn("Could not parse watch error response", err);
+      }
+    }
+    return;
+  };
+
+  getWatchData.send();
+
+  getWatchData.onload = function() {
+    if (getWatchData.status === 200) {
+      const data = JSON.parse(getWatchData.response);
+      fetchAndRenderWatchData(data);
     } else {
-    getWatchData.onerror();
+      getWatchData.onerror();
     }
-    };
+  };
 }

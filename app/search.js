@@ -20,6 +20,11 @@ function searchPage() {
     document.querySelector(".tab-bar").innerHTML = "";
     };
 
+    if (typeof ERACAST_MODE_option !== 'undefined' && ERACAST_MODE_option === 'true') {
+    renderEraCastSearchPage(searchValue);
+    return;
+    }
+
     const getSearchData = new XMLHttpRequest();
     /* getSearchData.open('GET', APIbaseURL + 'api/v1/search?q=' + searchValueNotDecoded + `&page=1&sort_by=${searchParamSort}&date=${searchParamDate}&duration=${searchParamDuration}&type=${searchParamType}&features=${searchParamFeatures}`, true); */
     getSearchData.open('GET', APIbaseURLNew + 'search?query=' + searchValueNotDecoded + `&page=1&sort_by=${searchParamSort}&upload_date=${searchParamDate}&duration=${searchParamDuration}&type=${searchParamType}&features=${searchParamFeatures}`, true);
@@ -290,4 +295,143 @@ function searchPageContin(continuation, contItemParent) {
     getSearchData1.onerror();
     }
     };
+}
+
+async function renderEraCastSearchPage(query) {
+    const currentHash = window.location.hash;
+    const params = new URLSearchParams(currentHash.split('?')[1] || '');
+    const sortOptions = [
+        { title: 'Relevance', value: '' },
+        { title: 'Upload date', value: 'video_date_uploaded' },
+        { title: 'View count', value: 'video_view_count' },
+        { title: 'Rating', value: 'video_avg_rating' }
+    ];
+    const sort = sortOptions.find(option => option.value === params.get('sort'))?.value || '';
+    const spinner = document.querySelector('.spinner-container.full-height');
+    const isCurrentPage = () => window.location.hash === currentHash && ERACAST_MODE_option === 'true';
+
+    try {
+        const firstPage = query.trim() ? await window.fetchEraCastSearch(query, 1, sort) : { results: [], countText: '', nextPage: null };
+        if (!isCurrentPage()) return;
+        spinner?.setAttribute('hidden', '');
+
+        const page = document.createElement('page');
+        page.classList.add('searchPage');
+        const tabContainer = document.createElement('div');
+        tabContainer.classList.add('tabs-content-container');
+        const tabContent = document.createElement('div');
+        tabContent.classList.add('tab-content');
+        tabContent.setAttribute('tab-identifier', 'Results_page');
+        const section = document.createElement('div');
+        section.classList.add('section-list');
+        const sectionList = document.createElement('div');
+        sectionList.classList.add('lazy-list');
+        const itemSection = document.createElement('div');
+        itemSection.classList.add('item-section');
+        const list = document.createElement('div');
+        list.classList.add('lazy-list', 'no-animation');
+
+        pageCont.innerHTML = '';
+        pageCont.appendChild(page);
+        page.appendChild(tabContainer);
+        tabContainer.appendChild(tabContent);
+        tabContent.appendChild(section);
+        section.appendChild(sectionList);
+        sectionList.appendChild(itemSection);
+        itemSection.appendChild(list);
+        document.title = query + ' - 2015YouTube';
+
+        const sortMenu = document.createElement('ytm15-channel-sub-menu');
+        sortMenu.classList.add('section', 'search-sort-menu');
+        section.insertBefore(sortMenu, sectionList);
+        renderDropdownSelect('', sortMenu, sortOptions.map(option => ({
+            title: option.title,
+            selected: sort === option.value,
+            onclick: function() {
+                menuRemoveExtras();
+                menuRemove();
+                const next = new URLSearchParams({ query });
+                if (option.value) next.set('sort', option.value);
+                window.location.hash = '#/results?' + next.toString();
+            }
+        })), true);
+
+        if (firstPage.countText) {
+            const count = document.createElement('div');
+            count.classList.add('search-results-count');
+            count.textContent = firstPage.countText;
+            sectionList.insertBefore(count, itemSection);
+        }
+
+        function renderItems(data, target) {
+            data.results.forEach(item => {
+                if (item.type === 'channel') {
+                    renderCompactMediaItem(target, 'lazy-list', '', item.thumbnail, '', item.title, item.subscribers, item.channelId, '', null, 'channel', { channelVideoCount: item.videoCount });
+                } else if (item.type === 'playlist') {
+                    renderCompactMediaItem(target, 'lazy-list', item.playlistId, item.thumbnail, item.videoCount, item.title, item.author, '', '', null, 'playlist');
+                } else {
+                    renderCompactMediaItem(target, 'lazy-list', item.videoId, item.thumbnail, item.lengthSeconds || 'LIVE', item.title, item.author, item.authorId, item.publishedText, item.viewCount, 'video');
+                }
+            });
+        }
+
+        function addMoreButton(nextPage) {
+            if (!nextPage) return;
+            const container = document.createElement('div');
+            container.classList.add('next-continuation-cont');
+            container.innerHTML = '<div class="next-continuation"><div class="material-button-container next-contin-button" data-style="" data-icon-only="false" is-busy="false" aria-busy="false" disabled="false"><button class="material-button" aria-label="More"><div class="button-text">More</div></button></div></div>';
+            sectionList.appendChild(container);
+            const button = container.querySelector('button');
+            button.onclick = async function() {
+                button.disabled = true;
+                button.setAttribute('aria-busy', 'true');
+                try {
+                    const data = await window.fetchEraCastSearch(query, nextPage, sort);
+                    if (!isCurrentPage()) return;
+                    container.remove();
+                    const moreSection = document.createElement('div');
+                    moreSection.classList.add('item-section');
+                    const moreList = document.createElement('div');
+                    moreList.classList.add('lazy-list');
+                    moreSection.appendChild(moreList);
+                    sectionList.appendChild(moreSection);
+                    renderItems(data, moreList);
+                    addMoreButton(data.nextPage);
+                } catch (error) {
+                    console.error('EraCast search continuation failed:', error);
+                    button.disabled = false;
+                    button.removeAttribute('aria-busy');
+                    button.textContent = 'Retry';
+                }
+            };
+        }
+
+        renderItems(firstPage, list);
+        if (!firstPage.results.length) {
+            const empty = document.createElement('div');
+            empty.classList.add('ytm15-message');
+            const content = document.createElement('div');
+            content.classList.add('ytm15-message-content');
+            const message = document.createElement('div');
+            message.classList.add('msg-text');
+            message.textContent = No_Search_Results_text_string;
+            content.appendChild(message);
+            empty.appendChild(content);
+            list.appendChild(empty);
+        }
+        addMoreButton(firstPage.nextPage);
+    } catch (error) {
+        if (!isCurrentPage()) return;
+        console.error('EraCast search failed:', error);
+        spinner?.setAttribute('hidden', '');
+        const errorElement = document.createElement('div');
+        errorElement.classList.add('error-container');
+        errorElement.innerHTML = '<div class="error-content"><img class="error-icon ytm15-img" src="alert_error.png"><span class="error-text">There was an error connecting to the server</span></div><div class="material-button-container" data-style="grey_filled"><button class="material-button has-shadow" aria-label="Retry"><div class="button-text">Retry</div></button></div>';
+        if (APP_NEW_ERROR_SCREEN_expflag === 'true') errorElement.innerHTML = newErrorHtml;
+        pageCont.before(errorElement);
+        errorElement.querySelector('button').onclick = function() {
+            errorElement.remove();
+            searchPage();
+        };
+    }
 }

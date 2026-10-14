@@ -2990,6 +2990,14 @@ html:not(.style-2013) .menu-content.menu-style-holo.menu-style-dropdown .menu-it
     justify-content: center;
     align-items: center;
 }
+.search-sort-menu {
+    display: block;
+}
+.search-results-count {
+    color: #777;
+    font-size: 1.3rem;
+    padding: 10px 16px 4px;
+}
 .next-continuation {
     color: #068fd4;
 }
